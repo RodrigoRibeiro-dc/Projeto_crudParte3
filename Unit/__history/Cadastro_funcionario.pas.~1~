@@ -1,0 +1,47 @@
+unit Cadastro_funcionario;
+
+interface
+
+uses
+  Winapi.Windows, Winapi.Messages, System.SysUtils, System.Variants, System.Classes, Vcl.Graphics,
+  Vcl.Controls, Vcl.Forms, Vcl.Dialogs, Vcl.StdCtrls, Vcl.Menus, Vcl.ComCtrls;
+
+type
+  Tfrm_cad_funcionario = class(TForm)
+    lblnome: TLabel;
+    lbl_salario: TLabel;
+    lbl_rua: TLabel;
+    lbl_bairro: TLabel;
+    lbl_numero: TLabel;
+    lbl_cep: TLabel;
+    lbl_complemento: TLabel;
+    lbl_cidade: TLabel;
+    cbx_cargo: TComboBox;
+    lbl_cargo: TLabel;
+    edt_nome: TEdit;
+    edt_rua: TEdit;
+    edt_bairro: TEdit;
+    edt_complemento: TEdit;
+    edt_numero: TEdit;
+    edt_cidade: TEdit;
+    edt_cep: TEdit;
+    edt_salario: TEdit;
+    btn_cancelar: TButton;
+    btn_gravar: TButton;
+    dtp_data: TDateTimePicker;
+    lbl_data_nascimento: TLabel;
+  private
+    { Private declarations }
+  public
+    { Public declarations }
+  end;
+
+var
+  frm_cad_funcionario: Tfrm_cad_funcionario;
+
+implementation
+
+{$R *.dfm}
+
+end.
+

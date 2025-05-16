@@ -1,0 +1,106 @@
+object DataModule1: TDataModule1
+  Height = 201
+  Width = 389
+  PixelsPerInch = 96
+  object FDConnection1: TFDConnection
+    Params.Strings = (
+      'Database=PROJETO_CRUD'
+      'User_Name=sa'
+      'Password=aram98'
+      'Server=(local)'
+      'DriverID=MSSQL')
+    Connected = True
+    LoginPrompt = False
+    Left = 24
+    Top = 24
+  end
+  object sql_pessoas: TFDQuery
+    Connection = FDConnection1
+    SQL.Strings = (
+      'SELECT *FROM FUNCIONARIOS')
+    Left = 128
+    Top = 24
+  end
+  object ds_pessoas: TDataSource
+    DataSet = sql_pessoas
+    Left = 192
+    Top = 105
+  end
+  object std_inserir_funcionario: TFDStoredProc
+    Connection = FDConnection1
+    StoredProcName = 'PROJETO_CRUD.dbo.SP_INSERIR_FUNCIONARIO'
+    Left = 32
+    Top = 112
+    ParamData = <
+      item
+        Position = 2
+        Name = '@NOME'
+        DataType = ftString
+        ParamType = ptInput
+        Size = 50
+      end
+      item
+        Position = 3
+        Name = '@DATA_NASCIMENTO'
+        DataType = ftTimeStamp
+        NumericScale = 3
+        ParamType = ptInput
+      end
+      item
+        Position = 4
+        Name = '@RUA'
+        DataType = ftString
+        ParamType = ptInput
+        Size = 50
+      end
+      item
+        Position = 5
+        Name = '@NUMERO'
+        DataType = ftInteger
+        ParamType = ptInput
+      end
+      item
+        Position = 6
+        Name = '@BAIRRO'
+        DataType = ftString
+        ParamType = ptInput
+        Size = 50
+      end
+      item
+        Position = 7
+        Name = '@CIDADE'
+        DataType = ftString
+        ParamType = ptInput
+        Size = 30
+      end
+      item
+        Position = 8
+        Name = '@COMPLEMENTO'
+        DataType = ftString
+        ParamType = ptInput
+        Size = 50
+      end
+      item
+        Position = 9
+        Name = '@CEP'
+        DataType = ftString
+        ParamType = ptInput
+        Size = 9
+      end
+      item
+        Position = 10
+        Name = '@CARGO'
+        DataType = ftString
+        ParamType = ptInput
+        Size = 50
+      end
+      item
+        Position = 11
+        Name = '@SALARIO'
+        DataType = ftBCD
+        Precision = 10
+        NumericScale = 2
+        ParamType = ptInput
+      end>
+  end
+end

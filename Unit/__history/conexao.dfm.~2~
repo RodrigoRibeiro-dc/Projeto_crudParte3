@@ -1,0 +1,34 @@
+object DataModule1: TDataModule1
+  Height = 201
+  Width = 389
+  PixelsPerInch = 96
+  object FDConnection1: TFDConnection
+    Params.Strings = (
+      'Database=PROJETO_CRUD'
+      'User_Name=sa'
+      'Password=aram98'
+      'Server=(local)'
+      'DriverID=MSSQL')
+    Connected = True
+    LoginPrompt = False
+    Left = 24
+    Top = 24
+  end
+  object sql_pessoas: TFDQuery
+    Connection = FDConnection1
+    SQL.Strings = (
+      'SELECT *FROM FUNCIONARIOS')
+    Left = 128
+    Top = 24
+  end
+  object ds_pessoas: TDataSource
+    DataSet = sql_pessoas
+    Left = 192
+    Top = 105
+  end
+  object stp_insere_funcionario: TSQLStoredProc
+    Params = <>
+    Left = 40
+    Top = 104
+  end
+end
