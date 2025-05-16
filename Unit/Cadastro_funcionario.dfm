@@ -8060,7 +8060,7 @@ object frm_cad_funcionario: Tfrm_cad_funcionario
   object cbx_cargo: TComboBox
     Left = 103
     Top = 309
-    Width = 99
+    Width = 130
     Height = 23
     Cursor = crHandPoint
     Style = csDropDownList

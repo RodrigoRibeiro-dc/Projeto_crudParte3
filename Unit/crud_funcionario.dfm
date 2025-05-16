@@ -8373,11 +8373,11 @@ object menu_funcionarios: Tmenu_funcionarios
     object cbx_cargo: TComboBox
       Left = 103
       Top = 309
-      Width = 99
+      Width = 130
       Height = 23
       Cursor = crHandPoint
-      Style = csDropDownList
       ImeMode = imOpen
+      MaxLength = 15
       TabOrder = 8
       Items.Strings = (
         'GERENTE'
