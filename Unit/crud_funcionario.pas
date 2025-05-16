@@ -54,7 +54,6 @@ type
     procedure img_alterarClick(Sender: TObject);
     procedure dbg_grid_consultaCellClick(Column: TColumn);
     procedure img_excluirClick(Sender: TObject);
-    procedure lbl_count_funcionarioClick(Sender: TObject);
     procedure edt_salarioKeyPress(Sender: TObject; var Key: Char);
     procedure edt_salario_novoKeyPress(Sender: TObject; var Key: Char);
   private
@@ -191,10 +190,4 @@ begin
   frm_cad_funcionario := Tfrm_cad_funcionario.Create(Self);
   frm_cad_funcionario.ShowModal;
 end;
-procedure Tmenu_funcionarios.lbl_count_funcionarioClick(Sender: TObject);
-begin
-    //lbl_count_funcionario.Caption:= Conexao_db.FDQuery1.SQL.Text :=
-    // 'SELECT COUNT(*) FROM FUNCIONARIOS'
-end;
-
 end.

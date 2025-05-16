@@ -6,7 +6,6 @@ uses
   Winapi.Windows, Winapi.Messages, System.SysUtils, System.Variants, System.Classes, Vcl.Graphics,
   Vcl.Controls, Vcl.Forms, Vcl.Dialogs, Vcl.StdCtrls, Vcl.Menus, Vcl.ComCtrls,
   Vcl.Mask;
-
 type
   Tfrm_cad_funcionario = class(TForm)
     lbl_nome: TLabel;
@@ -47,7 +46,7 @@ implementation
 
 {$R *.dfm}
 
-uses conexao_banco_dados;
+uses conexao_banco_dados,crud_funcionario;
 
 procedure Tfrm_cad_funcionario.btn_cancelarClick(Sender: TObject);
 begin
@@ -90,6 +89,7 @@ begin
       edt_complemento.Clear;
       msk_edit_cep.Clear;
       edt_salario.Clear;
+      conexao_db.FDQuery1.Refresh
     end;
   end;
 
@@ -102,4 +102,3 @@ begin
 end;
 
 end.
-

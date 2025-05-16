@@ -1,0 +1,213 @@
+object frm_cad_funcionario: Tfrm_cad_funcionario
+  Left = 0
+  Top = 0
+  Anchors = [akLeft, akTop, akRight, akBottom]
+  BorderIcons = [biSystemMenu, biMinimize]
+  BorderStyle = bsSingle
+  Caption = 'Cadastro de funcionarios'
+  ClientHeight = 450
+  ClientWidth = 700
+  Color = clBtnFace
+  Font.Charset = DEFAULT_CHARSET
+  Font.Color = clWindowText
+  Font.Height = -12
+  Font.Name = 'Segoe UI'
+  Font.Style = []
+  Position = poMainFormCenter
+  PixelsPerInch = 96
+  TextHeight = 15
+  object lbl_nome: TLabel
+    Left = 62
+    Top = 69
+    Width = 35
+    Height = 15
+    Caption = 'NOME'
+  end
+  object lbl_salario: TLabel
+    Left = 490
+    Top = 317
+    Width = 47
+    Height = 15
+    Caption = 'SALARIO'
+  end
+  object lbl_rua: TLabel
+    Left = 74
+    Top = 133
+    Width = 23
+    Height = 15
+    Caption = 'RUA'
+  end
+  object lbl_bairro: TLabel
+    Left = 56
+    Top = 197
+    Width = 41
+    Height = 15
+    Caption = 'BAIRRO'
+  end
+  object lbl_numero: TLabel
+    Left = 487
+    Top = 133
+    Width = 50
+    Height = 15
+    Caption = 'N'#218'MERO'
+  end
+  object lbl_cep: TLabel
+    Left = 516
+    Top = 264
+    Width = 21
+    Height = 15
+    Caption = 'CEP'
+  end
+  object lbl_complemento: TLabel
+    Left = 9
+    Top = 264
+    Width = 88
+    Height = 15
+    Caption = 'COMPLEMENTO'
+  end
+  object lbl_cidade: TLabel
+    Left = 496
+    Top = 197
+    Width = 41
+    Height = 15
+    Caption = 'CIDADE'
+  end
+  object lbl_cargo: TLabel
+    Left = 57
+    Top = 317
+    Width = 40
+    Height = 15
+    Caption = 'CARGO'
+  end
+  object lbl_data_nascimento: TLabel
+    Left = 430
+    Top = 69
+    Width = 107
+    Height = 15
+    Caption = 'DATA NASCIMENTO'
+  end
+  object cbx_cargo: TComboBox
+    Left = 103
+    Top = 309
+    Width = 99
+    Height = 23
+    Cursor = crHandPoint
+    Style = csDropDownList
+    ImeMode = imOpen
+    TabOrder = 8
+    Items.Strings = (
+      'Gerente'
+      'Implanta'#231#227'o'
+      'Programador'
+      'Financeiro'
+      'CS'
+      'Suporte'
+      'Vendedor')
+  end
+  object edt_nome: TEdit
+    Left = 103
+    Top = 66
+    Width = 321
+    Height = 23
+    CharCase = ecUpperCase
+    MaxLength = 50
+    TabOrder = 0
+  end
+  object edt_rua: TEdit
+    Left = 103
+    Top = 125
+    Width = 321
+    Height = 23
+    CharCase = ecUpperCase
+    MaxLength = 50
+    TabOrder = 2
+  end
+  object edt_bairro: TEdit
+    Left = 103
+    Top = 189
+    Width = 321
+    Height = 23
+    CharCase = ecUpperCase
+    MaxLength = 50
+    TabOrder = 4
+  end
+  object edt_complemento: TEdit
+    Left = 103
+    Top = 256
+    Width = 321
+    Height = 23
+    CharCase = ecUpperCase
+    MaxLength = 50
+    TabOrder = 6
+  end
+  object edt_numero: TEdit
+    Left = 543
+    Top = 125
+    Width = 121
+    Height = 23
+    CharCase = ecUpperCase
+    MaxLength = 6
+    NumbersOnly = True
+    TabOrder = 3
+  end
+  object edt_cidade: TEdit
+    Left = 543
+    Top = 189
+    Width = 121
+    Height = 23
+    CharCase = ecUpperCase
+    MaxLength = 30
+    TabOrder = 5
+  end
+  object edt_salario: TEdit
+    Left = 543
+    Top = 309
+    Width = 121
+    Height = 23
+    CharCase = ecUpperCase
+    MaxLength = 15
+    TabOrder = 9
+    OnKeyPress = edt_salarioKeyPress
+  end
+  object btn_cancelar: TButton
+    Left = 175
+    Top = 384
+    Width = 98
+    Height = 32
+    Cursor = crHandPoint
+    Caption = 'CANCELAR'
+    DragCursor = crHandPoint
+    TabOrder = 10
+    OnClick = btn_cancelarClick
+  end
+  object btn_gravar: TButton
+    Left = 399
+    Top = 384
+    Width = 98
+    Height = 32
+    Cursor = crHandPoint
+    Caption = 'GRAVAR'
+    TabOrder = 11
+    OnClick = btn_gravarClick
+  end
+  object dtp_data: TDateTimePicker
+    Left = 543
+    Top = 61
+    Width = 121
+    Height = 23
+    Cursor = crHandPoint
+    Date = 45790.000000000000000000
+    Time = 0.392747048608725900
+    TabOrder = 1
+  end
+  object msk_edit_cep: TMaskEdit
+    Left = 543
+    Top = 256
+    Width = 118
+    Height = 23
+    EditMask = '00000\-999;1;_'
+    MaxLength = 9
+    TabOrder = 7
+    Text = '     -   '
+  end
+end
