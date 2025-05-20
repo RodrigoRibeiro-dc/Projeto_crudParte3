@@ -8167,16 +8167,17 @@ object frm_cad_funcionario: Tfrm_cad_funcionario
     Width = 121
     Height = 23
     Cursor = crHandPoint
-    Date = 45790.000000000000000000
+    Date = 45796.000000000000000000
     Time = 0.392747048608725900
     TabOrder = 1
   end
   object msk_edit_cep: TMaskEdit
     Left = 543
     Top = 256
-    Width = 118
+    Width = 106
     Height = 23
-    EditMask = '00000\-999;1;_'
+    TabStop = False
+    EditMask = '99999-999;1;_'
     MaxLength = 9
     TabOrder = 7
     Text = '     -   '

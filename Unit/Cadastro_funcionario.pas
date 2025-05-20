@@ -55,14 +55,14 @@ end;
 
 procedure Tfrm_cad_funcionario.btn_gravarClick(Sender: TObject);
 begin
-  if edt_nome.Text = '' then
+  if Trim(edt_nome.Text) = '' then
     begin
       MessageBox(0, 'NOME NÃO PODE FICAR VAZIO', 'ALERTA', MB_ICONINFORMATION);
       edt_nome.Focused;
     end
   else if edt_salario.Text = '' then
     begin
-       MessageBox(0, 'SALARIO NAO PODE FICAR VAZIO','ALERTA', MB_ICONINFORMATION);
+       MessageBox(0, 'SALÁRIO NÃO PODE FICAR VAZIO','ALERTA', MB_ICONINFORMATION);
        edt_salario.Focused;
     end
   else

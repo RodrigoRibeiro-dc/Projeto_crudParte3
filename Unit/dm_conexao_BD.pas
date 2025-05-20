@@ -1,0 +1,47 @@
+unit dm_conexao_BD;
+
+interface
+
+uses
+  System.SysUtils, System.Classes, FireDAC.Stan.Intf, FireDAC.Stan.Option,
+  FireDAC.Stan.Error, FireDAC.UI.Intf, FireDAC.Phys.Intf, FireDAC.Stan.Def,
+  FireDAC.Stan.Pool, FireDAC.Stan.Async, FireDAC.Phys, FireDAC.Phys.MSSQL,
+  FireDAC.Phys.MSSQLDef, FireDAC.VCLUI.Wait, FireDAC.Stan.Param, FireDAC.DatS,
+  FireDAC.DApt.Intf, FireDAC.DApt, Data.DB, FireDAC.Comp.DataSet,
+  FireDAC.Comp.Client, Data.FMTBcd, Data.SqlExpr;
+
+type
+  Tdm_funcionarios = class(TDataModule)
+    ctn_conexao: TFDConnection;
+    tbl_funcionarios: TFDTable;
+    dts_funcionarios: TDataSource;
+    tbl_funcionariosFUN_ID: TFDAutoIncField;
+    tbl_funcionariosFUN_NOME: TWideStringField;
+    tbl_funcionariosFUN_DATANASCIMENTO: TSQLTimeStampField;
+    tbl_funcionariosFUN_RUA: TWideStringField;
+    tbl_funcionariosFUN_NUMERO: TIntegerField;
+    tbl_funcionariosFUN_BAIRRO: TWideStringField;
+    tbl_funcionariosFUN_CIDADE: TWideStringField;
+    tbl_funcionariosFUN_COMPLEMENTO: TWideStringField;
+    tbl_funcionariosFUN_CEP: TWideStringField;
+    tbl_funcionariosFUN_CARGO: TWideStringField;
+    tbl_funcionariosFUN_SALARIO: TBCDField;
+    tsc_funcionarios: TFDTransaction;
+    fdq_totalfuncionario: TFDQuery;
+    fdq_totalsalario: TFDQuery;
+  private
+    { Private declarations }
+  public
+    { Public declarations }
+  end;
+
+var
+  dm_funcionarios: Tdm_funcionarios;
+
+implementation
+
+{%CLASSGROUP 'Vcl.Controls.TControl'}
+
+{$R *.dfm}
+
+end.
