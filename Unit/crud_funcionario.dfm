@@ -8359,15 +8359,15 @@ object menu_funcionarios: Tmenu_funcionarios
     end
   end
   object pnl_altera_funcionario: TPanel
-    Left = 653
-    Top = 0
+    Left = 649
+    Top = -1
     Width = 649
-    Height = 450
+    Height = 452
     Alignment = taLeftJustify
     TabOrder = 3
     object lbl_codigo: TLabel
       Left = 58
-      Top = 65
+      Top = 66
       Width = 45
       Height = 15
       Caption = 'C'#211'DIGO'
@@ -8375,14 +8375,14 @@ object menu_funcionarios: Tmenu_funcionarios
     end
     object lbl_datanascimento: TLabel
       Left = 389
-      Top = 65
+      Top = 66
       Width = 124
       Height = 15
       Caption = 'DATA DE NASCIMENTO'
     end
     object lbl_nome: TLabel
       Left = 68
-      Top = 151
+      Top = 152
       Width = 35
       Height = 15
       Caption = 'NOME'
@@ -8390,7 +8390,7 @@ object menu_funcionarios: Tmenu_funcionarios
     end
     object lbl_rua: TLabel
       Left = 80
-      Top = 211
+      Top = 212
       Width = 23
       Height = 15
       Caption = 'RUA'
@@ -8398,7 +8398,7 @@ object menu_funcionarios: Tmenu_funcionarios
     end
     object lbl_numero: TLabel
       Left = 465
-      Top = 211
+      Top = 212
       Width = 50
       Height = 15
       Caption = 'NUMERO'
@@ -8406,7 +8406,7 @@ object menu_funcionarios: Tmenu_funcionarios
     end
     object lbl_bairro: TLabel
       Left = 62
-      Top = 277
+      Top = 272
       Width = 41
       Height = 15
       Caption = 'BAIRRO'
@@ -8438,14 +8438,14 @@ object menu_funcionarios: Tmenu_funcionarios
     end
     object lbl_cargo: TLabel
       Left = 63
-      Top = 393
+      Top = 394
       Width = 40
       Height = 15
       Caption = 'CARGO'
     end
     object lbl_salario: TLabel
       Left = 467
-      Top = 393
+      Top = 394
       Width = 47
       Height = 15
       Caption = 'SAL'#193'RIO'
@@ -8470,6 +8470,7 @@ object menu_funcionarios: Tmenu_funcionarios
       CharCase = ecUpperCase
       DataField = 'FUN_NOME'
       DataSource = dm_funcionarios.dts_funcionarios
+      MaxLength = 50
       TabOrder = 2
     end
     object Dedt_rua: TDBEdit
@@ -8480,12 +8481,13 @@ object menu_funcionarios: Tmenu_funcionarios
       CharCase = ecUpperCase
       DataField = 'FUN_RUA'
       DataSource = dm_funcionarios.dts_funcionarios
+      MaxLength = 50
       TabOrder = 3
     end
     object Dedt_numero: TDBEdit
-      Left = 521
+      Left = 519
       Top = 208
-      Width = 104
+      Width = 105
       Height = 23
       DataField = 'FUN_NUMERO'
       DataSource = dm_funcionarios.dts_funcionarios
@@ -8500,10 +8502,11 @@ object menu_funcionarios: Tmenu_funcionarios
       CharCase = ecUpperCase
       DataField = 'FUN_BAIRRO'
       DataSource = dm_funcionarios.dts_funcionarios
+      MaxLength = 50
       TabOrder = 5
     end
     object Dedt_cidade: TDBEdit
-      Left = 520
+      Left = 519
       Top = 269
       Width = 105
       Height = 23
@@ -8521,12 +8524,13 @@ object menu_funcionarios: Tmenu_funcionarios
       CharCase = ecUpperCase
       DataField = 'FUN_COMPLEMENTO'
       DataSource = dm_funcionarios.dts_funcionarios
+      MaxLength = 50
       TabOrder = 7
     end
     object Dedt_cep: TDBEdit
       Left = 519
       Top = 329
-      Width = 106
+      Width = 105
       Height = 23
       DataField = 'FUN_CEP'
       DataSource = dm_funcionarios.dts_funcionarios
@@ -8534,7 +8538,7 @@ object menu_funcionarios: Tmenu_funcionarios
       TabOrder = 8
     end
     object Dedt_salario: TDBEdit
-      Left = 520
+      Left = 519
       Top = 390
       Width = 105
       Height = 23
@@ -8547,7 +8551,7 @@ object menu_funcionarios: Tmenu_funcionarios
     object cbx_cargo: TDBComboBox
       Left = 109
       Top = 390
-      Width = 145
+      Width = 125
       Height = 23
       Cursor = crHandPoint
       Style = csDropDownList
@@ -8567,7 +8571,7 @@ object menu_funcionarios: Tmenu_funcionarios
     object dbdt_datanascimento: TDBDateEdit
       Left = 519
       Top = 62
-      Width = 120
+      Width = 105
       Height = 23
       DataField = 'FUN_DATANASCIMENTO'
       DataSource = dm_funcionarios.dts_funcionarios
@@ -8577,9 +8581,9 @@ object menu_funcionarios: Tmenu_funcionarios
   end
   object pnl_somatorio: TPanel
     Left = 0
-    Top = 455
+    Top = 452
     Width = 1356
-    Height = 68
+    Height = 65
     TabOrder = 4
     object lbl_total_funcionario: TLabel
       Left = 380

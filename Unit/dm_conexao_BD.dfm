@@ -17,6 +17,7 @@ object dm_funcionarios: Tdm_funcionarios
     Left = 40
     Top = 136
     object tbl_funcionariosFUN_ID: TFDAutoIncField
+      Alignment = taLeftJustify
       FieldName = 'FUN_ID'
       Origin = 'FUN_ID'
       ReadOnly = True

@@ -85,13 +85,13 @@ begin
   dm_funcionarios.fdq_totalsalario.SQL.Text :=
     'SELECT CASE WHEN SUM(FUN_SALARIO) IS NULL THEN 0 ELSE SUM(FUN_SALARIO) END AS TOTAL_SALARIO FROM FUNCIONARIOS';
   dm_funcionarios.fdq_totalsalario.Open;
-  menu_funcionarios.dbtxt_totalsalario.Caption := dm_funcionarios.fdq_totalsalario.FieldByName('TOTAL_SALARIO').AsString;
+  menu_funcionarios.dbtxt_totalsalario.Caption :=
+  FormatFloat('#,##0.00', dm_funcionarios.fdq_totalsalario.FieldByName('TOTAL_SALARIO').AsCurrency);
 end;
-
-
 
 procedure Tmenu_funcionarios.FormActivate(Sender: TObject);
 begin
+  calcula_total(Sender);
   if Trim(Dedt_nome.Text) = '' then
     img_salvar.Enabled := True
   else
@@ -104,7 +104,6 @@ begin
   end
   else
   begin
-    img_salvar.Enabled := True;
     img_alterar.Enabled := True;
     img_excluir.Enabled := True;
   end;
@@ -113,13 +112,14 @@ end;
 
 procedure Tmenu_funcionarios.FormShow(Sender: TObject);
 begin
-    calcula_total(Sender);
+  calcula_total(Sender);
 end;
-
 
 procedure Tmenu_funcionarios.img_alterarClick(Sender: TObject);
 begin
      if img_alterar.Enabled = True then img_salvar.Enabled := True;
+     if img_alterar.Enabled = True then img_incluir.Enabled := False;
+     if img_alterar.Enabled = True then img_excluir.Enabled := False;
      dm_funcionarios.tbl_funcionarios.Open();
      Dedt_nome.SetFocus;
      dm_funcionarios.tbl_funcionarios.Edit;
@@ -131,8 +131,18 @@ begin
   dm_funcionarios.tsc_funcionarios.StartTransaction;
   MessageDlg('FUNCIONÁRIO EXCLUÍDO COM SUCESSO.',TMsgDlgType.mtConfirmation, [TMsgDlgBtn.mbOK], 0);
   dm_funcionarios.tbl_funcionarios.Refresh;
-  dbg_funcionarios.Refresh;
   calcula_total(Sender);
+  if dm_funcionarios.tbl_funcionarios.IsEmpty then
+  begin
+    img_salvar.Enabled := False;
+    img_alterar.Enabled := False;
+    img_excluir.Enabled := False;
+  end
+  else
+  begin
+    img_alterar.Enabled := True;
+    img_excluir.Enabled := True;
+  end;
 end;
 
 procedure Tmenu_funcionarios.img_incluirClick(Sender: TObject);
@@ -194,18 +204,17 @@ begin
       img_excluir.Enabled := True;
       img_salvar.Enabled := False;
       dm_funcionarios.tbl_funcionarios.Close;
-      dbg_funcionarios.Refresh;
-      calcula_total(Sender);
       dm_funcionarios.tbl_funcionarios.Open;
+      calcula_total(Sender);
     end
     else
     begin
       MessageDlg('FUNCIONÁRIO ALTERADO COM SUCESSO.', TMsgDlgType.mtConfirmation, [TMsgDlgBtn.mbOK], 0);
     end;
-    dbg_funcionarios.Refresh;
     calcula_total(Sender);
     img_incluir.Enabled := True;
     img_alterar.Enabled := True;
+    img_excluir.Enabled := True;
   end;
 end;
 end.
