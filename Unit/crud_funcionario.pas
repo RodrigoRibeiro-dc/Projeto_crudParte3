@@ -122,6 +122,8 @@ begin
      if img_alterar.Enabled = True then img_salvar.Enabled := True;
      if img_alterar.Enabled = True then img_incluir.Enabled := False;
      if img_alterar.Enabled = True then img_excluir.Enabled := False;
+     if img_salvar.Enabled = True then img_alterar.Enabled := False;
+
      dm_funcionarios.tbl_funcionarios.Open();
      Dedt_nome.SetFocus;
      dm_funcionarios.tbl_funcionarios.Edit;

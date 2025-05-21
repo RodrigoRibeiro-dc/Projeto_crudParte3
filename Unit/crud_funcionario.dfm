@@ -8401,7 +8401,7 @@ object menu_funcionarios: Tmenu_funcionarios
       Top = 212
       Width = 50
       Height = 15
-      Caption = 'NUMERO'
+      Caption = 'N'#218'MERO'
       FocusControl = Dedt_numero
     end
     object lbl_bairro: TLabel
