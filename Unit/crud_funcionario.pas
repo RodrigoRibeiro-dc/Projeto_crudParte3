@@ -6,7 +6,7 @@ uses
   Winapi.Windows, Winapi.Messages, System.SysUtils, System.Variants, System.Classes, Vcl.Graphics,
   Vcl.Controls, Vcl.Forms, Vcl.Dialogs, Vcl.StdCtrls, Vcl.Imaging.pngimage,
   Vcl.ExtCtrls, Vcl.Mask, Vcl.DBCtrls, Data.DB, Vcl.Grids, Vcl.DBGrids,
-  Vcl.ComCtrls, Vcl.Menus, RxToolEdit, RxDBCtrl;
+  Vcl.ComCtrls, Vcl.Menus, RxToolEdit, RxDBCtrl, System.UITypes;
 
 type
   Tmenu_funcionarios = class(TForm)
@@ -52,17 +52,14 @@ type
     dbdt_datanascimento: TDBDateEdit;
     img_salvar: TImage;
     lbl_salvar: TLabel;
-    DBGrid1: TDBGrid;
+    dbg_funcionarios: TDBGrid;
     dbtxt_totalfuncionarios: TDBText;
     dbtxt_totalsalario: TDBText;
-    procedure edt_salarioKeyPress(Sender: TObject; var Key: Char);
-    procedure edt_salario_novoKeyPress(Sender: TObject; var Key: Char);
     procedure img_incluirClick(Sender: TObject);
     procedure img_salvarClick(Sender: TObject);
     procedure FormActivate(Sender: TObject);
     procedure img_alterarClick(Sender: TObject);
     procedure img_excluirClick(Sender: TObject);
-    procedure dbtxt_totalsalarioClick(Sender: TObject);
     procedure FormShow(Sender: TObject);
   private
     { Private declarations }
@@ -79,52 +76,39 @@ implementation
 
 uses dm_conexao_BD;
 
-procedure Tmenu_funcionarios.dbtxt_totalsalarioClick(Sender: TObject);
-begin
-  //lblTotalSalarios.Caption := FormatFloat('#,##0.00', FDQueryTotais.FieldByName('TotalSalarios').AsFloat);
-end;
-
-procedure Tmenu_funcionarios.edt_salarioKeyPress(Sender: TObject;
-  var Key: Char);
-begin
-  if not (Key in ['0'..'9', ',', '.', #8]) then
-    Key := #0;
-end;
-
-procedure Tmenu_funcionarios.edt_salario_novoKeyPress(Sender: TObject;
-  var Key: Char);
-begin
-  if not (Key in ['0'..'9', ',', '.', #8]) then
-    Key := #0;
-end;
-
 procedure calcula_total(Sender: TObject);
 begin
-  // Total de funcionários
-  dm_funcionarios.fdq_totalfuncionario.Close;
   dm_funcionarios.fdq_totalfuncionario.SQL.Text := 'SELECT COUNT(*) AS QUANTIDADE FROM FUNCIONARIOS';
   dm_funcionarios.fdq_totalfuncionario.Open;
   menu_funcionarios.dbtxt_totalfuncionarios.Caption := dm_funcionarios.fdq_totalfuncionario.FieldByName('QUANTIDADE').AsString;
 
-  // Total de salários
-  dm_funcionarios.fdq_totalsalario.Close;
-  dm_funcionarios.fdq_totalsalario.SQL.Text := 'SELECT SUM(FUN_SALARIO) AS TOTAL_SALARIO FROM FUNCIONARIOS';
+  dm_funcionarios.fdq_totalsalario.SQL.Text :=
+    'SELECT CASE WHEN SUM(FUN_SALARIO) IS NULL THEN 0 ELSE SUM(FUN_SALARIO) END AS TOTAL_SALARIO FROM FUNCIONARIOS';
   dm_funcionarios.fdq_totalsalario.Open;
   menu_funcionarios.dbtxt_totalsalario.Caption := dm_funcionarios.fdq_totalsalario.FieldByName('TOTAL_SALARIO').AsString;
 end;
 
 
+
 procedure Tmenu_funcionarios.FormActivate(Sender: TObject);
 begin
-    if Trim(Dedt_nome.Text) ='' then img_salvar.Enabled := True
-    else
+  if Trim(Dedt_nome.Text) = '' then
+    img_salvar.Enabled := True
+  else
     img_salvar.Enabled := False;
-    dm_funcionarios.fdq_totalfuncionario.SQL.Text := 'SELECT COUNT(*) AS QUANTIDADE FROM FUNCIONARIOS ';
-    dm_funcionarios.fdq_totalfuncionario.Open();
-    dbtxt_totalfuncionarios.Caption := dm_funcionarios.fdq_totalfuncionario.FieldByName('QUANTIDADE').AsString;
-    dm_funcionarios.fdq_totalsalario.SQL.Text := 'SELECT SUM(FUN_SALARIO) AS TOTAL_SALARIO FROM FUNCIONARIOS';
-    dm_funcionarios.fdq_totalsalario.Open();
-    dbtxt_totalsalario.Caption := dm_funcionarios.fdq_totalsalario.FieldByName('TOTAL_SALARIO').AsString;
+  if dm_funcionarios.tbl_funcionarios.IsEmpty then
+  begin
+    img_salvar.Enabled := False;
+    img_alterar.Enabled := False;
+    img_excluir.Enabled := False;
+  end
+  else
+  begin
+    img_salvar.Enabled := True;
+    img_alterar.Enabled := True;
+    img_excluir.Enabled := True;
+  end;
+
 end;
 
 procedure Tmenu_funcionarios.FormShow(Sender: TObject);
@@ -132,16 +116,13 @@ begin
     calcula_total(Sender);
 end;
 
+
 procedure Tmenu_funcionarios.img_alterarClick(Sender: TObject);
 begin
-  Dedt_nome.SetFocus;
-  dm_funcionarios.tbl_funcionarios.Open();
-  dm_funcionarios.tbl_funcionarios.Edit;
-  dm_funcionarios.tbl_funcionarios.Post;
-  dm_funcionarios.tsc_funcionarios.StartTransaction;
-  dm_funcionarios.tsc_funcionarios.CommitRetaining;
-  MessageDlg('FUNCIONÁRIO ALTERADO COM SUCESSO.', TMsgDlgType.mtConfirmation, [TMsgDlgBtn.mbOK], 0);
-  calcula_total(Sender);
+     if img_alterar.Enabled = True then img_salvar.Enabled := True;
+     dm_funcionarios.tbl_funcionarios.Open();
+     Dedt_nome.SetFocus;
+     dm_funcionarios.tbl_funcionarios.Edit;
 end;
 
 procedure Tmenu_funcionarios.img_excluirClick(Sender: TObject);
@@ -150,6 +131,8 @@ begin
   dm_funcionarios.tsc_funcionarios.StartTransaction;
   MessageDlg('FUNCIONÁRIO EXCLUÍDO COM SUCESSO.',TMsgDlgType.mtConfirmation, [TMsgDlgBtn.mbOK], 0);
   dm_funcionarios.tbl_funcionarios.Refresh;
+  dbg_funcionarios.Refresh;
+  calcula_total(Sender);
 end;
 
 procedure Tmenu_funcionarios.img_incluirClick(Sender: TObject);
@@ -171,10 +154,11 @@ begin
    img_incluir.Enabled := false;
    img_alterar.Enabled := False;
    img_excluir.Enabled := False;
-   calcula_total(Sender);
 end;
 
 procedure Tmenu_funcionarios.img_salvarClick(Sender: TObject);
+var
+  foiInclusao: Boolean;
 begin
   if Trim(Dedt_nome.Text) = '' then
   begin
@@ -186,33 +170,42 @@ begin
     MessageDlg('O CAMPO SALÁRIO NÃO PODE FICAR VAZIO!', TMsgDlgType.mtWarning, [TMsgDlgBtn.mbOK], 0);
     Dedt_salario.SetFocus;
   end
-  else if dm_funcionarios.tbl_funcionarios.State in [dsinsert] then
+  else if dm_funcionarios.tbl_funcionarios.State in [dsInsert, dsEdit] then
   begin
+    foiInclusao := dm_funcionarios.tbl_funcionarios.State = dsInsert;
     dm_funcionarios.tbl_funcionarios.Post;
     dm_funcionarios.tsc_funcionarios.StartTransaction;
     dm_funcionarios.tsc_funcionarios.CommitRetaining;
-    img_salvar.Enabled := false;
-    MessageDlg('FUNCIONÁRIO INCLÚIDO COM SUCESSO.', TMsgDlgType.mtConfirmation, [TMsgDlgBtn.mbOK], 0);
-    dbdt_datanascimento.SetFocus;
-    dbdt_datanascimento.Clear;
-    Dedt_nome.Clear;
-    Dedt_rua.Clear;
-    Dedt_numero.Clear;
-    Dedt_bairro.Clear;
-    Dedt_cidade.Clear;
-    Dedt_complemento.Clear;
-    Dedt_cep.Clear;
-    cbx_cargo.ClearSelection;
-    Dedt_salario.Clear;
+    if foiInclusao then
+    begin
+      MessageDlg('FUNCIONÁRIO INCLUÍDO COM SUCESSO.', TMsgDlgType.mtConfirmation, [TMsgDlgBtn.mbOK], 0);
+      dbdt_datanascimento.Clear;
+      Dedt_nome.Clear;
+      Dedt_rua.Clear;
+      Dedt_numero.Clear;
+      Dedt_bairro.Clear;
+      Dedt_cidade.Clear;
+      Dedt_complemento.Clear;
+      Dedt_cep.Clear;
+      cbx_cargo.ClearSelection;
+      Dedt_salario.Clear;
+      img_incluir.Enabled := True;
+      img_alterar.Enabled := True;
+      img_excluir.Enabled := True;
+      img_salvar.Enabled := False;
+      dm_funcionarios.tbl_funcionarios.Close;
+      dbg_funcionarios.Refresh;
+      calcula_total(Sender);
+      dm_funcionarios.tbl_funcionarios.Open;
+    end
+    else
+    begin
+      MessageDlg('FUNCIONÁRIO ALTERADO COM SUCESSO.', TMsgDlgType.mtConfirmation, [TMsgDlgBtn.mbOK], 0);
+    end;
+    dbg_funcionarios.Refresh;
+    calcula_total(Sender);
     img_incluir.Enabled := True;
     img_alterar.Enabled := True;
-    img_excluir.Enabled := True;
-    img_salvar.Enabled := false;
-    calcula_total(Sender);
-
   end;
-  
-
 end;
-
 end.

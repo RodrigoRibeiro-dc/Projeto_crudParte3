@@ -8188,8 +8188,8 @@ object menu_funcionarios: Tmenu_funcionarios
       ParentFont = False
     end
     object img_salvar: TImage
-      Left = 216
-      Top = 24
+      Left = 219
+      Top = 26
       Width = 33
       Height = 33
       Cursor = crHandPoint
@@ -8281,7 +8281,7 @@ object menu_funcionarios: Tmenu_funcionarios
     Width = 649
     Height = 341
     TabOrder = 2
-    object DBGrid1: TDBGrid
+    object dbg_funcionarios: TDBGrid
       Left = 0
       Top = 4
       Width = 647
@@ -8583,7 +8583,7 @@ object menu_funcionarios: Tmenu_funcionarios
     TabOrder = 4
     object lbl_total_funcionario: TLabel
       Left = 380
-      Top = 19
+      Top = 17
       Width = 155
       Height = 15
       Caption = 'TOTAL DE FUNCION'#193'RIOS : '
@@ -8596,7 +8596,7 @@ object menu_funcionarios: Tmenu_funcionarios
     end
     object lbl_total_salario: TLabel
       Left = 402
-      Top = 40
+      Top = 37
       Width = 130
       Height = 15
       Caption = 'TOTAL DOS SAL'#193'RIOS :'
@@ -8633,19 +8633,29 @@ object menu_funcionarios: Tmenu_funcionarios
     end
     object dbtxt_totalfuncionarios: TDBText
       Left = 538
-      Top = 17
+      Top = 15
       Width = 65
       Height = 17
       DataSource = dm_funcionarios.dts_funcionarios
+      Font.Charset = DEFAULT_CHARSET
+      Font.Color = clWindowText
+      Font.Height = -13
+      Font.Name = 'Segoe UI'
+      Font.Style = []
+      ParentFont = False
     end
     object dbtxt_totalsalario: TDBText
-      Left = 541
-      Top = 38
+      Left = 538
+      Top = 35
       Width = 59
       Height = 17
-      DataField = 'FUN_SALARIO'
       DataSource = dm_funcionarios.dts_funcionarios
-      OnClick = dbtxt_totalsalarioClick
+      Font.Charset = DEFAULT_CHARSET
+      Font.Color = clWindowText
+      Font.Height = -13
+      Font.Name = 'Segoe UI'
+      Font.Style = []
+      ParentFont = False
     end
   end
 end
