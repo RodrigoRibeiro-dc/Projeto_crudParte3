@@ -8464,13 +8464,12 @@ object menu_funcionarios: Tmenu_funcionarios
     end
     object Dedt_nome: TDBEdit
       Left = 109
-      Top = 148
+      Top = 149
       Width = 340
       Height = 23
       CharCase = ecUpperCase
       DataField = 'FUN_NOME'
       DataSource = dm_funcionarios.dts_funcionarios
-      MaxLength = 50
       TabOrder = 2
     end
     object Dedt_rua: TDBEdit
@@ -8481,7 +8480,6 @@ object menu_funcionarios: Tmenu_funcionarios
       CharCase = ecUpperCase
       DataField = 'FUN_RUA'
       DataSource = dm_funcionarios.dts_funcionarios
-      MaxLength = 50
       TabOrder = 3
     end
     object Dedt_numero: TDBEdit
@@ -8502,7 +8500,6 @@ object menu_funcionarios: Tmenu_funcionarios
       CharCase = ecUpperCase
       DataField = 'FUN_BAIRRO'
       DataSource = dm_funcionarios.dts_funcionarios
-      MaxLength = 50
       TabOrder = 5
     end
     object Dedt_cidade: TDBEdit
@@ -8524,7 +8521,6 @@ object menu_funcionarios: Tmenu_funcionarios
       CharCase = ecUpperCase
       DataField = 'FUN_COMPLEMENTO'
       DataSource = dm_funcionarios.dts_funcionarios
-      MaxLength = 50
       TabOrder = 7
     end
     object Dedt_cep: TDBEdit

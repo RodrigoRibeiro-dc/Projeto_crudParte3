@@ -91,7 +91,6 @@ end;
 
 procedure Tmenu_funcionarios.FormActivate(Sender: TObject);
 begin
-  pnl_altera_funcionario.Enabled := False;
   calcula_total(Sender);
   if Trim(Dedt_nome.Text) = '' then
     img_salvar.Enabled := True
@@ -118,7 +117,6 @@ end;
 
 procedure Tmenu_funcionarios.img_alterarClick(Sender: TObject);
 begin
-     pnl_altera_funcionario.Enabled := True;
      if img_alterar.Enabled = True then img_salvar.Enabled := True;
      if img_alterar.Enabled = True then img_incluir.Enabled := False;
      if img_alterar.Enabled = True then img_excluir.Enabled := False;
@@ -132,7 +130,6 @@ begin
   dm_funcionarios.tbl_funcionarios.Delete;
   dm_funcionarios.tsc_funcionarios.StartTransaction;
   MessageDlg('FUNCIONÁRIO EXCLUÍDO COM SUCESSO.',TMsgDlgType.mtConfirmation, [TMsgDlgBtn.mbOK], 0);
-  pnl_altera_funcionario.Enabled := False;
   dm_funcionarios.tbl_funcionarios.Refresh;
   calcula_total(Sender);
   if dm_funcionarios.tbl_funcionarios.IsEmpty then
@@ -150,7 +147,6 @@ end;
 
 procedure Tmenu_funcionarios.img_incluirClick(Sender: TObject);
 begin
-   pnl_altera_funcionario.Enabled := True;
    dbdt_datanascimento.SetFocus;
    dbdt_datanascimento.Clear;
    Dedt_nome.Clear;
@@ -210,7 +206,6 @@ begin
       dm_funcionarios.tbl_funcionarios.Close;
       dm_funcionarios.tbl_funcionarios.Open;
       calcula_total(Sender);
-      pnl_altera_funcionario.Enabled := False;
     end
     else
     begin
@@ -220,7 +215,6 @@ begin
     img_incluir.Enabled := True;
     img_alterar.Enabled := True;
     img_excluir.Enabled := True;
-    pnl_altera_funcionario.Enabled := False;
   end;
 end;
 end.
