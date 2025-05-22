@@ -53,6 +53,8 @@ begin
     ctn_conexao.Params.Password := 'aram98';
     ctn_conexao.LoginPrompt := False;
     ctn_conexao.Connected := True;
+    tbl_funcionarios.Connection := ctn_conexao;
+    tbl_funcionarios.Active := True;
 end;
 
 end.
