@@ -5,7 +5,9 @@ object dm_funcionarios: Tdm_funcionarios
   PixelsPerInch = 96
   object ctn_conexao: TFDConnection
     Params.Strings = (
-      'ConnectionDef=ConnectionDef3')
+      'DriverID=MSSQL'
+      'Server=Localhost')
+    Transaction = tsc_funcionarios
     Left = 40
     Top = 40
   end

@@ -47,12 +47,22 @@ implementation
 
 procedure Tdm_funcionarios.DataModuleCreate(Sender: TObject);
 begin
-    ctn_conexao.Connected := False;
-    ctn_conexao.Params.Database := 'PROJETO_CRUD';
-    ctn_conexao.Params.UserName := 'sa';
-    ctn_conexao.Params.Password := 'aram98';
-    ctn_conexao.LoginPrompt := False;
+  ctn_conexao.Connected := False;
+  ctn_conexao.DriverName := 'MSSQL';
+
+  ctn_conexao.Params.Clear;
+  ctn_conexao.Params.Add('Server=localhost');
+  ctn_conexao.Params.Add('Database=PROJETO_CRUD');
+  ctn_conexao.Params.Add('User_Name=sa');
+  ctn_conexao.Params.Add('Password=aram98');
+  ctn_conexao.LoginPrompt := False;
+
+  try
     ctn_conexao.Connected := True;
+  except
+    on E: Exception do
+      ShowMessage('Erro ao conectar: ' + E.Message);
+  end;
 end;
 
 end.

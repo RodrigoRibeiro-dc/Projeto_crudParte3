@@ -47,13 +47,30 @@ implementation
 
 procedure Tdm_funcionarios.DataModuleCreate(Sender: TObject);
 begin
+  try
     ctn_conexao.Connected := False;
-    ctn_conexao.Params.Database := 'PROJETO_CRUD';
-    ctn_conexao.Params.UserName := 'sa';
-    ctn_conexao.Params.Password := 'aram98';
-    ctn_conexao.LoginPrompt := False;
-    ctn_conexao.Connected := True;
-end;
 
+    // Define o driver corretamente
+    ctn_conexao.DriverName := 'MSSQL';
+
+    // Limpa parâmetros anteriores
+    ctn_conexao.Params.Clear;
+
+    // Define corretamente os parâmetros necessários
+    ctn_conexao.Params.Add('Server=localhost'); // ou 'NOME_DO_SERVIDOR\INSTANCIA'
+    ctn_conexao.Params.Add('Database=PROJETO_CRUD');
+    ctn_conexao.Params.Add('User_Name=sa');
+    ctn_conexao.Params.Add('Password=aram98');
+    ctn_conexao.Params.Add('DriverID=MSSQL'); // ESSENCIAL para FireDAC saber que é MSSQL
+
+    ctn_conexao.LoginPrompt := False;
+
+    // Tenta conectar
+    ctn_conexao.Connected := True;
+  except
+    on E: Exception do
+      ShowMessage('Erro ao conectar: ' + E.Message);
+  end;
+end;
 end.
 

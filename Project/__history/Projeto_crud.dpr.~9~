@@ -13,7 +13,7 @@ begin
   Application.Initialize;
   Application.MainFormOnTaskbar := True;
   TStyleManager.TrySetStyle('Aqua Light Slate');
-  Application.CreateForm(Tdm_funcionarios, dm_funcionarios);
   Application.CreateForm(Tmenu_funcionarios, menu_funcionarios);
+  Application.CreateForm(Tdm_funcionarios, dm_funcionarios);
   Application.Run;
 end.
