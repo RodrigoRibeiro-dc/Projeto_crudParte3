@@ -8,7 +8,7 @@ uses
   FireDAC.Stan.Pool, FireDAC.Stan.Async, FireDAC.Phys, FireDAC.Phys.MSSQL,
   FireDAC.Phys.MSSQLDef, FireDAC.VCLUI.Wait, FireDAC.Stan.Param, FireDAC.DatS,
   FireDAC.DApt.Intf, FireDAC.DApt, Data.DB, FireDAC.Comp.DataSet,
-  FireDAC.Comp.Client, Data.FMTBcd, Data.SqlExpr,Vcl.Dialogs;
+  FireDAC.Comp.Client, Data.FMTBcd, Data.SqlExpr;
 
 type
   Tdm_funcionarios = class(TDataModule)
@@ -51,19 +51,11 @@ begin
   ctn_conexao.DriverName := 'MSSQL';
 
   ctn_conexao.Params.Clear;
-  ctn_conexao.Params.Add('Server=localhost');
+  ctn_conexao.Params.Add('Server=localhost'); // ou 'SEU_SERVIDOR\INSTANCIA'
   ctn_conexao.Params.Add('Database=PROJETO_CRUD');
   ctn_conexao.Params.Add('User_Name=sa');
   ctn_conexao.Params.Add('Password=aram98');
   ctn_conexao.LoginPrompt := False;
-
-  try
-    ctn_conexao.Connected := True;
-  except
-    on E: Exception do
-      ShowMessage('Erro ao conectar: ' + E.Message);
+  ctn_conexao.Connected := True;
   end;
-end;
-
 end.
-
