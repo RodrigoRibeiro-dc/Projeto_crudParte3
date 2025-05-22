@@ -181,15 +181,16 @@ begin
     Dedt_datanascimento.SetFocus;
   end
 
-  else if Trim(Dedt_salario.Text) = '' then
-  begin
-    MessageDlg('O CAMPO SALÁRIO NÃO PODE FICAR VAZIO!', TMsgDlgType.mtWarning, [TMsgDlgBtn.mbOK], 0);
-    Dedt_salario.SetFocus;
-  end
   else if Trim(Dedt_nome.Text) = '' then
   begin
      MessageDlg('O CAMPO NOME NÃO PODE FICAR VAZIO!', TMsgDlgType.mtWarning, [TMsgDlgBtn.mbOK], 0);
      Dedt_nome.SetFocus;
+
+  end
+  else if Trim(Dedt_salario.Text) = '' then
+  begin
+    MessageDlg('O CAMPO SALÁRIO NÃO PODE FICAR VAZIO!', TMsgDlgType.mtWarning, [TMsgDlgBtn.mbOK], 0);
+    Dedt_salario.SetFocus;
   end
   else if dm_funcionarios.tbl_funcionarios.State in [dsInsert, dsEdit] then
   begin
