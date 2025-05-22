@@ -5,6 +5,7 @@ object dm_funcionarios: Tdm_funcionarios
   object ctn_conexao: TFDConnection
     Params.Strings = (
       'ConnectionDef=ConnectionDef3')
+    Connected = True
     Left = 40
     Top = 40
   end
@@ -24,7 +25,7 @@ object dm_funcionarios: Tdm_funcionarios
     object tbl_funcionariosFUN_DATANASCIMENTO: TSQLTimeStampField
       FieldName = 'FUN_DATANASCIMENTO'
       Origin = 'FUN_DATANASCIMENTO'
-      EditMask = '99/99/9999;1;_'
+      EditMask = '99-99-9999'
     end
     object tbl_funcionariosFUN_NOME: TWideStringField
       FieldName = 'FUN_NOME'
@@ -78,25 +79,26 @@ object dm_funcionarios: Tdm_funcionarios
   object dts_funcionarios: TDataSource
     AutoEdit = False
     DataSet = tbl_funcionarios
-    Left = 136
+    Left = 152
     Top = 136
   end
   object tsc_funcionarios: TFDTransaction
     Connection = ctn_conexao
-    Left = 136
-    Top = 40
+    Left = 152
+    Top = 48
   end
   object fdq_totalfuncionario: TFDQuery
+    Active = True
     MasterSource = dts_funcionarios
     Connection = ctn_conexao
     SQL.Strings = (
       'SELECT COUNT(*) FROM FUNCIONARIOS')
-    Left = 240
+    Left = 296
     Top = 40
   end
   object fdq_totalsalario: TFDQuery
     Connection = ctn_conexao
-    Left = 352
+    Left = 400
     Top = 40
   end
 end

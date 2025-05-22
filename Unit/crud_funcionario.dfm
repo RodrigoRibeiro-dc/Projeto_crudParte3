@@ -8460,7 +8460,7 @@ object menu_funcionarios: Tmenu_funcionarios
       DataField = 'FUN_ID'
       DataSource = dm_funcionarios.dts_funcionarios
       ReadOnly = True
-      TabOrder = 0
+      TabOrder = 1
     end
     object Dedt_nome: TDBEdit
       Left = 109
@@ -8564,15 +8564,15 @@ object menu_funcionarios: Tmenu_funcionarios
         'CS')
       TabOrder = 9
     end
-    object dbdt_datanascimento: TDBDateEdit
+    object Dedt_datanascimento: TDBEdit
       Left = 519
       Top = 62
-      Width = 105
+      Width = 99
       Height = 23
       DataField = 'FUN_DATANASCIMENTO'
       DataSource = dm_funcionarios.dts_funcionarios
-      NumGlyphs = 2
-      TabOrder = 1
+      MaxLength = 10
+      TabOrder = 0
     end
   end
   object pnl_somatorio: TPanel
