@@ -12,9 +12,8 @@ object dm_funcionarios: Tdm_funcionarios
     Top = 40
   end
   object tbl_funcionarios: TFDTable
-    Active = True
     IndexFieldNames = 'FUN_ID'
-    ConnectionName = 'ConnectionDef3'
+    ConnectionName = 'MSSQL_Demo'
     TableName = 'PROJETO_CRUD.dbo.FUNCIONARIOS'
     Left = 40
     Top = 136

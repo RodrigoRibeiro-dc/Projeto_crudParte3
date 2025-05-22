@@ -1,18 +1,19 @@
 object dm_funcionarios: Tdm_funcionarios
+  OnCreate = DataModuleCreate
   Height = 392
   Width = 918
   PixelsPerInch = 96
   object ctn_conexao: TFDConnection
     Params.Strings = (
-      'ConnectionDef=ConnectionDef3')
-    Connected = True
+      'DriverID=MSSQL'
+      'Server=Localhost')
+    Transaction = tsc_funcionarios
     Left = 40
     Top = 40
   end
   object tbl_funcionarios: TFDTable
     Active = True
     IndexFieldNames = 'FUN_ID'
-    ConnectionName = 'ConnectionDef3'
     TableName = 'PROJETO_CRUD.dbo.FUNCIONARIOS'
     Left = 40
     Top = 136
@@ -79,26 +80,25 @@ object dm_funcionarios: Tdm_funcionarios
   object dts_funcionarios: TDataSource
     AutoEdit = False
     DataSet = tbl_funcionarios
-    Left = 152
+    Left = 136
     Top = 136
   end
   object tsc_funcionarios: TFDTransaction
     Connection = ctn_conexao
-    Left = 152
-    Top = 48
+    Left = 136
+    Top = 40
   end
   object fdq_totalfuncionario: TFDQuery
-    Active = True
     MasterSource = dts_funcionarios
     Connection = ctn_conexao
     SQL.Strings = (
       'SELECT COUNT(*) FROM FUNCIONARIOS')
-    Left = 296
+    Left = 240
     Top = 40
   end
   object fdq_totalsalario: TFDQuery
     Connection = ctn_conexao
-    Left = 400
+    Left = 352
     Top = 40
   end
 end

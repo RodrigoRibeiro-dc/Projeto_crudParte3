@@ -8306,30 +8306,35 @@ object menu_funcionarios: Tmenu_funcionarios
           Expanded = False
           FieldName = 'FUN_DATANASCIMENTO'
           Title.Caption = 'DATA DE NASCIMENTO'
+          Width = 64
           Visible = True
         end
         item
           Expanded = False
           FieldName = 'FUN_SALARIO'
           Title.Caption = 'SAL'#193'RIO'
+          Width = 64
           Visible = True
         end
         item
           Expanded = False
           FieldName = 'FUN_CARGO'
           Title.Caption = 'CARGO'
+          Width = 64
           Visible = True
         end
         item
           Expanded = False
           FieldName = 'FUN_RUA'
           Title.Caption = 'RUA'
+          Width = 64
           Visible = True
         end
         item
           Expanded = False
           FieldName = 'FUN_BAIRRO'
           Title.Caption = 'BAIRRO'
+          Width = 64
           Visible = True
         end
         item
@@ -8342,18 +8347,21 @@ object menu_funcionarios: Tmenu_funcionarios
           Expanded = False
           FieldName = 'FUN_CIDADE'
           Title.Caption = 'CIDADE'
+          Width = 64
           Visible = True
         end
         item
           Expanded = False
           FieldName = 'FUN_COMPLEMENTO'
           Title.Caption = 'COMPLEMENTO'
+          Width = 64
           Visible = True
         end
         item
           Expanded = False
           FieldName = 'FUN_CEP'
           Title.Caption = 'CEP'
+          Width = 64
           Visible = True
         end>
     end
@@ -8647,7 +8655,7 @@ object menu_funcionarios: Tmenu_funcionarios
     object dbtxt_totalsalario: TDBText
       Left = 538
       Top = 35
-      Width = 59
+      Width = 175
       Height = 17
       DataSource = dm_funcionarios.dts_funcionarios
       Font.Charset = DEFAULT_CHARSET
