@@ -1,4 +1,5 @@
 object dm_funcionarios: Tdm_funcionarios
+  OnCreate = DataModuleCreate
   Height = 392
   Width = 918
   PixelsPerInch = 96

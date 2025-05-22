@@ -29,7 +29,6 @@ type
     tsc_funcionarios: TFDTransaction;
     fdq_totalfuncionario: TFDQuery;
     fdq_totalsalario: TFDQuery;
-    procedure DataModuleCreate(Sender: TObject);
   private
     { Private declarations }
   public
@@ -45,17 +44,4 @@ implementation
 
 {$R *.dfm}
 
-procedure Tdm_funcionarios.DataModuleCreate(Sender: TObject);
-begin
-  ctn_conexao.Connected := False;
-  ctn_conexao.DriverName := 'MSSQL';
-
-  ctn_conexao.Params.Clear;
-  ctn_conexao.Params.Add('Server=localhost'); // ou 'SEU_SERVIDOR\INSTANCIA'
-  ctn_conexao.Params.Add('Database=PROJETO_CRUD');
-  ctn_conexao.Params.Add('User_Name=sa');
-  ctn_conexao.Params.Add('Password=aram98');
-  ctn_conexao.LoginPrompt := False;
-  ctn_conexao.Connected := True;
-  end;
 end.

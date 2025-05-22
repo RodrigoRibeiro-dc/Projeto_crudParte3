@@ -1,22 +1,22 @@
-object dm_conexao: Tdm_conexao
+object dm_funcionarios: Tdm_funcionarios
   Height = 392
   Width = 918
   PixelsPerInch = 96
   object ctn_conexao: TFDConnection
     Params.Strings = (
       'ConnectionDef=ConnectionDef3')
-    Connected = True
     Left = 40
     Top = 40
   end
   object tbl_funcionarios: TFDTable
     Active = True
     IndexFieldNames = 'FUN_ID'
-    Connection = ctn_conexao
+    ConnectionName = 'ConnectionDef3'
     TableName = 'PROJETO_CRUD.dbo.FUNCIONARIOS'
     Left = 40
     Top = 136
     object tbl_funcionariosFUN_ID: TFDAutoIncField
+      Alignment = taLeftJustify
       FieldName = 'FUN_ID'
       Origin = 'FUN_ID'
       ReadOnly = True
@@ -24,7 +24,7 @@ object dm_conexao: Tdm_conexao
     object tbl_funcionariosFUN_DATANASCIMENTO: TSQLTimeStampField
       FieldName = 'FUN_DATANASCIMENTO'
       Origin = 'FUN_DATANASCIMENTO'
-      EditMask = '99-99-9999'
+      EditMask = '99/99/9999;1;_'
     end
     object tbl_funcionariosFUN_NOME: TWideStringField
       FieldName = 'FUN_NOME'
@@ -37,6 +37,7 @@ object dm_conexao: Tdm_conexao
       Size = 50
     end
     object tbl_funcionariosFUN_NUMERO: TIntegerField
+      Alignment = taLeftJustify
       FieldName = 'FUN_NUMERO'
       Origin = 'FUN_NUMERO'
     end
@@ -67,6 +68,7 @@ object dm_conexao: Tdm_conexao
       Size = 50
     end
     object tbl_funcionariosFUN_SALARIO: TBCDField
+      Alignment = taLeftJustify
       FieldName = 'FUN_SALARIO'
       Origin = 'FUN_SALARIO'
       Precision = 10
@@ -74,8 +76,27 @@ object dm_conexao: Tdm_conexao
     end
   end
   object dts_funcionarios: TDataSource
+    AutoEdit = False
     DataSet = tbl_funcionarios
-    Left = 152
+    Left = 136
     Top = 136
+  end
+  object tsc_funcionarios: TFDTransaction
+    Connection = ctn_conexao
+    Left = 136
+    Top = 40
+  end
+  object fdq_totalfuncionario: TFDQuery
+    MasterSource = dts_funcionarios
+    Connection = ctn_conexao
+    SQL.Strings = (
+      'SELECT COUNT(*) FROM FUNCIONARIOS')
+    Left = 240
+    Top = 40
+  end
+  object fdq_totalsalario: TFDQuery
+    Connection = ctn_conexao
+    Left = 352
+    Top = 40
   end
 end
