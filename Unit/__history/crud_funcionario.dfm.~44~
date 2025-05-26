@@ -8306,30 +8306,35 @@ object menu_funcionarios: Tmenu_funcionarios
           Expanded = False
           FieldName = 'FUN_DATANASCIMENTO'
           Title.Caption = 'DATA DE NASCIMENTO'
+          Width = 64
           Visible = True
         end
         item
           Expanded = False
           FieldName = 'FUN_SALARIO'
           Title.Caption = 'SAL'#193'RIO'
+          Width = 64
           Visible = True
         end
         item
           Expanded = False
           FieldName = 'FUN_CARGO'
           Title.Caption = 'CARGO'
+          Width = 64
           Visible = True
         end
         item
           Expanded = False
           FieldName = 'FUN_RUA'
           Title.Caption = 'RUA'
+          Width = 64
           Visible = True
         end
         item
           Expanded = False
           FieldName = 'FUN_BAIRRO'
           Title.Caption = 'BAIRRO'
+          Width = 64
           Visible = True
         end
         item
@@ -8342,18 +8347,21 @@ object menu_funcionarios: Tmenu_funcionarios
           Expanded = False
           FieldName = 'FUN_CIDADE'
           Title.Caption = 'CIDADE'
+          Width = 64
           Visible = True
         end
         item
           Expanded = False
           FieldName = 'FUN_COMPLEMENTO'
           Title.Caption = 'COMPLEMENTO'
+          Width = 64
           Visible = True
         end
         item
           Expanded = False
           FieldName = 'FUN_CEP'
           Title.Caption = 'CEP'
+          Width = 64
           Visible = True
         end>
     end
@@ -8401,7 +8409,7 @@ object menu_funcionarios: Tmenu_funcionarios
       Top = 212
       Width = 50
       Height = 15
-      Caption = 'NUMERO'
+      Caption = 'N'#218'MERO'
       FocusControl = Dedt_numero
     end
     object lbl_bairro: TLabel
@@ -8460,11 +8468,11 @@ object menu_funcionarios: Tmenu_funcionarios
       DataField = 'FUN_ID'
       DataSource = dm_funcionarios.dts_funcionarios
       ReadOnly = True
-      TabOrder = 0
+      TabOrder = 1
     end
     object Dedt_nome: TDBEdit
       Left = 109
-      Top = 148
+      Top = 149
       Width = 340
       Height = 23
       CharCase = ecUpperCase
@@ -8564,15 +8572,15 @@ object menu_funcionarios: Tmenu_funcionarios
         'CS')
       TabOrder = 9
     end
-    object dbdt_datanascimento: TDBDateEdit
+    object Dedt_datanascimento: TDBEdit
       Left = 519
       Top = 62
-      Width = 105
+      Width = 99
       Height = 23
       DataField = 'FUN_DATANASCIMENTO'
       DataSource = dm_funcionarios.dts_funcionarios
-      NumGlyphs = 2
-      TabOrder = 1
+      MaxLength = 10
+      TabOrder = 0
     end
   end
   object pnl_somatorio: TPanel
@@ -8647,7 +8655,7 @@ object menu_funcionarios: Tmenu_funcionarios
     object dbtxt_totalsalario: TDBText
       Left = 538
       Top = 35
-      Width = 59
+      Width = 175
       Height = 17
       DataSource = dm_funcionarios.dts_funcionarios
       Font.Charset = DEFAULT_CHARSET

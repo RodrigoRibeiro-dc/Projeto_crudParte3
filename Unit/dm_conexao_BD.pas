@@ -29,6 +29,7 @@ type
     tsc_funcionarios: TFDTransaction;
     fdq_totalfuncionario: TFDQuery;
     fdq_totalsalario: TFDQuery;
+    fdq_consulta: TFDQuery;
     procedure DataModuleCreate(Sender: TObject);
   private
     { Private declarations }

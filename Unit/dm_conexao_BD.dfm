@@ -6,7 +6,8 @@ object dm_funcionarios: Tdm_funcionarios
   object ctn_conexao: TFDConnection
     Params.Strings = (
       'DriverID=MSSQL'
-      'Server=Localhost')
+      'Server=Localhost'
+      'User_Name=sa')
     Transaction = tsc_funcionarios
     Left = 40
     Top = 40
@@ -98,7 +99,13 @@ object dm_funcionarios: Tdm_funcionarios
   end
   object fdq_totalsalario: TFDQuery
     Connection = ctn_conexao
+    Transaction = tsc_funcionarios
     Left = 352
     Top = 40
+  end
+  object fdq_consulta: TFDQuery
+    Connection = ctn_conexao
+    Left = 448
+    Top = 48
   end
 end

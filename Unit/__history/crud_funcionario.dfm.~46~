@@ -5,7 +5,7 @@ object menu_funcionarios: Tmenu_funcionarios
   BorderIcons = [biSystemMenu, biMinimize]
   BorderStyle = bsSingle
   Caption = 'Funcionarios'
-  ClientHeight = 517
+  ClientHeight = 568
   ClientWidth = 1293
   Color = clBtnFace
   Font.Charset = DEFAULT_CHARSET
@@ -7984,8 +7984,10 @@ object menu_funcionarios: Tmenu_funcionarios
     0000000000000000000000000000000000000000000000000000000000000000
     0000000000000000000000000000000000000000000000000000000000000000
     000000000000000000000000000000000000000000000000000000000000}
+  KeyPreview = True
   Position = poMainFormCenter
   OnActivate = FormActivate
+  OnKeyPress = FormKeyPress
   OnShow = FormShow
   PixelsPerInch = 96
   TextHeight = 15
@@ -8242,45 +8244,12 @@ object menu_funcionarios: Tmenu_funcionarios
       ParentFont = False
     end
   end
-  object pnl_buttons: TPanel
-    Left = 0
-    Top = 425
-    Width = 649
-    Height = 89
-    TabOrder = 1
-    Visible = False
-    object lbl_nome_consulta: TLabel
-      Left = 48
-      Top = 40
-      Width = 35
-      Height = 15
-      Caption = 'NOME'
-    end
-    object btn_consultar: TButton
-      Left = 456
-      Top = 16
-      Width = 115
-      Height = 41
-      Cursor = crHandPoint
-      Caption = 'CONSULTAR'
-      DragCursor = crDefault
-      TabOrder = 0
-    end
-    object edt_nome_consulta: TEdit
-      Left = 96
-      Top = 32
-      Width = 305
-      Height = 23
-      DragCursor = crIBeam
-      TabOrder = 1
-    end
-  end
   object pnl_grid: TPanel
     Left = 0
     Top = 110
     Width = 649
     Height = 341
-    TabOrder = 2
+    TabOrder = 1
     object dbg_funcionarios: TDBGrid
       Left = 0
       Top = 4
@@ -8306,30 +8275,35 @@ object menu_funcionarios: Tmenu_funcionarios
           Expanded = False
           FieldName = 'FUN_DATANASCIMENTO'
           Title.Caption = 'DATA DE NASCIMENTO'
+          Width = 64
           Visible = True
         end
         item
           Expanded = False
           FieldName = 'FUN_SALARIO'
           Title.Caption = 'SAL'#193'RIO'
+          Width = 64
           Visible = True
         end
         item
           Expanded = False
           FieldName = 'FUN_CARGO'
           Title.Caption = 'CARGO'
+          Width = 64
           Visible = True
         end
         item
           Expanded = False
           FieldName = 'FUN_RUA'
           Title.Caption = 'RUA'
+          Width = 64
           Visible = True
         end
         item
           Expanded = False
           FieldName = 'FUN_BAIRRO'
           Title.Caption = 'BAIRRO'
+          Width = 64
           Visible = True
         end
         item
@@ -8342,18 +8316,21 @@ object menu_funcionarios: Tmenu_funcionarios
           Expanded = False
           FieldName = 'FUN_CIDADE'
           Title.Caption = 'CIDADE'
+          Width = 64
           Visible = True
         end
         item
           Expanded = False
           FieldName = 'FUN_COMPLEMENTO'
           Title.Caption = 'COMPLEMENTO'
+          Width = 64
           Visible = True
         end
         item
           Expanded = False
           FieldName = 'FUN_CEP'
           Title.Caption = 'CEP'
+          Width = 64
           Visible = True
         end>
     end
@@ -8364,7 +8341,7 @@ object menu_funcionarios: Tmenu_funcionarios
     Width = 649
     Height = 452
     Alignment = taLeftJustify
-    TabOrder = 3
+    TabOrder = 2
     object lbl_codigo: TLabel
       Left = 58
       Top = 66
@@ -8376,7 +8353,7 @@ object menu_funcionarios: Tmenu_funcionarios
     object lbl_datanascimento: TLabel
       Left = 389
       Top = 66
-      Width = 124
+      Width = 122
       Height = 15
       Caption = 'DATA DE NASCIMENTO'
     end
@@ -8401,7 +8378,7 @@ object menu_funcionarios: Tmenu_funcionarios
       Top = 212
       Width = 50
       Height = 15
-      Caption = 'NUMERO'
+      Caption = 'N'#218'MERO'
       FocusControl = Dedt_numero
     end
     object lbl_bairro: TLabel
@@ -8423,7 +8400,7 @@ object menu_funcionarios: Tmenu_funcionarios
     object lbl_complemento: TLabel
       Left = 15
       Top = 332
-      Width = 88
+      Width = 87
       Height = 15
       Caption = 'COMPLEMENTO'
       FocusControl = Dedt_complemento
@@ -8460,11 +8437,11 @@ object menu_funcionarios: Tmenu_funcionarios
       DataField = 'FUN_ID'
       DataSource = dm_funcionarios.dts_funcionarios
       ReadOnly = True
-      TabOrder = 0
+      TabOrder = 1
     end
     object Dedt_nome: TDBEdit
       Left = 109
-      Top = 148
+      Top = 149
       Width = 340
       Height = 23
       CharCase = ecUpperCase
@@ -8564,26 +8541,26 @@ object menu_funcionarios: Tmenu_funcionarios
         'CS')
       TabOrder = 9
     end
-    object dbdt_datanascimento: TDBDateEdit
+    object Dedt_datanascimento: TDBEdit
       Left = 519
       Top = 62
-      Width = 105
+      Width = 99
       Height = 23
       DataField = 'FUN_DATANASCIMENTO'
       DataSource = dm_funcionarios.dts_funcionarios
-      NumGlyphs = 2
-      TabOrder = 1
+      MaxLength = 10
+      TabOrder = 0
     end
   end
   object pnl_somatorio: TPanel
     Left = 0
-    Top = 452
+    Top = 448
     Width = 1356
-    Height = 65
-    TabOrder = 4
+    Height = 130
+    TabOrder = 3
     object lbl_total_funcionario: TLabel
-      Left = 380
-      Top = 17
+      Left = 956
+      Top = 73
       Width = 155
       Height = 15
       Caption = 'TOTAL DE FUNCION'#193'RIOS : '
@@ -8595,8 +8572,8 @@ object menu_funcionarios: Tmenu_funcionarios
       ParentFont = False
     end
     object lbl_total_salario: TLabel
-      Left = 402
-      Top = 37
+      Left = 978
+      Top = 93
       Width = 130
       Height = 15
       Caption = 'TOTAL DOS SAL'#193'RIOS :'
@@ -8632,8 +8609,8 @@ object menu_funcionarios: Tmenu_funcionarios
       ParentFont = False
     end
     object dbtxt_totalfuncionarios: TDBText
-      Left = 538
-      Top = 15
+      Left = 1114
+      Top = 71
       Width = 65
       Height = 17
       DataSource = dm_funcionarios.dts_funcionarios
@@ -8645,9 +8622,9 @@ object menu_funcionarios: Tmenu_funcionarios
       ParentFont = False
     end
     object dbtxt_totalsalario: TDBText
-      Left = 538
-      Top = 35
-      Width = 59
+      Left = 1114
+      Top = 91
+      Width = 175
       Height = 17
       DataSource = dm_funcionarios.dts_funcionarios
       Font.Charset = DEFAULT_CHARSET
@@ -8656,6 +8633,59 @@ object menu_funcionarios: Tmenu_funcionarios
       Font.Name = 'Segoe UI'
       Font.Style = []
       ParentFont = False
+    end
+    object pnl_consulta: TPanel
+      Left = 0
+      Top = 0
+      Width = 649
+      Height = 129
+      TabOrder = 0
+      object sbtn_consultar: TSpeedButton
+        Left = 535
+        Top = 72
+        Width = 89
+        Height = 38
+        Cursor = crHandPoint
+        Caption = 'CONSULTAR'
+        OnClick = sbtn_consultarClick
+      end
+      object rbtn_nome: TRadioButton
+        Left = 32
+        Top = 9
+        Width = 113
+        Height = 17
+        Cursor = crHandPoint
+        Caption = 'NOME'
+        Checked = True
+        TabOrder = 0
+        TabStop = True
+      end
+      object rbtn_salario: TRadioButton
+        Left = 32
+        Top = 48
+        Width = 113
+        Height = 17
+        Cursor = crHandPoint
+        Caption = 'SAL'#193'RIO'
+        TabOrder = 1
+      end
+      object rbtn_datanascimento: TRadioButton
+        Left = 32
+        Top = 88
+        Width = 145
+        Height = 17
+        Cursor = crHandPoint
+        Caption = 'DATA DE NASCIMENTO'
+        TabOrder = 2
+      end
+      object edt_consulta: TEdit
+        Left = 183
+        Top = 80
+        Width = 346
+        Height = 23
+        CharCase = ecUpperCase
+        TabOrder = 3
+      end
     end
   end
 end

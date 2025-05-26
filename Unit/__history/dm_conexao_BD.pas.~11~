@@ -8,7 +8,7 @@ uses
   FireDAC.Stan.Pool, FireDAC.Stan.Async, FireDAC.Phys, FireDAC.Phys.MSSQL,
   FireDAC.Phys.MSSQLDef, FireDAC.VCLUI.Wait, FireDAC.Stan.Param, FireDAC.DatS,
   FireDAC.DApt.Intf, FireDAC.DApt, Data.DB, FireDAC.Comp.DataSet,
-  FireDAC.Comp.Client;
+  FireDAC.Comp.Client, Data.FMTBcd, Data.SqlExpr,Vcl.Dialogs;
 
 type
   Tdm_funcionarios = class(TDataModule)
@@ -26,6 +26,10 @@ type
     tbl_funcionariosFUN_CEP: TWideStringField;
     tbl_funcionariosFUN_CARGO: TWideStringField;
     tbl_funcionariosFUN_SALARIO: TBCDField;
+    tsc_funcionarios: TFDTransaction;
+    fdq_totalfuncionario: TFDQuery;
+    fdq_totalsalario: TFDQuery;
+    procedure DataModuleCreate(Sender: TObject);
   private
     { Private declarations }
   public
@@ -41,4 +45,17 @@ implementation
 
 {$R *.dfm}
 
+procedure Tdm_funcionarios.DataModuleCreate(Sender: TObject);
+begin
+    ctn_conexao.Connected := False;
+    ctn_conexao.Params.Database := 'PROJETO_CRUD';
+    ctn_conexao.Params.UserName := 'sa';
+    ctn_conexao.Params.Password := 'aram98';
+    ctn_conexao.LoginPrompt := False;
+    ctn_conexao.Connected := True;
+    tbl_funcionarios.Connection := ctn_conexao;
+    tbl_funcionarios.Active := True;
+end;
+
 end.
+

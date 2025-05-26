@@ -6,19 +6,15 @@ uses
   Winapi.Windows, Winapi.Messages, System.SysUtils, System.Variants, System.Classes, Vcl.Graphics,
   Vcl.Controls, Vcl.Forms, Vcl.Dialogs, Vcl.StdCtrls, Vcl.Imaging.pngimage,
   Vcl.ExtCtrls, Vcl.Mask, Vcl.DBCtrls, Data.DB, Vcl.Grids, Vcl.DBGrids,
-  Vcl.ComCtrls, Vcl.Menus, RxToolEdit, RxDBCtrl, System.UITypes;
+  Vcl.ComCtrls, Vcl.Menus, System.UITypes, Vcl.Buttons;
 
 type
   Tmenu_funcionarios = class(TForm)
     pnl_crud: TPanel;
-    pnl_buttons: TPanel;
     pnl_grid: TPanel;
     img_incluir: TImage;
     img_alterar: TImage;
     img_excluir: TImage;
-    btn_consultar: TButton;
-    edt_nome_consulta: TEdit;
-    lbl_nome_consulta: TLabel;
     lbl_incluir: TLabel;
     lbl_alterar: TLabel;
     lbl_excluir: TLabel;
@@ -49,18 +45,26 @@ type
     lbl_salario: TLabel;
     Dedt_salario: TDBEdit;
     cbx_cargo: TDBComboBox;
-    dbdt_datanascimento: TDBDateEdit;
     img_salvar: TImage;
     lbl_salvar: TLabel;
     dbg_funcionarios: TDBGrid;
     dbtxt_totalfuncionarios: TDBText;
     dbtxt_totalsalario: TDBText;
+    Dedt_datanascimento: TDBEdit;
+    dbedt_grid: TDBEdit;
+    sbtn_consultar: TSpeedButton;
+    Panel1: TPanel;
+    rbtn_nome: TRadioButton;
+    rbtn_salario: TRadioButton;
+    rbtn_datanascimento: TRadioButton;
     procedure img_incluirClick(Sender: TObject);
     procedure img_salvarClick(Sender: TObject);
     procedure FormActivate(Sender: TObject);
     procedure img_alterarClick(Sender: TObject);
     procedure img_excluirClick(Sender: TObject);
     procedure FormShow(Sender: TObject);
+    procedure FormKeyPress(Sender: TObject; var Key: Char);
+    procedure sbtn_consultarClick(Sender: TObject);
   private
     { Private declarations }
   public
@@ -91,6 +95,7 @@ end;
 
 procedure Tmenu_funcionarios.FormActivate(Sender: TObject);
 begin
+  pnl_altera_funcionario.Enabled := False;
   calcula_total(Sender);
   if Trim(Dedt_nome.Text) = '' then
     img_salvar.Enabled := True
@@ -110,6 +115,20 @@ begin
 
 end;
 
+procedure Tmenu_funcionarios.FormKeyPress(Sender: TObject; var Key: Char);
+begin
+  if Key = #13 then
+  begin
+    if (ActiveControl = Dedt_salario) then
+      key :=#0
+    else if (ActiveControl is TDBEdit) or (ActiveControl is TDBComboBox) then
+    begin
+      Key := #0;
+      Perform(WM_NEXTDLGCTL, 0, 0);
+    end;
+  end;
+end;
+
 procedure Tmenu_funcionarios.FormShow(Sender: TObject);
 begin
   calcula_total(Sender);
@@ -117,9 +136,11 @@ end;
 
 procedure Tmenu_funcionarios.img_alterarClick(Sender: TObject);
 begin
+     pnl_altera_funcionario.Enabled := True;
      if img_alterar.Enabled = True then img_salvar.Enabled := True;
      if img_alterar.Enabled = True then img_incluir.Enabled := False;
      if img_alterar.Enabled = True then img_excluir.Enabled := False;
+     if img_salvar.Enabled = True then img_alterar.Enabled := False;
      dm_funcionarios.tbl_funcionarios.Open();
      Dedt_nome.SetFocus;
      dm_funcionarios.tbl_funcionarios.Edit;
@@ -130,6 +151,7 @@ begin
   dm_funcionarios.tbl_funcionarios.Delete;
   dm_funcionarios.tsc_funcionarios.StartTransaction;
   MessageDlg('FUNCIONÁRIO EXCLUÍDO COM SUCESSO.',TMsgDlgType.mtConfirmation, [TMsgDlgBtn.mbOK], 0);
+  pnl_altera_funcionario.Enabled := False;
   dm_funcionarios.tbl_funcionarios.Refresh;
   calcula_total(Sender);
   if dm_funcionarios.tbl_funcionarios.IsEmpty then
@@ -147,8 +169,9 @@ end;
 
 procedure Tmenu_funcionarios.img_incluirClick(Sender: TObject);
 begin
-   dbdt_datanascimento.SetFocus;
-   dbdt_datanascimento.Clear;
+   pnl_altera_funcionario.Enabled := True;
+   Dedt_datanascimento.SetFocus;
+   Dedt_datanascimento.Clear;
    Dedt_nome.Clear;
    Dedt_rua.Clear;
    Dedt_numero.Clear;
@@ -170,10 +193,17 @@ procedure Tmenu_funcionarios.img_salvarClick(Sender: TObject);
 var
   foiInclusao: Boolean;
 begin
-  if Trim(Dedt_nome.Text) = '' then
+  if dm_funcionarios.tbl_funcionarios.FieldByName('FUN_DATANASCIMENTO').IsNull then
+  begin
+    MessageDlg('A DATA DE NASCIMENTO NÃO PODE FICAR VAZIO!', TMsgDlgType.mtWarning, [TMsgDlgBtn.mbOK], 0);
+    Dedt_datanascimento.SetFocus;
+  end
+
+  else if Trim(Dedt_nome.Text) = '' then
   begin
      MessageDlg('O CAMPO NOME NÃO PODE FICAR VAZIO!', TMsgDlgType.mtWarning, [TMsgDlgBtn.mbOK], 0);
      Dedt_nome.SetFocus;
+
   end
   else if Trim(Dedt_salario.Text) = '' then
   begin
@@ -189,7 +219,7 @@ begin
     if foiInclusao then
     begin
       MessageDlg('FUNCIONÁRIO INCLUÍDO COM SUCESSO.', TMsgDlgType.mtConfirmation, [TMsgDlgBtn.mbOK], 0);
-      dbdt_datanascimento.Clear;
+      Dedt_datanascimento.Clear;
       Dedt_nome.Clear;
       Dedt_rua.Clear;
       Dedt_numero.Clear;
@@ -206,6 +236,7 @@ begin
       dm_funcionarios.tbl_funcionarios.Close;
       dm_funcionarios.tbl_funcionarios.Open;
       calcula_total(Sender);
+      pnl_altera_funcionario.Enabled := False;
     end
     else
     begin
@@ -215,6 +246,15 @@ begin
     img_incluir.Enabled := True;
     img_alterar.Enabled := True;
     img_excluir.Enabled := True;
+    pnl_altera_funcionario.Enabled := False;
   end;
 end;
+procedure Tmenu_funcionarios.sbtn_consultarClick(Sender: TObject);
+begin
+if rbtn_nome = True  then
+  begin
+    dm_funcionarios.fdq_consulta.sql
+  end;
+end;
+
 end.
