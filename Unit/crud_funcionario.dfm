@@ -8542,14 +8542,13 @@ object menu_funcionarios: Tmenu_funcionarios
         'CS')
       TabOrder = 9
     end
-    object Dbdt_datanascimento: TDBDateEdit
+    object Dedt_datanascimento: TDBEdit
       Left = 517
       Top = 62
       Width = 105
       Height = 23
       DataField = 'FUN_DATANASCIMENTO'
       DataSource = dm_funcionarios.dts_funcionarios
-      NumGlyphs = 2
       TabOrder = 1
     end
   end

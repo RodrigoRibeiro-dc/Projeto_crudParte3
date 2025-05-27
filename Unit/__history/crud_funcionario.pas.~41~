@@ -60,7 +60,7 @@ type
     lbl_dtinicial: TLabel;
     lbl_dtfinal: TLabel;
     cbx_consulta: TComboBox;
-    Dedt_datanascimento: TDBEdit;
+    Dbdt_datanascimento: TDBDateEdit;
     procedure img_incluirClick(Sender: TObject);
     procedure img_salvarClick(Sender: TObject);
     procedure FormActivate(Sender: TObject);
@@ -279,8 +279,8 @@ end;
 procedure Tmenu_funcionarios.img_incluirClick(Sender: TObject);
 begin
   pnl_altera_funcionario.Enabled := True;
-  Dedt_datanascimento.SetFocus;
-  Dedt_datanascimento.Clear;
+  Dbdt_datanascimento.SetFocus;
+  Dbdt_datanascimento.Clear;
   Dedt_nome.Clear;
   Dedt_rua.Clear;
   Dedt_numero.Clear;
@@ -308,7 +308,7 @@ begin
   begin
     MessageDlg('A DATA DE NASCIMENTO NÃO PODE FICAR VAZIO!',
       TMsgDlgType.mtWarning, [TMsgDlgBtn.mbOK], 0);
-    Dedt_datanascimento.SetFocus;
+    Dbdt_datanascimento.SetFocus;
   end
 
   else if Trim(Dedt_nome.Text) = '' then
@@ -334,7 +334,7 @@ begin
     begin
       MessageDlg('FUNCIONÁRIO INCLUÍDO COM SUCESSO.',
         TMsgDlgType.mtConfirmation, [TMsgDlgBtn.mbOK], 0);
-      Dedt_datanascimento.Clear;
+      Dbdt_datanascimento.Clear;
       Dedt_nome.Clear;
       Dedt_rua.Clear;
       Dedt_numero.Clear;
