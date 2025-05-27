@@ -212,7 +212,7 @@ begin
   begin
     if (ActiveControl = Dedt_salario) then
       Key := #0
-    else if (ActiveControl is TDBEdit) or (ActiveControl is TDBComboBox) then
+    else if (ActiveControl is TDBEdit) or (ActiveControl is TDBComboBox) or (ActiveControl is TDBDateEdit)then
     begin
       Key := #0;
       Perform(WM_NEXTDLGCTL, 0, 0);
@@ -352,6 +352,7 @@ begin
       dm_funcionarios.tbl_funcionarios.Open;
       calcula_total_grid;
       pnl_altera_funcionario.Enabled := False;
+      controle_key := False;
     end
     else
     begin
@@ -363,6 +364,7 @@ begin
     img_alterar.Enabled := True;
     img_excluir.Enabled := True;
     pnl_altera_funcionario.Enabled := False;
+    controle_key := False;
   end;
 end;
 

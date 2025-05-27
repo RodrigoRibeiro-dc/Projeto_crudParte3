@@ -8337,8 +8337,8 @@ object menu_funcionarios: Tmenu_funcionarios
     end
   end
   object pnl_altera_funcionario: TPanel
-    Left = 649
-    Top = -1
+    Left = 648
+    Top = 0
     Width = 649
     Height = 452
     Alignment = taLeftJustify
@@ -8448,7 +8448,7 @@ object menu_funcionarios: Tmenu_funcionarios
       CharCase = ecUpperCase
       DataField = 'FUN_NOME'
       DataSource = dm_funcionarios.dts_funcionarios
-      TabOrder = 1
+      TabOrder = 2
     end
     object Dedt_rua: TDBEdit
       Left = 109
@@ -8458,7 +8458,7 @@ object menu_funcionarios: Tmenu_funcionarios
       CharCase = ecUpperCase
       DataField = 'FUN_RUA'
       DataSource = dm_funcionarios.dts_funcionarios
-      TabOrder = 2
+      TabOrder = 3
     end
     object Dedt_numero: TDBEdit
       Left = 519
@@ -8468,7 +8468,7 @@ object menu_funcionarios: Tmenu_funcionarios
       DataField = 'FUN_NUMERO'
       DataSource = dm_funcionarios.dts_funcionarios
       MaxLength = 6
-      TabOrder = 3
+      TabOrder = 4
     end
     object Dedt_bairro: TDBEdit
       Left = 109
@@ -8478,7 +8478,7 @@ object menu_funcionarios: Tmenu_funcionarios
       CharCase = ecUpperCase
       DataField = 'FUN_BAIRRO'
       DataSource = dm_funcionarios.dts_funcionarios
-      TabOrder = 4
+      TabOrder = 5
     end
     object Dedt_cidade: TDBEdit
       Left = 519
@@ -8489,7 +8489,7 @@ object menu_funcionarios: Tmenu_funcionarios
       DataField = 'FUN_CIDADE'
       DataSource = dm_funcionarios.dts_funcionarios
       MaxLength = 20
-      TabOrder = 5
+      TabOrder = 6
     end
     object Dedt_complemento: TDBEdit
       Left = 109
@@ -8499,7 +8499,7 @@ object menu_funcionarios: Tmenu_funcionarios
       CharCase = ecUpperCase
       DataField = 'FUN_COMPLEMENTO'
       DataSource = dm_funcionarios.dts_funcionarios
-      TabOrder = 6
+      TabOrder = 7
     end
     object Dedt_cep: TDBEdit
       Left = 519
@@ -8509,7 +8509,7 @@ object menu_funcionarios: Tmenu_funcionarios
       DataField = 'FUN_CEP'
       DataSource = dm_funcionarios.dts_funcionarios
       MaxLength = 9
-      TabOrder = 7
+      TabOrder = 8
     end
     object Dedt_salario: TDBEdit
       Left = 519
@@ -8520,7 +8520,7 @@ object menu_funcionarios: Tmenu_funcionarios
       DataField = 'FUN_SALARIO'
       DataSource = dm_funcionarios.dts_funcionarios
       ParentBiDiMode = False
-      TabOrder = 9
+      TabOrder = 10
     end
     object cbx_cargo: TDBComboBox
       Left = 109
@@ -8540,7 +8540,7 @@ object menu_funcionarios: Tmenu_funcionarios
         'VENDEDOR'
         'FINANCEIRO'
         'CS')
-      TabOrder = 8
+      TabOrder = 9
     end
     object Dbdt_datanascimento: TDBDateEdit
       Left = 517
@@ -8550,7 +8550,7 @@ object menu_funcionarios: Tmenu_funcionarios
       DataField = 'FUN_DATANASCIMENTO'
       DataSource = dm_funcionarios.dts_funcionarios
       NumGlyphs = 2
-      TabOrder = 10
+      TabOrder = 1
     end
   end
   object pnl_somatorio: TPanel
