@@ -7,7 +7,7 @@ uses
   System.Classes, Vcl.Graphics,
   Vcl.Controls, Vcl.Forms, Vcl.Dialogs, Vcl.StdCtrls, Vcl.Imaging.pngimage,
   Vcl.ExtCtrls, Vcl.Mask, Vcl.DBCtrls, Data.DB, Vcl.Grids, Vcl.DBGrids,
-  Vcl.ComCtrls, Vcl.Menus, System.UITypes, Vcl.Buttons;
+  Vcl.ComCtrls, Vcl.Menus, System.UITypes, Vcl.Buttons, RxToolEdit, RxDBCtrl;
 
 type
   Tmenu_funcionarios = class(TForm)
@@ -49,7 +49,6 @@ type
     dbg_funcionarios: TDBGrid;
     dbtxt_totalfuncionarios: TDBText;
     dbtxt_totalsalario: TDBText;
-    Dedt_datanascimento: TDBEdit;
     sbtn_consultar: TSpeedButton;
     pnl_consulta: TPanel;
     rbtn_nome: TRadioButton;
@@ -61,6 +60,7 @@ type
     lbl_dtinicial: TLabel;
     lbl_dtfinal: TLabel;
     cbx_consulta: TComboBox;
+    Dbdt_datanascimento: TDBDateEdit;
     procedure img_incluirClick(Sender: TObject);
     procedure img_salvarClick(Sender: TObject);
     procedure FormActivate(Sender: TObject);
@@ -75,7 +75,7 @@ type
     procedure FormKeyDown(Sender: TObject; var Key: Word; Shift: TShiftState);
     procedure edt_consultaKeyPress(Sender: TObject; var Key: Char);
   private
-    { Private declarations }
+    controle_key : Boolean;
   public
     { Public declarations }
   end;
@@ -143,7 +143,6 @@ end;
 
 procedure Tmenu_funcionarios.FormActivate(Sender: TObject);
 begin
-
   pnl_altera_funcionario.Enabled := False;
   calcula_total_grid;
   if Trim(Dedt_nome.Text) = '' then
@@ -166,24 +165,44 @@ end;
 procedure Tmenu_funcionarios.FormKeyDown(Sender: TObject; var Key: Word;
   Shift: TShiftState);
 begin
-  if key = VK_F2 then
-  begin
-    img_incluirClick(Sender);
-  end;
+  case Key of
+    VK_F2:
+      begin
+        if not controle_key then
+        begin
+          controle_key := True;
+          img_incluirClick(Sender);
+        end;
+      end;
 
-  if key = VK_F3 then
-  begin
-     img_alterarClick(Sender);
-  end;
+    VK_F3:
+      begin
+        if not controle_key then
+        begin
+          controle_key := True;
+          img_alterarClick(Sender);
+        end;
+      end;
 
-  if key = VK_f4 then
-  begin
-    img_excluirClick(Sender);
-  end;
+    VK_F4:
+      begin
+        if not controle_key then
+          img_excluirClick(Sender);
+      end;
 
-  if key = VK_f5 then
-  begin
-    img_salvarClick(Sender);
+    VK_F5:
+      begin
+        if controle_key then
+        begin
+          var
+            estaEditando := dm_funcionarios.tbl_funcionarios.State
+            in [dsInsert, dsEdit];
+            img_salvarClick(Sender);
+            if estaEditando and not(dm_funcionarios.tbl_funcionarios.State
+            in [dsInsert, dsEdit]) then
+            controle_key := False;
+        end;
+      end;
   end;
 end;
 
@@ -211,7 +230,6 @@ begin
   cbx_consulta.Items.Add('VENDEDOR');
   cbx_consulta.Items.Add('FINANCEIRO');
   cbx_consulta.Items.Add('CS');
-
   cbx_consulta.Style := csDropDownList;
 end;
 
@@ -233,6 +251,7 @@ begin
   dm_funcionarios.tbl_funcionarios.Open();
   Dedt_nome.SetFocus;
   dm_funcionarios.tbl_funcionarios.Edit;
+  controle_key := True;
 end;
 
 procedure Tmenu_funcionarios.img_excluirClick(Sender: TObject);
@@ -260,8 +279,8 @@ end;
 procedure Tmenu_funcionarios.img_incluirClick(Sender: TObject);
 begin
   pnl_altera_funcionario.Enabled := True;
-  Dedt_datanascimento.SetFocus;
-  Dedt_datanascimento.Clear;
+  Dbdt_datanascimento.SetFocus;
+  Dbdt_datanascimento.Clear;
   Dedt_nome.Clear;
   Dedt_rua.Clear;
   Dedt_numero.Clear;
@@ -277,6 +296,7 @@ begin
   img_incluir.Enabled := False;
   img_alterar.Enabled := False;
   img_excluir.Enabled := False;
+  controle_key := True;
 end;
 
 procedure Tmenu_funcionarios.img_salvarClick(Sender: TObject);
@@ -288,7 +308,7 @@ begin
   begin
     MessageDlg('A DATA DE NASCIMENTO NÃO PODE FICAR VAZIO!',
       TMsgDlgType.mtWarning, [TMsgDlgBtn.mbOK], 0);
-    Dedt_datanascimento.SetFocus;
+    Dbdt_datanascimento.SetFocus;
   end
 
   else if Trim(Dedt_nome.Text) = '' then
@@ -314,7 +334,7 @@ begin
     begin
       MessageDlg('FUNCIONÁRIO INCLUÍDO COM SUCESSO.',
         TMsgDlgType.mtConfirmation, [TMsgDlgBtn.mbOK], 0);
-      Dedt_datanascimento.Clear;
+      Dbdt_datanascimento.Clear;
       Dedt_nome.Clear;
       Dedt_rua.Clear;
       Dedt_numero.Clear;
