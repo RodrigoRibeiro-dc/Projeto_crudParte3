@@ -7,7 +7,7 @@ uses
   System.Classes, Vcl.Graphics,
   Vcl.Controls, Vcl.Forms, Vcl.Dialogs, Vcl.StdCtrls, Vcl.Imaging.pngimage,
   Vcl.ExtCtrls, Vcl.Mask, Vcl.DBCtrls, Data.DB, Vcl.Grids, Vcl.DBGrids,
-  Vcl.ComCtrls, Vcl.Menus, System.UITypes, Vcl.Buttons, RxToolEdit, RxDBCtrl;
+  Vcl.ComCtrls, Vcl.Menus, System.UITypes, Vcl.Buttons;
 
 type
   Tmenu_funcionarios = class(TForm)
@@ -212,7 +212,7 @@ begin
   begin
     if (ActiveControl = Dedt_salario) then
       Key := #0
-    else if (ActiveControl is TDBEdit) or (ActiveControl is TDBComboBox) or (ActiveControl is TDBDateEdit)then
+    else if (ActiveControl is TDBEdit) or (ActiveControl is TDBComboBox) then
     begin
       Key := #0;
       Perform(WM_NEXTDLGCTL, 0, 0);
