@@ -74,6 +74,7 @@ object dm_funcionarios: Tdm_funcionarios
       Alignment = taLeftJustify
       FieldName = 'FUN_SALARIO'
       Origin = 'FUN_SALARIO'
+      currency = True
       Precision = 10
       Size = 2
     end
