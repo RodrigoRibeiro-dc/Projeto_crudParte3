@@ -8254,7 +8254,7 @@ object menu_funcionarios: Tmenu_funcionarios
     object dbg_funcionarios: TDBGrid
       Left = -1
       Top = 1
-      Width = 643
+      Width = 647
       Height = 335
       Cursor = crHandPoint
       DataSource = dm_funcionarios.dts_funcionarionovo
@@ -8437,6 +8437,7 @@ object menu_funcionarios: Tmenu_funcionarios
       TabStop = False
       DataField = 'FUN_ID'
       DataSource = dm_funcionarios.dts_funcionarionovo
+      Enabled = False
       ReadOnly = True
       TabOrder = 0
     end
@@ -8587,7 +8588,6 @@ object menu_funcionarios: Tmenu_funcionarios
       Top = 71
       Width = 65
       Height = 17
-      DataSource = dm_funcionarios.dts_funcionarios
       Font.Charset = DEFAULT_CHARSET
       Font.Color = clWindowText
       Font.Height = -13
@@ -8600,7 +8600,6 @@ object menu_funcionarios: Tmenu_funcionarios
       Top = 91
       Width = 175
       Height = 17
-      DataSource = dm_funcionarios.dts_funcionarios
       Font.Charset = DEFAULT_CHARSET
       Font.Color = clWindowText
       Font.Height = -13

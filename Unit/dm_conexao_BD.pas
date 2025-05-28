@@ -13,19 +13,6 @@ uses
 type
   Tdm_funcionarios = class(TDataModule)
     ctn_conexao: TFDConnection;
-    tbl_funcionarios: TFDTable;
-    dts_funcionarios: TDataSource;
-    tbl_funcionariosFUN_ID: TFDAutoIncField;
-    tbl_funcionariosFUN_NOME: TWideStringField;
-    tbl_funcionariosFUN_DATANASCIMENTO: TSQLTimeStampField;
-    tbl_funcionariosFUN_RUA: TWideStringField;
-    tbl_funcionariosFUN_NUMERO: TIntegerField;
-    tbl_funcionariosFUN_BAIRRO: TWideStringField;
-    tbl_funcionariosFUN_CIDADE: TWideStringField;
-    tbl_funcionariosFUN_COMPLEMENTO: TWideStringField;
-    tbl_funcionariosFUN_CEP: TWideStringField;
-    tbl_funcionariosFUN_CARGO: TWideStringField;
-    tbl_funcionariosFUN_SALARIO: TBCDField;
     tsc_funcionarios: TFDTransaction;
     fdq_total: TFDQuery;
     fdq_consulta: TFDQuery;
@@ -66,8 +53,6 @@ begin
     ctn_conexao.Params.Password := 'aram98';
     ctn_conexao.LoginPrompt := False;
     ctn_conexao.Connected := True;
-    tbl_funcionarios.Connection := ctn_conexao;
-    tbl_funcionarios.Active := True;
 end;
 
 end.

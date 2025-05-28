@@ -143,7 +143,7 @@ begin
   else
     img_salvar.Enabled := False;
 
-  if dm_funcionarios.tbl_funcionarios.IsEmpty then
+  if dm_funcionarios.fdq_funcionarios.IsEmpty then
   begin
     img_salvar.Enabled := False;
     img_alterar.Enabled := False;
