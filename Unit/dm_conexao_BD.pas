@@ -27,9 +27,21 @@ type
     tbl_funcionariosFUN_CARGO: TWideStringField;
     tbl_funcionariosFUN_SALARIO: TBCDField;
     tsc_funcionarios: TFDTransaction;
-    fdq_totalfuncionario: TFDQuery;
-    fdq_totalsalario: TFDQuery;
+    fdq_total: TFDQuery;
     fdq_consulta: TFDQuery;
+    dts_funcionarionovo: TDataSource;
+    fdq_funcionarios: TFDQuery;
+    fdq_funcionariosFUN_ID: TFDAutoIncField;
+    fdq_funcionariosFUN_NOME: TWideStringField;
+    fdq_funcionariosFUN_DATANASCIMENTO: TSQLTimeStampField;
+    fdq_funcionariosFUN_RUA: TWideStringField;
+    fdq_funcionariosFUN_NUMERO: TIntegerField;
+    fdq_funcionariosFUN_BAIRRO: TWideStringField;
+    fdq_funcionariosFUN_CIDADE: TWideStringField;
+    fdq_funcionariosFUN_COMPLEMENTO: TWideStringField;
+    fdq_funcionariosFUN_CEP: TWideStringField;
+    fdq_funcionariosFUN_CARGO: TWideStringField;
+    fdq_funcionariosFUN_SALARIO: TBCDField;
     procedure DataModuleCreate(Sender: TObject);
   private
     { Private declarations }

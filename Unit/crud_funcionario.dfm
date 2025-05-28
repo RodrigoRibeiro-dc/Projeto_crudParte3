@@ -8252,12 +8252,12 @@ object menu_funcionarios: Tmenu_funcionarios
     Height = 341
     TabOrder = 1
     object dbg_funcionarios: TDBGrid
-      Left = 0
-      Top = 4
-      Width = 647
+      Left = -1
+      Top = 1
+      Width = 643
       Height = 335
       Cursor = crHandPoint
-      DataSource = dm_funcionarios.dts_funcionarios
+      DataSource = dm_funcionarios.dts_funcionarionovo
       Options = [dgTitles, dgIndicator, dgColumnResize, dgColLines, dgRowLines, dgTabs, dgConfirmDelete, dgCancelOnExit, dgTitleClick, dgTitleHotTrack]
       TabOrder = 0
       TitleFont.Charset = DEFAULT_CHARSET
@@ -8436,7 +8436,7 @@ object menu_funcionarios: Tmenu_funcionarios
       Height = 23
       TabStop = False
       DataField = 'FUN_ID'
-      DataSource = dm_funcionarios.dts_funcionarios
+      DataSource = dm_funcionarios.dts_funcionarionovo
       ReadOnly = True
       TabOrder = 0
     end
@@ -8447,7 +8447,7 @@ object menu_funcionarios: Tmenu_funcionarios
       Height = 23
       CharCase = ecUpperCase
       DataField = 'FUN_NOME'
-      DataSource = dm_funcionarios.dts_funcionarios
+      DataSource = dm_funcionarios.dts_funcionarionovo
       TabOrder = 2
     end
     object Dedt_rua: TDBEdit
@@ -8457,7 +8457,7 @@ object menu_funcionarios: Tmenu_funcionarios
       Height = 23
       CharCase = ecUpperCase
       DataField = 'FUN_RUA'
-      DataSource = dm_funcionarios.dts_funcionarios
+      DataSource = dm_funcionarios.dts_funcionarionovo
       TabOrder = 3
     end
     object Dedt_numero: TDBEdit
@@ -8466,7 +8466,7 @@ object menu_funcionarios: Tmenu_funcionarios
       Width = 105
       Height = 23
       DataField = 'FUN_NUMERO'
-      DataSource = dm_funcionarios.dts_funcionarios
+      DataSource = dm_funcionarios.dts_funcionarionovo
       MaxLength = 6
       TabOrder = 4
     end
@@ -8477,18 +8477,17 @@ object menu_funcionarios: Tmenu_funcionarios
       Height = 23
       CharCase = ecUpperCase
       DataField = 'FUN_BAIRRO'
-      DataSource = dm_funcionarios.dts_funcionarios
+      DataSource = dm_funcionarios.dts_funcionarionovo
       TabOrder = 5
     end
     object Dedt_cidade: TDBEdit
-      Left = 519
+      Left = 520
       Top = 269
       Width = 105
       Height = 23
       CharCase = ecUpperCase
       DataField = 'FUN_CIDADE'
-      DataSource = dm_funcionarios.dts_funcionarios
-      MaxLength = 20
+      DataSource = dm_funcionarios.dts_funcionarionovo
       TabOrder = 6
     end
     object Dedt_complemento: TDBEdit
@@ -8498,7 +8497,7 @@ object menu_funcionarios: Tmenu_funcionarios
       Height = 23
       CharCase = ecUpperCase
       DataField = 'FUN_COMPLEMENTO'
-      DataSource = dm_funcionarios.dts_funcionarios
+      DataSource = dm_funcionarios.dts_funcionarionovo
       TabOrder = 7
     end
     object Dedt_cep: TDBEdit
@@ -8507,8 +8506,7 @@ object menu_funcionarios: Tmenu_funcionarios
       Width = 105
       Height = 23
       DataField = 'FUN_CEP'
-      DataSource = dm_funcionarios.dts_funcionarios
-      MaxLength = 9
+      DataSource = dm_funcionarios.dts_funcionarionovo
       TabOrder = 8
     end
     object Dedt_salario: TDBEdit
@@ -8518,7 +8516,7 @@ object menu_funcionarios: Tmenu_funcionarios
       Height = 23
       BiDiMode = bdLeftToRight
       DataField = 'FUN_SALARIO'
-      DataSource = dm_funcionarios.dts_funcionarios
+      DataSource = dm_funcionarios.dts_funcionarionovo
       ParentBiDiMode = False
       TabOrder = 10
     end
@@ -8531,7 +8529,7 @@ object menu_funcionarios: Tmenu_funcionarios
       Style = csDropDownList
       CharCase = ecUpperCase
       DataField = 'FUN_CARGO'
-      DataSource = dm_funcionarios.dts_funcionarios
+      DataSource = dm_funcionarios.dts_funcionarionovo
       DragCursor = crHandPoint
       Items.Strings = (
         'PROGRAMADOR'
@@ -8548,7 +8546,7 @@ object menu_funcionarios: Tmenu_funcionarios
       Width = 105
       Height = 23
       DataField = 'FUN_DATANASCIMENTO'
-      DataSource = dm_funcionarios.dts_funcionarios
+      DataSource = dm_funcionarios.dts_funcionarionovo
       TabOrder = 1
     end
   end
@@ -8617,7 +8615,7 @@ object menu_funcionarios: Tmenu_funcionarios
       Height = 129
       TabOrder = 0
       object sbtn_consultar: TSpeedButton
-        Left = 511
+        Left = 528
         Top = 72
         Width = 89
         Height = 46
@@ -8626,91 +8624,59 @@ object menu_funcionarios: Tmenu_funcionarios
         OnClick = sbtn_consultarClick
       end
       object lbl_dtinicial: TLabel
-        Left = 201
-        Top = 67
+        Left = 243
+        Top = 66
         Width = 71
         Height = 15
         Caption = 'DATA INICIAL'
         Visible = False
       end
       object lbl_dtfinal: TLabel
-        Left = 361
+        Left = 391
         Top = 66
         Width = 63
         Height = 15
         Caption = 'DATA FINAL'
         Visible = False
       end
-      object rbtn_nome: TRadioButton
-        Left = 13
-        Top = 9
-        Width = 113
-        Height = 17
-        Cursor = crHandPoint
-        Caption = 'NOME'
-        Checked = True
-        TabOrder = 0
-        TabStop = True
-        OnClick = rbtn_nomeClick
-      end
-      object rbtn_cargo: TRadioButton
-        Left = 13
-        Top = 88
-        Width = 113
-        Height = 17
-        Cursor = crHandPoint
-        Caption = 'CARGO'
-        TabOrder = 2
-        OnClick = rbtn_cargoClick
-      end
-      object rbtn_datanascimento: TRadioButton
-        Left = 13
-        Top = 48
-        Width = 145
-        Height = 17
-        Cursor = crHandPoint
-        Caption = 'DATA DE NASCIMENTO'
-        TabOrder = 1
-        OnClick = rbtn_datanascimentoClick
-      end
       object edt_consulta: TEdit
-        Left = 109
+        Left = 184
         Top = 87
-        Width = 372
+        Width = 338
         Height = 23
         CharCase = ecUpperCase
-        TabOrder = 3
+        TabOrder = 0
         OnKeyPress = edt_consultaKeyPress
       end
       object dtp_inicial: TDateTimePicker
-        Left = 176
-        Top = 86
+        Left = 219
+        Top = 88
         Width = 121
         Height = 23
         Cursor = crHandPoint
         Date = 45803.000000000000000000
         Time = 0.582950254633033200
-        TabOrder = 4
+        TabOrder = 1
         Visible = False
       end
       object dtp_final: TDateTimePicker
-        Left = 335
-        Top = 86
+        Left = 367
+        Top = 87
         Width = 121
         Height = 23
         Cursor = crHandPoint
         Date = 45803.000000000000000000
         Time = 0.583129085651307800
-        TabOrder = 5
+        TabOrder = 2
         Visible = False
       end
       object cbx_consulta: TComboBox
-        Left = 80
-        Top = 86
+        Left = 176
+        Top = 88
         Width = 145
         Height = 23
         Cursor = crHandPoint
-        TabOrder = 6
+        TabOrder = 3
         Visible = False
         Items.Strings = (
           'PROGRAMADOR'
@@ -8719,6 +8685,19 @@ object menu_funcionarios: Tmenu_funcionarios
           'VENDEDOR'
           'FINANCEIRO'
           'CS')
+      end
+      object rdg_tipoconsulta: TRadioGroup
+        Left = 10
+        Top = 10
+        Width = 160
+        Height = 105
+        ItemIndex = 0
+        Items.Strings = (
+          'NOME'
+          'DATA DE NASCIMENTO'
+          'CARGO')
+        TabOrder = 4
+        OnClick = rdg_tipoconsultaClick
       end
     end
   end
