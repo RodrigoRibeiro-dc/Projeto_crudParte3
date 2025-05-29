@@ -8354,7 +8354,7 @@ object menu_funcionarios: Tmenu_funcionarios
     object lbl_datanascimento: TLabel
       Left = 389
       Top = 66
-      Width = 122
+      Width = 124
       Height = 15
       Caption = 'DATA DE NASCIMENTO'
     end
@@ -8401,7 +8401,7 @@ object menu_funcionarios: Tmenu_funcionarios
     object lbl_complemento: TLabel
       Left = 15
       Top = 332
-      Width = 87
+      Width = 88
       Height = 15
       Caption = 'COMPLEMENTO'
       FocusControl = Dedt_complemento
@@ -8423,11 +8423,21 @@ object menu_funcionarios: Tmenu_funcionarios
     end
     object lbl_salario: TLabel
       Left = 467
-      Top = 394
+      Top = 152
       Width = 47
       Height = 15
       Caption = 'SAL'#193'RIO'
       FocusControl = Dedt_salario
+    end
+    object sbtn_cancelar: TSpeedButton
+      Left = 520
+      Top = 390
+      Width = 105
+      Height = 31
+      Cursor = crHandPoint
+      Caption = 'CANCELAR'
+      Enabled = False
+      OnClick = sbtn_cancelarClick
     end
     object Dedt_codigo: TDBEdit
       Left = 109
@@ -8459,7 +8469,7 @@ object menu_funcionarios: Tmenu_funcionarios
       CharCase = ecUpperCase
       DataField = 'FUN_RUA'
       DataSource = dm_funcionarios.dts_funcionarionovo
-      TabOrder = 3
+      TabOrder = 4
     end
     object Dedt_numero: TDBEdit
       Left = 519
@@ -8469,7 +8479,7 @@ object menu_funcionarios: Tmenu_funcionarios
       DataField = 'FUN_NUMERO'
       DataSource = dm_funcionarios.dts_funcionarionovo
       MaxLength = 6
-      TabOrder = 4
+      TabOrder = 5
     end
     object Dedt_bairro: TDBEdit
       Left = 109
@@ -8479,7 +8489,7 @@ object menu_funcionarios: Tmenu_funcionarios
       CharCase = ecUpperCase
       DataField = 'FUN_BAIRRO'
       DataSource = dm_funcionarios.dts_funcionarionovo
-      TabOrder = 5
+      TabOrder = 6
     end
     object Dedt_cidade: TDBEdit
       Left = 520
@@ -8489,7 +8499,7 @@ object menu_funcionarios: Tmenu_funcionarios
       CharCase = ecUpperCase
       DataField = 'FUN_CIDADE'
       DataSource = dm_funcionarios.dts_funcionarionovo
-      TabOrder = 6
+      TabOrder = 7
     end
     object Dedt_complemento: TDBEdit
       Left = 109
@@ -8499,7 +8509,7 @@ object menu_funcionarios: Tmenu_funcionarios
       CharCase = ecUpperCase
       DataField = 'FUN_COMPLEMENTO'
       DataSource = dm_funcionarios.dts_funcionarionovo
-      TabOrder = 7
+      TabOrder = 8
     end
     object Dedt_cep: TDBEdit
       Left = 519
@@ -8508,18 +8518,18 @@ object menu_funcionarios: Tmenu_funcionarios
       Height = 23
       DataField = 'FUN_CEP'
       DataSource = dm_funcionarios.dts_funcionarionovo
-      TabOrder = 8
+      TabOrder = 9
     end
     object Dedt_salario: TDBEdit
-      Left = 519
-      Top = 390
+      Left = 520
+      Top = 149
       Width = 105
       Height = 23
       BiDiMode = bdLeftToRight
       DataField = 'FUN_SALARIO'
       DataSource = dm_funcionarios.dts_funcionarionovo
       ParentBiDiMode = False
-      TabOrder = 10
+      TabOrder = 3
     end
     object cbx_cargo: TDBComboBox
       Left = 109
@@ -8539,7 +8549,7 @@ object menu_funcionarios: Tmenu_funcionarios
         'VENDEDOR'
         'FINANCEIRO'
         'CS')
-      TabOrder = 9
+      TabOrder = 10
     end
     object Dedt_datanascimento: TDBEdit
       Left = 517
@@ -8625,7 +8635,7 @@ object menu_funcionarios: Tmenu_funcionarios
       object lbl_dtinicial: TLabel
         Left = 243
         Top = 66
-        Width = 71
+        Width = 72
         Height = 15
         Caption = 'DATA INICIAL'
         Visible = False
@@ -8633,7 +8643,7 @@ object menu_funcionarios: Tmenu_funcionarios
       object lbl_dtfinal: TLabel
         Left = 391
         Top = 66
-        Width = 63
+        Width = 64
         Height = 15
         Caption = 'DATA FINAL'
         Visible = False

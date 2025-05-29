@@ -10,7 +10,6 @@ object dm_funcionarios: Tdm_funcionarios
       'Database=PROJETO_CRUD'
       'Password=aram98'
       'DriverID=MSSQL')
-    Connected = True
     Transaction = tsc_funcionarios
     Left = 40
     Top = 40

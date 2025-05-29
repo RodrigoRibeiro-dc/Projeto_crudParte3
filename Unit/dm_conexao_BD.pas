@@ -47,13 +47,12 @@ implementation
 
 procedure Tdm_funcionarios.DataModuleCreate(Sender: TObject);
 begin
-    ctn_conexao.Connected := False;
-    ctn_conexao.Params.Database := 'PROJETO_CRUD';
-    ctn_conexao.Params.UserName := 'sa';
-    ctn_conexao.Params.Password := 'aram98';
-    ctn_conexao.LoginPrompt := False;
-    ctn_conexao.Connected := True;
+  ctn_conexao.Params.Database := 'PROJETO_CRUD';
+  ctn_conexao.Params.UserName := 'sa';
+  ctn_conexao.Params.Password := 'aram98';
+
+  ctn_conexao.LoginPrompt := False;
+  ctn_conexao.Connected := True;
 end;
 
 end.
-
