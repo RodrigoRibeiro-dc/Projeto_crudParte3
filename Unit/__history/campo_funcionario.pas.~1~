@@ -1,0 +1,24 @@
+unit campo_funcionario;
+
+interface
+
+uses
+  Winapi.Windows, Winapi.Messages, System.SysUtils, System.Variants, System.Classes, Vcl.Graphics,
+  Vcl.Controls, Vcl.Forms, Vcl.Dialogs;
+
+type
+  Tcadastro_funcionario = class(TForm)
+  private
+    { Private declarations }
+  public
+    { Public declarations }
+  end;
+
+var
+  cadastro_funcionario: Tcadastro_funcionario;
+
+implementation
+
+{$R *.dfm}
+
+end.

@@ -5,8 +5,8 @@ object menu_funcionarios: Tmenu_funcionarios
   BorderIcons = [biSystemMenu, biMinimize]
   BorderStyle = bsSingle
   Caption = 'Funcionarios'
-  ClientHeight = 575
-  ClientWidth = 1293
+  ClientHeight = 645
+  ClientWidth = 714
   Color = clBtnFace
   Font.Charset = DEFAULT_CHARSET
   Font.Color = clWindowText
@@ -7986,16 +7986,13 @@ object menu_funcionarios: Tmenu_funcionarios
     000000000000000000000000000000000000000000000000000000000000}
   KeyPreview = True
   Position = poMainFormCenter
-  OnActivate = FormActivate
-  OnKeyDown = FormKeyDown
-  OnKeyPress = FormKeyPress
   OnShow = FormShow
   PixelsPerInch = 96
   TextHeight = 15
   object pnl_crud: TPanel
     Left = 0
     Top = 0
-    Width = 649
+    Width = 713
     Height = 105
     TabOrder = 0
     object img_incluir: TImage
@@ -8049,8 +8046,8 @@ object menu_funcionarios: Tmenu_funcionarios
       OnClick = img_incluirClick
     end
     object img_alterar: TImage
-      Left = 400
-      Top = 24
+      Left = 328
+      Top = 26
       Width = 33
       Height = 33
       Cursor = crHandPoint
@@ -8103,7 +8100,6 @@ object menu_funcionarios: Tmenu_funcionarios
         8AF30289BEA0A7FBF6BAEDCEAE384ECD715E4CCE145D6099EED8FE84792AE679
         C2F9D6132656FBDD9E30BE8AFD848FB6016252DE30D053FE3DDAE8023EDA2E83
         8B12F2D1F617D1C0D6F237105AFB0000000049454E44AE426082}
-      OnClick = img_alterarClick
     end
     object img_excluir: TImage
       Left = 584
@@ -8165,7 +8161,7 @@ object menu_funcionarios: Tmenu_funcionarios
       ParentFont = False
     end
     object lbl_alterar: TLabel
-      Left = 391
+      Left = 328
       Top = 65
       Width = 50
       Height = 15
@@ -8190,74 +8186,20 @@ object menu_funcionarios: Tmenu_funcionarios
       Font.Style = [fsBold]
       ParentFont = False
     end
-    object img_salvar: TImage
-      Left = 219
-      Top = 26
-      Width = 33
-      Height = 33
-      Cursor = crHandPoint
-      Picture.Data = {
-        0954506E67496D61676589504E470D0A1A0A0000000D494844520000001E0000
-        001E08060000003B30AEA20000000473424954080808087C0864880000000173
-        52474200AECE1CE90000000467414D410000B18F0BFC61050000000970485973
-        00000EC200000EC20115284A800000001974455874536F667477617265007777
-        772E696E6B73636170652E6F72679BEE3C1A0000018769545874584D4C3A636F
-        6D2E61646F62652E786D7000000000003C3F787061636B657420626567696E3D
-        27EFBBBF272069643D2757354D304D7043656869487A7265537A4E54637A6B63
-        3964273F3E0D0A3C783A786D706D65746120786D6C6E733A783D2261646F6265
-        3A6E733A6D6574612F223E3C7264663A52444620786D6C6E733A7264663D2268
-        7474703A2F2F7777772E77332E6F72672F313939392F30322F32322D7264662D
-        73796E7461782D6E7323223E3C7264663A4465736372697074696F6E20726466
-        3A61626F75743D22757569643A66616635626464352D626133642D313164612D
-        616433312D6433336437353138326631622220786D6C6E733A746966663D2268
-        7474703A2F2F6E732E61646F62652E636F6D2F746966662F312E302F223E3C74
-        6966663A4F7269656E746174696F6E3E313C2F746966663A4F7269656E746174
-        696F6E3E3C2F7264663A4465736372697074696F6E3E3C2F7264663A5244463E
-        3C2F783A786D706D6574613E0D0A3C3F787061636B657420656E643D2777273F
-        3E2C94980B000001A74944415478DAED974D28445114C7CF2CD8D858F82C1616
-        D66C2C94958F0D36EC3445C9848DEC44764259599929493E9A8D8515CA4716EC
-        EC9528259AA26441C9C2F8DFEE99F1E6356FEEB9DC57CA9CFA2DDEEDDEFB7BE7
-        BE774FF74648C72898020DFC9C0451B002C6C92EF6402F5802136000ECFA3B45
-        C00858F5B5BB10CF83196E1B029B7E710AD484205E00D39EF61CB912A7F30CB6
-        155F820A5055409C2377217E66611FD801FBA027409C95BB10DF837AD0098E04
-        6215FD2EC40FA00E748143A1F8D385F88997BA9BF4F7958803BFF11618046B60
-        98CC71CA59378263CE7E0ECCDA8A0F388331101788BDB1487AFFC679BC95F80D
-        34831BD00EAA03FAF9E77AE1972E27BDC56A6DC52AAE400C9C5966DCC4D9B69A
-        DED294C91D78174A4BE8BBDE1B97C7240E25FEB458FD681F96F39682B29F8A1F
-        C124E9A2F0CA7D259166A92A22CBA4778458AC326C0317A48B42A56065BC73AA
-        6A760D5AC039AF80487C42BAE8ABD343D26E95B311E5B1AA927548C5B625335F
-        ACF3D80D9E4B24FECD092413091EBBCD7315C545F13F10BB3ED04BC4A930AE30
-        12712C53F85D5EDA0A896F495FE6125F5DC4A1A3ED2265EC0000000049454E44
-        AE426082}
-      OnClick = img_salvarClick
-    end
-    object lbl_salvar: TLabel
-      Left = 209
-      Top = 65
-      Width = 43
-      Height = 15
-      Caption = 'SALVAR'
-      Font.Charset = DEFAULT_CHARSET
-      Font.Color = clWindowText
-      Font.Height = -12
-      Font.Name = 'Segoe UI'
-      Font.Style = [fsBold]
-      ParentFont = False
-    end
   end
   object pnl_grid: TPanel
     Left = 0
     Top = 110
-    Width = 649
+    Width = 713
     Height = 341
     TabOrder = 1
     object dbg_funcionarios: TDBGrid
-      Left = -1
+      Left = 0
       Top = 1
-      Width = 647
+      Width = 730
       Height = 335
       Cursor = crHandPoint
-      DataSource = dm_funcionarios.dts_funcionarionovo
+      DataSource = dts_funcionarionovo
       Options = [dgTitles, dgIndicator, dgColumnResize, dgColLines, dgRowLines, dgTabs, dgConfirmDelete, dgCancelOnExit, dgTitleClick, dgTitleHotTrack]
       TabOrder = 0
       TitleFont.Charset = DEFAULT_CHARSET
@@ -8276,35 +8218,30 @@ object menu_funcionarios: Tmenu_funcionarios
           Expanded = False
           FieldName = 'FUN_DATANASCIMENTO'
           Title.Caption = 'DATA DE NASCIMENTO'
-          Width = 64
           Visible = True
         end
         item
           Expanded = False
           FieldName = 'FUN_SALARIO'
           Title.Caption = 'SAL'#193'RIO'
-          Width = 64
           Visible = True
         end
         item
           Expanded = False
           FieldName = 'FUN_CARGO'
           Title.Caption = 'CARGO'
-          Width = 64
           Visible = True
         end
         item
           Expanded = False
           FieldName = 'FUN_RUA'
           Title.Caption = 'RUA'
-          Width = 64
           Visible = True
         end
         item
           Expanded = False
           FieldName = 'FUN_BAIRRO'
           Title.Caption = 'BAIRRO'
-          Width = 64
           Visible = True
         end
         item
@@ -8317,231 +8254,92 @@ object menu_funcionarios: Tmenu_funcionarios
           Expanded = False
           FieldName = 'FUN_CIDADE'
           Title.Caption = 'CIDADE'
-          Width = 64
           Visible = True
         end
         item
           Expanded = False
           FieldName = 'FUN_COMPLEMENTO'
           Title.Caption = 'COMPLEMENTO'
-          Width = 64
           Visible = True
         end
         item
           Expanded = False
           FieldName = 'FUN_CEP'
           Title.Caption = 'CEP'
-          Width = 64
           Visible = True
         end>
     end
   end
-  object pnl_altera_funcionario: TPanel
-    Left = 648
-    Top = 0
-    Width = 649
-    Height = 452
-    Alignment = taLeftJustify
+  object pnl_consulta: TPanel
+    Left = 0
+    Top = 452
+    Width = 713
+    Height = 197
     TabOrder = 2
-    object lbl_codigo: TLabel
-      Left = 58
-      Top = 66
-      Width = 45
-      Height = 15
-      Caption = 'C'#211'DIGO'
-      FocusControl = Dedt_codigo
-    end
-    object lbl_datanascimento: TLabel
-      Left = 389
-      Top = 66
-      Width = 124
-      Height = 15
-      Caption = 'DATA DE NASCIMENTO'
-    end
-    object lbl_nome: TLabel
-      Left = 68
-      Top = 152
-      Width = 35
-      Height = 15
-      Caption = 'NOME'
-      FocusControl = Dedt_nome
-    end
-    object lbl_rua: TLabel
-      Left = 80
-      Top = 212
-      Width = 23
-      Height = 15
-      Caption = 'RUA'
-      FocusControl = Dedt_rua
-    end
-    object lbl_numero: TLabel
-      Left = 465
-      Top = 212
-      Width = 50
-      Height = 15
-      Caption = 'N'#218'MERO'
-      FocusControl = Dedt_numero
-    end
-    object lbl_bairro: TLabel
-      Left = 62
-      Top = 272
-      Width = 41
-      Height = 15
-      Caption = 'BAIRRO'
-      FocusControl = Dedt_bairro
-    end
-    object lbl_cidade: TLabel
-      Left = 473
-      Top = 272
-      Width = 41
-      Height = 15
-      Caption = 'CIDADE'
-      FocusControl = Dedt_cidade
-    end
-    object lbl_complemento: TLabel
-      Left = 15
-      Top = 332
-      Width = 88
-      Height = 15
-      Caption = 'COMPLEMENTO'
-      FocusControl = Dedt_complemento
-    end
-    object lbl_cep: TLabel
-      Left = 492
-      Top = 332
-      Width = 21
-      Height = 15
-      Caption = 'CEP'
-      FocusControl = Dedt_cep
-    end
-    object lbl_cargo: TLabel
-      Left = 63
-      Top = 394
-      Width = 40
-      Height = 15
-      Caption = 'CARGO'
-    end
-    object lbl_salario: TLabel
-      Left = 467
-      Top = 152
-      Width = 47
-      Height = 15
-      Caption = 'SAL'#193'RIO'
-      FocusControl = Dedt_salario
-    end
-    object sbtn_cancelar: TSpeedButton
-      Left = 520
-      Top = 390
-      Width = 105
-      Height = 31
+    object sbtn_consultar: TSpeedButton
+      Left = 528
+      Top = 72
+      Width = 89
+      Height = 46
       Cursor = crHandPoint
-      Caption = 'CANCELAR'
-      Enabled = False
-      OnClick = sbtn_cancelarClick
+      Caption = 'CONSULTAR'
+      OnClick = sbtn_consultarClick
     end
-    object Dedt_codigo: TDBEdit
-      Left = 109
-      Top = 62
-      Width = 76
+    object lbl_dtinicial: TLabel
+      Left = 211
+      Top = 66
+      Width = 72
+      Height = 15
+      Caption = 'DATA INICIAL'
+      Visible = False
+    end
+    object lbl_dtfinal: TLabel
+      Left = 391
+      Top = 66
+      Width = 64
+      Height = 15
+      Caption = 'DATA FINAL'
+      Visible = False
+    end
+    object edt_consulta: TEdit
+      Left = 184
+      Top = 87
+      Width = 338
       Height = 23
-      TabStop = False
-      DataField = 'FUN_ID'
-      DataSource = dm_funcionarios.dts_funcionarionovo
-      Enabled = False
-      ReadOnly = True
+      CharCase = ecUpperCase
       TabOrder = 0
+      OnKeyPress = edt_consultaKeyPress
     end
-    object Dedt_nome: TDBEdit
-      Left = 109
-      Top = 149
-      Width = 340
-      Height = 23
-      CharCase = ecUpperCase
-      DataField = 'FUN_NOME'
-      DataSource = dm_funcionarios.dts_funcionarionovo
-      TabOrder = 2
-    end
-    object Dedt_rua: TDBEdit
-      Left = 109
-      Top = 208
-      Width = 340
-      Height = 23
-      CharCase = ecUpperCase
-      DataField = 'FUN_RUA'
-      DataSource = dm_funcionarios.dts_funcionarionovo
-      TabOrder = 4
-    end
-    object Dedt_numero: TDBEdit
-      Left = 519
-      Top = 208
-      Width = 105
-      Height = 23
-      DataField = 'FUN_NUMERO'
-      DataSource = dm_funcionarios.dts_funcionarionovo
-      MaxLength = 6
-      TabOrder = 5
-    end
-    object Dedt_bairro: TDBEdit
-      Left = 109
-      Top = 269
-      Width = 340
-      Height = 23
-      CharCase = ecUpperCase
-      DataField = 'FUN_BAIRRO'
-      DataSource = dm_funcionarios.dts_funcionarionovo
-      TabOrder = 6
-    end
-    object Dedt_cidade: TDBEdit
-      Left = 520
-      Top = 269
-      Width = 105
-      Height = 23
-      CharCase = ecUpperCase
-      DataField = 'FUN_CIDADE'
-      DataSource = dm_funcionarios.dts_funcionarionovo
-      TabOrder = 7
-    end
-    object Dedt_complemento: TDBEdit
-      Left = 109
-      Top = 329
-      Width = 340
-      Height = 23
-      CharCase = ecUpperCase
-      DataField = 'FUN_COMPLEMENTO'
-      DataSource = dm_funcionarios.dts_funcionarionovo
-      TabOrder = 8
-    end
-    object Dedt_cep: TDBEdit
-      Left = 519
-      Top = 329
-      Width = 105
-      Height = 23
-      DataField = 'FUN_CEP'
-      DataSource = dm_funcionarios.dts_funcionarionovo
-      TabOrder = 9
-    end
-    object Dedt_salario: TDBEdit
-      Left = 520
-      Top = 149
-      Width = 105
-      Height = 23
-      BiDiMode = bdLeftToRight
-      DataField = 'FUN_SALARIO'
-      DataSource = dm_funcionarios.dts_funcionarionovo
-      ParentBiDiMode = False
-      TabOrder = 3
-    end
-    object cbx_cargo: TDBComboBox
-      Left = 109
-      Top = 390
-      Width = 125
+    object dtp_inicial: TDateTimePicker
+      Left = 219
+      Top = 88
+      Width = 121
       Height = 23
       Cursor = crHandPoint
-      Style = csDropDownList
-      CharCase = ecUpperCase
-      DataField = 'FUN_CARGO'
-      DataSource = dm_funcionarios.dts_funcionarionovo
-      DragCursor = crHandPoint
+      Date = 45803.000000000000000000
+      Time = 0.582950254633033200
+      TabOrder = 1
+      Visible = False
+    end
+    object dtp_final: TDateTimePicker
+      Left = 367
+      Top = 87
+      Width = 121
+      Height = 23
+      Cursor = crHandPoint
+      Date = 45803.000000000000000000
+      Time = 0.583129085651307800
+      TabOrder = 2
+      Visible = False
+    end
+    object cbx_consulta: TComboBox
+      Left = 176
+      Top = 88
+      Width = 145
+      Height = 23
+      Cursor = crHandPoint
+      TabOrder = 3
+      Visible = False
       Items.Strings = (
         'PROGRAMADOR'
         'IMPLANTA'#199#195'O'
@@ -8549,165 +8347,119 @@ object menu_funcionarios: Tmenu_funcionarios
         'VENDEDOR'
         'FINANCEIRO'
         'CS')
-      TabOrder = 10
     end
-    object Dedt_datanascimento: TDBEdit
-      Left = 517
-      Top = 62
-      Width = 105
-      Height = 23
-      DataField = 'FUN_DATANASCIMENTO'
-      DataSource = dm_funcionarios.dts_funcionarionovo
-      TabOrder = 1
+    object rdg_tipoconsulta: TRadioGroup
+      Left = 10
+      Top = 10
+      Width = 160
+      Height = 105
+      ItemIndex = 0
+      Items.Strings = (
+        'NOME'
+        'DATA DE NASCIMENTO'
+        'CARGO')
+      TabOrder = 4
+      OnClick = rdg_tipoconsultaClick
     end
   end
-  object pnl_somatorio: TPanel
-    Left = 0
-    Top = 448
-    Width = 1356
-    Height = 130
-    TabOrder = 3
-    object lbl_total_funcionario: TLabel
-      Left = 956
-      Top = 73
-      Width = 155
-      Height = 15
-      Caption = 'TOTAL DE FUNCION'#193'RIOS : '
-      Font.Charset = DEFAULT_CHARSET
-      Font.Color = clWindowText
-      Font.Height = -12
-      Font.Name = 'Segoe UI'
-      Font.Style = [fsBold]
-      ParentFont = False
+  object ctn_conexao: TFDConnection
+    Params.Strings = (
+      'Server=Localhost'
+      'User_Name=sa'
+      'Database=PROJETO_CRUD'
+      'Password=aram98'
+      'DriverID=MSSQL')
+    Connected = True
+    Transaction = tsc_funcionarios
+    Left = 88
+    Top = 272
+  end
+  object tsc_funcionarios: TFDTransaction
+    Connection = ctn_conexao
+    Left = 184
+    Top = 272
+  end
+  object fdq_funcionarios: TFDQuery
+    Active = True
+    Connection = ctn_conexao
+    SQL.Strings = (
+      'SELECT *FROM FUNCIONARIOS')
+    Left = 304
+    Top = 272
+    object fdq_funcionariosFUN_ID: TFDAutoIncField
+      FieldName = 'FUN_ID'
+      Origin = 'FUN_ID'
+      ProviderFlags = [pfInWhere, pfInKey]
+      ReadOnly = True
     end
-    object lbl_total_salario: TLabel
-      Left = 978
-      Top = 93
-      Width = 130
-      Height = 15
-      Caption = 'TOTAL DOS SAL'#193'RIOS :'
-      Font.Charset = DEFAULT_CHARSET
-      Font.Color = clWindowText
-      Font.Height = -12
-      Font.Name = 'Segoe UI'
-      Font.Style = [fsBold]
-      ParentFont = False
+    object fdq_funcionariosFUN_DATANASCIMENTO: TSQLTimeStampField
+      FieldName = 'FUN_DATANASCIMENTO'
+      Origin = 'FUN_DATANASCIMENTO'
+      EditMask = '99/99/9999;1;_'
     end
-    object dbtxt_totalfuncionarios: TDBText
-      Left = 1114
-      Top = 71
-      Width = 65
-      Height = 17
-      Font.Charset = DEFAULT_CHARSET
-      Font.Color = clWindowText
-      Font.Height = -13
-      Font.Name = 'Segoe UI'
-      Font.Style = []
-      ParentFont = False
+    object fdq_funcionariosFUN_NOME: TWideStringField
+      FieldName = 'FUN_NOME'
+      Origin = 'FUN_NOME'
+      Required = True
+      Size = 45
     end
-    object dbtxt_totalsalario: TDBText
-      Left = 1114
-      Top = 91
-      Width = 175
-      Height = 17
-      Font.Charset = DEFAULT_CHARSET
-      Font.Color = clWindowText
-      Font.Height = -13
-      Font.Name = 'Segoe UI'
-      Font.Style = []
-      ParentFont = False
+    object fdq_funcionariosFUN_SALARIO: TBCDField
+      FieldName = 'FUN_SALARIO'
+      Origin = 'FUN_SALARIO'
+      Required = True
+      currency = True
+      Precision = 10
+      Size = 2
     end
-    object pnl_consulta: TPanel
-      Left = 0
-      Top = -1
-      Width = 649
-      Height = 129
-      TabOrder = 0
-      object sbtn_consultar: TSpeedButton
-        Left = 528
-        Top = 72
-        Width = 89
-        Height = 46
-        Cursor = crHandPoint
-        Caption = 'CONSULTAR'
-        OnClick = sbtn_consultarClick
-      end
-      object lbl_dtinicial: TLabel
-        Left = 243
-        Top = 66
-        Width = 72
-        Height = 15
-        Caption = 'DATA INICIAL'
-        Visible = False
-      end
-      object lbl_dtfinal: TLabel
-        Left = 391
-        Top = 66
-        Width = 64
-        Height = 15
-        Caption = 'DATA FINAL'
-        Visible = False
-      end
-      object edt_consulta: TEdit
-        Left = 184
-        Top = 87
-        Width = 338
-        Height = 23
-        CharCase = ecUpperCase
-        TabOrder = 0
-        OnKeyPress = edt_consultaKeyPress
-      end
-      object dtp_inicial: TDateTimePicker
-        Left = 219
-        Top = 88
-        Width = 121
-        Height = 23
-        Cursor = crHandPoint
-        Date = 45803.000000000000000000
-        Time = 0.582950254633033200
-        TabOrder = 1
-        Visible = False
-      end
-      object dtp_final: TDateTimePicker
-        Left = 367
-        Top = 87
-        Width = 121
-        Height = 23
-        Cursor = crHandPoint
-        Date = 45803.000000000000000000
-        Time = 0.583129085651307800
-        TabOrder = 2
-        Visible = False
-      end
-      object cbx_consulta: TComboBox
-        Left = 176
-        Top = 88
-        Width = 145
-        Height = 23
-        Cursor = crHandPoint
-        TabOrder = 3
-        Visible = False
-        Items.Strings = (
-          'PROGRAMADOR'
-          'IMPLANTA'#199#195'O'
-          'SUPORTE'
-          'VENDEDOR'
-          'FINANCEIRO'
-          'CS')
-      end
-      object rdg_tipoconsulta: TRadioGroup
-        Left = 10
-        Top = 10
-        Width = 160
-        Height = 105
-        ItemIndex = 0
-        Items.Strings = (
-          'NOME'
-          'DATA DE NASCIMENTO'
-          'CARGO')
-        TabOrder = 4
-        OnClick = rdg_tipoconsultaClick
-      end
+    object fdq_funcionariosFUN_RUA: TWideStringField
+      FieldName = 'FUN_RUA'
+      Origin = 'FUN_RUA'
+      Size = 45
     end
+    object fdq_funcionariosFUN_NUMERO: TIntegerField
+      FieldName = 'FUN_NUMERO'
+      Origin = 'FUN_NUMERO'
+    end
+    object fdq_funcionariosFUN_BAIRRO: TWideStringField
+      FieldName = 'FUN_BAIRRO'
+      Origin = 'FUN_BAIRRO'
+      Size = 45
+    end
+    object fdq_funcionariosFUN_CIDADE: TWideStringField
+      FieldName = 'FUN_CIDADE'
+      Origin = 'FUN_CIDADE'
+    end
+    object fdq_funcionariosFUN_COMPLEMENTO: TWideStringField
+      FieldName = 'FUN_COMPLEMENTO'
+      Origin = 'FUN_COMPLEMENTO'
+      Size = 45
+    end
+    object fdq_funcionariosFUN_CEP: TWideStringField
+      FieldName = 'FUN_CEP'
+      Origin = 'FUN_CEP'
+      EditMask = '99999-999;1;_'
+      Size = 9
+    end
+    object fdq_funcionariosFUN_CARGO: TWideStringField
+      FieldName = 'FUN_CARGO'
+      Origin = 'FUN_CARGO'
+      Size = 25
+    end
+  end
+  object fdq_total: TFDQuery
+    Connection = ctn_conexao
+    Transaction = tsc_funcionarios
+    Left = 400
+    Top = 272
+  end
+  object fdq_consulta: TFDQuery
+    Connection = ctn_conexao
+    Left = 488
+    Top = 272
+  end
+  object dts_funcionarionovo: TDataSource
+    DataSet = fdq_funcionarios
+    Left = 336
+    Top = 376
   end
 end

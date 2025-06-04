@@ -5,7 +5,7 @@ uses
   Vcl.Themes,
   Vcl.Styles,
   crud_funcionario in '..\Unit\crud_funcionario.pas' {menu_funcionarios},
-  dm_conexao_BD in '..\Unit\dm_conexao_BD.pas' {dm_funcionarios: TDataModule};
+  campo_funcionario in '..\Unit\campo_funcionario.pas' {cadastro_funcionario};
 
 {$R *.res}
 
@@ -13,7 +13,7 @@ begin
   Application.Initialize;
   Application.MainFormOnTaskbar := True;
   TStyleManager.TrySetStyle('Aqua Light Slate');
-  Application.CreateForm(Tdm_funcionarios, dm_funcionarios);
   Application.CreateForm(Tmenu_funcionarios, menu_funcionarios);
+  Application.CreateForm(Tcadastro_funcionario, cadastro_funcionario);
   Application.Run;
 end.
