@@ -1,9 +1,11 @@
 object cadastro_funcionario: Tcadastro_funcionario
   Left = 0
   Top = 0
+  BorderIcons = [biSystemMenu]
+  BorderStyle = bsSingle
   Caption = 'cadastro de funcionario'
   ClientHeight = 512
-  ClientWidth = 624
+  ClientWidth = 558
   Color = clBtnFace
   Font.Charset = DEFAULT_CHARSET
   Font.Color = clWindowText
@@ -7981,82 +7983,86 @@ object cadastro_funcionario: Tcadastro_funcionario
     0000000000000000000000000000000000000000000000000000000000000000
     0000000000000000000000000000000000000000000000000000000000000000
     000000000000000000000000000000000000000000000000000000000000}
+  KeyPreview = True
   Position = poMainFormCenter
+  OnActivate = FormActivate
+  OnClose = FormClose
+  OnKeyPress = FormKeyPress
   PixelsPerInch = 96
   TextHeight = 15
   object lbl_codigo: TLabel
     Left = 45
-    Top = 40
+    Top = 41
     Width = 45
     Height = 15
     Caption = 'C'#211'DIGO'
   end
   object lbl_nome: TLabel
     Left = 55
-    Top = 107
+    Top = 106
     Width = 35
     Height = 15
     Caption = 'NOME'
   end
   object lbl_rua: TLabel
     Left = 67
-    Top = 171
+    Top = 233
     Width = 23
     Height = 15
     Caption = 'RUA'
   end
   object lbl_complemento: TLabel
     Left = 2
-    Top = 299
+    Top = 296
     Width = 88
     Height = 15
     Caption = 'COMPLEMENTO'
   end
   object lbl_bairro: TLabel
-    Left = 49
-    Top = 238
+    Left = 376
+    Top = 296
     Width = 41
     Height = 15
     Caption = 'BAIRRO'
   end
   object lbl_cargo: TLabel
     Left = 50
-    Top = 371
+    Top = 171
     Width = 40
     Height = 15
     Caption = 'CARGO'
   end
   object lbl_datanascimento: TLabel
-    Left = 302
-    Top = 40
+    Left = 294
+    Top = 41
     Width = 124
     Height = 15
     Caption = 'DATA DE NASCIMENTO'
   end
   object lbl_salario: TLabel
-    Left = 379
-    Top = 106
+    Left = 371
+    Top = 170
     Width = 47
     Height = 15
     Caption = 'S'#193'LARIO'
   end
   object lbl_numero: TLabel
-    Left = 376
-    Top = 171
+    Left = 368
+    Top = 233
     Width = 50
     Height = 15
     Caption = 'N'#218'MERO'
   end
   object lbl_cidade: TLabel
-    Left = 385
-    Top = 238
+    Left = 49
+    Top = 366
     Width = 41
     Height = 15
     Caption = 'CIDADE'
   end
   object lbl_cep: TLabel
-    Left = 405
-    Top = 296
+    Left = 396
+    Top = 366
     Width = 21
     Height = 15
     Caption = 'CEP'
@@ -8075,9 +8081,9 @@ object cadastro_funcionario: Tcadastro_funcionario
     TabOrder = 0
   end
   object dbedt_datanascimento: TDBEdit
-    Left = 432
+    Left = 424
     Top = 37
-    Width = 81
+    Width = 73
     Height = 23
     CharCase = ecUpperCase
     DataField = 'FUN_DATANASCIMENTO'
@@ -8088,7 +8094,7 @@ object cadastro_funcionario: Tcadastro_funcionario
   object dbedt_nome: TDBEdit
     Left = 96
     Top = 103
-    Width = 257
+    Width = 433
     Height = 23
     CharCase = ecUpperCase
     DataField = 'FUN_NOME'
@@ -8096,54 +8102,55 @@ object cadastro_funcionario: Tcadastro_funcionario
     TabOrder = 2
   end
   object dbedt_salario: TDBEdit
-    Left = 432
-    Top = 103
-    Width = 81
+    Left = 424
+    Top = 167
+    Width = 105
     Height = 23
+    Align = alCustom
     CharCase = ecUpperCase
     DataField = 'FUN_SALARIO'
     DataSource = menu_funcionarios.dts_funcionarionovo
-    TabOrder = 3
+    TabOrder = 4
   end
   object dbedt_rua: TDBEdit
     Left = 96
-    Top = 168
+    Top = 230
     Width = 257
     Height = 23
     CharCase = ecUpperCase
     DataField = 'FUN_RUA'
     DataSource = menu_funcionarios.dts_funcionarionovo
-    TabOrder = 4
+    TabOrder = 5
   end
   object dbedt_numero: TDBEdit
-    Left = 432
-    Top = 168
-    Width = 65
+    Left = 424
+    Top = 230
+    Width = 73
     Height = 23
     CharCase = ecUpperCase
     DataField = 'FUN_NUMERO'
     DataSource = menu_funcionarios.dts_funcionarionovo
-    TabOrder = 5
+    TabOrder = 6
   end
   object dbedt_bairro: TDBEdit
-    Left = 96
-    Top = 235
-    Width = 257
+    Left = 423
+    Top = 293
+    Width = 106
     Height = 23
     CharCase = ecUpperCase
     DataField = 'FUN_BAIRRO'
     DataSource = menu_funcionarios.dts_funcionarionovo
-    TabOrder = 6
+    TabOrder = 8
   end
   object dbedt_cidade: TDBEdit
-    Left = 432
-    Top = 235
-    Width = 145
+    Left = 96
+    Top = 363
+    Width = 257
     Height = 23
     CharCase = ecUpperCase
     DataField = 'FUN_CIDADE'
     DataSource = menu_funcionarios.dts_funcionarionovo
-    TabOrder = 7
+    TabOrder = 9
   end
   object dbedt_complemento: TDBEdit
     Left = 96
@@ -8153,24 +8160,25 @@ object cadastro_funcionario: Tcadastro_funcionario
     CharCase = ecUpperCase
     DataField = 'FUN_COMPLEMENTO'
     DataSource = menu_funcionarios.dts_funcionarionovo
-    TabOrder = 8
+    TabOrder = 7
   end
   object dbedt_cep: TDBEdit
-    Left = 432
-    Top = 293
-    Width = 81
+    Left = 423
+    Top = 363
+    Width = 74
     Height = 23
     CharCase = ecUpperCase
     DataField = 'FUN_CEP'
     DataSource = menu_funcionarios.dts_funcionarionovo
     MaxLength = 9
-    TabOrder = 9
+    TabOrder = 10
   end
   object dbcbx_cargo: TDBComboBox
     Left = 96
-    Top = 368
+    Top = 167
     Width = 121
     Height = 23
+    Cursor = crHandPoint
     CharCase = ecUpperCase
     DataField = 'FUN_CARGO'
     DataSource = menu_funcionarios.dts_funcionarionovo
@@ -8180,7 +8188,7 @@ object cadastro_funcionario: Tcadastro_funcionario
       'IMPLANTA'#199#195'O'
       'CS'
       'VENDEDOR')
-    TabOrder = 10
+    TabOrder = 3
   end
   object btn_cancelar: TButton
     Left = 96
@@ -8190,9 +8198,10 @@ object cadastro_funcionario: Tcadastro_funcionario
     Cursor = crHandPoint
     Caption = 'CANCELAR'
     TabOrder = 11
+    OnClick = btn_cancelarClick
   end
   object btn_salvar: TButton
-    Left = 432
+    Left = 376
     Top = 440
     Width = 81
     Height = 33

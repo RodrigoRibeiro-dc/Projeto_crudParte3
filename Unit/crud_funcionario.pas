@@ -51,14 +51,19 @@ type
     fdq_total: TFDQuery;
     fdq_consulta: TFDQuery;
     dts_funcionarionovo: TDataSource;
-    procedure img_salvarClick(Sender: TObject);
+    lbl_txttotal_funcionario: TLabel;
+    lbl_txt_totalsalario: TLabel;
+    lbl_totalsalario: TLabel;
+    lbl_totalfuncionario: TLabel;
     procedure img_excluirClick(Sender: TObject);
     procedure FormShow(Sender: TObject);
-    procedure edt_consultaKeyPress(Sender: TObject; var Key: Char);
     procedure rdg_tipoconsultaClick(Sender: TObject);
-    procedure sbtn_cancelarClick(Sender: TObject);
     procedure sbtn_consultarClick(Sender: TObject);
     procedure img_incluirClick(Sender: TObject);
+    procedure FormKeyDown(Sender: TObject; var Key: Word; Shift: TShiftState);
+    procedure img_alterarClick(Sender: TObject);
+    procedure calcula_total_grid;
+    procedure FormCreate(Sender: TObject);
   private
   public
     { Public declarations }
@@ -73,18 +78,35 @@ implementation
 
 uses campo_funcionario;
 
-
-procedure Tmenu_funcionarios.edt_consultaKeyPress(Sender: TObject;
-  var Key: Char);
+procedure Tmenu_funcionarios.calcula_total_grid;
+var
+  total_salario: currency;
 begin
-  if Key = #13 then
+  lbl_totalfuncionario.Caption := IntToStr(fdq_funcionarios.RecordCount);
+
+  total_salario := 0.0;
+  fdq_funcionarios.First;
+
+  while not fdq_funcionarios.eof do
   begin
-    Key := #0;
-    Perform(WM_NEXTDLGCTL, 0, 0);
+    total_salario := total_salario + fdq_funcionarios.FieldByName('FUN_SALARIO')
+      .AsCurrency;
+    fdq_funcionarios.Next;
   end;
+
+  lbl_totalsalario.Caption := total_salario.ToString;
 end;
 
-{procedure Tmenu_funcionarios.FormKeyDown(Sender: TObject; var Key: Word;
+procedure Tmenu_funcionarios.FormCreate(Sender: TObject);
+begin
+  ctn_conexao.Params.UserName := 'sa';
+  ctn_conexao.Params.Password := 'aram98';
+  ctn_conexao.Params.Database := 'PROJETO_CRUD';
+
+  calcula_total_grid;
+end;
+
+procedure Tmenu_funcionarios.FormKeyDown(Sender: TObject; var Key: Word;
   Shift: TShiftState);
 begin
   if not(ActiveControl is TCustomEdit) then
@@ -100,7 +122,7 @@ begin
         img_excluirClick(Sender);
     end;
   end;
-end;   }
+end;
 
 procedure Tmenu_funcionarios.FormShow(Sender: TObject);
 begin
@@ -117,96 +139,32 @@ begin
   cbx_consulta.Style := csDropDownList;
 end;
 
-procedure Tmenu_funcionarios.img_excluirClick(Sender: TObject);
+procedure Tmenu_funcionarios.img_alterarClick(Sender: TObject);
 begin
-  fdq_funcionarios.Delete;
+  fdq_funcionarios.Edit;
+  cadastro_funcionario.ShowModal;
+end;
 
-  MessageDlg('FUNCIONÁRIO EXCLUÍDO COM SUCESSO.', TMsgDlgType.mtConfirmation,
-    [TMsgDlgBtn.mbOK], 0);
+procedure Tmenu_funcionarios.img_excluirClick(Sender: TObject);
+var
+  resposta_excluir: integer;
+begin
+  resposta_excluir := MessageDlg('DESEJA REALMENTE EXCLUIR O FUNCIONÁRIO?',
+    mtConfirmation, [mbYes, mbNo], 0);
+  if resposta_excluir = mrYes then
+  begin
+    fdq_funcionarios.Delete;
+
+    MessageDlg('FUNCIONÁRIO EXCLUÍDO COM SUCESSO.', TMsgDlgType.mtConfirmation,
+      [TMsgDlgBtn.mbOK], 0);
+    calcula_total_grid;
+  end;
 end;
 
 procedure Tmenu_funcionarios.img_incluirClick(Sender: TObject);
 begin
-fdq_funcionarios.Append;
-cadastro_funcionario.ShowModal;
-end;
-
-procedure Tmenu_funcionarios.img_salvarClick(Sender: TObject);
-{var
-  foiInclusao: Boolean;
-  Valor_data: TDateTime; }
-begin
-
-  {if dm_funcionarios.fdq_funcionarios.State in [dsInsert, dsEdit] then
-  begin
-    foiInclusao := dm_funcionarios.fdq_funcionarios.State = dsInsert;
-
-    if dm_funcionarios.fdq_funcionarios.FieldByName('FUN_DATANASCIMENTO').IsNull
-    then
-    begin
-      MessageDlg('A DATA DE NASCIMENTO NÃO PODE FICAR VAZIO!',
-        TMsgDlgType.mtWarning, [TMsgDlgBtn.mbOK], 0);
-
-      exit;
-    end
-    else if (Trim(Dedt_datanascimento.Text) = '') or
-      (not TryStrToDate(Dedt_datanascimento.Text, Valor_data)) or
-      (Valor_data < StrToDate('01/01/1800')) or
-      (Valor_data > StrToDate('01/01/3000')) then
-    begin
-      MessageDlg('INFORME UMA DATA VÁLIDA', TMsgDlgType.mtWarning,
-        [TMsgDlgBtn.mbOK], 0);
-
-      Dedt_datanascimento.SetFocus;
-      exit;
-    end;
-
-    if Trim(Dedt_nome.Text) = '' then
-    begin
-      MessageDlg('O CAMPO NOME NÃO PODE FICAR VAZIO!', TMsgDlgType.mtWarning,
-        [TMsgDlgBtn.mbOK], 0);
-
-      Dedt_nome.SetFocus;
-      exit;
-    end;
-
-    if Trim(Dedt_salario.Text) = '' then
-    begin
-      MessageDlg('O CAMPO SALÁRIO NÃO PODE FICAR VAZIO!', TMsgDlgType.mtWarning,
-        [TMsgDlgBtn.mbOK], 0);
-
-      Dedt_salario.SetFocus;
-      exit
-    end;
-
-    if Trim(cbx_cargo.Text) = '' then
-    begin
-      MessageDlg('O CAMPO CARGO NÃO PODE FICAR VAZIO!', TMsgDlgType.mtWarning,
-        [TMsgDlgBtn.mbOK], 0);
-
-      cbx_cargo.SetFocus;
-      exit
-    end;
-
-    dm_funcionarios.fdq_funcionarios.Post;
-    dm_funcionarios.tsc_funcionarios.StartTransaction;
-    dm_funcionarios.tsc_funcionarios.CommitRetaining;
-
-    if foiInclusao then
-    begin
-      MessageDlg('FUNCIONÁRIO INCLUÍDO COM SUCESSO.',
-        TMsgDlgType.mtConfirmation, [TMsgDlgBtn.mbOK], 0);
-
-
-    end
-    else
-    begin
-      dm_funcionarios.fdq_funcionarios.Refresh;
-      MessageDlg('FUNCIONÁRIO ALTERADO COM SUCESSO.',
-        TMsgDlgType.mtConfirmation, [TMsgDlgBtn.mbOK], 0);
-    end;
-
-  end; }
+  fdq_funcionarios.Append;
+  cadastro_funcionario.ShowModal;
 end;
 
 procedure Tmenu_funcionarios.rdg_tipoconsultaClick(Sender: TObject);
@@ -242,14 +200,6 @@ begin
   end;
 end;
 
-procedure Tmenu_funcionarios.sbtn_cancelarClick(Sender: TObject);
-begin
-  {if dm_funcionarios.fdq_funcionarios.State in [dsInsert, dsEdit] then
-  begin
-    dm_funcionarios.fdq_funcionarios.Cancel;
-  end;}
-end;
-
 procedure Tmenu_funcionarios.sbtn_consultarClick(Sender: TObject);
 begin
   case rdg_tipoconsulta.ItemIndex of
@@ -261,13 +211,14 @@ begin
         fdq_funcionarios.ParamByName('NOME').AsString :=
           '%' + edt_consulta.Text + '%';
         fdq_funcionarios.Open;
+        calcula_total_grid;
       end;
 
     1:
       begin
         if dtp_inicial.DateTime > dtp_final.DateTime then
         begin
-          MessageDlg('A DATA FINAL DEVE SER MAIOR QUE A INICIAL!',
+          MessageDlg('A DATA FINAL DEVE SER MAIOR QUE A INICIAL.',
             TMsgDlgType.mtWarning, [TMsgDlgBtn.mbOK], 0);
 
           dtp_final.SetFocus;
@@ -280,9 +231,9 @@ begin
             ':DATA_INICIAL AND :DATA_FINAL';
           fdq_funcionarios.ParamByName('DATA_INICIAL').AsDate :=
             dtp_inicial.Date;
-          fdq_funcionarios.ParamByName('DATA_FINAL').AsDate :=
-            dtp_final.Date;
+          fdq_funcionarios.ParamByName('DATA_FINAL').AsDate := dtp_final.Date;
           fdq_funcionarios.Open;
+          calcula_total_grid;
         end;
       end;
 
@@ -290,7 +241,7 @@ begin
       begin
         if cbx_consulta.Text = '' then
         begin
-          MessageDlg('SELECIONE UM CARGO PARA CONSULTAR!',
+          MessageDlg('SELECIONE UM CARGO PARA CONSULTAR.',
             TMsgDlgType.mtInformation, [TMsgDlgBtn.mbOK], 0);
 
           cbx_consulta.SetFocus;
@@ -299,8 +250,7 @@ begin
         if Trim(cbx_consulta.Text) = 'TODOS' then
         begin
           fdq_funcionarios.Close;
-          fdq_funcionarios.SQL.Text :=
-            'SELECT *FROM FUNCIONARIOS';
+          fdq_funcionarios.SQL.Text := 'SELECT *FROM FUNCIONARIOS';
           fdq_funcionarios.Open;
         end
         else
@@ -308,11 +258,12 @@ begin
           fdq_funcionarios.Close;
           fdq_funcionarios.SQL.Text :=
             'SELECT *FROM FUNCIONARIOS WHERE FUN_CARGO = :CARGO';
-          fdq_funcionarios.ParamByName('CARGO').AsString :=
-            cbx_consulta.Text;
+          fdq_funcionarios.ParamByName('CARGO').AsString := cbx_consulta.Text;
           fdq_funcionarios.Open;
+          calcula_total_grid;
         end;
       end
   end;
 end;
+
 end.

@@ -6,7 +6,7 @@ object menu_funcionarios: Tmenu_funcionarios
   BorderStyle = bsSingle
   Caption = 'Funcionarios'
   ClientHeight = 645
-  ClientWidth = 714
+  ClientWidth = 702
   Color = clBtnFace
   Font.Charset = DEFAULT_CHARSET
   Font.Color = clWindowText
@@ -7986,6 +7986,8 @@ object menu_funcionarios: Tmenu_funcionarios
     000000000000000000000000000000000000000000000000000000000000}
   KeyPreview = True
   Position = poMainFormCenter
+  OnCreate = FormCreate
+  OnKeyDown = FormKeyDown
   OnShow = FormShow
   PixelsPerInch = 96
   TextHeight = 15
@@ -7993,14 +7995,16 @@ object menu_funcionarios: Tmenu_funcionarios
     Left = 0
     Top = 0
     Width = 713
-    Height = 105
+    Height = 113
     TabOrder = 0
     object img_incluir: TImage
-      Left = 39
-      Top = 24
-      Width = 33
+      Left = 66
+      Top = 35
+      Width = 32
       Height = 33
       Cursor = crHandPoint
+      Align = alCustom
+      Center = True
       DragCursor = crDefault
       Picture.Data = {
         0954506E67496D61676589504E470D0A1A0A0000000D494844520000001E0000
@@ -8046,11 +8050,13 @@ object menu_funcionarios: Tmenu_funcionarios
       OnClick = img_incluirClick
     end
     object img_alterar: TImage
-      Left = 328
-      Top = 26
+      Left = 337
+      Top = 35
       Width = 33
       Height = 33
       Cursor = crHandPoint
+      Align = alCustom
+      Center = True
       DragCursor = crDefault
       Picture.Data = {
         0954506E67496D61676589504E470D0A1A0A0000000D494844520000001E0000
@@ -8100,13 +8106,15 @@ object menu_funcionarios: Tmenu_funcionarios
         8AF30289BEA0A7FBF6BAEDCEAE384ECD715E4CCE145D6099EED8FE84792AE679
         C2F9D6132656FBDD9E30BE8AFD848FB6016252DE30D053FE3DDAE8023EDA2E83
         8B12F2D1F617D1C0D6F237105AFB0000000049454E44AE426082}
+      OnClick = img_alterarClick
     end
     object img_excluir: TImage
-      Left = 584
-      Top = 24
+      Left = 614
+      Top = 35
       Width = 33
       Height = 33
       Cursor = crHandPoint
+      Center = True
       DragCursor = crDefault
       Picture.Data = {
         0954506E67496D61676589504E470D0A1A0A0000000D494844520000001E0000
@@ -8148,10 +8156,11 @@ object menu_funcionarios: Tmenu_funcionarios
       OnClick = img_excluirClick
     end
     object lbl_incluir: TLabel
-      Left = 32
-      Top = 65
+      Left = 58
+      Top = 74
       Width = 47
       Height = 15
+      Alignment = taCenter
       Caption = 'INCLUIR'
       Font.Charset = DEFAULT_CHARSET
       Font.Color = clWindowText
@@ -8162,7 +8171,7 @@ object menu_funcionarios: Tmenu_funcionarios
     end
     object lbl_alterar: TLabel
       Left = 328
-      Top = 65
+      Top = 74
       Width = 50
       Height = 15
       Caption = 'ALTERAR'
@@ -8174,8 +8183,8 @@ object menu_funcionarios: Tmenu_funcionarios
       ParentFont = False
     end
     object lbl_excluir: TLabel
-      Left = 576
-      Top = 65
+      Left = 606
+      Top = 74
       Width = 48
       Height = 15
       Caption = 'EXCLUIR'
@@ -8195,9 +8204,9 @@ object menu_funcionarios: Tmenu_funcionarios
     TabOrder = 1
     object dbg_funcionarios: TDBGrid
       Left = 0
-      Top = 1
-      Width = 730
-      Height = 335
+      Top = 2
+      Width = 700
+      Height = 336
       Cursor = crHandPoint
       DataSource = dts_funcionarionovo
       Options = [dgTitles, dgIndicator, dgColumnResize, dgColLines, dgRowLines, dgTabs, dgConfirmDelete, dgCancelOnExit, dgTitleClick, dgTitleHotTrack]
@@ -8301,6 +8310,58 @@ object menu_funcionarios: Tmenu_funcionarios
       Caption = 'DATA FINAL'
       Visible = False
     end
+    object lbl_txttotal_funcionario: TLabel
+      Left = 349
+      Top = 136
+      Width = 155
+      Height = 15
+      Caption = 'TOTAL DE FUNCION'#193'RIOS :'
+      Font.Charset = DEFAULT_CHARSET
+      Font.Color = clWindowText
+      Font.Height = -12
+      Font.Name = 'Segoe UI'
+      Font.Style = [fsBold, fsItalic, fsUnderline]
+      ParentFont = False
+    end
+    object lbl_txt_totalsalario: TLabel
+      Left = 381
+      Top = 168
+      Width = 119
+      Height = 15
+      Caption = 'TOTAL DE SAL'#193'RIOS :'
+      Font.Charset = DEFAULT_CHARSET
+      Font.Color = clWindowText
+      Font.Height = -12
+      Font.Name = 'Segoe UI'
+      Font.Style = [fsBold, fsItalic, fsUnderline]
+      ParentFont = False
+    end
+    object lbl_totalsalario: TLabel
+      Left = 510
+      Top = 168
+      Width = 97
+      Height = 15
+      Caption = 'TOTAL_SALARIOS'
+      Font.Charset = DEFAULT_CHARSET
+      Font.Color = clWindowText
+      Font.Height = -12
+      Font.Name = 'Segoe UI'
+      Font.Style = [fsBold, fsItalic, fsUnderline]
+      ParentFont = False
+    end
+    object lbl_totalfuncionario: TLabel
+      Left = 510
+      Top = 136
+      Width = 133
+      Height = 15
+      Caption = 'TOTAL_FUNCIONARIOS'
+      Font.Charset = DEFAULT_CHARSET
+      Font.Color = clWindowText
+      Font.Height = -12
+      Font.Name = 'Segoe UI'
+      Font.Style = [fsBold, fsItalic, fsUnderline]
+      ParentFont = False
+    end
     object edt_consulta: TEdit
       Left = 184
       Top = 87
@@ -8308,7 +8369,6 @@ object menu_funcionarios: Tmenu_funcionarios
       Height = 23
       CharCase = ecUpperCase
       TabOrder = 0
-      OnKeyPress = edt_consultaKeyPress
     end
     object dtp_inicial: TDateTimePicker
       Left = 219
@@ -8370,6 +8430,7 @@ object menu_funcionarios: Tmenu_funcionarios
       'Password=aram98'
       'DriverID=MSSQL')
     Connected = True
+    LoginPrompt = False
     Transaction = tsc_funcionarios
     Left = 88
     Top = 272
@@ -8404,6 +8465,7 @@ object menu_funcionarios: Tmenu_funcionarios
       Size = 45
     end
     object fdq_funcionariosFUN_SALARIO: TBCDField
+      Alignment = taLeftJustify
       FieldName = 'FUN_SALARIO'
       Origin = 'FUN_SALARIO'
       Required = True
@@ -8417,6 +8479,7 @@ object menu_funcionarios: Tmenu_funcionarios
       Size = 45
     end
     object fdq_funcionariosFUN_NUMERO: TIntegerField
+      Alignment = taLeftJustify
       FieldName = 'FUN_NUMERO'
       Origin = 'FUN_NUMERO'
     end

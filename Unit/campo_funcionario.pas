@@ -3,9 +3,10 @@ unit campo_funcionario;
 interface
 
 uses
-  Winapi.Windows, Winapi.Messages, System.SysUtils, System.Variants, System.Classes, Vcl.Graphics,
+  Winapi.Windows, Winapi.Messages, System.SysUtils, System.Variants,
+  System.Classes, Vcl.Graphics,
   Vcl.Controls, Vcl.Forms, Vcl.Dialogs, Vcl.StdCtrls, Vcl.Mask, Vcl.ExtCtrls,
-  Vcl.DBCtrls, crud_funcionario;
+  Vcl.DBCtrls, crud_funcionario, Data.DB;
 
 type
   Tcadastro_funcionario = class(TForm)
@@ -34,6 +35,10 @@ type
     lbl_cidade: TLabel;
     lbl_cep: TLabel;
     procedure btn_salvarClick(Sender: TObject);
+    procedure btn_cancelarClick(Sender: TObject);
+    procedure FormActivate(Sender: TObject);
+    procedure FormKeyPress(Sender: TObject; var Key: Char);
+    procedure FormClose(Sender: TObject; var Action: TCloseAction);
   private
     { Private declarations }
   public
@@ -47,44 +52,118 @@ implementation
 
 {$R *.dfm}
 
+procedure Tcadastro_funcionario.btn_cancelarClick(Sender: TObject);
+var
+  resposta_cancelar: integer;
+begin
+  resposta_cancelar := MessageDlg('DESEJA REALMENTE SAIR SEM SALVAR?',
+    mtConfirmation, [mbYes, MbNo], 0);
+  if resposta_cancelar = mrYes then
+  begin
+    menu_funcionarios.fdq_funcionarios.Cancel;
+    cadastro_funcionario.Close;
+  end;
+end;
+
 procedure Tcadastro_funcionario.btn_salvarClick(Sender: TObject);
 var
-Valor_data: TDateTime;
-
+  valor_data: TDateTime;
+  esta_inserindo: Boolean;
+  resposta_salvar: integer;
 begin
-if menu_funcionarios.fdq_funcionarios.FieldByName('FUN_DATANASCIMENTO').IsNull
+  esta_inserindo := menu_funcionarios.fdq_funcionarios.State = dsInsert;
+  if esta_inserindo then
+  begin
+    if menu_funcionarios.fdq_funcionarios.FieldByName('FUN_DATANASCIMENTO').IsNull
     then
     begin
-      MessageDlg('A DATA DE NASCIMENTO NÃO PODE FICAR VAZIA!', mtWarning,
+      MessageDlg('A DATA DE NASCIMENTO NÃO PODE FICAR VAZIA.', mtWarning,
         [mbOk], 0);
 
       dbedt_datanascimento.SetFocus;
       exit;
     end
     else if (Trim(dbedt_datanascimento.Text) = '') or
-      (not TryStrToDate(dbedt_datanascimento.Text, Valor_data)) or
-      (Valor_data < StrToDate('01/01/1800')) or
-      (Valor_data > StrToDate('01/01/3000')) then
+      (not TryStrToDate(dbedt_datanascimento.Text, valor_data)) or
+      (valor_data < StrToDate('01/01/1800')) or
+      (valor_data > StrToDate('01/01/3000')) then
     begin
       MessageDlg('INFORME UMA DATA VÁLIDA.', mtWarning, [TMsgDlgBtn.mbOk], 0);
 
       dbedt_datanascimento.SetFocus;
       exit;
     end;
-    if Trim(dbedt_nome.text) = '' then
+
+    if Trim(dbedt_nome.Text) = '' then
     begin
       MessageDlg('NOME NÃO PODE FICAR VAZIO.', mtConfirmation, [mbOk], 0);
       dbedt_nome.SetFocus;
       exit
     end;
+
     if Trim(dbedt_salario.Text) = '' then
     begin
-      MessageDlg('SÁLARIO NÃO PODE FICAR VAZIO.', mtConfirmation, [mbOk], 0);
+      MessageDlg('SALÁRIO NÃO PODE FICAR VAZIO.', mtConfirmation, [mbOk], 0);
       dbedt_salario.SetFocus
     end;
-menu_funcionarios.tsc_funcionarios.StartTransaction;
-menu_funcionarios.fdq_funcionarios.Post;
-menu_funcionarios.tsc_funcionarios.CommitRetaining;
-cadastro_funcionario.Close;
+
+    resposta_salvar := MessageDlg('DESEJA INCLUIR O FUNCIONÁRIO?',
+      mtConfirmation, [mbYes, MbNo], 0);
+    if resposta_salvar = mrYes then
+    begin
+      menu_funcionarios.tsc_funcionarios.StartTransaction;
+      menu_funcionarios.fdq_funcionarios.Post;
+      menu_funcionarios.tsc_funcionarios.CommitRetaining;
+
+      MessageDlg('FUNCIONÁRIO INCLUÍDO COM SUCESSO.', mtConfirmation,
+        [mbOk], 0);
+      cadastro_funcionario.Close;
+      menu_funcionarios.calcula_total_grid;
+    end
+    else
+    begin
+      menu_funcionarios.fdq_funcionarios.Cancel;
+      cadastro_funcionario.Close;
+    end;
+  end
+  else
+  begin
+    resposta_salvar := MessageDlg('DESEJA ALTERAR O FUNCIONÁRIO?',
+      mtConfirmation, [mbYes, MbNo], 0);
+    if resposta_salvar = mrYes then
+    begin
+      menu_funcionarios.tsc_funcionarios.StartTransaction;
+      menu_funcionarios.fdq_funcionarios.Post;
+      menu_funcionarios.tsc_funcionarios.CommitRetaining;
+      MessageDlg('FUNCIONÁRIO ALTERADO COM SUCESSO.', mtConfirmation,
+        [mbOk], 0);
+      cadastro_funcionario.Close;
+      menu_funcionarios.calcula_total_grid;
+    end;
+  end;
 end;
+
+procedure Tcadastro_funcionario.FormActivate(Sender: TObject);
+begin
+  dbedt_datanascimento.SetFocus;
+end;
+
+procedure Tcadastro_funcionario.FormClose(Sender: TObject;
+  var Action: TCloseAction);
+begin
+  menu_funcionarios.fdq_funcionarios.Cancel;
+end;
+
+procedure Tcadastro_funcionario.FormKeyPress(Sender: TObject; var Key: Char);
+begin
+  if (ActiveControl = dbedt_cep) then
+    exit;
+
+  if Key = #13 then
+  begin
+    Key := #0;
+    Perform(WM_NEXTDLGCTL, 0, 0);
+  end;
+end;
+
 end.
