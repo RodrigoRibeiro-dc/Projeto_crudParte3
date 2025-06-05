@@ -104,7 +104,8 @@ begin
     if Trim(dbedt_salario.Text) = '' then
     begin
       MessageDlg('SALÁRIO NÃO PODE FICAR VAZIO.', mtConfirmation, [mbOk], 0);
-      dbedt_salario.SetFocus
+      dbedt_salario.SetFocus;
+      exit;
     end;
 
     resposta_salvar := MessageDlg('DESEJA INCLUIR O FUNCIONÁRIO?',
@@ -128,6 +129,40 @@ begin
   end
   else
   begin
+    if menu_funcionarios.fdq_funcionarios.FieldByName('FUN_DATANASCIMENTO').IsNull
+    then
+    begin
+      MessageDlg('A DATA DE NASCIMENTO NÃO PODE FICAR VAZIA.', mtWarning,
+        [mbOk], 0);
+
+      dbedt_datanascimento.SetFocus;
+      exit;
+    end
+    else if (Trim(dbedt_datanascimento.Text) = '') or
+      (not TryStrToDate(dbedt_datanascimento.Text, valor_data)) or
+      (valor_data < StrToDate('01/01/1800')) or
+      (valor_data > StrToDate('01/01/3000')) then
+    begin
+      MessageDlg('INFORME UMA DATA VÁLIDA.', mtWarning, [TMsgDlgBtn.mbOk], 0);
+
+      dbedt_datanascimento.SetFocus;
+      exit;
+    end;
+
+    if Trim(dbedt_nome.Text) = '' then
+    begin
+      MessageDlg('NOME NÃO PODE FICAR VAZIO.', mtConfirmation, [mbOk], 0);
+      dbedt_nome.SetFocus;
+      exit
+    end;
+
+    if Trim(dbedt_salario.Text) = '' then
+    begin
+      MessageDlg('SALÁRIO NÃO PODE FICAR VAZIO.', mtConfirmation, [mbOk], 0);
+      dbedt_salario.SetFocus;
+      exit;
+    end;
+
     resposta_salvar := MessageDlg('DESEJA ALTERAR O FUNCIONÁRIO?',
       mtConfirmation, [mbYes, MbNo], 0);
     if resposta_salvar = mrYes then
