@@ -8099,6 +8099,7 @@ object cadastro_funcionario: Tcadastro_funcionario
     CharCase = ecUpperCase
     DataField = 'FUN_NOME'
     DataSource = menu_funcionarios.dts_funcionarionovo
+    MaxLength = 45
     TabOrder = 2
   end
   object dbedt_salario: TDBEdit
@@ -8110,6 +8111,7 @@ object cadastro_funcionario: Tcadastro_funcionario
     CharCase = ecUpperCase
     DataField = 'FUN_SALARIO'
     DataSource = menu_funcionarios.dts_funcionarionovo
+    MaxLength = 9
     TabOrder = 4
   end
   object dbedt_rua: TDBEdit
@@ -8120,6 +8122,7 @@ object cadastro_funcionario: Tcadastro_funcionario
     CharCase = ecUpperCase
     DataField = 'FUN_RUA'
     DataSource = menu_funcionarios.dts_funcionarionovo
+    MaxLength = 45
     TabOrder = 5
   end
   object dbedt_numero: TDBEdit
@@ -8130,6 +8133,7 @@ object cadastro_funcionario: Tcadastro_funcionario
     CharCase = ecUpperCase
     DataField = 'FUN_NUMERO'
     DataSource = menu_funcionarios.dts_funcionarionovo
+    MaxLength = 8
     TabOrder = 6
   end
   object dbedt_bairro: TDBEdit
@@ -8140,6 +8144,7 @@ object cadastro_funcionario: Tcadastro_funcionario
     CharCase = ecUpperCase
     DataField = 'FUN_BAIRRO'
     DataSource = menu_funcionarios.dts_funcionarionovo
+    MaxLength = 45
     TabOrder = 8
   end
   object dbedt_cidade: TDBEdit
@@ -8150,6 +8155,7 @@ object cadastro_funcionario: Tcadastro_funcionario
     CharCase = ecUpperCase
     DataField = 'FUN_CIDADE'
     DataSource = menu_funcionarios.dts_funcionarionovo
+    MaxLength = 20
     TabOrder = 9
   end
   object dbedt_complemento: TDBEdit
@@ -8160,6 +8166,7 @@ object cadastro_funcionario: Tcadastro_funcionario
     CharCase = ecUpperCase
     DataField = 'FUN_COMPLEMENTO'
     DataSource = menu_funcionarios.dts_funcionarionovo
+    MaxLength = 45
     TabOrder = 7
   end
   object dbedt_cep: TDBEdit
@@ -8179,6 +8186,7 @@ object cadastro_funcionario: Tcadastro_funcionario
     Width = 121
     Height = 23
     Cursor = crHandPoint
+    Style = csDropDownList
     CharCase = ecUpperCase
     DataField = 'FUN_CARGO'
     DataSource = menu_funcionarios.dts_funcionarionovo
