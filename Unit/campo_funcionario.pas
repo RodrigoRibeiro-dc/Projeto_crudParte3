@@ -39,6 +39,7 @@ type
     procedure FormActivate(Sender: TObject);
     procedure FormKeyPress(Sender: TObject; var Key: Char);
     procedure FormClose(Sender: TObject; var Action: TCloseAction);
+    procedure valida_campos;
   private
     { Private declarations }
   public
@@ -51,6 +52,46 @@ var
 implementation
 
 {$R *.dfm}
+
+procedure Tcadastro_funcionario.valida_campos;
+var
+  valor_data: TDateTime;
+
+begin
+  if menu_funcionarios.fdq_funcionarios.FieldByName('FUN_DATANASCIMENTO').IsNull
+  then
+  begin
+    MessageDlg('A DATA DE NASCIMENTO NÃO PODE FICAR VAZIA.', mtWarning,
+      [mbOk], 0);
+
+    dbedt_datanascimento.SetFocus;
+    abort;
+  end
+  else if (Trim(dbedt_datanascimento.Text) = '') or
+    (not TryStrToDate(dbedt_datanascimento.Text, valor_data)) or
+    (valor_data < StrToDate('01/01/1800')) or
+    (valor_data > StrToDate('01/01/3000')) then
+  begin
+    MessageDlg('INFORME UMA DATA VÁLIDA.', mtWarning, [TMsgDlgBtn.mbOk], 0);
+
+    dbedt_datanascimento.SetFocus;
+    abort;
+  end;
+
+  if Trim(dbedt_nome.Text) = '' then
+  begin
+    MessageDlg('NOME NÃO PODE FICAR VAZIO.', mtConfirmation, [mbOk], 0);
+    dbedt_nome.SetFocus;
+    abort;
+  end;
+
+  if Trim(dbedt_salario.Text) = '' then
+  begin
+    MessageDlg('SALÁRIO NÃO PODE FICAR VAZIO.', mtConfirmation, [mbOk], 0);
+    dbedt_salario.SetFocus;
+    abort;
+  end;
+end;
 
 procedure Tcadastro_funcionario.btn_cancelarClick(Sender: TObject);
 var
@@ -67,47 +108,13 @@ end;
 
 procedure Tcadastro_funcionario.btn_salvarClick(Sender: TObject);
 var
-  valor_data: TDateTime;
   esta_inserindo: Boolean;
   resposta_salvar: integer;
 begin
+  valida_campos;
   esta_inserindo := menu_funcionarios.fdq_funcionarios.State = dsInsert;
   if esta_inserindo then
   begin
-    if menu_funcionarios.fdq_funcionarios.FieldByName('FUN_DATANASCIMENTO').IsNull
-    then
-    begin
-      MessageDlg('A DATA DE NASCIMENTO NÃO PODE FICAR VAZIA.', mtWarning,
-        [mbOk], 0);
-
-      dbedt_datanascimento.SetFocus;
-      exit;
-    end
-    else if (Trim(dbedt_datanascimento.Text) = '') or
-      (not TryStrToDate(dbedt_datanascimento.Text, valor_data)) or
-      (valor_data < StrToDate('01/01/1800')) or
-      (valor_data > StrToDate('01/01/3000')) then
-    begin
-      MessageDlg('INFORME UMA DATA VÁLIDA.', mtWarning, [TMsgDlgBtn.mbOk], 0);
-
-      dbedt_datanascimento.SetFocus;
-      exit;
-    end;
-
-    if Trim(dbedt_nome.Text) = '' then
-    begin
-      MessageDlg('NOME NÃO PODE FICAR VAZIO.', mtConfirmation, [mbOk], 0);
-      dbedt_nome.SetFocus;
-      exit
-    end;
-
-    if Trim(dbedt_salario.Text) = '' then
-    begin
-      MessageDlg('SALÁRIO NÃO PODE FICAR VAZIO.', mtConfirmation, [mbOk], 0);
-      dbedt_salario.SetFocus;
-      exit;
-    end;
-
     resposta_salvar := MessageDlg('DESEJA INCLUIR O FUNCIONÁRIO?',
       mtConfirmation, [mbYes, MbNo], 0);
     if resposta_salvar = mrYes then
@@ -129,40 +136,6 @@ begin
   end
   else
   begin
-    if menu_funcionarios.fdq_funcionarios.FieldByName('FUN_DATANASCIMENTO').IsNull
-    then
-    begin
-      MessageDlg('A DATA DE NASCIMENTO NÃO PODE FICAR VAZIA.', mtWarning,
-        [mbOk], 0);
-
-      dbedt_datanascimento.SetFocus;
-      exit;
-    end
-    else if (Trim(dbedt_datanascimento.Text) = '') or
-      (not TryStrToDate(dbedt_datanascimento.Text, valor_data)) or
-      (valor_data < StrToDate('01/01/1800')) or
-      (valor_data > StrToDate('01/01/3000')) then
-    begin
-      MessageDlg('INFORME UMA DATA VÁLIDA.', mtWarning, [TMsgDlgBtn.mbOk], 0);
-
-      dbedt_datanascimento.SetFocus;
-      exit;
-    end;
-
-    if Trim(dbedt_nome.Text) = '' then
-    begin
-      MessageDlg('NOME NÃO PODE FICAR VAZIO.', mtConfirmation, [mbOk], 0);
-      dbedt_nome.SetFocus;
-      exit
-    end;
-
-    if Trim(dbedt_salario.Text) = '' then
-    begin
-      MessageDlg('SALÁRIO NÃO PODE FICAR VAZIO.', mtConfirmation, [mbOk], 0);
-      dbedt_salario.SetFocus;
-      exit;
-    end;
-
     resposta_salvar := MessageDlg('DESEJA ALTERAR O FUNCIONÁRIO?',
       mtConfirmation, [mbYes, MbNo], 0);
     if resposta_salvar = mrYes then
