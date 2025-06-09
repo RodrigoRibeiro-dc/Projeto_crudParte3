@@ -34,6 +34,7 @@ type
     lbl_numero: TLabel;
     lbl_cidade: TLabel;
     lbl_cep: TLabel;
+    DataSource1: TDataSource;
     procedure btn_salvarClick(Sender: TObject);
     procedure btn_cancelarClick(Sender: TObject);
     procedure FormActivate(Sender: TObject);
@@ -119,9 +120,18 @@ begin
       mtConfirmation, [mbYes, MbNo], 0);
     if resposta_salvar = mrYes then
     begin
-      menu_funcionarios.tsc_funcionarios.StartTransaction;
+      //Finalizar Saida (Start)
+        // Lanca caixa
+        // GEra Receber  (eRRO !!!!!)
+        // Atualiza a tabela SAIDA
+        // baixa estoque
+        // .....
+      // Commit (Fechar)
+      // Rollback (voltar)
+
+     // menu_funcionarios.tsc_funcionarios.StartTransaction;
       menu_funcionarios.fdq_funcionarios.Post;
-      menu_funcionarios.tsc_funcionarios.CommitRetaining;
+     // menu_funcionarios.tsc_funcionarios.Commit;
 
       MessageDlg('FUNCIONÁRIO INCLUÍDO COM SUCESSO.', mtConfirmation,
         [mbOk], 0);

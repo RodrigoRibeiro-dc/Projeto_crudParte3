@@ -14,6 +14,5 @@ begin
   Application.MainFormOnTaskbar := True;
   TStyleManager.TrySetStyle('Aqua Light Slate');
   Application.CreateForm(Tmenu_funcionarios, menu_funcionarios);
-  Application.CreateForm(Tcadastro_funcionario, cadastro_funcionario);
   Application.Run;
 end.

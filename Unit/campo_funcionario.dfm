@@ -8075,7 +8075,7 @@ object cadastro_funcionario: Tcadastro_funcionario
     BiDiMode = bdLeftToRight
     CharCase = ecUpperCase
     DataField = 'FUN_ID'
-    DataSource = menu_funcionarios.dts_funcionarionovo
+    DataSource = menu_funcionarios.dtsFuncionario
     Enabled = False
     ParentBiDiMode = False
     TabOrder = 0
@@ -8087,7 +8087,7 @@ object cadastro_funcionario: Tcadastro_funcionario
     Height = 23
     CharCase = ecUpperCase
     DataField = 'FUN_DATANASCIMENTO'
-    DataSource = menu_funcionarios.dts_funcionarionovo
+    DataSource = menu_funcionarios.dtsFuncionario
     MaxLength = 10
     TabOrder = 1
   end
@@ -8098,7 +8098,7 @@ object cadastro_funcionario: Tcadastro_funcionario
     Height = 23
     CharCase = ecUpperCase
     DataField = 'FUN_NOME'
-    DataSource = menu_funcionarios.dts_funcionarionovo
+    DataSource = menu_funcionarios.dtsFuncionario
     TabOrder = 2
   end
   object dbedt_salario: TDBEdit
@@ -8109,7 +8109,7 @@ object cadastro_funcionario: Tcadastro_funcionario
     Align = alCustom
     CharCase = ecUpperCase
     DataField = 'FUN_SALARIO'
-    DataSource = menu_funcionarios.dts_funcionarionovo
+    DataSource = menu_funcionarios.dtsFuncionario
     MaxLength = 8
     TabOrder = 4
   end
@@ -8120,7 +8120,7 @@ object cadastro_funcionario: Tcadastro_funcionario
     Height = 23
     CharCase = ecUpperCase
     DataField = 'FUN_RUA'
-    DataSource = menu_funcionarios.dts_funcionarionovo
+    DataSource = menu_funcionarios.dtsFuncionario
     TabOrder = 5
   end
   object dbedt_numero: TDBEdit
@@ -8130,7 +8130,7 @@ object cadastro_funcionario: Tcadastro_funcionario
     Height = 23
     CharCase = ecUpperCase
     DataField = 'FUN_NUMERO'
-    DataSource = menu_funcionarios.dts_funcionarionovo
+    DataSource = menu_funcionarios.dtsFuncionario
     MaxLength = 8
     TabOrder = 6
   end
@@ -8141,7 +8141,7 @@ object cadastro_funcionario: Tcadastro_funcionario
     Height = 23
     CharCase = ecUpperCase
     DataField = 'FUN_BAIRRO'
-    DataSource = menu_funcionarios.dts_funcionarionovo
+    DataSource = menu_funcionarios.dtsFuncionario
     TabOrder = 8
   end
   object dbedt_cidade: TDBEdit
@@ -8151,7 +8151,7 @@ object cadastro_funcionario: Tcadastro_funcionario
     Height = 23
     CharCase = ecUpperCase
     DataField = 'FUN_CIDADE'
-    DataSource = menu_funcionarios.dts_funcionarionovo
+    DataSource = menu_funcionarios.dtsFuncionario
     TabOrder = 9
   end
   object dbedt_complemento: TDBEdit
@@ -8161,7 +8161,7 @@ object cadastro_funcionario: Tcadastro_funcionario
     Height = 23
     CharCase = ecUpperCase
     DataField = 'FUN_COMPLEMENTO'
-    DataSource = menu_funcionarios.dts_funcionarionovo
+    DataSource = menu_funcionarios.dtsFuncionario
     TabOrder = 7
   end
   object dbedt_cep: TDBEdit
@@ -8171,7 +8171,7 @@ object cadastro_funcionario: Tcadastro_funcionario
     Height = 23
     CharCase = ecUpperCase
     DataField = 'FUN_CEP'
-    DataSource = menu_funcionarios.dts_funcionarionovo
+    DataSource = menu_funcionarios.dtsFuncionario
     MaxLength = 9
     TabOrder = 10
   end
@@ -8184,7 +8184,7 @@ object cadastro_funcionario: Tcadastro_funcionario
     Style = csDropDownList
     CharCase = ecUpperCase
     DataField = 'FUN_CARGO'
-    DataSource = menu_funcionarios.dts_funcionarionovo
+    DataSource = menu_funcionarios.dtsFuncionario
     Items.Strings = (
       'PROGRAMADOR'
       'SUPORTE'
@@ -8212,5 +8212,10 @@ object cadastro_funcionario: Tcadastro_funcionario
     Caption = 'SALVAR'
     TabOrder = 12
     OnClick = btn_salvarClick
+  end
+  object DataSource1: TDataSource
+    DataSet = menu_funcionarios.fdq_consulta
+    Left = 224
+    Top = 24
   end
 end

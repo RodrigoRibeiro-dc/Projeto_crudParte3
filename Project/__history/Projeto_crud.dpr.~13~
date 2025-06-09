@@ -1,0 +1,19 @@
+program Projeto_crud;
+
+uses
+  Vcl.Forms,
+  Vcl.Themes,
+  Vcl.Styles,
+  crud_funcionario in '..\Unit\crud_funcionario.pas' {menu_funcionarios},
+  campo_funcionario in '..\Unit\campo_funcionario.pas' {cadastro_funcionario};
+
+{$R *.res}
+
+begin
+  Application.Initialize;
+  Application.MainFormOnTaskbar := True;
+  TStyleManager.TrySetStyle('Aqua Light Slate');
+  Application.CreateForm(Tmenu_funcionarios, menu_funcionarios);
+  Application.CreateForm(Tcadastro_funcionario, cadastro_funcionario);
+  Application.Run;
+end.

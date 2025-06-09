@@ -50,7 +50,7 @@ type
     fdq_funcionariosFUN_SALARIO: TBCDField;
     fdq_total: TFDQuery;
     fdq_consulta: TFDQuery;
-    dts_funcionarionovo: TDataSource;
+    dtsFuncionario: TDataSource;
     lbl_txttotal_funcionario: TLabel;
     lbl_txt_totalsalario: TLabel;
     lbl_totalsalario: TLabel;
@@ -99,6 +99,7 @@ end;
 
 procedure Tmenu_funcionarios.FormCreate(Sender: TObject);
 begin
+  showmessage('Criei form Principal');
   ctn_conexao.Params.UserName := 'sa';
   ctn_conexao.Params.Password := 'aram98';
   ctn_conexao.Params.Database := 'PROJETO_CRUD';
@@ -141,8 +142,10 @@ end;
 
 procedure Tmenu_funcionarios.img_alterarClick(Sender: TObject);
 begin
+  cadastro_funcionario := Tcadastro_funcionario.Create(Self); // variavel que cria
   fdq_funcionarios.Edit;
   cadastro_funcionario.ShowModal;
+  cadastro_funcionario.Free; // limpar a tela
 end;
 
 procedure Tmenu_funcionarios.img_excluirClick(Sender: TObject);
@@ -163,6 +166,7 @@ end;
 
 procedure Tmenu_funcionarios.img_incluirClick(Sender: TObject);
 begin
+  cadastro_funcionario := Tcadastro_funcionario.Create(Self);
   fdq_funcionarios.Append;
   cadastro_funcionario.ShowModal;
 end;

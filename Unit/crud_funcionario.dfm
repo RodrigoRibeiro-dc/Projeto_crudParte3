@@ -5,8 +5,8 @@ object menu_funcionarios: Tmenu_funcionarios
   BorderIcons = [biSystemMenu, biMinimize]
   BorderStyle = bsSingle
   Caption = 'Funcionarios'
-  ClientHeight = 645
-  ClientWidth = 702
+  ClientHeight = 644
+  ClientWidth = 698
   Color = clBtnFace
   Font.Charset = DEFAULT_CHARSET
   Font.Color = clWindowText
@@ -8204,11 +8204,11 @@ object menu_funcionarios: Tmenu_funcionarios
     TabOrder = 1
     object dbg_funcionarios: TDBGrid
       Left = 0
-      Top = 2
+      Top = 0
       Width = 700
       Height = 336
       Cursor = crHandPoint
-      DataSource = dts_funcionarionovo
+      DataSource = dtsFuncionario
       Options = [dgTitles, dgIndicator, dgColumnResize, dgColLines, dgRowLines, dgTabs, dgRowSelect, dgAlwaysShowSelection, dgConfirmDelete, dgCancelOnExit, dgTitleClick, dgTitleHotTrack]
       TabOrder = 0
       TitleFont.Charset = DEFAULT_CHARSET
@@ -8520,9 +8520,9 @@ object menu_funcionarios: Tmenu_funcionarios
     Left = 488
     Top = 272
   end
-  object dts_funcionarionovo: TDataSource
+  object dtsFuncionario: TDataSource
     DataSet = fdq_funcionarios
-    Left = 336
-    Top = 376
+    Left = 320
+    Top = 360
   end
 end
