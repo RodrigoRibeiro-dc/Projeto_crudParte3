@@ -6,7 +6,7 @@ object menu_funcionarios: Tmenu_funcionarios
   BorderStyle = bsSingle
   Caption = 'Funcionarios'
   ClientHeight = 644
-  ClientWidth = 698
+  ClientWidth = 709
   Color = clBtnFace
   Font.Charset = DEFAULT_CHARSET
   Font.Color = clWindowText
@@ -8208,7 +8208,7 @@ object menu_funcionarios: Tmenu_funcionarios
       Width = 700
       Height = 336
       Cursor = crHandPoint
-      DataSource = dtsFuncionario
+      DataSource = dts_grid
       Options = [dgTitles, dgIndicator, dgColumnResize, dgColLines, dgRowLines, dgTabs, dgRowSelect, dgAlwaysShowSelection, dgConfirmDelete, dgCancelOnExit, dgTitleClick, dgTitleHotTrack]
       TabOrder = 0
       TitleFont.Charset = DEFAULT_CHARSET
@@ -8432,21 +8432,21 @@ object menu_funcionarios: Tmenu_funcionarios
     Connected = True
     LoginPrompt = False
     Transaction = tsc_funcionarios
-    Left = 88
-    Top = 272
+    Left = 128
+    Top = 280
   end
   object tsc_funcionarios: TFDTransaction
     Connection = ctn_conexao
-    Left = 184
-    Top = 272
+    Left = 288
+    Top = 280
   end
   object fdq_funcionarios: TFDQuery
     Active = True
     Connection = ctn_conexao
     SQL.Strings = (
       'SELECT *FROM FUNCIONARIOS')
-    Left = 304
-    Top = 272
+    Left = 464
+    Top = 280
     object fdq_funcionariosFUN_ID: TFDAutoIncField
       FieldName = 'FUN_ID'
       Origin = 'FUN_ID'
@@ -8509,20 +8509,17 @@ object menu_funcionarios: Tmenu_funcionarios
       Size = 25
     end
   end
-  object fdq_total: TFDQuery
-    Connection = ctn_conexao
-    Transaction = tsc_funcionarios
-    Left = 400
-    Top = 272
-  end
-  object fdq_consulta: TFDQuery
-    Connection = ctn_conexao
-    Left = 488
-    Top = 272
-  end
-  object dtsFuncionario: TDataSource
+  object dts_grid: TDataSource
     DataSet = fdq_funcionarios
-    Left = 320
-    Top = 360
+    Left = 304
+    Top = 366
+  end
+  object fdq_recebimento: TFDQuery
+    Active = True
+    Connection = ctn_conexao
+    SQL.Strings = (
+      'SELECT *FROM RECEBIMENTO')
+    Left = 448
+    Top = 358
   end
 end

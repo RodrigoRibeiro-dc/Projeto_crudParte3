@@ -5,7 +5,9 @@ uses
   Vcl.Themes,
   Vcl.Styles,
   crud_funcionario in '..\Unit\crud_funcionario.pas' {menu_funcionarios},
-  campo_funcionario in '..\Unit\campo_funcionario.pas' {cadastro_funcionario};
+  campo_funcionario in '..\Unit\campo_funcionario.pas' {cadastro_funcionario},
+  Recebimento in '..\Unit\Recebimento.pas',
+  crudRecebimento in 'crudRecebimento.pas';
 
 {$R *.res}
 

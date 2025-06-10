@@ -48,13 +48,12 @@ type
     fdq_funcionariosFUN_CEP: TWideStringField;
     fdq_funcionariosFUN_CARGO: TWideStringField;
     fdq_funcionariosFUN_SALARIO: TBCDField;
-    fdq_total: TFDQuery;
-    fdq_consulta: TFDQuery;
-    dtsFuncionario: TDataSource;
     lbl_txttotal_funcionario: TLabel;
     lbl_txt_totalsalario: TLabel;
     lbl_totalsalario: TLabel;
     lbl_totalfuncionario: TLabel;
+    dts_grid: TDataSource;
+    fdq_recebimento: TFDQuery;
     procedure img_excluirClick(Sender: TObject);
     procedure FormShow(Sender: TObject);
     procedure rdg_tipoconsultaClick(Sender: TObject);
@@ -66,7 +65,12 @@ type
     procedure FormCreate(Sender: TObject);
   private
   public
-    { Public declarations }
+    procedure SQL(Value: String);
+    procedure Params(aParam: String; aValue: Variant); overload;
+    function params(aParam:String): Variant; overload;
+    procedure ExecSQL;
+    procedure Open;
+    procedure Commit;
   end;
 
 var
@@ -74,9 +78,10 @@ var
 
 implementation
 
+uses campo_funcionario;
+
 {$R *.dfm}
 
-uses campo_funcionario;
 
 procedure Tmenu_funcionarios.calcula_total_grid;
 var
@@ -99,7 +104,6 @@ end;
 
 procedure Tmenu_funcionarios.FormCreate(Sender: TObject);
 begin
-  showmessage('Criei form Principal');
   ctn_conexao.Params.UserName := 'sa';
   ctn_conexao.Params.Password := 'aram98';
   ctn_conexao.Params.Database := 'PROJETO_CRUD';
@@ -141,11 +145,16 @@ begin
 end;
 
 procedure Tmenu_funcionarios.img_alterarClick(Sender: TObject);
+
 begin
-  cadastro_funcionario := Tcadastro_funcionario.Create(Self); // variavel que cria
   fdq_funcionarios.Edit;
-  cadastro_funcionario.ShowModal;
-  cadastro_funcionario.Free; // limpar a tela
+  cadastro_funcionario := Tcadastro_funcionario.Create(Self); // variavel que cria
+  try
+      cadastro_funcionario.ShowModal;
+  finally
+        cadastro_funcionario.Free;
+  end;
+
 end;
 
 procedure Tmenu_funcionarios.img_excluirClick(Sender: TObject);
@@ -166,9 +175,14 @@ end;
 
 procedure Tmenu_funcionarios.img_incluirClick(Sender: TObject);
 begin
-  cadastro_funcionario := Tcadastro_funcionario.Create(Self);
   fdq_funcionarios.Append;
-  cadastro_funcionario.ShowModal;
+  cadastro_funcionario := Tcadastro_funcionario.Create(Self);
+  try
+    cadastro_funcionario.ShowModal;
+  finally
+    cadastro_funcionario.Free;
+  end;
+
 end;
 
 procedure Tmenu_funcionarios.rdg_tipoconsultaClick(Sender: TObject);
@@ -268,6 +282,37 @@ begin
         end;
       end
   end;
+end;
+
+procedure Tmenu_funcionarios.SQL(Value: String);
+begin
+ fdq_recebimento.SQL.Clear;
+ fdq_recebimento.SQL.Add(Value);
+end;
+
+procedure Tmenu_funcionarios.Commit;
+begin
+  ctn_conexao.Commit;
+end;
+
+procedure Tmenu_funcionarios.ExecSQL;
+begin
+  fdq_recebimento.ExecSQL;
+end;
+
+procedure Tmenu_funcionarios.Open;
+begin
+  fdq_recebimento.Open()
+end;
+
+function Tmenu_funcionarios.Params(aParam: String): Variant;
+begin
+
+end;
+
+procedure Tmenu_funcionarios.Params(aParam: String; aValue: Variant);
+begin
+  fdq_recebimento.ParamByName(aParam).Value := aValue;
 end;
 
 end.

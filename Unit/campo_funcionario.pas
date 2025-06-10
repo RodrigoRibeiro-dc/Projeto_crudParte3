@@ -6,7 +6,8 @@ uses
   Winapi.Windows, Winapi.Messages, System.SysUtils, System.Variants,
   System.Classes, Vcl.Graphics,
   Vcl.Controls, Vcl.Forms, Vcl.Dialogs, Vcl.StdCtrls, Vcl.Mask, Vcl.ExtCtrls,
-  Vcl.DBCtrls, crud_funcionario, Data.DB;
+  Vcl.DBCtrls, crud_funcionario, Data.DB, Vcl.Menus, Vcl.ComCtrls, Vcl.Grids,
+  Vcl.DBGrids, Recebimento, crudRecebimento;
 
 type
   Tcadastro_funcionario = class(TForm)
@@ -34,15 +35,34 @@ type
     lbl_numero: TLabel;
     lbl_cidade: TLabel;
     lbl_cep: TLabel;
-    DataSource1: TDataSource;
+    dts_funcionario: TDataSource;
+    pgc_itens: TPageControl;
+    tab_dadospessoais: TTabSheet;
+    tab_financeiro: TTabSheet;
+    dbg_recebimento: TDBGrid;
+    lbl_descricao: TLabel;
+    lbl_valor: TLabel;
+    lbl_datalanc_pagamento: TLabel;
+    lbl_tipo: TLabel;
+    btn_incluir: TButton;
+    btn_alterar: TButton;
+    btn_excluir: TButton;
+    edt_descricao: TEdit;
+    edt_valor: TEdit;
+    edt_data: TEdit;
+    cbx_tipo: TComboBox;
+    dts_recebimento: TDataSource;
     procedure btn_salvarClick(Sender: TObject);
     procedure btn_cancelarClick(Sender: TObject);
     procedure FormActivate(Sender: TObject);
     procedure FormKeyPress(Sender: TObject; var Key: Char);
     procedure FormClose(Sender: TObject; var Action: TCloseAction);
     procedure valida_campos;
+    procedure btn_incluirClick(Sender: TObject);
+    procedure FormCreate(Sender: TObject);
+    procedure btn_excluirClick(Sender: TObject);
   private
-    { Private declarations }
+    crudRec: TcrudRecebimento;
   public
     { Public declarations }
   end;
@@ -51,6 +71,7 @@ var
   cadastro_funcionario: Tcadastro_funcionario;
 
 implementation
+
 
 {$R *.dfm}
 
@@ -107,6 +128,38 @@ begin
   end;
 end;
 
+procedure Tcadastro_funcionario.btn_excluirClick(Sender: TObject);
+var
+  Recebimento: TRecebimentos;
+begin
+Recebimento:= TRecebimentos.Create;
+  try
+  crudRec.Excluir(Recebimento);
+
+  finally
+  Recebimento.Free
+  end;
+end;
+
+procedure Tcadastro_funcionario.btn_incluirClick(Sender: TObject);
+var
+  Recebimento: TRecebimentos;
+begin
+  Recebimento := TRecebimentos.Create;
+  try
+    recebimento.descricao := edt_descricao.Text;
+    recebimento.valor := strToCurr(edt_valor.Text);
+    Recebimento.data := edt_data.Text;
+    recebimento.tipo := cbx_tipo.Text;
+
+    crudRec.Inserir(Recebimento);
+
+  finally
+    recebimento.Free;
+  end;
+
+end;
+
 procedure Tcadastro_funcionario.btn_salvarClick(Sender: TObject);
 var
   esta_inserindo: Boolean;
@@ -120,18 +173,7 @@ begin
       mtConfirmation, [mbYes, MbNo], 0);
     if resposta_salvar = mrYes then
     begin
-      //Finalizar Saida (Start)
-        // Lanca caixa
-        // GEra Receber  (eRRO !!!!!)
-        // Atualiza a tabela SAIDA
-        // baixa estoque
-        // .....
-      // Commit (Fechar)
-      // Rollback (voltar)
-
-     // menu_funcionarios.tsc_funcionarios.StartTransaction;
       menu_funcionarios.fdq_funcionarios.Post;
-     // menu_funcionarios.tsc_funcionarios.Commit;
 
       MessageDlg('FUNCIONÁRIO INCLUÍDO COM SUCESSO.', mtConfirmation,
         [mbOk], 0);
@@ -150,9 +192,8 @@ begin
       mtConfirmation, [mbYes, MbNo], 0);
     if resposta_salvar = mrYes then
     begin
-      menu_funcionarios.tsc_funcionarios.StartTransaction;
       menu_funcionarios.fdq_funcionarios.Post;
-      menu_funcionarios.tsc_funcionarios.CommitRetaining;
+
       MessageDlg('FUNCIONÁRIO ALTERADO COM SUCESSO.', mtConfirmation,
         [mbOk], 0);
       cadastro_funcionario.Close;
@@ -170,6 +211,11 @@ procedure Tcadastro_funcionario.FormClose(Sender: TObject;
   var Action: TCloseAction);
 begin
   menu_funcionarios.fdq_funcionarios.Cancel;
+end;
+
+procedure Tcadastro_funcionario.FormCreate(Sender: TObject);
+begin
+crudRec:= TcrudRecebimento.Create;
 end;
 
 procedure Tcadastro_funcionario.FormKeyPress(Sender: TObject; var Key: Char);
