@@ -54,6 +54,11 @@ type
     lbl_totalfuncionario: TLabel;
     dts_grid: TDataSource;
     fdq_recebimento: TFDQuery;
+    fdq_recebimentoREC_ID: TFDAutoIncField;
+    fdq_recebimentoREC_DESCRICAO: TWideStringField;
+    fdq_recebimentoREC_VALOR: TBCDField;
+    fdq_recebimentoREC_DATA: TSQLTimeStampField;
+    fdq_recebimentoREC_TIPO: TWideStringField;
     procedure img_excluirClick(Sender: TObject);
     procedure FormShow(Sender: TObject);
     procedure rdg_tipoconsultaClick(Sender: TObject);
@@ -67,9 +72,8 @@ type
   public
     procedure SQL(Value: String);
     procedure Params(aParam: String; aValue: Variant); overload;
-    function params(aParam:String): Variant; overload;
     procedure ExecSQL;
-    procedure Open;
+    procedure SQLOpen;
     procedure Commit;
   end;
 
@@ -148,7 +152,7 @@ procedure Tmenu_funcionarios.img_alterarClick(Sender: TObject);
 
 begin
   fdq_funcionarios.Edit;
-  cadastro_funcionario := Tcadastro_funcionario.Create(Self); // variavel que cria
+  cadastro_funcionario := Tcadastro_funcionario.Create(Self);
   try
       cadastro_funcionario.ShowModal;
   finally
@@ -300,14 +304,10 @@ begin
   fdq_recebimento.ExecSQL;
 end;
 
-procedure Tmenu_funcionarios.Open;
+procedure Tmenu_funcionarios.SQLOpen;
 begin
-  fdq_recebimento.Open()
-end;
-
-function Tmenu_funcionarios.Params(aParam: String): Variant;
-begin
-
+  fdq_recebimento.Close;
+  fdq_recebimento.Open;
 end;
 
 procedure Tmenu_funcionarios.Params(aParam: String; aValue: Variant);

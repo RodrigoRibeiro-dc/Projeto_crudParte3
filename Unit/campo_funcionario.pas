@@ -7,7 +7,7 @@ uses
   System.Classes, Vcl.Graphics,
   Vcl.Controls, Vcl.Forms, Vcl.Dialogs, Vcl.StdCtrls, Vcl.Mask, Vcl.ExtCtrls,
   Vcl.DBCtrls, crud_funcionario, Data.DB, Vcl.Menus, Vcl.ComCtrls, Vcl.Grids,
-  Vcl.DBGrids, Recebimento, crudRecebimento;
+  Vcl.DBGrids, Recebimento, crudRecebimento, altera_recebimento;
 
 type
   Tcadastro_funcionario = class(TForm)
@@ -61,6 +61,7 @@ type
     procedure btn_incluirClick(Sender: TObject);
     procedure FormCreate(Sender: TObject);
     procedure btn_excluirClick(Sender: TObject);
+    procedure btn_alterarClick(Sender: TObject);
   private
     crudRec: TcrudRecebimento;
   public
@@ -115,6 +116,18 @@ begin
   end;
 end;
 
+procedure Tcadastro_funcionario.btn_alterarClick(Sender: TObject);
+var
+  altera_recebimento: TAltera_rec;
+begin
+  altera_recebimento:= TAltera_rec.Create(Self);
+  try
+    altera_recebimento.ShowModal;
+  finally
+    altera_recebimento.Free;
+  end;
+end;
+
 procedure Tcadastro_funcionario.btn_cancelarClick(Sender: TObject);
 var
   resposta_cancelar: integer;
@@ -131,11 +144,13 @@ end;
 procedure Tcadastro_funcionario.btn_excluirClick(Sender: TObject);
 var
   Recebimento: TRecebimentos;
+  id_excluir : Integer;
 begin
 Recebimento:= TRecebimentos.Create;
   try
-  crudRec.Excluir(Recebimento);
-
+  if not dts_recebimento.DataSet.IsEmpty then
+  id_excluir := dts_recebimento.DataSet.FieldByName('REC_ID').AsInteger;
+  crudRec.Excluir(id_excluir);
   finally
   Recebimento.Free
   end;
@@ -153,7 +168,6 @@ begin
     recebimento.tipo := cbx_tipo.Text;
 
     crudRec.Inserir(Recebimento);
-
   finally
     recebimento.Free;
   end;
@@ -162,12 +176,10 @@ end;
 
 procedure Tcadastro_funcionario.btn_salvarClick(Sender: TObject);
 var
-  esta_inserindo: Boolean;
   resposta_salvar: integer;
 begin
   valida_campos;
-  esta_inserindo := menu_funcionarios.fdq_funcionarios.State = dsInsert;
-  if esta_inserindo then
+  if   dts_funcionario.State = dsInsert then
   begin
     resposta_salvar := MessageDlg('DESEJA INCLUIR O FUNCIONÁRIO?',
       mtConfirmation, [mbYes, MbNo], 0);
@@ -215,7 +227,11 @@ end;
 
 procedure Tcadastro_funcionario.FormCreate(Sender: TObject);
 begin
-crudRec:= TcrudRecebimento.Create;
+  if dts_funcionario.State = dsEdit then
+  begin
+    tab_financeiro.TabVisible := True;
+  end;
+  crudRec:= TcrudRecebimento.Create;
 end;
 
 procedure Tcadastro_funcionario.FormKeyPress(Sender: TObject; var Key: Char);
@@ -229,5 +245,6 @@ begin
     Perform(WM_NEXTDLGCTL, 0, 0);
   end;
 end;
+
 
 end.

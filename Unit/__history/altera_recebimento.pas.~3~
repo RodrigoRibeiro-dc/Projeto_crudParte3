@@ -1,0 +1,49 @@
+unit altera_recebimento;
+
+interface
+
+uses
+  Winapi.Windows, Winapi.Messages, System.SysUtils, System.Variants, System.Classes, Vcl.Graphics,
+  Vcl.Controls, Vcl.Forms, Vcl.Dialogs, Vcl.StdCtrls;
+
+type
+  TAltera_rec = class(TForm)
+    edt_valor: TEdit;
+    lbl_valor: TLabel;
+    lbl_descricao: TLabel;
+    edt_descricao: TEdit;
+    lbl_datalanc_pagamento: TLabel;
+    edt_data: TEdit;
+    cbx_tipo: TComboBox;
+    btn_confirma_alt_rec: TButton;
+    btn_cancelar_alt_rec: TButton;
+    procedure FormCreate(Sender: TObject);
+  private
+    { Private declarations }
+  public
+    { Public declarations }
+  end;
+
+var
+  Altera_rec: TAltera_rec;
+
+implementation
+
+uses
+  campo_funcionario, crud_funcionario;
+
+{$R *.dfm}
+
+procedure TAltera_rec.FormCreate(Sender: TObject);
+begin
+  menu_funcionarios.fdq_recebimento.Open;
+  if not menu_funcionarios.fdq_recebimento.IsEmpty then
+  begin
+  edt_descricao.Text := menu_funcionarios.fdq_recebimento.FieldByName('REC_DESCRICAO').AsString;
+  edt_valor.Text := menu_funcionarios.fdq_recebimento.FieldByName('REC_VALOR').AsString;
+  cbx_tipo.Text:= menu_funcionarios.fdq_recebimento.FieldByName('REC_TIPO').AsString;
+  edt_data.Text := menu_funcionarios.fdq_recebimento.FieldByName('REC_DATA').AsString;
+  end;
+end;
+
+end.

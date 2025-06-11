@@ -3,7 +3,7 @@ unit crudRecebimento;
 interface
 
 uses
-  Recebimento, crud_funcionario;
+  Recebimento, crud_funcionario, Dialogs;
 
 type
   TcrudRecebimento = class
@@ -13,15 +13,16 @@ type
    constructor Create;
    destructor Destroy; override;
    procedure Inserir(Value: TRecebimentos);
-   procedure Excluir(Value: TRecebimentos);
-   function Alterar(Value: TRecebimentos): TRecebimentos;
+   procedure Excluir(Id: Integer);
+   procedure Alterar(Value: TRecebimentos);
+   procedure RecebeCampos(Value: TRecebimentos);
   end;
 
 implementation
 
 { TcrudRecebimento }
 
-function TcrudRecebimento.Alterar(Value: TRecebimentos): TRecebimentos;
+procedure TcrudRecebimento.Alterar(Value: TRecebimentos);
 begin
   menu_funcionarios.SQL('UPDATE RECEBIMENTO SET REC_DESCRICAO=:DESCRICAO, ' +
     'REC_VALOR=:VALOR, REC_DATA=:DATA, REC_TIPO=:TIPO WHERE REC_ID=:ID');
@@ -29,9 +30,10 @@ begin
   menu_funcionarios.Params('VALOR', Value.valor);
   menu_funcionarios.Params('DATA', Value.data);
   menu_funcionarios.Params('TIPO', Value.tipo);
-  menu_funcionarios.Params('ID', Value.id);
+  menu_funcionarios.Params('ID', Value.id_recebimento);
   menu_funcionarios.ExecSQL;
   menu_funcionarios.Commit;
+  MessageDlg('REGISTRO ALTERADO COM SUCESSO.', mtconfirmation, [mbOk], 0);
 
 end;
 
@@ -46,12 +48,14 @@ begin
   inherited;
 end;
 
-procedure TcrudRecebimento.Excluir(Value: TRecebimentos);
+procedure TcrudRecebimento.Excluir(Id: Integer);
 begin
    menu_funcionarios.SQL('DELETE FROM RECEBIMENTO WHERE REC_ID=:ID');
-   menu_funcionarios.Params('ID', Value.id);
+
+   menu_funcionarios.Params('ID', Id);
    menu_funcionarios.ExecSQL;
    menu_funcionarios.Commit;
+   MessageDlg('REGISTRO EXCLUIDO COM SUCESSO.', mtconfirmation, [mbOk], 0);
 end;
 
 procedure TcrudRecebimento.Inserir(Value: TRecebimentos);
@@ -67,6 +71,19 @@ begin
   menu_funcionarios.Params('TIPO', Value.tipo);
   menu_funcionarios.ExecSQL;
   menu_funcionarios.Commit;
+  MessageDlg('REGISTRO INSERIDO COM SUCESSO.', mtconfirmation, [mbOk], 0);
+end;
+
+procedure TcrudRecebimento.RecebeCampos(Value: TRecebimentos);
+var
+  recebimento: TRecebimentos;
+begin
+  recebimento:= TRecebimentos.Create;
+  try
+
+  finally
+    recebimento.free;
+  end;
 end;
 
 end.

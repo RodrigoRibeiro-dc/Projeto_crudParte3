@@ -8521,5 +8521,35 @@ object menu_funcionarios: Tmenu_funcionarios
       'SELECT *FROM RECEBIMENTO')
     Left = 448
     Top = 358
+    object fdq_recebimentoREC_ID: TFDAutoIncField
+      FieldName = 'REC_ID'
+      Origin = 'REC_ID'
+      ReadOnly = True
+    end
+    object fdq_recebimentoREC_DESCRICAO: TWideStringField
+      FieldName = 'REC_DESCRICAO'
+      Origin = 'REC_DESCRICAO'
+      Required = True
+      Size = 45
+    end
+    object fdq_recebimentoREC_VALOR: TBCDField
+      FieldName = 'REC_VALOR'
+      Origin = 'REC_VALOR'
+      Required = True
+      currency = True
+      Precision = 10
+      Size = 2
+    end
+    object fdq_recebimentoREC_DATA: TSQLTimeStampField
+      FieldName = 'REC_DATA'
+      Origin = 'REC_DATA'
+      EditMask = '99/99/9999;1;_'
+    end
+    object fdq_recebimentoREC_TIPO: TWideStringField
+      FieldName = 'REC_TIPO'
+      Origin = 'REC_TIPO'
+      Required = True
+      Size = 25
+    end
   end
 end

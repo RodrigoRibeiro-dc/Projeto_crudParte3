@@ -7996,7 +7996,7 @@ object cadastro_funcionario: Tcadastro_funcionario
     Top = 0
     Width = 559
     Height = 555
-    ActivePage = tab_financeiro
+    ActivePage = tab_dadospessoais
     TabOrder = 0
     object tab_dadospessoais: TTabSheet
       Cursor = crArrow
@@ -8228,6 +8228,7 @@ object cadastro_funcionario: Tcadastro_funcionario
     object tab_financeiro: TTabSheet
       Caption = 'Financeiro'
       ImageIndex = 1
+      TabVisible = False
       object lbl_descricao: TLabel
         Left = 43
         Top = 35
@@ -8261,8 +8262,10 @@ object cadastro_funcionario: Tcadastro_funcionario
         Top = 280
         Width = 556
         Height = 226
+        Cursor = crHandPoint
         DataSource = dts_recebimento
-        TabOrder = 0
+        Options = [dgTitles, dgIndicator, dgColumnResize, dgColLines, dgRowLines, dgTabs, dgRowSelect, dgConfirmDelete, dgCancelOnExit, dgTitleClick, dgTitleHotTrack]
+        TabOrder = 7
         TitleFont.Charset = DEFAULT_CHARSET
         TitleFont.Color = clWindowText
         TitleFont.Height = -12
@@ -8294,6 +8297,11 @@ object cadastro_funcionario: Tcadastro_funcionario
             FieldName = 'REC_TIPO'
             Title.Caption = 'TIPO'
             Visible = True
+          end
+          item
+            Expanded = False
+            FieldName = 'REC_ID'
+            Visible = True
           end>
       end
       object btn_incluir: TButton
@@ -8303,7 +8311,7 @@ object cadastro_funcionario: Tcadastro_funcionario
         Height = 25
         Cursor = crHandPoint
         Caption = 'INCLUIR'
-        TabOrder = 1
+        TabOrder = 4
         OnClick = btn_incluirClick
       end
       object btn_alterar: TButton
@@ -8313,7 +8321,8 @@ object cadastro_funcionario: Tcadastro_funcionario
         Height = 25
         Cursor = crHandPoint
         Caption = 'ALTERAR'
-        TabOrder = 2
+        TabOrder = 5
+        OnClick = btn_alterarClick
       end
       object btn_excluir: TButton
         Left = 366
@@ -8322,7 +8331,7 @@ object cadastro_funcionario: Tcadastro_funcionario
         Height = 25
         Cursor = crHandPoint
         Caption = 'EXCLUIR'
-        TabOrder = 3
+        TabOrder = 6
         OnClick = btn_excluirClick
       end
       object edt_descricao: TEdit
@@ -8330,21 +8339,24 @@ object cadastro_funcionario: Tcadastro_funcionario
         Top = 32
         Width = 329
         Height = 23
-        TabOrder = 4
+        CharCase = ecUpperCase
+        TabOrder = 0
       end
       object edt_valor: TEdit
         Left = 112
         Top = 80
         Width = 121
         Height = 23
-        TabOrder = 5
+        CharCase = ecUpperCase
+        TabOrder = 1
       end
       object edt_data: TEdit
         Left = 112
         Top = 128
         Width = 121
         Height = 23
-        TabOrder = 6
+        CharCase = ecUpperCase
+        TabOrder = 3
       end
       object cbx_tipo: TComboBox
         Left = 296
@@ -8353,7 +8365,8 @@ object cadastro_funcionario: Tcadastro_funcionario
         Height = 23
         Cursor = crHandPoint
         Style = csDropDownList
-        TabOrder = 7
+        CharCase = ecUpperCase
+        TabOrder = 2
         Items.Strings = (
           'VALE'
           'SAL'#193'RIO'
