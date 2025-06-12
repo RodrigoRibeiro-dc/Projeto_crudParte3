@@ -7,7 +7,12 @@ uses
   System.Classes, Vcl.Graphics,
   Vcl.Controls, Vcl.Forms, Vcl.Dialogs, Vcl.StdCtrls, Vcl.Mask, Vcl.ExtCtrls,
   Vcl.DBCtrls, crud_funcionario, Data.DB, Vcl.Menus, Vcl.ComCtrls, Vcl.Grids,
-  Vcl.DBGrids, Recebimento, crudRecebimento, altera_recebimento;
+  Vcl.DBGrids, Recebimento, crudRecebimento, altera_recebimento,
+  FireDAC.Stan.Intf, FireDAC.Stan.Option, FireDAC.Stan.Error, FireDAC.UI.Intf,
+  FireDAC.Phys.Intf, FireDAC.Stan.Def, FireDAC.Stan.Pool, FireDAC.Stan.Async,
+  FireDAC.Phys, FireDAC.Phys.MSSQL, FireDAC.Phys.MSSQLDef, FireDAC.VCLUI.Wait,
+  FireDAC.Stan.Param, FireDAC.DatS, FireDAC.DApt.Intf, FireDAC.DApt,
+  FireDAC.Comp.DataSet, FireDAC.Comp.Client, validaCamposRecebimento;
 
 type
   Tcadastro_funcionario = class(TForm)
@@ -49,9 +54,30 @@ type
     btn_excluir: TButton;
     edt_descricao: TEdit;
     edt_valor: TEdit;
-    edt_data: TEdit;
     cbx_tipo: TComboBox;
     dts_recebimento: TDataSource;
+    dtp_data: TDateTimePicker;
+    tbl_filhaRecebimento: TFDQuery;
+    tlb_maeFuncionario: TFDQuery;
+    dts_tblmae: TDataSource;
+    dts_tblfilha: TDataSource;
+    tlb_maeFuncionarioFUN_ID: TFDAutoIncField;
+    tlb_maeFuncionarioFUN_NOME: TWideStringField;
+    tlb_maeFuncionarioFUN_DATANASCIMENTO: TSQLTimeStampField;
+    tlb_maeFuncionarioFUN_RUA: TWideStringField;
+    tlb_maeFuncionarioFUN_NUMERO: TIntegerField;
+    tlb_maeFuncionarioFUN_BAIRRO: TWideStringField;
+    tlb_maeFuncionarioFUN_CIDADE: TWideStringField;
+    tlb_maeFuncionarioFUN_COMPLEMENTO: TWideStringField;
+    tlb_maeFuncionarioFUN_CEP: TWideStringField;
+    tlb_maeFuncionarioFUN_CARGO: TWideStringField;
+    tlb_maeFuncionarioFUN_SALARIO: TBCDField;
+    tbl_filhaRecebimentoREC_ID: TFDAutoIncField;
+    tbl_filhaRecebimentoFUN_ID: TIntegerField;
+    tbl_filhaRecebimentoREC_DESCRICAO: TWideStringField;
+    tbl_filhaRecebimentoREC_VALOR: TBCDField;
+    tbl_filhaRecebimentoREC_DATA: TSQLTimeStampField;
+    tbl_filhaRecebimentoREC_TIPO: TWideStringField;
     procedure btn_salvarClick(Sender: TObject);
     procedure btn_cancelarClick(Sender: TObject);
     procedure FormActivate(Sender: TObject);
@@ -72,7 +98,6 @@ var
   cadastro_funcionario: Tcadastro_funcionario;
 
 implementation
-
 
 {$R *.dfm}
 
@@ -103,14 +128,14 @@ begin
 
   if Trim(dbedt_nome.Text) = '' then
   begin
-    MessageDlg('NOME NÃO PODE FICAR VAZIO.', mtConfirmation, [mbOk], 0);
+    MessageDlg('NOME NÃO PODE FICAR VAZIO.', mtWarning, [mbOk], 0);
     dbedt_nome.SetFocus;
     abort;
   end;
 
   if Trim(dbedt_salario.Text) = '' then
   begin
-    MessageDlg('SALÁRIO NÃO PODE FICAR VAZIO.', mtConfirmation, [mbOk], 0);
+    MessageDlg('SALÁRIO NÃO PODE FICAR VAZIO.', mtWarning, [mbOk], 0);
     dbedt_salario.SetFocus;
     abort;
   end;
@@ -120,7 +145,7 @@ procedure Tcadastro_funcionario.btn_alterarClick(Sender: TObject);
 var
   altera_recebimento: TAltera_rec;
 begin
-  altera_recebimento:= TAltera_rec.Create(Self);
+  altera_recebimento := TAltera_rec.Create(Self);
   try
     altera_recebimento.ShowModal;
   finally
@@ -144,32 +169,37 @@ end;
 procedure Tcadastro_funcionario.btn_excluirClick(Sender: TObject);
 var
   Recebimento: TRecebimentos;
-  id_excluir : Integer;
 begin
-Recebimento:= TRecebimentos.Create;
+  Recebimento := TRecebimentos.Create;
   try
-  if not dts_recebimento.DataSet.IsEmpty then
-  id_excluir := dts_recebimento.DataSet.FieldByName('REC_ID').AsInteger;
-  crudRec.Excluir(id_excluir);
+    if not dts_recebimento.DataSet.IsEmpty then
+      crudRec.Excluir(Recebimento);
+      crudRec.ConsultaDados(Recebimento);
   finally
-  Recebimento.Free
+    Recebimento.Free
   end;
 end;
 
 procedure Tcadastro_funcionario.btn_incluirClick(Sender: TObject);
 var
   Recebimento: TRecebimentos;
+  Validacao: TvalidacamposRec;
 begin
   Recebimento := TRecebimentos.Create;
+  Validacao := TvalidacamposRec.Create;
   try
-    recebimento.descricao := edt_descricao.Text;
-    recebimento.valor := strToCurr(edt_valor.Text);
-    Recebimento.data := edt_data.Text;
-    recebimento.tipo := cbx_tipo.Text;
+    Recebimento.descricao := edt_descricao.Text;
+    Recebimento.valor := StrToCurr(edt_valor.Text);
+    Recebimento.Data := DateToStr(dtp_data.Date);
+    Recebimento.tipo := cbx_tipo.Text;
+
+    Validacao.validacampos;
 
     crudRec.Inserir(Recebimento);
+    crudRec.ConsultaDados(Recebimento);
   finally
-    recebimento.Free;
+    Recebimento.Free;
+    Validacao.Free;
   end;
 
 end;
@@ -179,7 +209,7 @@ var
   resposta_salvar: integer;
 begin
   valida_campos;
-  if   dts_funcionario.State = dsInsert then
+  if dts_funcionario.State = dsInsert then
   begin
     resposta_salvar := MessageDlg('DESEJA INCLUIR O FUNCIONÁRIO?',
       mtConfirmation, [mbYes, MbNo], 0);
@@ -231,7 +261,7 @@ begin
   begin
     tab_financeiro.TabVisible := True;
   end;
-  crudRec:= TcrudRecebimento.Create;
+  crudRec := TcrudRecebimento.Create;
 end;
 
 procedure Tcadastro_funcionario.FormKeyPress(Sender: TObject; var Key: Char);
@@ -245,6 +275,5 @@ begin
     Perform(WM_NEXTDLGCTL, 0, 0);
   end;
 end;
-
 
 end.

@@ -3,7 +3,7 @@ object cadastro_funcionario: Tcadastro_funcionario
   Top = 0
   BorderIcons = [biSystemMenu]
   BorderStyle = bsSingle
-  Caption = 'cadastro de funcionario'
+  Caption = 'CADASTRO DE FUNCION'#193'RIO'
   ClientHeight = 532
   ClientWidth = 555
   Color = clBtnFace
@@ -7996,11 +7996,11 @@ object cadastro_funcionario: Tcadastro_funcionario
     Top = 0
     Width = 559
     Height = 555
-    ActivePage = tab_dadospessoais
+    ActivePage = tab_financeiro
     TabOrder = 0
     object tab_dadospessoais: TTabSheet
       Cursor = crArrow
-      Caption = 'Dados pessoais'
+      Caption = 'DADOS PESSOAIS'
       object lbl_bairro: TLabel
         Left = 376
         Top = 296
@@ -8226,32 +8226,32 @@ object cadastro_funcionario: Tcadastro_funcionario
       end
     end
     object tab_financeiro: TTabSheet
-      Caption = 'Financeiro'
+      Caption = 'FINANCEIRO'
       ImageIndex = 1
       TabVisible = False
       object lbl_descricao: TLabel
-        Left = 43
+        Left = 35
         Top = 35
         Width = 63
         Height = 15
         Caption = 'DESCRI'#199#195'O'
       end
       object lbl_valor: TLabel
-        Left = 70
+        Left = 62
         Top = 83
         Width = 36
         Height = 15
         Caption = 'VALOR'
       end
       object lbl_datalanc_pagamento: TLabel
-        Left = 77
-        Top = 131
+        Left = 69
+        Top = 135
         Width = 29
         Height = 15
         Caption = 'DATA'
       end
       object lbl_tipo: TLabel
-        Left = 264
+        Left = 256
         Top = 83
         Width = 26
         Height = 15
@@ -8265,7 +8265,7 @@ object cadastro_funcionario: Tcadastro_funcionario
         Cursor = crHandPoint
         DataSource = dts_recebimento
         Options = [dgTitles, dgIndicator, dgColumnResize, dgColLines, dgRowLines, dgTabs, dgRowSelect, dgConfirmDelete, dgCancelOnExit, dgTitleClick, dgTitleHotTrack]
-        TabOrder = 7
+        TabOrder = 6
         TitleFont.Charset = DEFAULT_CHARSET
         TitleFont.Color = clWindowText
         TitleFont.Height = -12
@@ -8275,8 +8275,7 @@ object cadastro_funcionario: Tcadastro_funcionario
           item
             Expanded = False
             FieldName = 'REC_DESCRICAO'
-            Title.Caption = 'DESCRI'#199#195'O'
-            Width = 199
+            Title.Caption = 'DESCRICAO'
             Visible = True
           end
           item
@@ -8288,8 +8287,7 @@ object cadastro_funcionario: Tcadastro_funcionario
           item
             Expanded = False
             FieldName = 'REC_DATA'
-            Title.Caption = 'DATA DE RECEBIMENTO'
-            Width = 164
+            Title.Caption = 'DATA'
             Visible = True
           end
           item
@@ -8297,21 +8295,16 @@ object cadastro_funcionario: Tcadastro_funcionario
             FieldName = 'REC_TIPO'
             Title.Caption = 'TIPO'
             Visible = True
-          end
-          item
-            Expanded = False
-            FieldName = 'REC_ID'
-            Visible = True
           end>
       end
       object btn_incluir: TButton
-        Left = 96
+        Left = 104
         Top = 183
         Width = 75
         Height = 25
         Cursor = crHandPoint
         Caption = 'INCLUIR'
-        TabOrder = 4
+        TabOrder = 3
         OnClick = btn_incluirClick
       end
       object btn_alterar: TButton
@@ -8321,7 +8314,7 @@ object cadastro_funcionario: Tcadastro_funcionario
         Height = 25
         Cursor = crHandPoint
         Caption = 'ALTERAR'
-        TabOrder = 5
+        TabOrder = 4
         OnClick = btn_alterarClick
       end
       object btn_excluir: TButton
@@ -8331,57 +8324,179 @@ object cadastro_funcionario: Tcadastro_funcionario
         Height = 25
         Cursor = crHandPoint
         Caption = 'EXCLUIR'
-        TabOrder = 6
+        TabOrder = 5
         OnClick = btn_excluirClick
       end
       object edt_descricao: TEdit
-        Left = 112
+        Left = 104
         Top = 32
-        Width = 329
+        Width = 337
         Height = 23
         CharCase = ecUpperCase
+        MaxLength = 45
         TabOrder = 0
       end
       object edt_valor: TEdit
-        Left = 112
+        Left = 104
         Top = 80
         Width = 121
         Height = 23
         CharCase = ecUpperCase
+        MaxLength = 8
         TabOrder = 1
       end
-      object edt_data: TEdit
-        Left = 112
-        Top = 128
-        Width = 121
-        Height = 23
-        CharCase = ecUpperCase
-        TabOrder = 3
-      end
       object cbx_tipo: TComboBox
-        Left = 296
+        Left = 288
         Top = 80
-        Width = 145
+        Width = 153
         Height = 23
         Cursor = crHandPoint
         Style = csDropDownList
         CharCase = ecUpperCase
+        MaxLength = 25
         TabOrder = 2
         Items.Strings = (
           'VALE'
           'SAL'#193'RIO'
           'ACERTO')
       end
+      object dtp_data: TDateTimePicker
+        Left = 104
+        Top = 131
+        Width = 121
+        Height = 23
+        Cursor = crHandPoint
+        Date = 45820.000000000000000000
+        Time = 0.413483796299260600
+        TabOrder = 7
+      end
     end
   end
   object dts_funcionario: TDataSource
     DataSet = menu_funcionarios.fdq_funcionarios
-    Left = 272
+    Left = 224
     Top = 16
   end
   object dts_recebimento: TDataSource
     DataSet = menu_funcionarios.fdq_recebimento
-    Left = 244
-    Top = 266
+    Left = 380
+    Top = 18
+  end
+  object tbl_filhaRecebimento: TFDQuery
+    IndexFieldNames = 'FUN_ID'
+    MasterSource = dts_tblmae
+    MasterFields = 'FUN_ID'
+    Connection = menu_funcionarios.ctn_conexao
+    SQL.Strings = (
+      'SELECT * FROM PROJETO_CRUD..RECEBIMENTO')
+    Left = 227
+    Top = 376
+    object tbl_filhaRecebimentoREC_ID: TFDAutoIncField
+      FieldName = 'REC_ID'
+      Origin = 'REC_ID'
+      ProviderFlags = [pfInWhere, pfInKey]
+      ReadOnly = True
+    end
+    object tbl_filhaRecebimentoFUN_ID: TIntegerField
+      FieldName = 'FUN_ID'
+      Origin = 'FUN_ID'
+      Required = True
+    end
+    object tbl_filhaRecebimentoREC_DESCRICAO: TWideStringField
+      FieldName = 'REC_DESCRICAO'
+      Origin = 'REC_DESCRICAO'
+      Required = True
+      Size = 45
+    end
+    object tbl_filhaRecebimentoREC_VALOR: TBCDField
+      FieldName = 'REC_VALOR'
+      Origin = 'REC_VALOR'
+      Required = True
+      Precision = 10
+      Size = 2
+    end
+    object tbl_filhaRecebimentoREC_DATA: TSQLTimeStampField
+      FieldName = 'REC_DATA'
+      Origin = 'REC_DATA'
+    end
+    object tbl_filhaRecebimentoREC_TIPO: TWideStringField
+      FieldName = 'REC_TIPO'
+      Origin = 'REC_TIPO'
+      Required = True
+      Size = 25
+    end
+  end
+  object tlb_maeFuncionario: TFDQuery
+    IndexFieldNames = 'FUN_ID'
+    Connection = menu_funcionarios.ctn_conexao
+    SQL.Strings = (
+      'SELECT * FROM PROJETO_CRUD..FUNCIONARIOS')
+    Left = 385
+    Top = 376
+    object tlb_maeFuncionarioFUN_ID: TFDAutoIncField
+      FieldName = 'FUN_ID'
+      Origin = 'FUN_ID'
+      ProviderFlags = [pfInWhere, pfInKey]
+      ReadOnly = True
+    end
+    object tlb_maeFuncionarioFUN_NOME: TWideStringField
+      FieldName = 'FUN_NOME'
+      Origin = 'FUN_NOME'
+      Size = 50
+    end
+    object tlb_maeFuncionarioFUN_DATANASCIMENTO: TSQLTimeStampField
+      FieldName = 'FUN_DATANASCIMENTO'
+      Origin = 'FUN_DATANASCIMENTO'
+    end
+    object tlb_maeFuncionarioFUN_RUA: TWideStringField
+      FieldName = 'FUN_RUA'
+      Origin = 'FUN_RUA'
+      Size = 50
+    end
+    object tlb_maeFuncionarioFUN_NUMERO: TIntegerField
+      FieldName = 'FUN_NUMERO'
+      Origin = 'FUN_NUMERO'
+    end
+    object tlb_maeFuncionarioFUN_BAIRRO: TWideStringField
+      FieldName = 'FUN_BAIRRO'
+      Origin = 'FUN_BAIRRO'
+      Size = 50
+    end
+    object tlb_maeFuncionarioFUN_CIDADE: TWideStringField
+      FieldName = 'FUN_CIDADE'
+      Origin = 'FUN_CIDADE'
+      Size = 30
+    end
+    object tlb_maeFuncionarioFUN_COMPLEMENTO: TWideStringField
+      FieldName = 'FUN_COMPLEMENTO'
+      Origin = 'FUN_COMPLEMENTO'
+      Size = 50
+    end
+    object tlb_maeFuncionarioFUN_CEP: TWideStringField
+      FieldName = 'FUN_CEP'
+      Origin = 'FUN_CEP'
+      Size = 9
+    end
+    object tlb_maeFuncionarioFUN_CARGO: TWideStringField
+      FieldName = 'FUN_CARGO'
+      Origin = 'FUN_CARGO'
+      Size = 50
+    end
+    object tlb_maeFuncionarioFUN_SALARIO: TBCDField
+      FieldName = 'FUN_SALARIO'
+      Origin = 'FUN_SALARIO'
+      Precision = 10
+      Size = 2
+    end
+  end
+  object dts_tblmae: TDataSource
+    DataSet = tlb_maeFuncionario
+    Left = 380
+    Top = 450
+  end
+  object dts_tblfilha: TDataSource
+    DataSet = tbl_filhaRecebimento
+    Left = 220
+    Top = 442
   end
 end

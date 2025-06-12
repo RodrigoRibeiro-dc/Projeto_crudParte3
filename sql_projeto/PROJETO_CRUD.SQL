@@ -6,8 +6,8 @@ USE PROJETO_CRUD
 /*-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------*/
 
 
-CREATE TABLE FUNCIONARIOS(
-	FUN_ID INT IDENTITY(1,1) NOT NULL,
+	CREATE TABLE FUNCIONARIOS(
+	FUN_ID INT IDENTITY(1,1) NOT NULL PRIMARY KEY,
 	FUN_NOME NVARCHAR(45) NOT NULL,
 	FUN_DATANASCIMENTO DATETIME,
 	FUN_RUA NVARCHAR(45),
@@ -21,13 +21,12 @@ CREATE TABLE FUNCIONARIOS(
 
 /*-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------*/
 
-
 CREATE TABLE RECEBIMENTO (
-	REC_ID INT IDENTITY (1,1) NOT NULL,
+	REC_ID INT IDENTITY (1,1) NOT NULL PRIMARY KEY,
+	FUN_ID INT NOT NULL,
 	REC_DESCRICAO NVARCHAR(45) NOT NULL,
 	REC_VALOR DECIMAL (10, 2) NOT NULL,
 	REC_DATA DATETIME,
-	REC_TIPO NVARCHAR(25) NOT NULL
+	REC_TIPO NVARCHAR(25) NOT NULL,
+	FOREIGN KEY(FUN_ID) REFERENCES FUNCIONARIOS(FUN_ID)
 	)
-
-/*-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------*/

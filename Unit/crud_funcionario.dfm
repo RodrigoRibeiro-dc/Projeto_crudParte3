@@ -4,7 +4,7 @@ object menu_funcionarios: Tmenu_funcionarios
   Align = alCustom
   BorderIcons = [biSystemMenu, biMinimize]
   BorderStyle = bsSingle
-  Caption = 'Funcionarios'
+  Caption = 'FUNCION'#193'RIOS'
   ClientHeight = 644
   ClientWidth = 709
   Color = clBtnFace

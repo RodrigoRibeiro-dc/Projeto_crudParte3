@@ -1,0 +1,52 @@
+unit validaCamposRecebimento;
+
+interface
+
+uses
+  Dialogs, System.SysUtils, System.Variants;
+
+
+type
+  validacamposRec = class
+
+  private
+
+  public
+    procedure  validacampos;
+  end;
+
+implementation
+
+uses
+  campo_funcionario;
+
+{ validacamposRec }
+
+procedure validacamposRec.validacampos;
+begin
+  try
+  if Trim(cadastro_funcionario.edt_descricao.Text) = '' then
+  begin
+    MessageDlg('DESCRIÇÃO NÃO PODE FICAR VAZIO.',mtWarning, [mbOk], 0);
+    cadastro_funcionario.edt_descricao.SetFocus;
+    exit;
+  end;
+  if Trim(cadastro_funcionario.edt_valor.Text) = '' then
+  begin
+    MessageDlg('VALOR NÃO PODE FICAR VAZIO.', mtWarning, [mbOk], 0);
+    cadastro_funcionario.edt_valor.SetFocus;
+    exit;
+  end;
+  if Trim(cadastro_funcionario.cbx_tipo.Text) = '' then
+  begin
+    MessageDlg('TIPO NÃO PODE FICAR VAZIO.', mtWarning, [mbOk], 0);
+    cadastro_funcionario.cbx_tipo.SetFocus;
+    exit;
+  end;
+  except
+    MessageDlg('REPASSE OS CAMPOS E TENTE NOVAMENTE.',mtWarning, [mbOk], 0);
+  end;
+
+end;
+
+end.

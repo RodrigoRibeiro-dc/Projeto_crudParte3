@@ -9,7 +9,7 @@ uses
   Recebimento in '..\Unit\Recebimento.pas',
   crudRecebimento in 'crudRecebimento.pas',
   altera_recebimento in '..\Unit\altera_recebimento.pas' {Altera_rec},
-  recebeDadosAlteracao in '..\Unit\recebeDadosAlteracao.pas';
+  validaCamposRecebimento in '..\Unit\validaCamposRecebimento.pas';
 
 {$R *.res}
 
