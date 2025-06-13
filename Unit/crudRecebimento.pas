@@ -1,0 +1,117 @@
+unit crudRecebimento;
+
+interface
+
+uses
+  Recebimento, crud_funcionario, System.SysUtils, System.Classes, Vcl.Forms,
+  Vcl.Dialogs, Vcl.Controls;
+
+type
+  TcrudRecebimento = class
+  private
+
+  public
+    procedure Inserir(Value: TRecebimentos);
+    procedure Excluir(Value: TRecebimentos);
+    procedure Alterar(Value: TRecebimentos);
+    procedure AtualizaGrid(Value: TRecebimentos);
+  end;
+
+implementation
+
+uses
+  campo_funcionario;
+
+{ TcrudRecebimento }
+
+procedure TcrudRecebimento.Alterar(Value: TRecebimentos);
+var
+  resposta: Integer;
+begin
+  Value.id_recebimento := menu_funcionarios.fdq_recebimentoREC_ID.Value;
+
+  resposta := MessageDlg('DESEJA ALTERAR O REGISTRO?', mtconfirmation,
+    [mbYes, mbNo], 0);
+  if resposta = mrYes then
+  begin
+    menu_funcionarios.SQL('UPDATE RECEBIMENTO SET REC_DESCRICAO=:DESCRICAO, ' +
+      'REC_VALOR=:VALOR, REC_DATA=:DATA, REC_TIPO=:TIPO WHERE REC_ID=:ID');
+
+    menu_funcionarios.Params('DESCRICAO', Value.descricao);
+    menu_funcionarios.Params('VALOR', Value.valor);
+    menu_funcionarios.Params('DATA', Value.data);
+    menu_funcionarios.Params('TIPO', Value.tipo);
+    menu_funcionarios.Params('ID', Value.id_recebimento);
+
+    menu_funcionarios.ExecSQL;
+    menu_funcionarios.Commit;
+    MessageDlg('REGISTRO ALTERADO COM SUCESSO.', mtconfirmation, [mbOk], 0);
+  end
+end;
+
+procedure TcrudRecebimento.Excluir(Value: TRecebimentos);
+var
+  resposta: Integer;
+begin
+  Value.id_recebimento := menu_funcionarios.fdq_recebimentoREC_ID.Value;
+
+  resposta := MessageDlg('DESEJA EXCLUIR O REGISTRO?', mtconfirmation,
+    [mbYes, mbNo], 0);
+  if resposta = mrYes then
+  begin
+    menu_funcionarios.SQL('DELETE FROM RECEBIMENTO WHERE REC_ID=:ID');
+    menu_funcionarios.Params('ID', Value.id_recebimento);
+    menu_funcionarios.ExecSQL;
+    menu_funcionarios.Commit;
+    MessageDlg('REGISTRO EXCLUIDO COM SUCESSO.', mtconfirmation, [mbOk], 0);
+  end;
+end;
+
+procedure TcrudRecebimento.Inserir(Value: TRecebimentos);
+var
+  resposta: Integer;
+begin
+  if not menu_funcionarios.fdq_funcionarios.IsEmpty then                      //precisa manter a linha, ela verifificar
+  begin                                                                      //se tem funcionario no grid, e logo em seguida
+    Value.id_funcionario := menu_funcionarios.fdq_funcionariosFUN_ID.Value; //a varivael recebe o valor do id do funcionario
+    resposta := MessageDlg('DESEJA INCLUIR O REGISTRO?', mtconfirmation,   //para ser incluido no id vinculado ao recebimento.
+      [mbYes, mbNo], 0);
+
+    if resposta = mrYes then
+    begin
+      menu_funcionarios.SQL('INSERT INTO RECEBIMENTO' +
+        '(REC_DESCRICAO, REC_VALOR, REC_DATA, REC_TIPO, FUN_ID)' +
+        'VALUES(:DESCRICAO, :VALOR, :DATA, :TIPO, :IDFUNCIONARIO );');
+
+      menu_funcionarios.Params('DESCRICAO', Value.descricao);
+      menu_funcionarios.Params('VALOR', Value.valor);
+      menu_funcionarios.Params('DATA', Value.data);
+      menu_funcionarios.Params('TIPO', Value.tipo);
+      menu_funcionarios.Params('IDFUNCIONARIO', Value.id_funcionario);
+
+      menu_funcionarios.ExecSQL;
+      menu_funcionarios.Commit;
+      MessageDlg('REGISTRO INCLUIDO COM SUCESSO.', mtconfirmation, [mbOk], 0);
+    end;
+  end;
+end;
+
+procedure TcrudRecebimento.AtualizaGrid(Value: TRecebimentos);
+begin
+  menu_funcionarios.fdq_recebimento.SQL.Clear;
+  menu_funcionarios.SQL('SELECT REC_DESCRICAO, REC_VALOR,' +
+    'REC_DATA, REC_TIPO, REC_ID FROM RECEBIMENTO');
+
+  Value.descricao :=
+    menu_funcionarios.fdq_recebimento.FieldByName('REC_DESCRICAO').AsString;
+  Value.valor :=
+    menu_funcionarios.fdq_recebimento.FieldByName('REC_VALOR').AsCurrency;
+  Value.tipo :=
+    menu_funcionarios.fdq_recebimento.FieldByName('REC_TIPO').AsString;
+  Value.data
+    :=menu_funcionarios.fdq_recebimento.FieldByName('REC_DATA').AsDateTime;
+
+  menu_funcionarios.fdq_recebimento.open;
+end;
+
+end.

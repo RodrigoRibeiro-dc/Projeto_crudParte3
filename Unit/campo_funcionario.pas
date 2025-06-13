@@ -196,12 +196,11 @@ begin
 
     Validacao.validacampos;
     crudRec.Inserir(Recebimento);
+    crudRec.AtualizaGrid(Recebimento);
 
     edt_descricao.Clear;
     nbx_valor.Clear;
     dtp_data.Date := date;
-    cbx_tipo.Clear;
-    crudRec.AtualizaGrid(Recebimento);
   finally
     Recebimento.Free;
     Validacao.Free;

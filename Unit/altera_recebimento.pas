@@ -23,6 +23,7 @@ type
     procedure btn_confirma_alt_recClick(Sender: TObject);
     procedure btn_cancelar_alt_recClick(Sender: TObject);
     procedure FormShow(Sender: TObject);
+    procedure FormKeyPress(Sender: TObject; var Key: Char);
   private
     { Private declarations }
   public
@@ -96,6 +97,15 @@ begin
   finally
     crud_rec.Free;
     Recebimento.Free;
+  end;
+end;
+
+procedure TAltera_rec.FormKeyPress(Sender: TObject; var Key: Char);
+begin
+  if Key = #13 then
+  begin
+    Key := #0;
+    Perform(WM_NEXTDLGCTL, 0, 0);
   end;
 end;
 

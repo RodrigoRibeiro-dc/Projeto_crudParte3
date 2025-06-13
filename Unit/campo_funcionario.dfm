@@ -8265,7 +8265,7 @@ object cadastro_funcionario: Tcadastro_funcionario
         Cursor = crHandPoint
         DataSource = dts_recebimento
         Options = [dgTitles, dgIndicator, dgColumnResize, dgColLines, dgRowLines, dgTabs, dgRowSelect, dgConfirmDelete, dgCancelOnExit, dgTitleClick, dgTitleHotTrack]
-        TabOrder = 5
+        TabOrder = 7
         TitleFont.Charset = DEFAULT_CHARSET
         TitleFont.Color = clWindowText
         TitleFont.Height = -12
@@ -8304,7 +8304,7 @@ object cadastro_funcionario: Tcadastro_funcionario
         Height = 25
         Cursor = crHandPoint
         Caption = 'INCLUIR'
-        TabOrder = 2
+        TabOrder = 4
         OnClick = btn_incluirClick
       end
       object btn_alterar: TButton
@@ -8314,7 +8314,7 @@ object cadastro_funcionario: Tcadastro_funcionario
         Height = 25
         Cursor = crHandPoint
         Caption = 'ALTERAR'
-        TabOrder = 3
+        TabOrder = 5
         OnClick = btn_alterarClick
       end
       object btn_excluir: TButton
@@ -8324,7 +8324,7 @@ object cadastro_funcionario: Tcadastro_funcionario
         Height = 25
         Cursor = crHandPoint
         Caption = 'EXCLUIR'
-        TabOrder = 4
+        TabOrder = 6
         OnClick = btn_excluirClick
       end
       object edt_descricao: TEdit
@@ -8345,7 +8345,7 @@ object cadastro_funcionario: Tcadastro_funcionario
         Style = csDropDownList
         CharCase = ecUpperCase
         MaxLength = 25
-        TabOrder = 1
+        TabOrder = 2
         Items.Strings = (
           'VALE'
           'SAL'#193'RIO'
@@ -8359,7 +8359,7 @@ object cadastro_funcionario: Tcadastro_funcionario
         Cursor = crHandPoint
         Date = 45820.000000000000000000
         Time = 0.413483796299260600
-        TabOrder = 6
+        TabOrder = 3
       end
       object nbx_valor: TNumberBox
         Left = 112
@@ -8369,7 +8369,7 @@ object cadastro_funcionario: Tcadastro_funcionario
         CharCase = ecUpperCase
         Mode = nbmCurrency
         MaxLength = 8
-        TabOrder = 7
+        TabOrder = 1
       end
     end
   end
