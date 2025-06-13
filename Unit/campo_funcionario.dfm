@@ -8230,28 +8230,28 @@ object cadastro_funcionario: Tcadastro_funcionario
       ImageIndex = 1
       TabVisible = False
       object lbl_descricao: TLabel
-        Left = 35
+        Left = 43
         Top = 35
         Width = 63
         Height = 15
         Caption = 'DESCRI'#199#195'O'
       end
       object lbl_valor: TLabel
-        Left = 62
+        Left = 70
         Top = 83
         Width = 36
         Height = 15
         Caption = 'VALOR'
       end
       object lbl_datalanc_pagamento: TLabel
-        Left = 69
+        Left = 77
         Top = 135
         Width = 29
         Height = 15
         Caption = 'DATA'
       end
       object lbl_tipo: TLabel
-        Left = 256
+        Left = 264
         Top = 83
         Width = 26
         Height = 15
@@ -8265,7 +8265,7 @@ object cadastro_funcionario: Tcadastro_funcionario
         Cursor = crHandPoint
         DataSource = dts_recebimento
         Options = [dgTitles, dgIndicator, dgColumnResize, dgColLines, dgRowLines, dgTabs, dgRowSelect, dgConfirmDelete, dgCancelOnExit, dgTitleClick, dgTitleHotTrack]
-        TabOrder = 6
+        TabOrder = 5
         TitleFont.Charset = DEFAULT_CHARSET
         TitleFont.Color = clWindowText
         TitleFont.Height = -12
@@ -8298,13 +8298,13 @@ object cadastro_funcionario: Tcadastro_funcionario
           end>
       end
       object btn_incluir: TButton
-        Left = 104
+        Left = 112
         Top = 183
         Width = 75
         Height = 25
         Cursor = crHandPoint
         Caption = 'INCLUIR'
-        TabOrder = 3
+        TabOrder = 2
         OnClick = btn_incluirClick
       end
       object btn_alterar: TButton
@@ -8314,21 +8314,21 @@ object cadastro_funcionario: Tcadastro_funcionario
         Height = 25
         Cursor = crHandPoint
         Caption = 'ALTERAR'
-        TabOrder = 4
+        TabOrder = 3
         OnClick = btn_alterarClick
       end
       object btn_excluir: TButton
-        Left = 366
+        Left = 374
         Top = 183
         Width = 75
         Height = 25
         Cursor = crHandPoint
         Caption = 'EXCLUIR'
-        TabOrder = 5
+        TabOrder = 4
         OnClick = btn_excluirClick
       end
       object edt_descricao: TEdit
-        Left = 104
+        Left = 112
         Top = 32
         Width = 337
         Height = 23
@@ -8336,17 +8336,8 @@ object cadastro_funcionario: Tcadastro_funcionario
         MaxLength = 45
         TabOrder = 0
       end
-      object edt_valor: TEdit
-        Left = 104
-        Top = 80
-        Width = 121
-        Height = 23
-        CharCase = ecUpperCase
-        MaxLength = 8
-        TabOrder = 1
-      end
       object cbx_tipo: TComboBox
-        Left = 288
+        Left = 296
         Top = 80
         Width = 153
         Height = 23
@@ -8354,20 +8345,30 @@ object cadastro_funcionario: Tcadastro_funcionario
         Style = csDropDownList
         CharCase = ecUpperCase
         MaxLength = 25
-        TabOrder = 2
+        TabOrder = 1
         Items.Strings = (
           'VALE'
           'SAL'#193'RIO'
           'ACERTO')
       end
       object dtp_data: TDateTimePicker
-        Left = 104
+        Left = 112
         Top = 131
         Width = 121
         Height = 23
         Cursor = crHandPoint
         Date = 45820.000000000000000000
         Time = 0.413483796299260600
+        TabOrder = 6
+      end
+      object nbx_valor: TNumberBox
+        Left = 112
+        Top = 80
+        Width = 121
+        Height = 23
+        CharCase = ecUpperCase
+        Mode = nbmCurrency
+        MaxLength = 8
         TabOrder = 7
       end
     end
@@ -8389,8 +8390,8 @@ object cadastro_funcionario: Tcadastro_funcionario
     Connection = menu_funcionarios.ctn_conexao
     SQL.Strings = (
       'SELECT * FROM PROJETO_CRUD..RECEBIMENTO')
-    Left = 227
-    Top = 376
+    Left = 187
+    Top = 352
     object tbl_filhaRecebimentoREC_ID: TFDAutoIncField
       FieldName = 'REC_ID'
       Origin = 'REC_ID'
@@ -8432,7 +8433,7 @@ object cadastro_funcionario: Tcadastro_funcionario
     SQL.Strings = (
       'SELECT * FROM PROJETO_CRUD..FUNCIONARIOS')
     Left = 385
-    Top = 376
+    Top = 352
     object tlb_maeFuncionarioFUN_ID: TFDAutoIncField
       FieldName = 'FUN_ID'
       Origin = 'FUN_ID'
@@ -8491,12 +8492,12 @@ object cadastro_funcionario: Tcadastro_funcionario
   end
   object dts_tblmae: TDataSource
     DataSet = tlb_maeFuncionario
-    Left = 380
-    Top = 450
+    Left = 388
+    Top = 434
   end
   object dts_tblfilha: TDataSource
     DataSet = tbl_filhaRecebimento
-    Left = 220
-    Top = 442
+    Left = 188
+    Top = 434
   end
 end

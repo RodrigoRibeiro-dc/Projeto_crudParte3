@@ -6,7 +6,7 @@ USE PROJETO_CRUD
 /*-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------*/
 
 
-	CREATE TABLE FUNCIONARIOS(
+CREATE TABLE FUNCIONARIOS(
 	FUN_ID INT IDENTITY(1,1) NOT NULL PRIMARY KEY,
 	FUN_NOME NVARCHAR(45) NOT NULL,
 	FUN_DATANASCIMENTO DATETIME,

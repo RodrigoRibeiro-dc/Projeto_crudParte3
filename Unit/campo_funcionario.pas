@@ -12,7 +12,8 @@ uses
   FireDAC.Phys.Intf, FireDAC.Stan.Def, FireDAC.Stan.Pool, FireDAC.Stan.Async,
   FireDAC.Phys, FireDAC.Phys.MSSQL, FireDAC.Phys.MSSQLDef, FireDAC.VCLUI.Wait,
   FireDAC.Stan.Param, FireDAC.DatS, FireDAC.DApt.Intf, FireDAC.DApt,
-  FireDAC.Comp.DataSet, FireDAC.Comp.Client, validaCamposRecebimento;
+  FireDAC.Comp.DataSet, FireDAC.Comp.Client, validaCamposRecebimento,
+  Vcl.NumberBox;
 
 type
   Tcadastro_funcionario = class(TForm)
@@ -53,7 +54,6 @@ type
     btn_alterar: TButton;
     btn_excluir: TButton;
     edt_descricao: TEdit;
-    edt_valor: TEdit;
     cbx_tipo: TComboBox;
     dts_recebimento: TDataSource;
     dtp_data: TDateTimePicker;
@@ -78,6 +78,7 @@ type
     tbl_filhaRecebimentoREC_VALOR: TBCDField;
     tbl_filhaRecebimentoREC_DATA: TSQLTimeStampField;
     tbl_filhaRecebimentoREC_TIPO: TWideStringField;
+    nbx_valor: TNumberBox;
     procedure btn_salvarClick(Sender: TObject);
     procedure btn_cancelarClick(Sender: TObject);
     procedure FormActivate(Sender: TObject);
@@ -174,7 +175,7 @@ begin
   try
     if not dts_recebimento.DataSet.IsEmpty then
       crudRec.Excluir(Recebimento);
-      crudRec.ConsultaDados(Recebimento);
+      crudRec.AtualizaGrid(Recebimento);
   finally
     Recebimento.Free
   end;
@@ -189,14 +190,18 @@ begin
   Validacao := TvalidacamposRec.Create;
   try
     Recebimento.descricao := edt_descricao.Text;
-    Recebimento.valor := StrToCurr(edt_valor.Text);
-    Recebimento.Data := DateToStr(dtp_data.Date);
+    Recebimento.valor := nbx_valor.Value;
+    Recebimento.Data := dtp_data.Date;
     Recebimento.tipo := cbx_tipo.Text;
 
     Validacao.validacampos;
-
     crudRec.Inserir(Recebimento);
-    crudRec.ConsultaDados(Recebimento);
+
+    edt_descricao.Clear;
+    nbx_valor.Clear;
+    dtp_data.Date := date;
+    cbx_tipo.Clear;
+    crudRec.AtualizaGrid(Recebimento);
   finally
     Recebimento.Free;
     Validacao.Free;
@@ -246,6 +251,7 @@ end;
 
 procedure Tcadastro_funcionario.FormActivate(Sender: TObject);
 begin
+  pgc_itens.ActivePage := tab_dadospessoais;
   dbedt_datanascimento.SetFocus;
 end;
 
@@ -262,6 +268,7 @@ begin
     tab_financeiro.TabVisible := True;
   end;
   crudRec := TcrudRecebimento.Create;
+  dtp_data.Date := Date;
 end;
 
 procedure Tcadastro_funcionario.FormKeyPress(Sender: TObject; var Key: Char);

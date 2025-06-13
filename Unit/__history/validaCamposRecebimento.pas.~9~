@@ -1,0 +1,71 @@
+unit validaCamposRecebimento;
+
+interface
+
+uses
+  Dialogs, System.SysUtils, System.Variants, System.UITypes;
+
+type
+  TvalidacamposRec = class
+
+  private
+
+  public
+    procedure validaCampos;
+    procedure validaCamposAlteracao;
+  end;
+
+implementation
+
+uses
+  campo_funcionario, altera_recebimento;
+
+{ validacamposRec }
+
+{ TvalidacamposRec }
+
+procedure TvalidacamposRec.validacampos;
+begin
+  if Trim(cadastro_funcionario.edt_descricao.Text) = '' then
+  begin
+    MessageDlg('DESCRIÇÃO NÃO PODE FICAR VAZIO.', mtWarning, [mbOk], 0);
+    cadastro_funcionario.edt_descricao.SetFocus;
+    abort;
+  end;
+  if Trim(cadastro_funcionario.nbx_valor.Text) = '' then
+  begin
+      MessageDlg('VALOR NÃO PODE FICAR VAZIO.', mtWarning, [mbOk], 0);
+      cadastro_funcionario.nbx_valor.SetFocus;
+      abort;
+  end;
+  if Trim(cadastro_funcionario.cbx_tipo.Text) = '' then
+  begin
+    MessageDlg('TIPO NÃO PODE FICAR VAZIO.', mtWarning, [mbOk], 0);
+    cadastro_funcionario.cbx_tipo.SetFocus;
+    abort;
+  end;
+end;
+
+procedure TvalidacamposRec.validaCamposAlteracao;
+begin
+  if Trim(Altera_rec.edt_descricao.Text) = '' then
+  begin
+    MessageDlg('DESCRIÇÃO NÃO PODE FICAR VAZIO.', mtWarning, [mbOk], 0);
+    Altera_rec.edt_descricao.SetFocus;
+    abort;
+  end;
+  if Trim(Altera_rec.nbx_valor.Text) = '' then
+  begin
+      MessageDlg('VALOR NÃO PODE FICAR VAZIO.', mtWarning, [mbOk], 0);
+      Altera_rec.nbx_valor.SetFocus;
+      abort;
+  end;
+  if Trim(Altera_rec.cbx_tipo.Text) = '' then
+  begin
+    MessageDlg('TIPO NÃO PODE FICAR VAZIO.', mtWarning, [mbOk], 0);
+    Altera_rec.cbx_tipo.SetFocus;
+    abort;
+  end;
+end;
+
+end.

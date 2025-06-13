@@ -1,0 +1,102 @@
+unit altera_recebimento_;
+
+interface
+
+uses
+  Winapi.Windows, Winapi.Messages, System.SysUtils, System.Variants,
+  System.Classes, Vcl.Graphics,
+  Vcl.Controls, Vcl.Forms, Vcl.Dialogs, Vcl.StdCtrls, crudRecebimento,
+  Recebimento, Vcl.ComCtrls, Vcl.Mask, Vcl.NumberBox;
+
+type
+  TAltera_rec = class(TForm)
+    lbl_valor: TLabel;
+    lbl_descricao: TLabel;
+    edt_descricao: TEdit;
+    lbl_datalanc_pagamento: TLabel;
+    cbx_tipo: TComboBox;
+    btn_confirma_alt_rec: TButton;
+    btn_cancelar_alt_rec: TButton;
+    lbl_tipo: TLabel;
+    dtp_data: TDateTimePicker;
+    nbx_valor: TNumberBox;
+    procedure FormCreate(Sender: TObject);
+    procedure btn_confirma_alt_recClick(Sender: TObject);
+    procedure btn_cancelar_alt_recClick(Sender: TObject);
+  private
+    { Private declarations }
+  public
+    { Public declarations }
+  end;
+
+var
+  Altera_rec: TAltera_rec;
+
+implementation
+
+uses
+  campo_funcionario, crud_funcionario, validaCamposRecebimento;
+
+{$R *.dfm}
+
+procedure TAltera_rec.btn_cancelar_alt_recClick(Sender: TObject);
+begin
+  Close;
+end;
+
+procedure TAltera_rec.btn_confirma_alt_recClick(Sender: TObject);
+var
+  crud_rec: TcrudRecebimento;
+  Recebimento: TRecebimentos;
+  Validacao: TvalidacamposRec;
+begin
+  crud_rec := TcrudRecebimento.Create;
+  Recebimento := TRecebimentos.Create;
+  Validacao := TvalidacamposRec.Create;
+
+  try
+    if not cadastro_funcionario.dts_recebimento.DataSet.IsEmpty then
+    Recebimento.descricao := edt_descricao.Text;
+    Recebimento.valor := StrToCurr(nbx_valor.Text);
+    Recebimento.tipo := cbx_tipo.Text;
+    Recebimento.data := dtp_data.Date;
+    Validacao.validacampos;
+    crud_rec.Alterar(Recebimento);
+    crud_rec.ConsultaDados(Recebimento);
+    close;
+
+  finally
+    crud_rec.Free;
+    Recebimento.Free;
+    Validacao.Free
+  end;
+
+end;
+
+procedure TAltera_rec.FormCreate(Sender: TObject);
+var
+  crud_rec: TcrudRecebimento;
+  Recebimento: TRecebimentos;
+begin
+  crud_rec := TcrudRecebimento.Create;
+  Recebimento := TRecebimentos.Create;
+  try
+    if not menu_funcionarios.fdq_recebimento.IsEmpty then
+    begin
+      edt_descricao.Text := menu_funcionarios.fdq_recebimento.FieldByName
+        ('REC_DESCRICAO').AsString;
+      nbx_valor.Text := menu_funcionarios.fdq_recebimento.FieldByName
+        ('REC_VALOR').AsString;
+      cbx_tipo.Text := menu_funcionarios.fdq_recebimento.FieldByName
+        ('REC_TIPO').AsString;
+      dtp_data.Date := menu_funcionarios.fdq_recebimento.FieldByName('REC_DATA')
+        .AsDateTime;
+    end;
+  finally
+    crud_rec.Free;
+    Recebimento.Free;
+  end;
+
+end;
+
+end.

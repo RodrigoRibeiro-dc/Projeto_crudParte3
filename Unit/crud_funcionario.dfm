@@ -7988,7 +7988,6 @@ object menu_funcionarios: Tmenu_funcionarios
   Position = poMainFormCenter
   OnCreate = FormCreate
   OnKeyDown = FormKeyDown
-  OnShow = FormShow
   PixelsPerInch = 96
   TextHeight = 15
   object pnl_crud: TPanel
@@ -8050,7 +8049,7 @@ object menu_funcionarios: Tmenu_funcionarios
       OnClick = img_incluirClick
     end
     object img_alterar: TImage
-      Left = 337
+      Left = 328
       Top = 35
       Width = 33
       Height = 33
@@ -8398,6 +8397,7 @@ object menu_funcionarios: Tmenu_funcionarios
       Width = 145
       Height = 23
       Cursor = crHandPoint
+      Style = csDropDownList
       TabOrder = 3
       Visible = False
       Items.Strings = (
@@ -8406,7 +8406,8 @@ object menu_funcionarios: Tmenu_funcionarios
         'SUPORTE'
         'VENDEDOR'
         'FINANCEIRO'
-        'CS')
+        'CS'
+        'TODOS')
     end
     object rdg_tipoconsulta: TRadioGroup
       Left = 10

@@ -8,7 +8,7 @@ type
     Fid_funcionario: integer;
     Fdescricao: String;
     Fvalor: Currency;
-    Fdata: String;
+    Fdata: TDateTime;
     Ftipo: String;
   private
 
@@ -17,7 +17,7 @@ type
     property id_funcionario: integer read Fid_funcionario write Fid_funcionario;
     property descricao: String read Fdescricao write Fdescricao;
     property valor: Currency read Fvalor write Fvalor;
-    property data: String read Fdata write Fdata;
+    property data: TDateTime read Fdata write Fdata;
     property tipo: String read Ftipo write Ftipo;
   end;
 

@@ -6,23 +6,23 @@ uses
   Winapi.Windows, Winapi.Messages, System.SysUtils, System.Variants,
   System.Classes, Vcl.Graphics,
   Vcl.Controls, Vcl.Forms, Vcl.Dialogs, Vcl.StdCtrls, crudRecebimento,
-  Recebimento, Vcl.ComCtrls, validaCamposRecebimento;
+  Recebimento, Vcl.ComCtrls, Vcl.Mask, Vcl.NumberBox;
 
 type
   TAltera_rec = class(TForm)
-    edt_valor: TEdit;
     lbl_valor: TLabel;
     lbl_descricao: TLabel;
     edt_descricao: TEdit;
     lbl_datalanc_pagamento: TLabel;
-    cbx_tipo: TComboBox;
     btn_confirma_alt_rec: TButton;
     btn_cancelar_alt_rec: TButton;
     lbl_tipo: TLabel;
     dtp_data: TDateTimePicker;
-    procedure FormCreate(Sender: TObject);
+    nbx_valor: TNumberBox;
+    cbx_tipo: TComboBox;
     procedure btn_confirma_alt_recClick(Sender: TObject);
     procedure btn_cancelar_alt_recClick(Sender: TObject);
+    procedure FormShow(Sender: TObject);
   private
     { Private declarations }
   public
@@ -35,7 +35,7 @@ var
 implementation
 
 uses
-  campo_funcionario, crud_funcionario;
+  campo_funcionario, crud_funcionario, validaCamposRecebimento;
 
 {$R *.dfm}
 
@@ -48,54 +48,77 @@ procedure TAltera_rec.btn_confirma_alt_recClick(Sender: TObject);
 var
   crud_rec: TcrudRecebimento;
   Recebimento: TRecebimentos;
-  Validacao: TvalidacamposRec;
 begin
   crud_rec := TcrudRecebimento.Create;
   Recebimento := TRecebimentos.Create;
-  Validacao := TvalidacamposRec.Create;
 
   try
     if not cadastro_funcionario.dts_recebimento.DataSet.IsEmpty then
-    Recebimento.descricao := edt_descricao.Text;
-    Recebimento.valor := StrToCurr(edt_valor.Text);
-    Recebimento.tipo := cbx_tipo.Text;
-    Recebimento.data := DateToStr(dtp_data.Date);
-    Validacao.validacampos;
-    crud_rec.Alterar(Recebimento);
-    close;
+    begin
+      if Trim(edt_descricao.text) = '' then
+      begin
+        MessageDlg('DESCRIÇÃO NÃO PODE FICAR VAZIO.', mtWarning, [mbOk], 0);
+        edt_descricao.SetFocus;
+        abort;
+      end
+      else
+        Recebimento.descricao := edt_descricao.text;
+
+      if nbx_valor.Value < 1 then
+      begin
+        MessageDlg('INFORME UM VALOR MAIOR QUE 0,00.', mtWarning, [mbOk], 0);
+        nbx_valor.SetFocus;
+        abort;
+      end
+      else
+        Recebimento.valor := nbx_valor.Value;
+
+      if (cbx_tipo.text = 'VALE') or (cbx_tipo.text = 'SALÁRIO') or
+        (cbx_tipo.text = 'ACERTO') then
+      begin
+        Recebimento.tipo := cbx_tipo.text;
+      end
+      else
+      begin
+        MessageDlg('ESCOLHA UM ITEM QUE ESTEJA NA LISTA.', mtWarning,
+          [mbOk], 0);
+        cbx_tipo.SetFocus;
+        abort;
+      end;
+
+      Recebimento.data := Altera_rec.dtp_data.Date;
+
+      crud_rec.Alterar(Recebimento);
+      crud_rec.AtualizaGrid(Recebimento);
+      Close;
+    end;
 
   finally
     crud_rec.Free;
     Recebimento.Free;
-    Validacao.Free
   end;
-
 end;
 
-procedure TAltera_rec.FormCreate(Sender: TObject);
+procedure TAltera_rec.FormShow(Sender: TObject);
 var
-  crud_rec: TcrudRecebimento;
   Recebimento: TRecebimentos;
 begin
-  crud_rec := TcrudRecebimento.Create;
   Recebimento := TRecebimentos.Create;
   try
     if not menu_funcionarios.fdq_recebimento.IsEmpty then
     begin
-      edt_descricao.Text := menu_funcionarios.fdq_recebimento.FieldByName
+      edt_descricao.text := menu_funcionarios.fdq_recebimento.FieldByName
         ('REC_DESCRICAO').AsString;
-      edt_valor.Text := menu_funcionarios.fdq_recebimento.FieldByName
+      nbx_valor.text := menu_funcionarios.fdq_recebimento.FieldByName
         ('REC_VALOR').AsString;
-      cbx_tipo.Text := menu_funcionarios.fdq_recebimento.FieldByName
+      cbx_tipo.text := menu_funcionarios.fdq_recebimento.FieldByName
         ('REC_TIPO').AsString;
       dtp_data.Date := menu_funcionarios.fdq_recebimento.FieldByName('REC_DATA')
         .AsDateTime;
     end;
   finally
-    crud_rec.Free;
     Recebimento.Free;
   end;
-
 end;
 
 end.

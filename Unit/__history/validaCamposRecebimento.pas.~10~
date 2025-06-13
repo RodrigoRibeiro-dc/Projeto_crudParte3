@@ -1,0 +1,78 @@
+unit validaCamposRecebimento;
+
+interface
+
+uses
+  Dialogs, System.SysUtils, System.Variants, System.UITypes, Recebimento;
+
+type
+  TvalidacamposRec = class
+
+  private
+
+  public
+    procedure ValidaCampos;
+    procedure ValidaAlteraCampos;
+  end;
+
+implementation
+
+uses
+  campo_funcionario, altera_recebimento;
+
+{ validacamposRec }
+
+{ TvalidacamposRec }
+
+procedure TvalidacamposRec.validaCampos;
+begin
+  if Trim(cadastro_funcionario.edt_descricao.Text) = '' then
+  begin
+    MessageDlg('DESCRIÇÃO NÃO PODE FICAR VAZIO.', mtWarning, [mbOk], 0);
+    cadastro_funcionario.edt_descricao.SetFocus;
+    abort;
+  end;
+  if cadastro_funcionario.nbx_valor.Value < 1 then
+  begin
+    MessageDlg('VALOR NÃO PODE SER 0,00.', mtWarning, [mbOk], 0);
+    cadastro_funcionario.nbx_valor.SetFocus;
+    abort;
+  end;
+  if Trim(cadastro_funcionario.cbx_tipo.Text) = '' then
+  begin
+    MessageDlg('TIPO NÃO PODE FICAR VAZIO.', mtWarning, [mbOk], 0);
+    cadastro_funcionario.cbx_tipo.SetFocus;
+    abort;
+  end;
+end;
+
+procedure TvalidacamposRec.ValidaAlteraCampos;
+var
+  recebimento: TRecebimentos;
+begin
+  Recebimento.descricao := Altera_rec.edt_descricao.Text;
+  if Altera_rec.nbx_valor.Value > 0 then
+  begin
+    Recebimento.valor := Altera_rec.nbx_valor.Value;
+  end
+  else
+  begin
+    MessageDlg('VALOR NÃO PODE SER 0,00.', mtWarning, [mbOk], 0);
+    cadastro_funcionario.nbx_valor.SetFocus;
+    abort;
+  end;
+  if (Altera_rec.cbx_tipo.Text = 'VALE') or (Altera_rec.cbx_tipo.Text = 'SALÁRIO') or
+    (Altera_rec.cbx_tipo.Text = 'ACERTO') then
+  begin
+    Recebimento.tipo := Altera_rec.cbx_tipo.Text;
+  end
+  else
+  begin
+    MessageDlg('ESCOLHA UM ITEM QUE ESTEJA NA LISTA.', mtWarning, [mbOk], 0);
+    Altera_rec.cbx_tipo.SetFocus;
+    abort;
+  end;
+  Recebimento.data := Altera_rec.dtp_data.Date;
+end;
+
+end.

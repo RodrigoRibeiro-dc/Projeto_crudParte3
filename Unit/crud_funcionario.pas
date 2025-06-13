@@ -60,7 +60,6 @@ type
     fdq_recebimentoREC_DATA: TSQLTimeStampField;
     fdq_recebimentoREC_TIPO: TWideStringField;
     procedure img_excluirClick(Sender: TObject);
-    procedure FormShow(Sender: TObject);
     procedure rdg_tipoconsultaClick(Sender: TObject);
     procedure sbtn_consultarClick(Sender: TObject);
     procedure img_incluirClick(Sender: TObject);
@@ -69,6 +68,7 @@ type
     procedure calcula_total_grid;
     procedure FormCreate(Sender: TObject);
   private
+
   public
     procedure SQL(Value: String);
     procedure Params(aParam: String; aValue: Variant); overload;
@@ -85,7 +85,6 @@ implementation
 uses campo_funcionario;
 
 {$R *.dfm}
-
 
 procedure Tmenu_funcionarios.calcula_total_grid;
 var
@@ -133,30 +132,15 @@ begin
   end;
 end;
 
-procedure Tmenu_funcionarios.FormShow(Sender: TObject);
-begin
-  cbx_consulta.Items.Clear;
-
-  cbx_consulta.Items.Add('PROGRAMADOR');
-  cbx_consulta.Items.Add('IMPLANTAÇÃO');
-  cbx_consulta.Items.Add('SUPORTE');
-  cbx_consulta.Items.Add('VENDEDOR');
-  cbx_consulta.Items.Add('FINANCEIRO');
-  cbx_consulta.Items.Add('CS');
-  cbx_consulta.Items.Add('TODOS');
-
-  cbx_consulta.Style := csDropDownList;
-end;
-
 procedure Tmenu_funcionarios.img_alterarClick(Sender: TObject);
 
 begin
   fdq_funcionarios.Edit;
   cadastro_funcionario := Tcadastro_funcionario.Create(Self);
   try
-      cadastro_funcionario.ShowModal;
+    cadastro_funcionario.ShowModal;
   finally
-        cadastro_funcionario.Free;
+    cadastro_funcionario.Free;
   end;
 
 end;
@@ -274,6 +258,7 @@ begin
           fdq_funcionarios.Close;
           fdq_funcionarios.SQL.Text := 'SELECT *FROM FUNCIONARIOS';
           fdq_funcionarios.Open;
+          calcula_total_grid;
         end
         else
         begin
@@ -290,8 +275,8 @@ end;
 
 procedure Tmenu_funcionarios.SQL(Value: String);
 begin
- fdq_recebimento.SQL.Clear;
- fdq_recebimento.SQL.Add(Value);
+  fdq_recebimento.SQL.Clear;
+  fdq_recebimento.SQL.Add(Value);
 end;
 
 procedure Tmenu_funcionarios.Commit;

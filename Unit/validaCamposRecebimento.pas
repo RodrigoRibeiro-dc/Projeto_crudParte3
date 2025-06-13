@@ -3,7 +3,7 @@ unit validaCamposRecebimento;
 interface
 
 uses
-  Dialogs, System.SysUtils, System.Variants;
+  Dialogs, System.SysUtils, System.Variants, System.UITypes, Recebimento;
 
 type
   TvalidacamposRec = class
@@ -11,19 +11,19 @@ type
   private
 
   public
-    procedure validacampos;
+    procedure ValidaCampos;
   end;
 
 implementation
 
 uses
-  campo_funcionario;
+  campo_funcionario, altera_recebimento;
 
 { validacamposRec }
 
 { TvalidacamposRec }
 
-procedure TvalidacamposRec.validacampos;
+procedure TvalidacamposRec.ValidaCampos;
 begin
   if Trim(cadastro_funcionario.edt_descricao.Text) = '' then
   begin
@@ -31,11 +31,11 @@ begin
     cadastro_funcionario.edt_descricao.SetFocus;
     abort;
   end;
-  if Trim(cadastro_funcionario.edt_valor.Text) = '' then
+  if cadastro_funcionario.nbx_valor.Value < 1 then
   begin
-      MessageDlg('VALOR NÃO PODE FICAR VAZIO.', mtWarning, [mbOk], 0);
-      cadastro_funcionario.edt_valor.SetFocus;
-      abort;
+    MessageDlg('VALOR NÃO PODE SER 0,00.', mtWarning, [mbOk], 0);
+    cadastro_funcionario.nbx_valor.SetFocus;
+    abort;
   end;
   if Trim(cadastro_funcionario.cbx_tipo.Text) = '' then
   begin

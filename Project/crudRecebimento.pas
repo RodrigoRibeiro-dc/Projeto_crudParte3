@@ -13,7 +13,7 @@ type
     procedure Inserir(Value: TRecebimentos);
     procedure Excluir(Value: TRecebimentos);
     procedure Alterar(Value: TRecebimentos);
-    procedure ConsultaDados(Value: TRecebimentos);
+    procedure AtualizaGrid(Value: TRecebimentos);
   end;
 
 implementation
@@ -41,7 +41,7 @@ begin
 
 end;
 
-procedure TcrudRecebimento.ConsultaDados(Value: TRecebimentos);
+procedure TcrudRecebimento.AtualizaGrid(Value: TRecebimentos);
 begin
   menu_funcionarios.fdq_recebimento.SQL.Clear;
   menu_funcionarios.SQL('SELECT REC_DESCRICAO, REC_VALOR,' +
@@ -52,8 +52,8 @@ begin
     .AsCurrency;
   Value.tipo := menu_funcionarios.fdq_recebimento.FieldByName
     ('REC_TIPO').AsString;
-  Value.data := menu_funcionarios.fdq_recebimento.FieldByName
-    ('REC_DATA').AsString;
+  Value.data := menu_funcionarios.fdq_recebimento.FieldByName('REC_DATA')
+    .AsDateTime;
   menu_funcionarios.fdq_recebimento.open;
 end;
 

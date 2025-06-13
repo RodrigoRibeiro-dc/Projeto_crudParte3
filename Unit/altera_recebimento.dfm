@@ -7986,7 +7986,7 @@ object Altera_rec: TAltera_rec
     000000000000000000000000000000000000000000000000000000000000}
   ParentBiDiMode = False
   Position = poMainFormCenter
-  OnCreate = FormCreate
+  OnShow = FormShow
   PixelsPerInch = 96
   TextHeight = 15
   object lbl_valor: TLabel
@@ -8017,34 +8017,13 @@ object Altera_rec: TAltera_rec
     Height = 15
     Caption = 'TIPO'
   end
-  object edt_valor: TEdit
-    Left = 72
-    Top = 120
-    Width = 121
-    Height = 23
-    CharCase = ecUpperCase
-    TabOrder = 0
-  end
   object edt_descricao: TEdit
     Left = 72
     Top = 72
     Width = 313
     Height = 23
     CharCase = ecUpperCase
-    TabOrder = 1
-  end
-  object cbx_tipo: TComboBox
-    Left = 256
-    Top = 120
-    Width = 129
-    Height = 23
-    Cursor = crHandPoint
-    CharCase = ecUpperCase
-    TabOrder = 2
-    Items.Strings = (
-      'VALE'
-      'SAL'#193'RIO'
-      'ACERTO')
+    TabOrder = 0
   end
   object btn_confirma_alt_rec: TButton
     Left = 72
@@ -8053,7 +8032,7 @@ object Altera_rec: TAltera_rec
     Height = 25
     Cursor = crHandPoint
     Caption = 'CONFIRMAR'
-    TabOrder = 3
+    TabOrder = 4
     OnClick = btn_confirma_alt_recClick
   end
   object btn_cancelar_alt_rec: TButton
@@ -8063,7 +8042,7 @@ object Altera_rec: TAltera_rec
     Height = 25
     Cursor = crHandPoint
     Caption = 'CANCELAR'
-    TabOrder = 4
+    TabOrder = 5
     OnClick = btn_cancelar_alt_recClick
   end
   object dtp_data: TDateTimePicker
@@ -8074,6 +8053,28 @@ object Altera_rec: TAltera_rec
     Cursor = crHandPoint
     Date = 45820.000000000000000000
     Time = 0.416042337965336600
-    TabOrder = 5
+    TabOrder = 3
+  end
+  object nbx_valor: TNumberBox
+    Left = 72
+    Top = 120
+    Width = 121
+    Height = 23
+    Mode = nbmCurrency
+    TabOrder = 1
+  end
+  object cbx_tipo: TComboBox
+    Left = 256
+    Top = 120
+    Width = 131
+    Height = 23
+    Cursor = crHandPoint
+    CharCase = ecUpperCase
+    TabOrder = 2
+    StyleName = 'Windows'
+    Items.Strings = (
+      'VALE'
+      'SAL'#193'RIO'
+      'ACERTO')
   end
 end
