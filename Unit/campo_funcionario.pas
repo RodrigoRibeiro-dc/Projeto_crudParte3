@@ -12,8 +12,7 @@ uses
   FireDAC.Phys.Intf, FireDAC.Stan.Def, FireDAC.Stan.Pool, FireDAC.Stan.Async,
   FireDAC.Phys, FireDAC.Phys.MSSQL, FireDAC.Phys.MSSQLDef, FireDAC.VCLUI.Wait,
   FireDAC.Stan.Param, FireDAC.DatS, FireDAC.DApt.Intf, FireDAC.DApt,
-  FireDAC.Comp.DataSet, FireDAC.Comp.Client, validaCamposRecebimento,
-  Vcl.NumberBox;
+  FireDAC.Comp.DataSet, FireDAC.Comp.Client, Vcl.NumberBox;
 
 type
   Tcadastro_funcionario = class(TForm)
@@ -79,6 +78,7 @@ type
     tbl_filhaRecebimentoREC_DATA: TSQLTimeStampField;
     tbl_filhaRecebimentoREC_TIPO: TWideStringField;
     nbx_valor: TNumberBox;
+    btn_consultar: TButton;
     procedure btn_salvarClick(Sender: TObject);
     procedure btn_cancelarClick(Sender: TObject);
     procedure FormActivate(Sender: TObject);
@@ -89,8 +89,8 @@ type
     procedure FormCreate(Sender: TObject);
     procedure btn_excluirClick(Sender: TObject);
     procedure btn_alterarClick(Sender: TObject);
+    procedure btn_consultarClick(Sender: TObject);
   private
-    crudRec: TcrudRecebimento;
   public
     { Public declarations }
   end;
@@ -99,6 +99,9 @@ var
   cadastro_funcionario: Tcadastro_funcionario;
 
 implementation
+
+uses
+  validaCamposRecebimento;
 
 {$R *.dfm}
 
@@ -155,38 +158,57 @@ begin
 end;
 
 procedure Tcadastro_funcionario.btn_cancelarClick(Sender: TObject);
-var
-  resposta_cancelar: integer;
 begin
-  resposta_cancelar := MessageDlg('DESEJA REALMENTE SAIR SEM SALVAR?',
-    mtConfirmation, [mbYes, MbNo], 0);
-  if resposta_cancelar = mrYes then
+  if MessageDlg('DESEJA REALMENTE SAIR SEM SALVAR?', mtConfirmation,
+    [mbYes, MbNo], 0) = mrYes then
   begin
     menu_funcionarios.fdq_funcionarios.Cancel;
     cadastro_funcionario.Close;
   end;
 end;
 
+procedure Tcadastro_funcionario.btn_consultarClick(Sender: TObject);
+var
+Crud_rec: TcrudRecebimento;
+Recebimento: TRecebimentos;
+begin
+Crud_rec := TcrudRecebimento.Create;
+Recebimento := TRecebimentos.Create;
+  try
+    Crud_rec.ConsultaGrid(recebimento);
+  finally
+    Crud_rec.Free;
+    Recebimento.Free;
+  end;
+end;
+
 procedure Tcadastro_funcionario.btn_excluirClick(Sender: TObject);
 var
   Recebimento: TRecebimentos;
+  crud_Rec: TcrudRecebimento;
 begin
   Recebimento := TRecebimentos.Create;
+  crud_rec := TcrudRecebimento.Create;
   try
     if not dts_recebimento.DataSet.IsEmpty then
-      crudRec.Excluir(Recebimento);
-      crudRec.AtualizaGrid(Recebimento);
+    begin
+      crud_Rec.Excluir(Recebimento);
+      crud_Rec.ConsultaGrid(Recebimento);
+    end;
   finally
-    Recebimento.Free
+    Recebimento.Free;
+    crud_Rec.Free;
   end;
 end;
 
 procedure Tcadastro_funcionario.btn_incluirClick(Sender: TObject);
 var
   Recebimento: TRecebimentos;
+  Crud_Rec: TcrudRecebimento;
   Validacao: TvalidacamposRec;
 begin
   Recebimento := TRecebimentos.Create;
+  Crud_Rec := TcrudRecebimento.Create;
   Validacao := TvalidacamposRec.Create;
   try
     Recebimento.descricao := edt_descricao.Text;
@@ -195,29 +217,27 @@ begin
     Recebimento.tipo := cbx_tipo.Text;
 
     Validacao.validacampos;
-    crudRec.Inserir(Recebimento);
-    crudRec.AtualizaGrid(Recebimento);
+    Crud_Rec.Inserir(Recebimento);
+    Crud_Rec.ConsultaGrid(Recebimento);
 
     edt_descricao.Clear;
     nbx_valor.Clear;
-    dtp_data.Date := date;
+    dtp_data.Date := Date;
   finally
     Recebimento.Free;
+    Crud_Rec.Free;
     Validacao.Free;
   end;
 
 end;
 
 procedure Tcadastro_funcionario.btn_salvarClick(Sender: TObject);
-var
-  resposta_salvar: integer;
 begin
   valida_campos;
   if dts_funcionario.State = dsInsert then
   begin
-    resposta_salvar := MessageDlg('DESEJA INCLUIR O FUNCIONÁRIO?',
-      mtConfirmation, [mbYes, MbNo], 0);
-    if resposta_salvar = mrYes then
+    if MessageDlg('DESEJA INCLUIR O FUNCIONÁRIO?', mtConfirmation,
+      [mbYes, MbNo], 0) = mrYes then
     begin
       menu_funcionarios.fdq_funcionarios.Post;
 
@@ -234,9 +254,8 @@ begin
   end
   else
   begin
-    resposta_salvar := MessageDlg('DESEJA ALTERAR O FUNCIONÁRIO?',
-      mtConfirmation, [mbYes, MbNo], 0);
-    if resposta_salvar = mrYes then
+    if MessageDlg('DESEJA ALTERAR O FUNCIONÁRIO?', mtConfirmation,
+      [mbYes, MbNo], 0) = mrYes then
     begin
       menu_funcionarios.fdq_funcionarios.Post;
 
@@ -258,15 +277,15 @@ procedure Tcadastro_funcionario.FormClose(Sender: TObject;
   var Action: TCloseAction);
 begin
   menu_funcionarios.fdq_funcionarios.Cancel;
+  menu_funcionarios.fdq_recebimento.Close;
 end;
 
 procedure Tcadastro_funcionario.FormCreate(Sender: TObject);
 begin
-  if dts_funcionario.State = dsEdit then
+  if dts_funcionario.State = dsInsert then
   begin
-    tab_financeiro.TabVisible := True;
+    tab_financeiro.TabVisible := False;
   end;
-  crudRec := TcrudRecebimento.Create;
   dtp_data.Date := Date;
 end;
 

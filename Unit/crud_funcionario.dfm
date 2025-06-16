@@ -8169,7 +8169,7 @@ object menu_funcionarios: Tmenu_funcionarios
       ParentFont = False
     end
     object lbl_alterar: TLabel
-      Left = 328
+      Left = 320
       Top = 74
       Width = 50
       Height = 15
@@ -8442,7 +8442,6 @@ object menu_funcionarios: Tmenu_funcionarios
     Top = 280
   end
   object fdq_funcionarios: TFDQuery
-    Active = True
     Connection = ctn_conexao
     SQL.Strings = (
       'SELECT *FROM FUNCIONARIOS')
@@ -8516,7 +8515,6 @@ object menu_funcionarios: Tmenu_funcionarios
     Top = 366
   end
   object fdq_recebimento: TFDQuery
-    Active = True
     Connection = ctn_conexao
     SQL.Strings = (
       'SELECT *FROM RECEBIMENTO')

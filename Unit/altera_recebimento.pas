@@ -90,7 +90,7 @@ begin
       Recebimento.data := Altera_rec.dtp_data.Date;
 
       crud_rec.Alterar(Recebimento);
-      crud_rec.AtualizaGrid(Recebimento);
+      crud_rec.ConsultaGrid(Recebimento);
       Close;
     end;
 

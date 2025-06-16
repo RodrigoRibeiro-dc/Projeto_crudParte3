@@ -110,6 +110,7 @@ begin
   ctn_conexao.Params.UserName := 'sa';
   ctn_conexao.Params.Password := 'aram98';
   ctn_conexao.Params.Database := 'PROJETO_CRUD';
+  fdq_funcionarios.Open;
 
   calcula_total_grid;
 end;
@@ -133,7 +134,6 @@ begin
 end;
 
 procedure Tmenu_funcionarios.img_alterarClick(Sender: TObject);
-
 begin
   fdq_funcionarios.Edit;
   cadastro_funcionario := Tcadastro_funcionario.Create(Self);
@@ -146,12 +146,9 @@ begin
 end;
 
 procedure Tmenu_funcionarios.img_excluirClick(Sender: TObject);
-var
-  resposta_excluir: integer;
 begin
-  resposta_excluir := MessageDlg('DESEJA REALMENTE EXCLUIR O FUNCIONÁRIO?',
-    mtConfirmation, [mbYes, mbNo], 0);
-  if resposta_excluir = mrYes then
+  if  MessageDlg('DESEJA REALMENTE EXCLUIR O FUNCIONÁRIO?',
+    mtConfirmation, [mbYes, mbNo], 0) = mrYes then
   begin
     fdq_funcionarios.Delete;
 

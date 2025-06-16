@@ -8017,7 +8017,7 @@ object cadastro_funcionario: Tcadastro_funcionario
       end
       object lbl_cep: TLabel
         Left = 396
-        Top = 366
+        Top = 352
         Width = 21
         Height = 15
         Caption = 'CEP'
@@ -8085,7 +8085,7 @@ object cadastro_funcionario: Tcadastro_funcionario
         Height = 33
         Cursor = crHandPoint
         Caption = 'CANCELAR'
-        TabOrder = 11
+        TabOrder = 12
         OnClick = btn_cancelarClick
       end
       object btn_salvar: TButton
@@ -8095,7 +8095,7 @@ object cadastro_funcionario: Tcadastro_funcionario
         Height = 33
         Cursor = crHandPoint
         Caption = 'SALVAR'
-        TabOrder = 12
+        TabOrder = 11
         OnClick = btn_salvarClick
       end
       object dbcbx_cargo: TDBComboBox
@@ -8119,22 +8119,21 @@ object cadastro_funcionario: Tcadastro_funcionario
       object dbedt_bairro: TDBEdit
         Left = 96
         Top = 349
-        Width = 106
+        Width = 257
         Height = 23
         CharCase = ecUpperCase
         DataField = 'FUN_BAIRRO'
         DataSource = dts_funcionario
-        TabOrder = 8
+        TabOrder = 9
       end
       object dbedt_cep: TDBEdit
         Left = 423
-        Top = 363
+        Top = 349
         Width = 74
         Height = 23
         CharCase = ecUpperCase
         DataField = 'FUN_CEP'
         DataSource = dts_funcionario
-        MaxLength = 9
         TabOrder = 10
       end
       object dbedt_cidade: TDBEdit
@@ -8145,7 +8144,7 @@ object cadastro_funcionario: Tcadastro_funcionario
         CharCase = ecUpperCase
         DataField = 'FUN_CIDADE'
         DataSource = dts_funcionario
-        TabOrder = 9
+        TabOrder = 8
       end
       object dbedt_codigo: TDBEdit
         Left = 96
@@ -8178,7 +8177,6 @@ object cadastro_funcionario: Tcadastro_funcionario
         CharCase = ecUpperCase
         DataField = 'FUN_DATANASCIMENTO'
         DataSource = dts_funcionario
-        MaxLength = 10
         TabOrder = 1
       end
       object dbedt_nome: TDBEdit
@@ -8228,7 +8226,6 @@ object cadastro_funcionario: Tcadastro_funcionario
     object tab_financeiro: TTabSheet
       Caption = 'RECEBIMENTOS'
       ImageIndex = 1
-      TabVisible = False
       object lbl_descricao: TLabel
         Left = 43
         Top = 35
@@ -8298,7 +8295,7 @@ object cadastro_funcionario: Tcadastro_funcionario
           end>
       end
       object btn_incluir: TButton
-        Left = 112
+        Left = 181
         Top = 183
         Width = 75
         Height = 25
@@ -8308,7 +8305,7 @@ object cadastro_funcionario: Tcadastro_funcionario
         OnClick = btn_incluirClick
       end
       object btn_alterar: TButton
-        Left = 240
+        Left = 293
         Top = 183
         Width = 75
         Height = 25
@@ -8318,7 +8315,7 @@ object cadastro_funcionario: Tcadastro_funcionario
         OnClick = btn_alterarClick
       end
       object btn_excluir: TButton
-        Left = 374
+        Left = 406
         Top = 183
         Width = 75
         Height = 25
@@ -8371,6 +8368,15 @@ object cadastro_funcionario: Tcadastro_funcionario
         MaxLength = 8
         TabOrder = 1
       end
+      object btn_consultar: TButton
+        Left = 70
+        Top = 183
+        Width = 74
+        Height = 25
+        Caption = 'CONSULTAR'
+        TabOrder = 8
+        OnClick = btn_consultarClick
+      end
     end
   end
   object dts_funcionario: TDataSource
@@ -8390,8 +8396,8 @@ object cadastro_funcionario: Tcadastro_funcionario
     Connection = menu_funcionarios.ctn_conexao
     SQL.Strings = (
       'SELECT * FROM PROJETO_CRUD..RECEBIMENTO')
-    Left = 187
-    Top = 352
+    Left = 171
+    Top = 424
     object tbl_filhaRecebimentoREC_ID: TFDAutoIncField
       FieldName = 'REC_ID'
       Origin = 'REC_ID'
@@ -8432,8 +8438,8 @@ object cadastro_funcionario: Tcadastro_funcionario
     Connection = menu_funcionarios.ctn_conexao
     SQL.Strings = (
       'SELECT * FROM PROJETO_CRUD..FUNCIONARIOS')
-    Left = 385
-    Top = 352
+    Left = 329
+    Top = 432
     object tlb_maeFuncionarioFUN_ID: TFDAutoIncField
       FieldName = 'FUN_ID'
       Origin = 'FUN_ID'
@@ -8492,12 +8498,12 @@ object cadastro_funcionario: Tcadastro_funcionario
   end
   object dts_tblmae: TDataSource
     DataSet = tlb_maeFuncionario
-    Left = 388
-    Top = 434
+    Left = 460
+    Top = 426
   end
   object dts_tblfilha: TDataSource
     DataSet = tbl_filhaRecebimento
-    Left = 188
-    Top = 434
+    Left = 100
+    Top = 426
   end
 end
