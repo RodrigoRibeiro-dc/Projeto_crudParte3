@@ -8025,6 +8025,7 @@ object Altera_rec: TAltera_rec
     Width = 313
     Height = 23
     CharCase = ecUpperCase
+    MaxLength = 45
     TabOrder = 0
   end
   object btn_confirma_alt_rec: TButton
@@ -8063,6 +8064,7 @@ object Altera_rec: TAltera_rec
     Width = 121
     Height = 23
     Mode = nbmCurrency
+    MaxLength = 8
     TabOrder = 1
   end
   object cbx_tipo: TComboBox
@@ -8072,6 +8074,7 @@ object Altera_rec: TAltera_rec
     Height = 23
     Cursor = crHandPoint
     CharCase = ecUpperCase
+    MaxLength = 25
     TabOrder = 2
     StyleName = 'Windows'
     Items.Strings = (

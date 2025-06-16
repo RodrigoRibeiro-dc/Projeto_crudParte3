@@ -8002,8 +8002,8 @@ object cadastro_funcionario: Tcadastro_funcionario
       Cursor = crArrow
       Caption = 'DADOS PESSOAIS'
       object lbl_bairro: TLabel
-        Left = 376
-        Top = 296
+        Left = 49
+        Top = 352
         Width = 41
         Height = 15
         Caption = 'BAIRRO'
@@ -8023,8 +8023,8 @@ object cadastro_funcionario: Tcadastro_funcionario
         Caption = 'CEP'
       end
       object lbl_cidade: TLabel
-        Left = 49
-        Top = 366
+        Left = 377
+        Top = 296
         Width = 41
         Height = 15
         Caption = 'CIDADE'
@@ -8079,8 +8079,8 @@ object cadastro_funcionario: Tcadastro_funcionario
         Caption = 'S'#193'LARIO'
       end
       object btn_cancelar: TButton
-        Left = 96
-        Top = 440
+        Left = 361
+        Top = 432
         Width = 81
         Height = 33
         Cursor = crHandPoint
@@ -8089,8 +8089,8 @@ object cadastro_funcionario: Tcadastro_funcionario
         OnClick = btn_cancelarClick
       end
       object btn_salvar: TButton
-        Left = 376
-        Top = 440
+        Left = 112
+        Top = 432
         Width = 81
         Height = 33
         Cursor = crHandPoint
@@ -8117,8 +8117,8 @@ object cadastro_funcionario: Tcadastro_funcionario
         TabOrder = 3
       end
       object dbedt_bairro: TDBEdit
-        Left = 423
-        Top = 293
+        Left = 96
+        Top = 349
         Width = 106
         Height = 23
         CharCase = ecUpperCase
@@ -8138,9 +8138,9 @@ object cadastro_funcionario: Tcadastro_funcionario
         TabOrder = 10
       end
       object dbedt_cidade: TDBEdit
-        Left = 96
-        Top = 363
-        Width = 257
+        Left = 424
+        Top = 293
+        Width = 112
         Height = 23
         CharCase = ecUpperCase
         DataField = 'FUN_CIDADE'
@@ -8184,7 +8184,7 @@ object cadastro_funcionario: Tcadastro_funcionario
       object dbedt_nome: TDBEdit
         Left = 96
         Top = 103
-        Width = 433
+        Width = 440
         Height = 23
         CharCase = ecUpperCase
         DataField = 'FUN_NOME'
@@ -8215,7 +8215,7 @@ object cadastro_funcionario: Tcadastro_funcionario
       object dbedt_salario: TDBEdit
         Left = 424
         Top = 167
-        Width = 105
+        Width = 112
         Height = 23
         Align = alCustom
         CharCase = ecUpperCase
@@ -8226,7 +8226,7 @@ object cadastro_funcionario: Tcadastro_funcionario
       end
     end
     object tab_financeiro: TTabSheet
-      Caption = 'FINANCEIRO'
+      Caption = 'RECEBIMENTOS'
       ImageIndex = 1
       TabVisible = False
       object lbl_descricao: TLabel
