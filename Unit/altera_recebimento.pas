@@ -4,9 +4,8 @@ interface
 
 uses
   Winapi.Windows, Winapi.Messages, System.SysUtils, System.Variants,
-  System.Classes, Vcl.Graphics,
-  Vcl.Controls, Vcl.Forms, Vcl.Dialogs, Vcl.StdCtrls, crudRecebimento,
-  Recebimento, Vcl.ComCtrls, Vcl.Mask, Vcl.NumberBox;
+  System.Classes, Vcl.Graphics, Vcl.Controls, Vcl.Forms, Vcl.Dialogs,
+  Vcl.StdCtrls, Recebimento, Vcl.ComCtrls, Vcl.Mask, Vcl.NumberBox;
 
 type
   TAltera_rec = class(TForm)
@@ -36,7 +35,7 @@ var
 implementation
 
 uses
-  campo_funcionario, crud_funcionario, validaCamposRecebimento;
+  campo_funcionario, crud_funcionario;
 
 {$R *.dfm}
 
@@ -47,10 +46,8 @@ end;
 
 procedure TAltera_rec.btn_confirma_alt_recClick(Sender: TObject);
 var
-  crud_rec: TcrudRecebimento;
   Recebimento: TRecebimentos;
 begin
-  crud_rec := TcrudRecebimento.Create;
   Recebimento := TRecebimentos.Create;
 
   try
@@ -65,7 +62,7 @@ begin
       else
         Recebimento.descricao := edt_descricao.text;
 
-      if nbx_valor.Value < 1 then
+      if nbx_valor.Value <= 0 then
       begin
         MessageDlg('INFORME UM VALOR MAIOR QUE 0,00.', mtWarning, [mbOk], 0);
         nbx_valor.SetFocus;
@@ -89,13 +86,12 @@ begin
 
       Recebimento.data := Altera_rec.dtp_data.Date;
 
-      crud_rec.Alterar(Recebimento);
-      crud_rec.ConsultaGrid(Recebimento);
+      Recebimento.Alterar(Recebimento);
+      Recebimento.ConsultaGrid(Recebimento);
       Close;
     end;
 
   finally
-    crud_rec.Free;
     Recebimento.Free;
   end;
 end;

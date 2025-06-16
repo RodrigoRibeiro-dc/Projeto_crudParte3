@@ -147,8 +147,8 @@ end;
 
 procedure Tmenu_funcionarios.img_excluirClick(Sender: TObject);
 begin
-  if  MessageDlg('DESEJA REALMENTE EXCLUIR O FUNCIONÁRIO?',
-    mtConfirmation, [mbYes, mbNo], 0) = mrYes then
+  if MessageDlg('DESEJA REALMENTE EXCLUIR O FUNCIONÁRIO?', mtConfirmation,
+    [mbYes, mbNo], 0) = mrYes then
   begin
     fdq_funcionarios.Delete;
 

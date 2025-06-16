@@ -7,9 +7,7 @@ uses
   crud_funcionario in '..\Unit\crud_funcionario.pas' {menu_funcionarios},
   campo_funcionario in '..\Unit\campo_funcionario.pas' {cadastro_funcionario},
   altera_recebimento in '..\Unit\altera_recebimento.pas' {Altera_rec},
-  validaCamposRecebimento in '..\Unit\validaCamposRecebimento.pas',
-  Recebimento in '..\Unit\Recebimento.pas',
-  crudRecebimento in '..\Unit\crudRecebimento.pas';
+  Recebimento in '..\Unit\Recebimento.pas';
 
 {$R *.res}
 

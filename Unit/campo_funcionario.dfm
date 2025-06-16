@@ -8295,7 +8295,7 @@ object cadastro_funcionario: Tcadastro_funcionario
           end>
       end
       object btn_incluir: TButton
-        Left = 181
+        Left = 117
         Top = 183
         Width = 75
         Height = 25
@@ -8305,7 +8305,7 @@ object cadastro_funcionario: Tcadastro_funcionario
         OnClick = btn_incluirClick
       end
       object btn_alterar: TButton
-        Left = 293
+        Left = 229
         Top = 183
         Width = 75
         Height = 25
@@ -8315,7 +8315,7 @@ object cadastro_funcionario: Tcadastro_funcionario
         OnClick = btn_alterarClick
       end
       object btn_excluir: TButton
-        Left = 406
+        Left = 342
         Top = 183
         Width = 75
         Height = 25
@@ -8367,15 +8367,6 @@ object cadastro_funcionario: Tcadastro_funcionario
         Mode = nbmCurrency
         MaxLength = 8
         TabOrder = 1
-      end
-      object btn_consultar: TButton
-        Left = 70
-        Top = 183
-        Width = 74
-        Height = 25
-        Caption = 'CONSULTAR'
-        TabOrder = 8
-        OnClick = btn_consultarClick
       end
     end
   end

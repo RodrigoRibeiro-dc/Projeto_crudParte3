@@ -7,7 +7,7 @@ uses
   System.Classes, Vcl.Graphics,
   Vcl.Controls, Vcl.Forms, Vcl.Dialogs, Vcl.StdCtrls, Vcl.Mask, Vcl.ExtCtrls,
   Vcl.DBCtrls, crud_funcionario, Data.DB, Vcl.Menus, Vcl.ComCtrls, Vcl.Grids,
-  Vcl.DBGrids, Recebimento, crudRecebimento, altera_recebimento,
+  Vcl.DBGrids, Recebimento, altera_recebimento,
   FireDAC.Stan.Intf, FireDAC.Stan.Option, FireDAC.Stan.Error, FireDAC.UI.Intf,
   FireDAC.Phys.Intf, FireDAC.Stan.Def, FireDAC.Stan.Pool, FireDAC.Stan.Async,
   FireDAC.Phys, FireDAC.Phys.MSSQL, FireDAC.Phys.MSSQLDef, FireDAC.VCLUI.Wait,
@@ -78,7 +78,6 @@ type
     tbl_filhaRecebimentoREC_DATA: TSQLTimeStampField;
     tbl_filhaRecebimentoREC_TIPO: TWideStringField;
     nbx_valor: TNumberBox;
-    btn_consultar: TButton;
     procedure btn_salvarClick(Sender: TObject);
     procedure btn_cancelarClick(Sender: TObject);
     procedure FormActivate(Sender: TObject);
@@ -90,6 +89,7 @@ type
     procedure btn_excluirClick(Sender: TObject);
     procedure btn_alterarClick(Sender: TObject);
     procedure btn_consultarClick(Sender: TObject);
+    procedure ValidaCampos_recebimento;
   private
   public
     { Public declarations }
@@ -99,9 +99,6 @@ var
   cadastro_funcionario: Tcadastro_funcionario;
 
 implementation
-
-uses
-  validaCamposRecebimento;
 
 {$R *.dfm}
 
@@ -169,15 +166,12 @@ end;
 
 procedure Tcadastro_funcionario.btn_consultarClick(Sender: TObject);
 var
-Crud_rec: TcrudRecebimento;
-Recebimento: TRecebimentos;
+  Recebimento: TRecebimentos;
 begin
-Crud_rec := TcrudRecebimento.Create;
-Recebimento := TRecebimentos.Create;
+  Recebimento := TRecebimentos.Create;
   try
-    Crud_rec.ConsultaGrid(recebimento);
+    Recebimento.ConsultaGrid(Recebimento);
   finally
-    Crud_rec.Free;
     Recebimento.Free;
   end;
 end;
@@ -185,48 +179,39 @@ end;
 procedure Tcadastro_funcionario.btn_excluirClick(Sender: TObject);
 var
   Recebimento: TRecebimentos;
-  crud_Rec: TcrudRecebimento;
 begin
   Recebimento := TRecebimentos.Create;
-  crud_rec := TcrudRecebimento.Create;
   try
     if not dts_recebimento.DataSet.IsEmpty then
     begin
-      crud_Rec.Excluir(Recebimento);
-      crud_Rec.ConsultaGrid(Recebimento);
+      Recebimento.Excluir(Recebimento);
+      Recebimento.ConsultaGrid(Recebimento);
     end;
   finally
     Recebimento.Free;
-    crud_Rec.Free;
   end;
 end;
 
 procedure Tcadastro_funcionario.btn_incluirClick(Sender: TObject);
 var
   Recebimento: TRecebimentos;
-  Crud_Rec: TcrudRecebimento;
-  Validacao: TvalidacamposRec;
 begin
   Recebimento := TRecebimentos.Create;
-  Crud_Rec := TcrudRecebimento.Create;
-  Validacao := TvalidacamposRec.Create;
   try
     Recebimento.descricao := edt_descricao.Text;
     Recebimento.valor := nbx_valor.Value;
     Recebimento.Data := dtp_data.Date;
     Recebimento.tipo := cbx_tipo.Text;
 
-    Validacao.validacampos;
-    Crud_Rec.Inserir(Recebimento);
-    Crud_Rec.ConsultaGrid(Recebimento);
+    ValidaCampos_recebimento;
+    Recebimento.Inserir(Recebimento);
+    Recebimento.ConsultaGrid(Recebimento);
 
     edt_descricao.Clear;
     nbx_valor.Clear;
     dtp_data.Date := Date;
   finally
     Recebimento.Free;
-    Crud_Rec.Free;
-    Validacao.Free;
   end;
 
 end;
@@ -281,12 +266,19 @@ begin
 end;
 
 procedure Tcadastro_funcionario.FormCreate(Sender: TObject);
+var
+  Recebimento: TRecebimentos;
 begin
-  if dts_funcionario.State = dsInsert then
-  begin
-    tab_financeiro.TabVisible := False;
+  Recebimento := TRecebimentos.Create;
+  try
+    if dts_funcionario.State = dsInsert then
+      tab_financeiro.TabVisible := False;
+
+    dtp_data.Date := Date;
+    Recebimento.ConsultaGrid(Recebimento);
+  finally
+    Recebimento.Free;
   end;
-  dtp_data.Date := Date;
 end;
 
 procedure Tcadastro_funcionario.FormKeyPress(Sender: TObject; var Key: Char);
@@ -298,6 +290,28 @@ begin
   begin
     Key := #0;
     Perform(WM_NEXTDLGCTL, 0, 0);
+  end;
+end;
+
+procedure Tcadastro_funcionario.ValidaCampos_recebimento;
+begin
+  if Trim(cadastro_funcionario.edt_descricao.Text) = '' then
+  begin
+    MessageDlg('DESCRIÇÃO NÃO PODE FICAR VAZIO.', mtWarning, [mbOk], 0);
+    cadastro_funcionario.edt_descricao.SetFocus;
+    abort;
+  end;
+  if cadastro_funcionario.nbx_valor.Value <= 0 then
+  begin
+    MessageDlg('VALOR NÃO PODE SER 0,00.', mtWarning, [mbOk], 0);
+    cadastro_funcionario.nbx_valor.SetFocus;
+    abort;
+  end;
+  if Trim(cadastro_funcionario.cbx_tipo.Text) = '' then
+  begin
+    MessageDlg('TIPO NÃO PODE FICAR VAZIO.', mtWarning, [mbOk], 0);
+    cadastro_funcionario.cbx_tipo.SetFocus;
+    abort;
   end;
 end;
 
