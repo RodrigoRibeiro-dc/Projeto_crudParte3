@@ -59,6 +59,10 @@ type
     fdq_recebimentoREC_VALOR: TBCDField;
     fdq_recebimentoREC_DATA: TSQLTimeStampField;
     fdq_recebimentoREC_TIPO: TWideStringField;
+    fdq_recebimentoQTDE: TIntegerField;
+    fdq_recebimentoSomaSalario: TAggregateField;
+    fdq_recebimentoSomaAcerto: TAggregateField;
+    fdq_recebimentoSomaVale: TAggregateField;
     procedure img_excluirClick(Sender: TObject);
     procedure rdg_tipoconsultaClick(Sender: TObject);
     procedure sbtn_consultarClick(Sender: TObject);
@@ -67,6 +71,7 @@ type
     procedure img_alterarClick(Sender: TObject);
     procedure calcula_total_grid;
     procedure FormCreate(Sender: TObject);
+    procedure fdq_recebimentoCalcFields(DataSet: TDataSet);
   private
 
   public
@@ -284,6 +289,11 @@ end;
 procedure Tmenu_funcionarios.ExecSQL;
 begin
   fdq_recebimento.ExecSQL;
+end;
+
+procedure Tmenu_funcionarios.fdq_recebimentoCalcFields(DataSet: TDataSet);
+begin
+fdq_recebimento.FieldByName('QTDE').AsInteger := fdq_recebimento.RecordCount;
 end;
 
 procedure Tmenu_funcionarios.SQLOpen;

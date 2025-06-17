@@ -78,6 +78,11 @@ type
     tbl_filhaRecebimentoREC_DATA: TSQLTimeStampField;
     tbl_filhaRecebimentoREC_TIPO: TWideStringField;
     nbx_valor: TNumberBox;
+    pnl_calculos: TPanel;
+    lbl_totalregistro: TLabel;
+    lbl_somaVale: TLabel;
+    lbl_somaSalario: TLabel;
+    lbl_somaAcerto: TLabel;
     procedure btn_salvarClick(Sender: TObject);
     procedure btn_cancelarClick(Sender: TObject);
     procedure FormActivate(Sender: TObject);
@@ -90,6 +95,7 @@ type
     procedure btn_alterarClick(Sender: TObject);
     procedure btn_consultarClick(Sender: TObject);
     procedure ValidaCampos_recebimento;
+    procedure Totais_recebimentos;
   private
   public
     { Public declarations }
@@ -186,6 +192,7 @@ begin
     begin
       Recebimento.Excluir(Recebimento);
       Recebimento.ConsultaGrid(Recebimento);
+      Totais_recebimentos;
     end;
   finally
     Recebimento.Free;
@@ -206,6 +213,7 @@ begin
     ValidaCampos_recebimento;
     Recebimento.Inserir(Recebimento);
     Recebimento.ConsultaGrid(Recebimento);
+    Totais_recebimentos;
 
     edt_descricao.Clear;
     nbx_valor.Clear;
@@ -256,6 +264,8 @@ procedure Tcadastro_funcionario.FormActivate(Sender: TObject);
 begin
   pgc_itens.ActivePage := tab_dadospessoais;
   dbedt_datanascimento.SetFocus;
+  Totais_recebimentos;
+
 end;
 
 procedure Tcadastro_funcionario.FormClose(Sender: TObject;
@@ -291,6 +301,24 @@ begin
     Key := #0;
     Perform(WM_NEXTDLGCTL, 0, 0);
   end;
+end;
+
+procedure Tcadastro_funcionario.Totais_recebimentos;
+begin
+  lbl_totalregistro.Caption := 'TOTAL : ' +
+    IntToStr(menu_funcionarios.fdq_recebimentoQTDE.AsInteger);
+
+  lbl_somaVale.Caption := 'TOTAL VALE R$ : ' +
+    FormatFloat('#,0.00',
+    StrToFloatDef(menu_funcionarios.fdq_recebimentoSomaVale.AsString, 0));
+
+  lbl_somaSalario.Caption := 'TOTAL SALÁRIO R$ : ' +
+    FormatFloat('#,0.00',
+    StrToFloatDef(menu_funcionarios.fdq_recebimentoSomaSalario.AsString, 0));
+
+  lbl_somaAcerto.Caption := 'TOTAL ACERTO R$ : ' +
+    FormatFloat('#,0.00',
+    StrToFloatDef(menu_funcionarios.fdq_recebimentoSomaAcerto.AsString, 0));
 end;
 
 procedure Tcadastro_funcionario.ValidaCampos_recebimento;

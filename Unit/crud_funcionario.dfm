@@ -8515,6 +8515,8 @@ object menu_funcionarios: Tmenu_funcionarios
     Top = 366
   end
   object fdq_recebimento: TFDQuery
+    OnCalcFields = fdq_recebimentoCalcFields
+    AggregatesActive = True
     Connection = ctn_conexao
     SQL.Strings = (
       'SELECT *FROM RECEBIMENTO')
@@ -8549,6 +8551,32 @@ object menu_funcionarios: Tmenu_funcionarios
       Origin = 'REC_TIPO'
       Required = True
       Size = 25
+    end
+    object fdq_recebimentoQTDE: TIntegerField
+      DefaultExpression = 'COUNT(*)'
+      FieldKind = fkCalculated
+      FieldName = 'QTDE'
+      Calculated = True
+    end
+    object fdq_recebimentoSomaSalario: TAggregateField
+      FieldName = 'SomaSalario'
+      Active = True
+      currency = True
+      DisplayName = ''
+      DisplayFormat = '#,0.00'
+      Expression = 'SUM(IIF(REC_TIPO = '#39'SAL'#193'RIO'#39', REC_VALOR, 0))'
+    end
+    object fdq_recebimentoSomaAcerto: TAggregateField
+      FieldName = 'SomaAcerto'
+      Active = True
+      DisplayName = ''
+      Expression = 'SUM(IIF(REC_TIPO = '#39'ACERTO'#39', REC_VALOR, 0))'
+    end
+    object fdq_recebimentoSomaVale: TAggregateField
+      FieldName = 'SomaVale'
+      Active = True
+      DisplayName = ''
+      Expression = 'SUM(IIF(REC_TIPO = '#39'VALE'#39', REC_VALOR, 0))'
     end
   end
 end

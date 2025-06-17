@@ -89,6 +89,7 @@ begin
       Recebimento.Alterar(Recebimento);
       Recebimento.ConsultaGrid(Recebimento);
       Close;
+      cadastro_funcionario.Totais_recebimentos;
     end;
 
   finally

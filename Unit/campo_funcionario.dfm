@@ -8255,10 +8255,10 @@ object cadastro_funcionario: Tcadastro_funcionario
         Caption = 'TIPO'
       end
       object dbg_recebimento: TDBGrid
-        Left = -5
-        Top = 280
+        Left = 0
+        Top = 214
         Width = 556
-        Height = 226
+        Height = 187
         Cursor = crHandPoint
         DataSource = dts_recebimento
         Options = [dgTitles, dgIndicator, dgColumnResize, dgColLines, dgRowLines, dgTabs, dgRowSelect, dgConfirmDelete, dgCancelOnExit, dgTitleClick, dgTitleHotTrack]
@@ -8368,6 +8368,65 @@ object cadastro_funcionario: Tcadastro_funcionario
         MaxLength = 8
         TabOrder = 1
       end
+      object pnl_calculos: TPanel
+        Left = 0
+        Top = 400
+        Width = 553
+        Height = 129
+        TabOrder = 8
+        object lbl_totalregistro: TLabel
+          Left = 43
+          Top = 24
+          Width = 92
+          Height = 15
+          Caption = 'lbl_totalregistro'
+          Font.Charset = DEFAULT_CHARSET
+          Font.Color = clWindowText
+          Font.Height = -12
+          Font.Name = 'Segoe UI'
+          Font.Style = [fsBold, fsItalic, fsUnderline]
+          ParentFont = False
+        end
+        object lbl_somaVale: TLabel
+          Left = 43
+          Top = 64
+          Width = 75
+          Height = 15
+          Caption = 'lbl_somaVale'
+          Font.Charset = DEFAULT_CHARSET
+          Font.Color = clWindowText
+          Font.Height = -12
+          Font.Name = 'Segoe UI'
+          Font.Style = [fsBold, fsItalic, fsUnderline]
+          ParentFont = False
+        end
+        object lbl_somaSalario: TLabel
+          Left = 367
+          Top = 24
+          Width = 90
+          Height = 15
+          Caption = 'lbl_somaSalario'
+          Font.Charset = DEFAULT_CHARSET
+          Font.Color = clWindowText
+          Font.Height = -12
+          Font.Name = 'Segoe UI'
+          Font.Style = [fsBold, fsItalic, fsUnderline]
+          ParentFont = False
+        end
+        object lbl_somaAcerto: TLabel
+          Left = 367
+          Top = 64
+          Width = 87
+          Height = 15
+          Caption = 'lbl_somaAcerto'
+          Font.Charset = DEFAULT_CHARSET
+          Font.Color = clWindowText
+          Font.Height = -12
+          Font.Name = 'Segoe UI'
+          Font.Style = [fsBold, fsItalic, fsUnderline]
+          ParentFont = False
+        end
+      end
     end
   end
   object dts_funcionario: TDataSource
@@ -8387,8 +8446,8 @@ object cadastro_funcionario: Tcadastro_funcionario
     Connection = menu_funcionarios.ctn_conexao
     SQL.Strings = (
       'SELECT * FROM PROJETO_CRUD..RECEBIMENTO')
-    Left = 171
-    Top = 424
+    Left = 155
+    Top = 304
     object tbl_filhaRecebimentoREC_ID: TFDAutoIncField
       FieldName = 'REC_ID'
       Origin = 'REC_ID'
@@ -8429,8 +8488,8 @@ object cadastro_funcionario: Tcadastro_funcionario
     Connection = menu_funcionarios.ctn_conexao
     SQL.Strings = (
       'SELECT * FROM PROJETO_CRUD..FUNCIONARIOS')
-    Left = 329
-    Top = 432
+    Left = 313
+    Top = 312
     object tlb_maeFuncionarioFUN_ID: TFDAutoIncField
       FieldName = 'FUN_ID'
       Origin = 'FUN_ID'
@@ -8489,12 +8548,12 @@ object cadastro_funcionario: Tcadastro_funcionario
   end
   object dts_tblmae: TDataSource
     DataSet = tlb_maeFuncionario
-    Left = 460
-    Top = 426
+    Left = 444
+    Top = 306
   end
   object dts_tblfilha: TDataSource
     DataSet = tbl_filhaRecebimento
-    Left = 100
-    Top = 426
+    Left = 84
+    Top = 306
   end
 end
