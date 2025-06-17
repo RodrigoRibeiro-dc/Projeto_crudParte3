@@ -192,7 +192,7 @@ begin
     begin
       Recebimento.Excluir(Recebimento);
       Recebimento.ConsultaGrid(Recebimento);
-      Totais_recebimentos;
+      Totais_recebimentos();
     end;
   finally
     Recebimento.Free;
@@ -210,10 +210,10 @@ begin
     Recebimento.Data := dtp_data.Date;
     Recebimento.tipo := cbx_tipo.Text;
 
-    ValidaCampos_recebimento;
+    ValidaCampos_recebimento();
     Recebimento.Inserir(Recebimento);
     Recebimento.ConsultaGrid(Recebimento);
-    Totais_recebimentos;
+    Totais_recebimentos();
 
     edt_descricao.Clear;
     nbx_valor.Clear;
@@ -264,7 +264,7 @@ procedure Tcadastro_funcionario.FormActivate(Sender: TObject);
 begin
   pgc_itens.ActivePage := tab_dadospessoais;
   dbedt_datanascimento.SetFocus;
-  Totais_recebimentos;
+  Totais_recebimentos();
 
 end;
 

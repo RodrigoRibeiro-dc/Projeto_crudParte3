@@ -95,10 +95,10 @@ uses campo_funcionario;
 procedure Tmenu_funcionarios.calcula_total_grid;
 var
   total_salario: currency;
-  posicao_cursor: Integer;
-  BookMark: TBookmark;
+  posicao_cursor: TBookmark;
 begin
-  posicao_cursor := fdq_funcionarios.RecNo;
+  posicao_cursor := fdq_funcionarios.GetBookmark;
+  //posicao_cursor := fdq_funcionarios.RecNo;
   fdq_funcionarios.DisableControls;
   lbl_totalfuncionario.Caption := IntToStr(fdq_funcionarios.RecordCount);
 
@@ -111,9 +111,11 @@ begin
       .AsCurrency;
     fdq_funcionarios.Next;
   end;
-  fdq_funcionarios.RecNo := posicao_cursor;
+  //fdq_funcionarios.RecNo := posicao_cursor;
+  fdq_funcionarios.GotoBookmark(posicao_cursor);
   fdq_funcionarios.EnableControls;
   lbl_totalsalario.Caption := total_salario.ToString;
+  fdq_funcionarios.FreeBookmark(posicao_cursor);
 end;
 
 procedure Tmenu_funcionarios.FormActivate(Sender: TObject);
@@ -168,7 +170,7 @@ begin
 
     MessageDlg('FUNCIONÁRIO EXCLUÍDO COM SUCESSO.', TMsgDlgType.mtConfirmation,
       [TMsgDlgBtn.mbOK], 0);
-    calcula_total_grid;
+    calcula_total_grid();
   end;
 end;
 
@@ -228,7 +230,7 @@ begin
         fdq_funcionarios.ParamByName('NOME').AsString :=
           '%' + edt_consulta.Text + '%';
         fdq_funcionarios.Open;
-        calcula_total_grid;
+        calcula_total_grid();
       end;
 
     1:
@@ -250,7 +252,7 @@ begin
             dtp_inicial.Date;
           fdq_funcionarios.ParamByName('DATA_FINAL').AsDate := dtp_final.Date;
           fdq_funcionarios.Open;
-          calcula_total_grid;
+          calcula_total_grid();
         end;
       end;
 
@@ -269,7 +271,7 @@ begin
           fdq_funcionarios.Close;
           fdq_funcionarios.SQL.Text := 'SELECT *FROM FUNCIONARIOS';
           fdq_funcionarios.Open;
-          calcula_total_grid;
+          calcula_total_grid();
         end
         else
         begin
@@ -278,7 +280,7 @@ begin
             'SELECT *FROM FUNCIONARIOS WHERE FUN_CARGO = :CARGO';
           fdq_funcionarios.ParamByName('CARGO').AsString := cbx_consulta.Text;
           fdq_funcionarios.Open;
-          calcula_total_grid;
+          calcula_total_grid();
         end;
       end
   end;

@@ -59,6 +59,10 @@ type
     fdq_recebimentoREC_VALOR: TBCDField;
     fdq_recebimentoREC_DATA: TSQLTimeStampField;
     fdq_recebimentoREC_TIPO: TWideStringField;
+    fdq_recebimentoQTDE: TIntegerField;
+    fdq_recebimentoSomaSalario: TAggregateField;
+    fdq_recebimentoSomaAcerto: TAggregateField;
+    fdq_recebimentoSomaVale: TAggregateField;
     procedure img_excluirClick(Sender: TObject);
     procedure rdg_tipoconsultaClick(Sender: TObject);
     procedure sbtn_consultarClick(Sender: TObject);
@@ -67,6 +71,8 @@ type
     procedure img_alterarClick(Sender: TObject);
     procedure calcula_total_grid;
     procedure FormCreate(Sender: TObject);
+    procedure fdq_recebimentoCalcFields(DataSet: TDataSet);
+    procedure FormActivate(Sender: TObject);
   private
 
   public
@@ -89,7 +95,11 @@ uses campo_funcionario;
 procedure Tmenu_funcionarios.calcula_total_grid;
 var
   total_salario: currency;
+  posicao_cursor: Integer;
+  BookMark: TBookmark;
 begin
+  posicao_cursor := fdq_funcionarios.RecNo;
+  fdq_funcionarios.DisableControls;
   lbl_totalfuncionario.Caption := IntToStr(fdq_funcionarios.RecordCount);
 
   total_salario := 0.0;
@@ -101,8 +111,14 @@ begin
       .AsCurrency;
     fdq_funcionarios.Next;
   end;
-
+  fdq_funcionarios.RecNo := posicao_cursor;
+  fdq_funcionarios.EnableControls;
   lbl_totalsalario.Caption := total_salario.ToString;
+end;
+
+procedure Tmenu_funcionarios.FormActivate(Sender: TObject);
+begin
+calcula_total_grid();
 end;
 
 procedure Tmenu_funcionarios.FormCreate(Sender: TObject);
@@ -111,8 +127,6 @@ begin
   ctn_conexao.Params.Password := 'aram98';
   ctn_conexao.Params.Database := 'PROJETO_CRUD';
   fdq_funcionarios.Open;
-
-  calcula_total_grid;
 end;
 
 procedure Tmenu_funcionarios.FormKeyDown(Sender: TObject; var Key: Word;
@@ -147,8 +161,8 @@ end;
 
 procedure Tmenu_funcionarios.img_excluirClick(Sender: TObject);
 begin
-  if  MessageDlg('DESEJA REALMENTE EXCLUIR O FUNCIONÁRIO?',
-    mtConfirmation, [mbYes, mbNo], 0) = mrYes then
+  if MessageDlg('DESEJA REALMENTE EXCLUIR O FUNCIONÁRIO?', mtConfirmation,
+    [mbYes, mbNo], 0) = mrYes then
   begin
     fdq_funcionarios.Delete;
 
@@ -284,6 +298,11 @@ end;
 procedure Tmenu_funcionarios.ExecSQL;
 begin
   fdq_recebimento.ExecSQL;
+end;
+
+procedure Tmenu_funcionarios.fdq_recebimentoCalcFields(DataSet: TDataSet);
+begin
+fdq_recebimento.FieldByName('QTDE').AsInteger := fdq_recebimento.RecordCount;
 end;
 
 procedure Tmenu_funcionarios.SQLOpen;
