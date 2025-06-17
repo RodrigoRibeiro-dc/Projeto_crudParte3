@@ -72,6 +72,7 @@ type
     procedure calcula_total_grid;
     procedure FormCreate(Sender: TObject);
     procedure fdq_recebimentoCalcFields(DataSet: TDataSet);
+    procedure FormActivate(Sender: TObject);
   private
 
   public
@@ -94,7 +95,11 @@ uses campo_funcionario;
 procedure Tmenu_funcionarios.calcula_total_grid;
 var
   total_salario: currency;
+  posicao_cursor: Integer;
+  BookMark: TBookmark;
 begin
+  posicao_cursor := fdq_funcionarios.RecNo;
+  fdq_funcionarios.DisableControls;
   lbl_totalfuncionario.Caption := IntToStr(fdq_funcionarios.RecordCount);
 
   total_salario := 0.0;
@@ -106,8 +111,14 @@ begin
       .AsCurrency;
     fdq_funcionarios.Next;
   end;
-
+  fdq_funcionarios.RecNo := posicao_cursor;
+  fdq_funcionarios.EnableControls;
   lbl_totalsalario.Caption := total_salario.ToString;
+end;
+
+procedure Tmenu_funcionarios.FormActivate(Sender: TObject);
+begin
+calcula_total_grid();
 end;
 
 procedure Tmenu_funcionarios.FormCreate(Sender: TObject);
@@ -116,8 +127,6 @@ begin
   ctn_conexao.Params.Password := 'aram98';
   ctn_conexao.Params.Database := 'PROJETO_CRUD';
   fdq_funcionarios.Open;
-
-  calcula_total_grid;
 end;
 
 procedure Tmenu_funcionarios.FormKeyDown(Sender: TObject; var Key: Word;

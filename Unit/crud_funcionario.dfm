@@ -7986,6 +7986,7 @@ object menu_funcionarios: Tmenu_funcionarios
     000000000000000000000000000000000000000000000000000000000000}
   KeyPreview = True
   Position = poMainFormCenter
+  OnActivate = FormActivate
   OnCreate = FormCreate
   OnKeyDown = FormKeyDown
   PixelsPerInch = 96

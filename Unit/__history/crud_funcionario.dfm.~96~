@@ -4,7 +4,7 @@ object menu_funcionarios: Tmenu_funcionarios
   Align = alCustom
   BorderIcons = [biSystemMenu, biMinimize]
   BorderStyle = bsSingle
-  Caption = 'Funcionarios'
+  Caption = 'FUNCION'#193'RIOS'
   ClientHeight = 644
   ClientWidth = 709
   Color = clBtnFace
@@ -7988,7 +7988,6 @@ object menu_funcionarios: Tmenu_funcionarios
   Position = poMainFormCenter
   OnCreate = FormCreate
   OnKeyDown = FormKeyDown
-  OnShow = FormShow
   PixelsPerInch = 96
   TextHeight = 15
   object pnl_crud: TPanel
@@ -8050,7 +8049,7 @@ object menu_funcionarios: Tmenu_funcionarios
       OnClick = img_incluirClick
     end
     object img_alterar: TImage
-      Left = 337
+      Left = 328
       Top = 35
       Width = 33
       Height = 33
@@ -8170,7 +8169,7 @@ object menu_funcionarios: Tmenu_funcionarios
       ParentFont = False
     end
     object lbl_alterar: TLabel
-      Left = 328
+      Left = 320
       Top = 74
       Width = 50
       Height = 15
@@ -8398,6 +8397,7 @@ object menu_funcionarios: Tmenu_funcionarios
       Width = 145
       Height = 23
       Cursor = crHandPoint
+      Style = csDropDownList
       TabOrder = 3
       Visible = False
       Items.Strings = (
@@ -8406,7 +8406,8 @@ object menu_funcionarios: Tmenu_funcionarios
         'SUPORTE'
         'VENDEDOR'
         'FINANCEIRO'
-        'CS')
+        'CS'
+        'TODOS')
     end
     object rdg_tipoconsulta: TRadioGroup
       Left = 10
@@ -8441,7 +8442,6 @@ object menu_funcionarios: Tmenu_funcionarios
     Top = 280
   end
   object fdq_funcionarios: TFDQuery
-    Active = True
     Connection = ctn_conexao
     SQL.Strings = (
       'SELECT *FROM FUNCIONARIOS')
@@ -8515,7 +8515,8 @@ object menu_funcionarios: Tmenu_funcionarios
     Top = 366
   end
   object fdq_recebimento: TFDQuery
-    Active = True
+    OnCalcFields = fdq_recebimentoCalcFields
+    AggregatesActive = True
     Connection = ctn_conexao
     SQL.Strings = (
       'SELECT *FROM RECEBIMENTO')
@@ -8550,6 +8551,32 @@ object menu_funcionarios: Tmenu_funcionarios
       Origin = 'REC_TIPO'
       Required = True
       Size = 25
+    end
+    object fdq_recebimentoQTDE: TIntegerField
+      DefaultExpression = 'COUNT(*)'
+      FieldKind = fkCalculated
+      FieldName = 'QTDE'
+      Calculated = True
+    end
+    object fdq_recebimentoSomaSalario: TAggregateField
+      FieldName = 'SomaSalario'
+      Active = True
+      currency = True
+      DisplayName = ''
+      DisplayFormat = '#,0.00'
+      Expression = 'SUM(IIF(REC_TIPO = '#39'SAL'#193'RIO'#39', REC_VALOR, 0))'
+    end
+    object fdq_recebimentoSomaAcerto: TAggregateField
+      FieldName = 'SomaAcerto'
+      Active = True
+      DisplayName = ''
+      Expression = 'SUM(IIF(REC_TIPO = '#39'ACERTO'#39', REC_VALOR, 0))'
+    end
+    object fdq_recebimentoSomaVale: TAggregateField
+      FieldName = 'SomaVale'
+      Active = True
+      DisplayName = ''
+      Expression = 'SUM(IIF(REC_TIPO = '#39'VALE'#39', REC_VALOR, 0))'
     end
   end
 end
