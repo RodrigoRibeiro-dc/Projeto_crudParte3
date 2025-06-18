@@ -12,7 +12,8 @@ uses
   FireDAC.Phys.Intf, FireDAC.Stan.Def, FireDAC.Stan.Pool, FireDAC.Stan.Async,
   FireDAC.Phys, FireDAC.Phys.MSSQL, FireDAC.Phys.MSSQLDef, FireDAC.VCLUI.Wait,
   FireDAC.Stan.Param, FireDAC.DatS, FireDAC.DApt.Intf, FireDAC.DApt,
-  FireDAC.Comp.DataSet, FireDAC.Comp.Client, Vcl.NumberBox;
+  FireDAC.Comp.DataSet, FireDAC.Comp.Client, Vcl.NumberBox, ppDB, ppComm,
+  ppRelatv, ppDBPipe;
 
 type
   Tcadastro_funcionario = class(TForm)

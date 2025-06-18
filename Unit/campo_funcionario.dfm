@@ -7996,7 +7996,7 @@ object cadastro_funcionario: Tcadastro_funcionario
     Top = 0
     Width = 559
     Height = 555
-    ActivePage = tab_financeiro
+    ActivePage = tab_dadospessoais
     TabOrder = 0
     object tab_dadospessoais: TTabSheet
       Cursor = crArrow
@@ -8134,6 +8134,7 @@ object cadastro_funcionario: Tcadastro_funcionario
         CharCase = ecUpperCase
         DataField = 'FUN_CEP'
         DataSource = dts_funcionario
+        MaxLength = 9
         TabOrder = 10
       end
       object dbedt_cidade: TDBEdit
@@ -8177,6 +8178,7 @@ object cadastro_funcionario: Tcadastro_funcionario
         CharCase = ecUpperCase
         DataField = 'FUN_DATANASCIMENTO'
         DataSource = dts_funcionario
+        MaxLength = 10
         TabOrder = 1
       end
       object dbedt_nome: TDBEdit
@@ -8432,12 +8434,12 @@ object cadastro_funcionario: Tcadastro_funcionario
   object dts_funcionario: TDataSource
     DataSet = menu_funcionarios.fdq_funcionarios
     Left = 224
-    Top = 16
+    Top = 32
   end
   object dts_recebimento: TDataSource
     DataSet = menu_funcionarios.fdq_recebimento
-    Left = 380
-    Top = 18
+    Left = 372
+    Top = 34
   end
   object tbl_filhaRecebimento: TFDQuery
     IndexFieldNames = 'FUN_ID'
@@ -8446,8 +8448,8 @@ object cadastro_funcionario: Tcadastro_funcionario
     Connection = menu_funcionarios.ctn_conexao
     SQL.Strings = (
       'SELECT * FROM PROJETO_CRUD..RECEBIMENTO')
-    Left = 155
-    Top = 304
+    Left = 91
+    Top = 264
     object tbl_filhaRecebimentoREC_ID: TFDAutoIncField
       FieldName = 'REC_ID'
       Origin = 'REC_ID'
@@ -8488,8 +8490,8 @@ object cadastro_funcionario: Tcadastro_funcionario
     Connection = menu_funcionarios.ctn_conexao
     SQL.Strings = (
       'SELECT * FROM PROJETO_CRUD..FUNCIONARIOS')
-    Left = 313
-    Top = 312
+    Left = 449
+    Top = 256
     object tlb_maeFuncionarioFUN_ID: TFDAutoIncField
       FieldName = 'FUN_ID'
       Origin = 'FUN_ID'
