@@ -69,18 +69,15 @@ type
     lbl_imprimir: TLabel;
     ppRpt_funcionarioReceb: TppReport;
     ppParameterList1: TppParameterList;
-    ppdb_funcionarios: TppDBPipeline;
     ppdb_recebimento: TppDBPipeline;
     dts_recebimento_imp: TDataSource;
-    dts_funcionario_imp: TDataSource;
-    fdq_funcionario_imp: TFDQuery;
     fdq_recebimento_imp: TFDQuery;
-    fdq_recebimento_impREC_ID: TFDAutoIncField;
-    fdq_recebimento_impFUN_ID: TIntegerField;
-    fdq_recebimento_impREC_DESCRICAO: TWideStringField;
-    fdq_recebimento_impREC_VALOR: TBCDField;
-    fdq_recebimento_impREC_DATA: TSQLTimeStampField;
+    fdq_recebimento_impFUN_ID: TFDAutoIncField;
+    fdq_recebimento_impFUN_NOME: TWideStringField;
+    fdq_recebimento_impFUN_CARGO: TWideStringField;
+    fdq_recebimento_impFUN_SALARIO: TBCDField;
     fdq_recebimento_impREC_TIPO: TWideStringField;
+    fdq_recebimento_impREC_VALOR: TBCDField;
     ppHeaderBand1: TppHeaderBand;
     ppLabel1: TppLabel;
     ppSystemVariable2: TppSystemVariable;
@@ -112,17 +109,6 @@ type
     raCodeModule1: TraCodeModule;
     ppDesignLayers1: TppDesignLayers;
     ppDesignLayer1: TppDesignLayer;
-    fdq_funcionario_impFUN_ID: TFDAutoIncField;
-    fdq_funcionario_impFUN_NOME: TWideStringField;
-    fdq_funcionario_impFUN_DATANASCIMENTO: TSQLTimeStampField;
-    fdq_funcionario_impFUN_RUA: TWideStringField;
-    fdq_funcionario_impFUN_NUMERO: TIntegerField;
-    fdq_funcionario_impFUN_BAIRRO: TWideStringField;
-    fdq_funcionario_impFUN_CIDADE: TWideStringField;
-    fdq_funcionario_impFUN_COMPLEMENTO: TWideStringField;
-    fdq_funcionario_impFUN_CEP: TWideStringField;
-    fdq_funcionario_impFUN_CARGO: TWideStringField;
-    fdq_funcionario_impFUN_SALARIO: TBCDField;
     procedure img_excluirClick(Sender: TObject);
     procedure rdg_tipoconsultaClick(Sender: TObject);
     procedure sbtn_consultarClick(Sender: TObject);
@@ -213,25 +199,33 @@ end;
 procedure Tmenu_funcionarios.Image1Click(Sender: TObject);
 var
 idFuncionario: Integer;
+const
+  SQL = 'SELECT '                                             +
+          'F.FUN_ID, F.FUN_NOME, F.FUN_CARGO, F.FUN_SALARIO,' +
+          'R.REC_TIPO, R.REC_VALOR '                          +
+        'FROM '                                               +
+          'RECEBIMENTO R '                                    +
+          'INNER JOIN '                                       +
+          'FUNCIONARIOS F ON  R.FUN_ID = F.FUN_ID '           +
+        'WHERE '                                              +
+          'F.FUN_ID = :ID';
 begin
-if not fdq_funcionarios.IsEmpty then
-begin
+  if not fdq_funcionarios.IsEmpty then
+  begin
     idFuncionario := fdq_funcionariosFUN_ID.Value;
 
     fdq_recebimento_imp.SQL.Clear;
-    fdq_recebimento_imp.SQL.Add('SELECT * FROM RECEBIMENTO ' +
-      'WHERE FUN_ID = :ID');
+    fdq_recebimento_imp.SQL.Add(SQL);
     fdq_recebimento_imp.ParamByName('ID').AsInteger := idFuncionario;
     fdq_recebimento_imp.Open;
     if fdq_recebimento_imp.IsEmpty then
     begin
-      MessageDlg('FUNCIONÁRIO NÃO POSSUI RECEBIMENTO.', mtWarning, [mbOk], 0);
+      MessageDlg('ESSE FUNCIONÁRIO NÃO POSSUI RECEBIMENTOS.'
+        , mtWarning, [mbOk], 0);
     end
     else
-    begin
-    ppRpt_funcionarioReceb.Print;
-    end;
-end;
+      ppRpt_funcionarioReceb.Print;
+  end;
 end;
 
 procedure Tmenu_funcionarios.img_alterarClick(Sender: TObject);
@@ -310,13 +304,18 @@ begin
 end;
 
 procedure Tmenu_funcionarios.sbtn_consultarClick(Sender: TObject);
+Const
+  SQLSELECT = 'SELECT * FROM FUNCIONARIOS WHERE';
+  SQLNOME   = 'FUN_NOME LIKE :NOME';
+  SQLDATA   = 'FUN_DATANASCIMENTO BETWEEN :DATA_INICIAL AND :DATA_FINAL';
+  SQLCARGO  = 'FUN_CARGO = :CARGO';
 begin
   case rdg_tipoconsulta.ItemIndex of
     0:
       begin
         fdq_funcionarios.Close;
-        fdq_funcionarios.SQL.Text :=
-          'SELECT * FROM FUNCIONARIOS WHERE FUN_NOME LIKE :NOME';
+        fdq_funcionarios.SQL.Clear;
+        fdq_funcionarios.SQL.Add(SQLSELECT + SQLNOME);
         fdq_funcionarios.ParamByName('NOME').AsString :=
           '%' + edt_consulta.Text + '%';
         fdq_funcionarios.Open;
@@ -335,9 +334,8 @@ begin
         else
         begin
           fdq_funcionarios.Close;
-          fdq_funcionarios.SQL.Text :=
-            'SELECT *FROM FUNCIONARIOS WHERE FUN_DATANASCIMENTO BETWEEN ' +
-            ':DATA_INICIAL AND :DATA_FINAL';
+          fdq_funcionarios.SQL.Clear;
+          fdq_funcionarios.SQL.Add(SQLSELECT + SQLDATA);
           fdq_funcionarios.ParamByName('DATA_INICIAL').AsDate :=
             dtp_inicial.Date;
           fdq_funcionarios.ParamByName('DATA_FINAL').AsDate := dtp_final.Date;
@@ -359,15 +357,16 @@ begin
         if Trim(cbx_consulta.Text) = 'TODOS' then
         begin
           fdq_funcionarios.Close;
-          fdq_funcionarios.SQL.Text := 'SELECT *FROM FUNCIONARIOS';
+          fdq_funcionarios.SQL.Clear;
+          fdq_funcionarios.SQL.Add(SQLSELECT);
           fdq_funcionarios.Open;
           calcula_total_grid();
         end
         else
         begin
           fdq_funcionarios.Close;
-          fdq_funcionarios.SQL.Text :=
-            'SELECT *FROM FUNCIONARIOS WHERE FUN_CARGO = :CARGO';
+          fdq_funcionarios.SQL.Clear;
+          fdq_funcionarios.SQL.Add(SQLSELECT + SQLCARGO);
           fdq_funcionarios.ParamByName('CARGO').AsString := cbx_consulta.Text;
           fdq_funcionarios.Open;
           calcula_total_grid();

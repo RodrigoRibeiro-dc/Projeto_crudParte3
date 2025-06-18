@@ -8050,7 +8050,7 @@ object menu_funcionarios: Tmenu_funcionarios
       OnClick = img_incluirClick
     end
     object img_alterar: TImage
-      Left = 241
+      Left = 211
       Top = 35
       Width = 33
       Height = 33
@@ -8109,7 +8109,7 @@ object menu_funcionarios: Tmenu_funcionarios
       OnClick = img_alterarClick
     end
     object img_excluir: TImage
-      Left = 428
+      Left = 349
       Top = 35
       Width = 33
       Height = 33
@@ -8170,7 +8170,7 @@ object menu_funcionarios: Tmenu_funcionarios
       ParentFont = False
     end
     object lbl_alterar: TLabel
-      Left = 235
+      Left = 205
       Top = 74
       Width = 50
       Height = 15
@@ -8183,7 +8183,7 @@ object menu_funcionarios: Tmenu_funcionarios
       ParentFont = False
     end
     object lbl_excluir: TLabel
-      Left = 420
+      Left = 341
       Top = 74
       Width = 48
       Height = 15
@@ -8196,7 +8196,7 @@ object menu_funcionarios: Tmenu_funcionarios
       ParentFont = False
     end
     object Image1: TImage
-      Left = 612
+      Left = 489
       Top = 35
       Width = 33
       Height = 33
@@ -8238,7 +8238,7 @@ object menu_funcionarios: Tmenu_funcionarios
       OnClick = Image1Click
     end
     object lbl_imprimir: TLabel
-      Left = 600
+      Left = 477
       Top = 74
       Width = 57
       Height = 15
@@ -8498,6 +8498,7 @@ object menu_funcionarios: Tmenu_funcionarios
     Top = 368
   end
   object fdq_funcionarios: TFDQuery
+    Active = True
     Connection = ctn_conexao
     SQL.Strings = (
       'SELECT *FROM FUNCIONARIOS')
@@ -8709,8 +8710,7 @@ object menu_funcionarios: Tmenu_funcionarios
     CloudDriveSettings.GoogleDriveSettings.DirectorySupport = False
     CloudDriveSettings.OneDriveSettings.OAuth2.RedirectPort = 0
     CloudDriveSettings.OneDriveSettings.DirectorySupport = True
-    Left = 328
-    Top = 192
+    Left = 400
     Version = '21.02'
     mmColumnWidth = 0
     DataPipelineName = 'ppdb_recebimento'
@@ -8764,10 +8764,10 @@ object menu_funcionarios: Tmenu_funcionarios
         UserName = 'Line1'
         Border.mmPadding = 0
         Weight = 0.750000000000000000
-        mmHeight = 529
-        mmLeft = -6350
+        mmHeight = 265
+        mmLeft = -8202
         mmTop = 17463
-        mmWidth = 214842
+        mmWidth = 226219
         BandType = 0
         LayerName = Foreground
       end
@@ -8779,7 +8779,7 @@ object menu_funcionarios: Tmenu_funcionarios
         mmHeight = 265
         mmLeft = -11113
         mmTop = 27252
-        mmWidth = 220663
+        mmWidth = 230717
         BandType = 0
         LayerName = Foreground
       end
@@ -8890,9 +8890,9 @@ object menu_funcionarios: Tmenu_funcionarios
       end
       object ppLabel9: TppLabel
         DesignLayer = ppDesignLayer1
-        UserName = 'lbl_tipoPgto'
+        UserName = 'lbl_tipo'
         Border.mmPadding = 0
-        Caption = 'Tipo Pgto'
+        Caption = 'Tipo'
         Font.Charset = DEFAULT_CHARSET
         Font.Color = clBlack
         Font.Name = 'Arial'
@@ -8903,9 +8903,9 @@ object menu_funcionarios: Tmenu_funcionarios
         TextAlignment = taRightJustified
         Transparent = True
         mmHeight = 4763
-        mmLeft = 142346
+        mmLeft = 149754
         mmTop = 19315
-        mmWidth = 18256
+        mmWidth = 8467
         BandType = 0
         LayerName = Foreground
       end
@@ -8922,7 +8922,7 @@ object menu_funcionarios: Tmenu_funcionarios
         UserName = 'dbtxt_Fid'
         Border.mmPadding = 0
         DataField = 'FUN_ID'
-        DataPipeline = ppdb_funcionarios
+        DataPipeline = ppdb_recebimento
         Font.Charset = DEFAULT_CHARSET
         Font.Color = clBlack
         Font.Name = 'Arial'
@@ -8931,7 +8931,7 @@ object menu_funcionarios: Tmenu_funcionarios
         ParentDataPipeline = False
         TextAlignment = taCentered
         Transparent = True
-        DataPipelineName = 'ppdb_funcionarios'
+        DataPipelineName = 'ppdb_recebimento'
         mmHeight = 4498
         mmLeft = -1058
         mmTop = 794
@@ -8944,7 +8944,7 @@ object menu_funcionarios: Tmenu_funcionarios
         UserName = 'dbtxt_Fnome'
         Border.mmPadding = 0
         DataField = 'FUN_NOME'
-        DataPipeline = ppdb_funcionarios
+        DataPipeline = ppdb_recebimento
         Font.Charset = DEFAULT_CHARSET
         Font.Color = clBlack
         Font.Name = 'Arial'
@@ -8952,7 +8952,7 @@ object menu_funcionarios: Tmenu_funcionarios
         Font.Style = [fsBold]
         ParentDataPipeline = False
         Transparent = True
-        DataPipelineName = 'ppdb_funcionarios'
+        DataPipelineName = 'ppdb_recebimento'
         mmHeight = 4498
         mmLeft = 21167
         mmTop = 794
@@ -8965,7 +8965,7 @@ object menu_funcionarios: Tmenu_funcionarios
         UserName = 'dbtxt_Fcargo'
         Border.mmPadding = 0
         DataField = 'FUN_CARGO'
-        DataPipeline = ppdb_funcionarios
+        DataPipeline = ppdb_recebimento
         Font.Charset = DEFAULT_CHARSET
         Font.Color = clBlack
         Font.Name = 'Arial'
@@ -8973,7 +8973,7 @@ object menu_funcionarios: Tmenu_funcionarios
         Font.Style = [fsBold]
         ParentDataPipeline = False
         Transparent = True
-        DataPipelineName = 'ppdb_funcionarios'
+        DataPipelineName = 'ppdb_recebimento'
         mmHeight = 4498
         mmLeft = 75406
         mmTop = 794
@@ -8986,7 +8986,7 @@ object menu_funcionarios: Tmenu_funcionarios
         UserName = 'dbtxt_Fsalario'
         Border.mmPadding = 0
         DataField = 'FUN_SALARIO'
-        DataPipeline = ppdb_funcionarios
+        DataPipeline = ppdb_recebimento
         DisplayFormat = '$#,0.00;-$#,0.00'
         Font.Charset = DEFAULT_CHARSET
         Font.Color = clBlack
@@ -8995,7 +8995,7 @@ object menu_funcionarios: Tmenu_funcionarios
         Font.Style = [fsBold]
         ParentDataPipeline = False
         Transparent = True
-        DataPipelineName = 'ppdb_funcionarios'
+        DataPipelineName = 'ppdb_recebimento'
         mmHeight = 4498
         mmLeft = 107950
         mmTop = 794
@@ -9052,7 +9052,7 @@ object menu_funcionarios: Tmenu_funcionarios
       Background.Brush.Style = bsClear
       Border.mmPadding = 0
       mmBottomOffset = 0
-      mmHeight = 59796
+      mmHeight = 66411
       mmPrintPosition = 0
       object ppLabel2: TppLabel
         DesignLayer = ppDesignLayer1
@@ -9118,10 +9118,10 @@ object menu_funcionarios: Tmenu_funcionarios
         UserName = 'Line3'
         Border.mmPadding = 0
         Weight = 0.750000000000000000
-        mmHeight = 794
-        mmLeft = -6350
+        mmHeight = 265
+        mmLeft = -8202
         mmTop = 1058
-        mmWidth = 214842
+        mmWidth = 226219
         BandType = 8
         LayerName = Foreground
       end
@@ -17126,7 +17126,7 @@ object menu_funcionarios: Tmenu_funcionarios
         FormFieldSettings.FormFieldType = fftNone
         TextAlignment = taCentered
         Transparent = True
-        mmHeight = 4233
+        mmHeight = 4234
         mmLeft = 67733
         mmTop = 2910
         mmWidth = 26194
@@ -17138,7 +17138,7 @@ object menu_funcionarios: Tmenu_funcionarios
         UserName = 'DBCalc1'
         Border.mmPadding = 0
         DataField = 'FUN_SALARIO'
-        DataPipeline = ppdb_funcionarios
+        DataPipeline = ppdb_recebimento
         DisplayFormat = '$#,0.00;($#,0.00)'
         Font.Charset = DEFAULT_CHARSET
         Font.Color = clBlack
@@ -17148,9 +17148,9 @@ object menu_funcionarios: Tmenu_funcionarios
         ParentDataPipeline = False
         TextAlignment = taCentered
         Transparent = True
-        DataPipelineName = 'ppdb_funcionarios'
+        DataPipelineName = 'ppdb_recebimento'
         mmHeight = 4498
-        mmLeft = 102923
+        mmLeft = 101600
         mmTop = 2910
         mmWidth = 31485
         BandType = 8
@@ -17161,10 +17161,10 @@ object menu_funcionarios: Tmenu_funcionarios
         UserName = 'Line4'
         Border.mmPadding = 0
         Weight = 0.750000000000000000
-        mmHeight = 7938
-        mmLeft = -5821
-        mmTop = 9525
-        mmWidth = 214313
+        mmHeight = 529
+        mmLeft = -18256
+        mmTop = 7938
+        mmWidth = 236273
         BandType = 8
         LayerName = Foreground
       end
@@ -17185,7 +17185,7 @@ object menu_funcionarios: Tmenu_funcionarios
         Transparent = True
         DataPipelineName = 'ppdb_recebimento'
         mmHeight = 4498
-        mmLeft = 166688
+        mmLeft = 164836
         mmTop = 2910
         mmWidth = 34925
         BandType = 8
@@ -17204,118 +17204,106 @@ object menu_funcionarios: Tmenu_funcionarios
     object ppParameterList1: TppParameterList
     end
   end
-  object ppdb_funcionarios: TppDBPipeline
-    DataSource = dts_grid
-    UserName = 'db_funcionarios'
-    Left = 164
-    Top = 186
-    MasterDataPipelineName = 'ppdb_recebimento'
-    object ppdb_funcionariosppMasterFieldLink1: TppMasterFieldLink
-      MasterFieldName = 'FUN_ID'
-      GuidCollationType = gcString
-      DetailFieldName = 'FUN_ID'
-      DetailSortOrder = soAscending
-      IgnoreTrailingSpaces = False
-    end
-  end
   object ppdb_recebimento: TppDBPipeline
     DataSource = dts_recebimento_imp
     UserName = 'db_recebimento'
-    Left = 488
-    Top = 190
+    Left = 440
+    Top = 65534
+    object ppdb_recebimentoppField1: TppField
+      Alignment = taRightJustify
+      FieldAlias = 'FUN_ID'
+      FieldName = 'FUN_ID'
+      FieldLength = 0
+      DataType = dtLongint
+      DisplayWidth = 0
+      Position = 0
+    end
+    object ppdb_recebimentoppField2: TppField
+      FieldAlias = 'FUN_NOME'
+      FieldName = 'FUN_NOME'
+      FieldLength = 50
+      DisplayWidth = 50
+      Position = 1
+    end
+    object ppdb_recebimentoppField3: TppField
+      FieldAlias = 'FUN_CARGO'
+      FieldName = 'FUN_CARGO'
+      FieldLength = 50
+      DisplayWidth = 50
+      Position = 2
+    end
+    object ppdb_recebimentoppField4: TppField
+      Alignment = taRightJustify
+      FieldAlias = 'FUN_SALARIO'
+      FieldName = 'FUN_SALARIO'
+      FieldLength = 2
+      DataType = dtDouble
+      DisplayWidth = 11
+      Position = 3
+    end
+    object ppdb_recebimentoppField5: TppField
+      FieldAlias = 'REC_TIPO'
+      FieldName = 'REC_TIPO'
+      FieldLength = 25
+      DisplayWidth = 25
+      Position = 4
+    end
+    object ppdb_recebimentoppField6: TppField
+      Alignment = taRightJustify
+      FieldAlias = 'REC_VALOR'
+      FieldName = 'REC_VALOR'
+      FieldLength = 2
+      DataType = dtDouble
+      DisplayWidth = 11
+      Position = 5
+    end
   end
   object dts_recebimento_imp: TDataSource
     DataSet = fdq_recebimento_imp
     Left = 504
     Top = 70
   end
-  object dts_funcionario_imp: TDataSource
-    DataSet = fdq_funcionario_imp
-    Left = 192
-    Top = 72
-  end
-  object fdq_funcionario_imp: TFDQuery
+  object fdq_recebimento_imp: TFDQuery
+    Active = True
     Connection = ctn_conexao
     SQL.Strings = (
-      'SELECT * FROM FUNCIONARIOS')
-    Left = 176
-    object fdq_funcionario_impFUN_ID: TFDAutoIncField
+      'SELECT'
+      
+        #9'F.FUN_ID, F.FUN_NOME, F.FUN_CARGO, F.FUN_SALARIO, R.REC_TIPO, R' +
+        '.REC_VALOR'
+      ''
+      'FROM RECEBIMENTO R'
+      ' '
+      'INNER JOIN FUNCIONARIOS F ON  R.FUN_ID = F.FUN_ID')
+    Left = 424
+    Top = 48
+    object fdq_recebimento_impFUN_ID: TFDAutoIncField
       FieldName = 'FUN_ID'
-      Origin = 'FUN_ID'
-      ProviderFlags = [pfInWhere, pfInKey]
-      ReadOnly = True
+      Origin = 'REC_VALOR'
+      ProviderFlags = [pfInUpdate, pfInWhere]
+      IdentityInsert = True
     end
-    object fdq_funcionario_impFUN_NOME: TWideStringField
+    object fdq_recebimento_impFUN_NOME: TWideStringField
       FieldName = 'FUN_NOME'
       Origin = 'FUN_NOME'
       Size = 50
     end
-    object fdq_funcionario_impFUN_DATANASCIMENTO: TSQLTimeStampField
-      FieldName = 'FUN_DATANASCIMENTO'
-      Origin = 'FUN_DATANASCIMENTO'
-    end
-    object fdq_funcionario_impFUN_RUA: TWideStringField
-      FieldName = 'FUN_RUA'
-      Origin = 'FUN_RUA'
-      Size = 50
-    end
-    object fdq_funcionario_impFUN_NUMERO: TIntegerField
-      FieldName = 'FUN_NUMERO'
-      Origin = 'FUN_NUMERO'
-    end
-    object fdq_funcionario_impFUN_BAIRRO: TWideStringField
-      FieldName = 'FUN_BAIRRO'
-      Origin = 'FUN_BAIRRO'
-      Size = 50
-    end
-    object fdq_funcionario_impFUN_CIDADE: TWideStringField
-      FieldName = 'FUN_CIDADE'
-      Origin = 'FUN_CIDADE'
-      Size = 30
-    end
-    object fdq_funcionario_impFUN_COMPLEMENTO: TWideStringField
-      FieldName = 'FUN_COMPLEMENTO'
-      Origin = 'FUN_COMPLEMENTO'
-      Size = 50
-    end
-    object fdq_funcionario_impFUN_CEP: TWideStringField
-      FieldName = 'FUN_CEP'
-      Origin = 'FUN_CEP'
-      Size = 9
-    end
-    object fdq_funcionario_impFUN_CARGO: TWideStringField
+    object fdq_recebimento_impFUN_CARGO: TWideStringField
       FieldName = 'FUN_CARGO'
       Origin = 'FUN_CARGO'
       Size = 50
     end
-    object fdq_funcionario_impFUN_SALARIO: TBCDField
+    object fdq_recebimento_impFUN_SALARIO: TBCDField
       FieldName = 'FUN_SALARIO'
       Origin = 'FUN_SALARIO'
       Precision = 10
       Size = 2
     end
-  end
-  object fdq_recebimento_imp: TFDQuery
-    Connection = ctn_conexao
-    SQL.Strings = (
-      'SELECT *FROM RECEBIMENTO')
-    Left = 504
-    object fdq_recebimento_impREC_ID: TFDAutoIncField
-      FieldName = 'REC_ID'
-      Origin = 'REC_ID'
-      ProviderFlags = [pfInWhere, pfInKey]
-      ReadOnly = True
-    end
-    object fdq_recebimento_impFUN_ID: TIntegerField
-      FieldName = 'FUN_ID'
-      Origin = 'FUN_ID'
+    object fdq_recebimento_impREC_TIPO: TWideStringField
+      FieldName = 'REC_TIPO'
+      Origin = 'REC_TIPO'
       Required = True
-    end
-    object fdq_recebimento_impREC_DESCRICAO: TWideStringField
-      FieldName = 'REC_DESCRICAO'
-      Origin = 'REC_DESCRICAO'
-      Required = True
-      Size = 45
+      Size = 25
     end
     object fdq_recebimento_impREC_VALOR: TBCDField
       FieldName = 'REC_VALOR'
@@ -17323,16 +17311,6 @@ object menu_funcionarios: Tmenu_funcionarios
       Required = True
       Precision = 10
       Size = 2
-    end
-    object fdq_recebimento_impREC_DATA: TSQLTimeStampField
-      FieldName = 'REC_DATA'
-      Origin = 'REC_DATA'
-    end
-    object fdq_recebimento_impREC_TIPO: TWideStringField
-      FieldName = 'REC_TIPO'
-      Origin = 'REC_TIPO'
-      Required = True
-      Size = 25
     end
   end
 end

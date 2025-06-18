@@ -12,7 +12,9 @@ uses
   FireDAC.Stan.Def, FireDAC.Stan.Pool, FireDAC.Stan.Async, FireDAC.Phys,
   FireDAC.Phys.MSSQL, FireDAC.Phys.MSSQLDef, FireDAC.VCLUI.Wait,
   FireDAC.Stan.Param, FireDAC.DatS, FireDAC.DApt.Intf, FireDAC.DApt,
-  FireDAC.Comp.DataSet, FireDAC.Comp.Client;
+  FireDAC.Comp.DataSet, FireDAC.Comp.Client, ppDB, ppDBPipe, ppBands, ppCache,
+  ppClass, ppDesignLayer, ppParameter, ppComm, ppRelatv, ppProd, ppReport,
+  ppCtrls, ppVar, ppPrnabl, ppModule, raCodMod;
 
 type
   Tmenu_funcionarios = class(TForm)
@@ -65,6 +67,62 @@ type
     fdq_recebimentoSomaVale: TAggregateField;
     Image1: TImage;
     lbl_imprimir: TLabel;
+    ppRpt_funcionarioReceb: TppReport;
+    ppParameterList1: TppParameterList;
+    ppdb_funcionarios: TppDBPipeline;
+    ppdb_recebimento: TppDBPipeline;
+    dts_recebimento_imp: TDataSource;
+    dts_funcionario_imp: TDataSource;
+    fdq_funcionario_imp: TFDQuery;
+    fdq_recebimento_imp: TFDQuery;
+    fdq_recebimento_impREC_ID: TFDAutoIncField;
+    fdq_recebimento_impFUN_ID: TIntegerField;
+    fdq_recebimento_impREC_DESCRICAO: TWideStringField;
+    fdq_recebimento_impREC_VALOR: TBCDField;
+    fdq_recebimento_impREC_DATA: TSQLTimeStampField;
+    fdq_recebimento_impREC_TIPO: TWideStringField;
+    fdq_funcionario_impFUN_ID: TFDAutoIncField;
+    fdq_funcionario_impFUN_NOME: TWideStringField;
+    fdq_funcionario_impFUN_DATANASCIMENTO: TSQLTimeStampField;
+    fdq_funcionario_impFUN_RUA: TWideStringField;
+    fdq_funcionario_impFUN_NUMERO: TIntegerField;
+    fdq_funcionario_impFUN_BAIRRO: TWideStringField;
+    fdq_funcionario_impFUN_CIDADE: TWideStringField;
+    fdq_funcionario_impFUN_COMPLEMENTO: TWideStringField;
+    fdq_funcionario_impFUN_CEP: TWideStringField;
+    fdq_funcionario_impFUN_CARGO: TWideStringField;
+    fdq_funcionario_impFUN_SALARIO: TBCDField;
+    ppHeaderBand1: TppHeaderBand;
+    ppLabel1: TppLabel;
+    ppSystemVariable2: TppSystemVariable;
+    ppLine1: TppLine;
+    ppLine2: TppLine;
+    ppLabel4: TppLabel;
+    ppLabel5: TppLabel;
+    ppLabel6: TppLabel;
+    ppLabel7: TppLabel;
+    ppLabel8: TppLabel;
+    ppLabel9: TppLabel;
+    ppDetailBand1: TppDetailBand;
+    ppDBText1: TppDBText;
+    ppDBText2: TppDBText;
+    ppDBText4: TppDBText;
+    ppDBText3: TppDBText;
+    ppDBText5: TppDBText;
+    ppDBText6: TppDBText;
+    ppFooterBand1: TppFooterBand;
+    ppLabel2: TppLabel;
+    ppLabel3: TppLabel;
+    ppSystemVariable1: TppSystemVariable;
+    ppLine3: TppLine;
+    ppImage1: TppImage;
+    ppLabel10: TppLabel;
+    ppDBCalc1: TppDBCalc;
+    ppLine4: TppLine;
+    ppDBCalc2: TppDBCalc;
+    raCodeModule1: TraCodeModule;
+    ppDesignLayers1: TppDesignLayers;
+    ppDesignLayer1: TppDesignLayer;
     procedure img_excluirClick(Sender: TObject);
     procedure rdg_tipoconsultaClick(Sender: TObject);
     procedure sbtn_consultarClick(Sender: TObject);
@@ -75,6 +133,7 @@ type
     procedure FormCreate(Sender: TObject);
     procedure fdq_recebimentoCalcFields(DataSet: TDataSet);
     procedure FormActivate(Sender: TObject);
+    procedure Image1Click(Sender: TObject);
   private
 
   public
@@ -149,6 +208,31 @@ begin
         img_excluirClick(Sender);
     end;
   end;
+end;
+
+procedure Tmenu_funcionarios.Image1Click(Sender: TObject);
+var
+idFuncionario: Integer;
+begin
+if not fdq_funcionarios.IsEmpty then
+begin
+    idFuncionario := fdq_funcionariosFUN_ID.Value;
+
+    fdq_recebimento_imp.SQL.Clear;
+    fdq_recebimento_imp.SQL.Add('SELECT * FROM RECEBIMENTO ' +
+      'WHERE FUN_ID = :ID');
+    fdq_recebimento_imp.ParamByName('ID').AsInteger := idFuncionario;
+    fdq_recebimento_imp.Open;
+    if fdq_recebimento_imp.IsEmpty then
+    begin
+      MessageDlg('ESSE FUNCIONÁRIO NÃO POSSUI RECEBIMENTOS.',
+         mtWarning, [mbOk], 0);
+    end
+    else
+    begin
+    ppRpt_funcionarioReceb.Print;
+    end;
+end;
 end;
 
 procedure Tmenu_funcionarios.img_alterarClick(Sender: TObject);
