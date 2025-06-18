@@ -8050,7 +8050,7 @@ object menu_funcionarios: Tmenu_funcionarios
       OnClick = img_incluirClick
     end
     object img_alterar: TImage
-      Left = 211
+      Left = 195
       Top = 35
       Width = 33
       Height = 33
@@ -8109,7 +8109,7 @@ object menu_funcionarios: Tmenu_funcionarios
       OnClick = img_alterarClick
     end
     object img_excluir: TImage
-      Left = 349
+      Left = 333
       Top = 35
       Width = 33
       Height = 33
@@ -8170,7 +8170,7 @@ object menu_funcionarios: Tmenu_funcionarios
       ParentFont = False
     end
     object lbl_alterar: TLabel
-      Left = 205
+      Left = 189
       Top = 74
       Width = 50
       Height = 15
@@ -8183,7 +8183,7 @@ object menu_funcionarios: Tmenu_funcionarios
       ParentFont = False
     end
     object lbl_excluir: TLabel
-      Left = 341
+      Left = 325
       Top = 74
       Width = 48
       Height = 15
@@ -8196,7 +8196,7 @@ object menu_funcionarios: Tmenu_funcionarios
       ParentFont = False
     end
     object Image1: TImage
-      Left = 489
+      Left = 467
       Top = 35
       Width = 33
       Height = 33
@@ -8238,11 +8238,68 @@ object menu_funcionarios: Tmenu_funcionarios
       OnClick = Image1Click
     end
     object lbl_imprimir: TLabel
-      Left = 477
+      Left = 455
       Top = 74
       Width = 57
-      Height = 15
-      Caption = 'IMPRIMIR'
+      Height = 30
+      Caption = 'IMPRIMIR'#13#10'    GERAL'
+      Font.Charset = DEFAULT_CHARSET
+      Font.Color = clWindowText
+      Font.Height = -12
+      Font.Name = 'Segoe UI'
+      Font.Style = [fsBold]
+      ParentFont = False
+    end
+    object Image2: TImage
+      Left = 610
+      Top = 35
+      Width = 33
+      Height = 33
+      Cursor = crHandPoint
+      Picture.Data = {
+        0954506E67496D61676589504E470D0A1A0A0000000D494844520000001E0000
+        001E08060000003B30AEA20000000473424954080808087C0864880000000173
+        52474200AECE1CE90000000467414D410000B18F0BFC61050000000970485973
+        00000EC200000EC20115284A800000001974455874536F667477617265007777
+        772E696E6B73636170652E6F72679BEE3C1A0000018769545874584D4C3A636F
+        6D2E61646F62652E786D7000000000003C3F787061636B657420626567696E3D
+        27EFBBBF272069643D2757354D304D7043656869487A7265537A4E54637A6B63
+        3964273F3E0D0A3C783A786D706D65746120786D6C6E733A783D2261646F6265
+        3A6E733A6D6574612F223E3C7264663A52444620786D6C6E733A7264663D2268
+        7474703A2F2F7777772E77332E6F72672F313939392F30322F32322D7264662D
+        73796E7461782D6E7323223E3C7264663A4465736372697074696F6E20726466
+        3A61626F75743D22757569643A66616635626464352D626133642D313164612D
+        616433312D6433336437353138326631622220786D6C6E733A746966663D2268
+        7474703A2F2F6E732E61646F62652E636F6D2F746966662F312E302F223E3C74
+        6966663A4F7269656E746174696F6E3E313C2F746966663A4F7269656E746174
+        696F6E3E3C2F7264663A4465736372697074696F6E3E3C2F7264663A5244463E
+        3C2F783A786D706D6574613E0D0A3C3F787061636B657420656E643D2777273F
+        3E2C94980B0000022E4944415478DAC5D74F48944118C7F1670B4D33CD14B64B
+        99652448FF8348C8BA74EAA02881041EEAAA04E2A54B7A69AF525074E9501DB4
+        430579A883072B8A3C449A652458A8690733A252CA34A1EFC3CCCB2ED2BEA3F3
+        AEF6C007D677DDFDBDEF3033CF6C4CC2AB00D9E25773F891EECD58C80773F11A
+        5B3D8327B0173F971BBC011FB1C933F81BB6A57BEAB0E03C7CC066CFE0CF28C3
+        CC52832FE130CEA2DBDEB54F8DE3046EE0059A5DC16FB01B07700F3B3C834751
+        8B7EBC43852B7808E538841E6CF40CD6213E8E9718C62E57708D98997C0DA725
+        DAE4EA44A398197E7F71B0AED30B626671F0817914E13B163C83D7DAD1FA8A2C
+        14A68C4442838BF1C5F3CB7D2B1EB34FF6093919FE72DDB9CE8BD90BDA516AAF
+        FFC696950C4EE0098EE2111EAF56B0EE077770102378B05AC15AD73186364936
+        9BB4C1B73068AFAF8910AAB33A5FCC2A2911B33443836F62009733F4D4BA55EE
+        C3195770507B502F66B9F994AEDFDB76F4522B34F8172AC5CC4ADF2D731A5578
+        8EF5CB093E22669BDB6EAFBD12D326C34ADBE07EFB5A2755357AA3065FC14347
+        F0499C5B6A70BA2D53D7DF5D89D616EBD0F78FF7E24193681533F583D2267115
+        4F2579E64AD81B09AB53621A8ED851D45DAB494C93084A9BC445D7614FEF3A6E
+        FFFE835947F0BA94902931FBB3D761EFBD24CF5C1D626679581D43837DAD67AE
+        9D626677A4E06778EB08D6E34D55A6834731E908D6FF2DCD74B0769B2E47B02E
+        9F96A8C1F9F6298BC4AFBC0FF4FFED278CD68AFD68FB0B04988D1E068A9D0900
+        00000049454E44AE426082}
+    end
+    object lbl_imprimeConsolidado: TLabel
+      Left = 586
+      Top = 74
+      Width = 86
+      Height = 30
+      Caption = '    IMPRIMIR'#13#10'CONSOLIDADO'
       Font.Charset = DEFAULT_CHARSET
       Font.Color = clWindowText
       Font.Height = -12
@@ -8259,7 +8316,7 @@ object menu_funcionarios: Tmenu_funcionarios
     TabOrder = 1
     object dbg_funcionarios: TDBGrid
       Left = 0
-      Top = 9
+      Top = 7
       Width = 713
       Height = 336
       Cursor = crHandPoint
@@ -8710,7 +8767,7 @@ object menu_funcionarios: Tmenu_funcionarios
     CloudDriveSettings.GoogleDriveSettings.DirectorySupport = False
     CloudDriveSettings.OneDriveSettings.OAuth2.RedirectPort = 0
     CloudDriveSettings.OneDriveSettings.DirectorySupport = True
-    Left = 400
+    Left = 176
     Version = '21.02'
     mmColumnWidth = 0
     DataPipelineName = 'ppdb_recebimento'
@@ -17207,7 +17264,7 @@ object menu_funcionarios: Tmenu_funcionarios
   object ppdb_recebimento: TppDBPipeline
     DataSource = dts_recebimento_imp
     UserName = 'db_recebimento'
-    Left = 440
+    Left = 256
     Top = 65534
     object ppdb_recebimentoppField1: TppField
       Alignment = taRightJustify
@@ -17260,8 +17317,8 @@ object menu_funcionarios: Tmenu_funcionarios
   end
   object dts_recebimento_imp: TDataSource
     DataSet = fdq_recebimento_imp
-    Left = 504
-    Top = 70
+    Left = 128
+    Top = 65534
   end
   object fdq_recebimento_imp: TFDQuery
     Active = True
@@ -17275,8 +17332,7 @@ object menu_funcionarios: Tmenu_funcionarios
       'FROM RECEBIMENTO R'
       ' '
       'INNER JOIN FUNCIONARIOS F ON  R.FUN_ID = F.FUN_ID')
-    Left = 424
-    Top = 48
+    Left = 216
     object fdq_recebimento_impFUN_ID: TFDAutoIncField
       FieldName = 'FUN_ID'
       Origin = 'REC_VALOR'

@@ -109,6 +109,8 @@ type
     raCodeModule1: TraCodeModule;
     ppDesignLayers1: TppDesignLayers;
     ppDesignLayer1: TppDesignLayer;
+    Image2: TImage;
+    lbl_imprimeConsolidado: TLabel;
     procedure img_excluirClick(Sender: TObject);
     procedure rdg_tipoconsultaClick(Sender: TObject);
     procedure sbtn_consultarClick(Sender: TObject);
