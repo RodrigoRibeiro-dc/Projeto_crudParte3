@@ -8050,7 +8050,7 @@ object menu_funcionarios: Tmenu_funcionarios
       OnClick = img_incluirClick
     end
     object img_alterar: TImage
-      Left = 241
+      Left = 195
       Top = 35
       Width = 33
       Height = 33
@@ -8109,7 +8109,7 @@ object menu_funcionarios: Tmenu_funcionarios
       OnClick = img_alterarClick
     end
     object img_excluir: TImage
-      Left = 428
+      Left = 333
       Top = 35
       Width = 33
       Height = 33
@@ -8170,7 +8170,7 @@ object menu_funcionarios: Tmenu_funcionarios
       ParentFont = False
     end
     object lbl_alterar: TLabel
-      Left = 235
+      Left = 189
       Top = 74
       Width = 50
       Height = 15
@@ -8183,7 +8183,7 @@ object menu_funcionarios: Tmenu_funcionarios
       ParentFont = False
     end
     object lbl_excluir: TLabel
-      Left = 420
+      Left = 325
       Top = 74
       Width = 48
       Height = 15
@@ -8196,7 +8196,7 @@ object menu_funcionarios: Tmenu_funcionarios
       ParentFont = False
     end
     object Image1: TImage
-      Left = 612
+      Left = 467
       Top = 35
       Width = 33
       Height = 33
@@ -8235,13 +8235,71 @@ object menu_funcionarios: Tmenu_funcionarios
         759D7DE07A4A2BC9A6B0BED9E312526FAD4DD5FC8E9BDB5B6368500D821CD0A3
         6A2614BBB1A137A6D158D3CDBF305C68DC1C09B9C57DFB4DEC4BBE0069BB76B0
         28C5182D0000000049454E44AE426082}
+      OnClick = Image1Click
     end
     object lbl_imprimir: TLabel
-      Left = 600
+      Left = 455
       Top = 74
       Width = 57
-      Height = 15
-      Caption = 'IMPRIMIR'
+      Height = 30
+      Caption = 'IMPRIMIR'#13#10'    GERAL'
+      Font.Charset = DEFAULT_CHARSET
+      Font.Color = clWindowText
+      Font.Height = -12
+      Font.Name = 'Segoe UI'
+      Font.Style = [fsBold]
+      ParentFont = False
+    end
+    object Image2: TImage
+      Left = 610
+      Top = 35
+      Width = 33
+      Height = 33
+      Cursor = crHandPoint
+      Picture.Data = {
+        0954506E67496D61676589504E470D0A1A0A0000000D494844520000001E0000
+        001E08060000003B30AEA20000000473424954080808087C0864880000000173
+        52474200AECE1CE90000000467414D410000B18F0BFC61050000000970485973
+        00000EC200000EC20115284A800000001974455874536F667477617265007777
+        772E696E6B73636170652E6F72679BEE3C1A0000018769545874584D4C3A636F
+        6D2E61646F62652E786D7000000000003C3F787061636B657420626567696E3D
+        27EFBBBF272069643D2757354D304D7043656869487A7265537A4E54637A6B63
+        3964273F3E0D0A3C783A786D706D65746120786D6C6E733A783D2261646F6265
+        3A6E733A6D6574612F223E3C7264663A52444620786D6C6E733A7264663D2268
+        7474703A2F2F7777772E77332E6F72672F313939392F30322F32322D7264662D
+        73796E7461782D6E7323223E3C7264663A4465736372697074696F6E20726466
+        3A61626F75743D22757569643A66616635626464352D626133642D313164612D
+        616433312D6433336437353138326631622220786D6C6E733A746966663D2268
+        7474703A2F2F6E732E61646F62652E636F6D2F746966662F312E302F223E3C74
+        6966663A4F7269656E746174696F6E3E313C2F746966663A4F7269656E746174
+        696F6E3E3C2F7264663A4465736372697074696F6E3E3C2F7264663A5244463E
+        3C2F783A786D706D6574613E0D0A3C3F787061636B657420656E643D2777273F
+        3E2C94980B0000022E4944415478DAC5D74F48944118C7F1670B4D33CD14B64B
+        99652448FF8348C8BA74EAA02881041EEAAA04E2A54B7A69AF525074E9501DB4
+        430579A883072B8A3C449A652458A8690733A252CA34A1EFC3CCCB2ED2BEA3F3
+        AEF6C007D677DDFDBDEF3033CF6C4CC2AB00D9E25773F891EECD58C80773F11A
+        5B3D8327B0173F971BBC011FB1C933F81BB6A57BEAB0E03C7CC066CFE0CF28C3
+        CC52832FE130CEA2DBDEB54F8DE3046EE0059A5DC16FB01B07700F3B3C834751
+        8B7EBC43852B7808E538841E6CF40CD6213E8E9718C62E57708D98997C0DA725
+        DAE4EA44A398197E7F71B0AED30B626671F0817914E13B163C83D7DAD1FA8A2C
+        14A68C4442838BF1C5F3CB7D2B1EB34FF6093919FE72DDB9CE8BD90BDA516AAF
+        FFC696950C4EE0098EE2111EAF56B0EE077770102378B05AC15AD73186364936
+        9BB4C1B73068AFAF8910AAB33A5FCC2A2911B33443836F62009733F4D4BA55EE
+        C3195770507B502F66B9F994AEDFDB76F4522B34F8172AC5CC4ADF2D731A5578
+        8EF5CB093E22669BDB6EAFBD12D326C34ADBE07EFB5A2755357AA3065FC14347
+        F0499C5B6A70BA2D53D7DF5D89D616EBD0F78FF7E24193681533F583D2267115
+        4F2579E64AD81B09AB53621A8ED851D45DAB494C93084A9BC445D7614FEF3A6E
+        FFFE835947F0BA94902931FBB3D761EFBD24CF5C1D626679581D43837DAD67AE
+        9D626677A4E06778EB08D6E34D55A6834731E908D6FF2DCD74B0769B2E47B02E
+        9F96A8C1F9F6298BC4AFBC0FF4FFED278CD68AFD68FB0B04988D1E068A9D0900
+        00000049454E44AE426082}
+    end
+    object lbl_imprimeConsolidado: TLabel
+      Left = 586
+      Top = 74
+      Width = 86
+      Height = 30
+      Caption = '    IMPRIMIR'#13#10'CONSOLIDADO'
       Font.Charset = DEFAULT_CHARSET
       Font.Color = clWindowText
       Font.Height = -12
@@ -8258,7 +8316,7 @@ object menu_funcionarios: Tmenu_funcionarios
     TabOrder = 1
     object dbg_funcionarios: TDBGrid
       Left = 0
-      Top = 0
+      Top = 7
       Width = 713
       Height = 336
       Cursor = crHandPoint
@@ -8493,15 +8551,15 @@ object menu_funcionarios: Tmenu_funcionarios
   end
   object tsc_funcionarios: TFDTransaction
     Connection = ctn_conexao
-    Left = 288
-    Top = 280
+    Left = 128
+    Top = 368
   end
   object fdq_funcionarios: TFDQuery
     Active = True
     Connection = ctn_conexao
     SQL.Strings = (
       'SELECT *FROM FUNCIONARIOS')
-    Left = 464
+    Left = 288
     Top = 280
     object fdq_funcionariosFUN_ID: TFDAutoIncField
       FieldName = 'FUN_ID'
@@ -8567,8 +8625,8 @@ object menu_funcionarios: Tmenu_funcionarios
   end
   object dts_grid: TDataSource
     DataSet = fdq_funcionarios
-    Left = 304
-    Top = 366
+    Left = 352
+    Top = 382
   end
   object fdq_recebimento: TFDQuery
     Active = True
@@ -8577,8 +8635,8 @@ object menu_funcionarios: Tmenu_funcionarios
     Connection = ctn_conexao
     SQL.Strings = (
       'SELECT *FROM RECEBIMENTO')
-    Left = 448
-    Top = 358
+    Left = 456
+    Top = 286
     object fdq_recebimentoREC_ID: TFDAutoIncField
       FieldName = 'REC_ID'
       Origin = 'REC_ID'
@@ -8637,19 +8695,22 @@ object menu_funcionarios: Tmenu_funcionarios
     end
   end
   object ppRpt_funcionarioReceb: TppReport
+    AutoStop = False
+    DataPipeline = ppdb_recebimento
     PassSetting = psTwoPass
     PrinterSetup.BinName = 'Default'
     PrinterSetup.DocumentName = 'Report'
-    PrinterSetup.PaperName = 'A4'
+    PrinterSetup.Orientation = poLandscape
+    PrinterSetup.PaperName = 'Custom'
     PrinterSetup.PrinterName = 'Default'
     PrinterSetup.SaveDeviceSettings = False
     PrinterSetup.mmMarginBottom = 6350
     PrinterSetup.mmMarginLeft = 6350
     PrinterSetup.mmMarginRight = 6350
     PrinterSetup.mmMarginTop = 6350
-    PrinterSetup.mmPaperHeight = 297000
-    PrinterSetup.mmPaperWidth = 210000
-    PrinterSetup.PaperSize = 9
+    PrinterSetup.mmPaperHeight = 210000
+    PrinterSetup.mmPaperWidth = 220800
+    PrinterSetup.PaperSize = 256
     ArchiveFileName = '($MyDocuments)\ReportArchive.raf'
     DeviceType = 'Screen'
     DefaultFileDeviceType = 'PDF'
@@ -8686,7 +8747,7 @@ object menu_funcionarios: Tmenu_funcionarios
     PDFSettings.PDFAFormat = pafNone
     PreviewFormSettings.PageBorder.mmPadding = 0
     PreviewFormSettings.WindowState = wsMaximized
-    PreviewFormSettings.ZoomSetting = zsPageWidth
+    PreviewFormSettings.ZoomSetting = zs100Percent
     RTFSettings.DefaultFont.Charset = DEFAULT_CHARSET
     RTFSettings.DefaultFont.Color = clWindowText
     RTFSettings.DefaultFont.Height = -13
@@ -8706,10 +8767,10 @@ object menu_funcionarios: Tmenu_funcionarios
     CloudDriveSettings.GoogleDriveSettings.DirectorySupport = False
     CloudDriveSettings.OneDriveSettings.OAuth2.RedirectPort = 0
     CloudDriveSettings.OneDriveSettings.DirectorySupport = True
-    Left = 328
-    Top = 200
+    Left = 176
     Version = '21.02'
     mmColumnWidth = 0
+    DataPipelineName = 'ppdb_recebimento'
     object ppHeaderBand1: TppHeaderBand
       Background.Brush.Style = bsClear
       Border.mmPadding = 0
@@ -8760,10 +8821,10 @@ object menu_funcionarios: Tmenu_funcionarios
         UserName = 'Line1'
         Border.mmPadding = 0
         Weight = 0.750000000000000000
-        mmHeight = 529
-        mmLeft = -6350
+        mmHeight = 265
+        mmLeft = -8202
         mmTop = 17463
-        mmWidth = 214842
+        mmWidth = 226219
         BandType = 0
         LayerName = Foreground
       end
@@ -8775,7 +8836,7 @@ object menu_funcionarios: Tmenu_funcionarios
         mmHeight = 265
         mmLeft = -11113
         mmTop = 27252
-        mmWidth = 220663
+        mmWidth = 230717
         BandType = 0
         LayerName = Foreground
       end
@@ -8836,7 +8897,7 @@ object menu_funcionarios: Tmenu_funcionarios
         TextAlignment = taRightJustified
         Transparent = True
         mmHeight = 4763
-        mmLeft = 84402
+        mmLeft = 75406
         mmTop = 19315
         mmWidth = 11377
         BandType = 0
@@ -8857,7 +8918,7 @@ object menu_funcionarios: Tmenu_funcionarios
         TextAlignment = taRightJustified
         Transparent = True
         mmHeight = 4763
-        mmLeft = 115094
+        mmLeft = 107950
         mmTop = 19315
         mmWidth = 12965
         BandType = 0
@@ -8878,7 +8939,7 @@ object menu_funcionarios: Tmenu_funcionarios
         TextAlignment = taRightJustified
         Transparent = True
         mmHeight = 4763
-        mmLeft = 173038
+        mmLeft = 171980
         mmTop = 19315
         mmWidth = 20108
         BandType = 0
@@ -8886,9 +8947,9 @@ object menu_funcionarios: Tmenu_funcionarios
       end
       object ppLabel9: TppLabel
         DesignLayer = ppDesignLayer1
-        UserName = 'lbl_tipoPgto'
+        UserName = 'lbl_tipo'
         Border.mmPadding = 0
-        Caption = 'Tipo Pgto'
+        Caption = 'Tipo'
         Font.Charset = DEFAULT_CHARSET
         Font.Color = clBlack
         Font.Name = 'Arial'
@@ -8899,9 +8960,9 @@ object menu_funcionarios: Tmenu_funcionarios
         TextAlignment = taRightJustified
         Transparent = True
         mmHeight = 4763
-        mmLeft = 144463
+        mmLeft = 149754
         mmTop = 19315
-        mmWidth = 18256
+        mmWidth = 8467
         BandType = 0
         LayerName = Foreground
       end
@@ -8918,7 +8979,7 @@ object menu_funcionarios: Tmenu_funcionarios
         UserName = 'dbtxt_Fid'
         Border.mmPadding = 0
         DataField = 'FUN_ID'
-        DataPipeline = cadastro_funcionario.ppdb_funcionario
+        DataPipeline = ppdb_recebimento
         Font.Charset = DEFAULT_CHARSET
         Font.Color = clBlack
         Font.Name = 'Arial'
@@ -8927,7 +8988,7 @@ object menu_funcionarios: Tmenu_funcionarios
         ParentDataPipeline = False
         TextAlignment = taCentered
         Transparent = True
-        DataPipelineName = 'ppdb_funcionario'
+        DataPipelineName = 'ppdb_recebimento'
         mmHeight = 4498
         mmLeft = -1058
         mmTop = 794
@@ -8940,7 +9001,7 @@ object menu_funcionarios: Tmenu_funcionarios
         UserName = 'dbtxt_Fnome'
         Border.mmPadding = 0
         DataField = 'FUN_NOME'
-        DataPipeline = cadastro_funcionario.ppdb_funcionario
+        DataPipeline = ppdb_recebimento
         Font.Charset = DEFAULT_CHARSET
         Font.Color = clBlack
         Font.Name = 'Arial'
@@ -8948,11 +9009,11 @@ object menu_funcionarios: Tmenu_funcionarios
         Font.Style = [fsBold]
         ParentDataPipeline = False
         Transparent = True
-        DataPipelineName = 'ppdb_funcionario'
+        DataPipelineName = 'ppdb_recebimento'
         mmHeight = 4498
         mmLeft = 21167
         mmTop = 794
-        mmWidth = 57679
+        mmWidth = 51329
         BandType = 4
         LayerName = Foreground
       end
@@ -8961,7 +9022,7 @@ object menu_funcionarios: Tmenu_funcionarios
         UserName = 'dbtxt_Fcargo'
         Border.mmPadding = 0
         DataField = 'FUN_CARGO'
-        DataPipeline = cadastro_funcionario.ppdb_funcionario
+        DataPipeline = ppdb_recebimento
         Font.Charset = DEFAULT_CHARSET
         Font.Color = clBlack
         Font.Name = 'Arial'
@@ -8969,11 +9030,11 @@ object menu_funcionarios: Tmenu_funcionarios
         Font.Style = [fsBold]
         ParentDataPipeline = False
         Transparent = True
-        DataPipelineName = 'ppdb_funcionario'
+        DataPipelineName = 'ppdb_recebimento'
         mmHeight = 4498
-        mmLeft = 84402
+        mmLeft = 75406
         mmTop = 794
-        mmWidth = 28575
+        mmWidth = 30692
         BandType = 4
         LayerName = Foreground
       end
@@ -8982,7 +9043,7 @@ object menu_funcionarios: Tmenu_funcionarios
         UserName = 'dbtxt_Fsalario'
         Border.mmPadding = 0
         DataField = 'FUN_SALARIO'
-        DataPipeline = cadastro_funcionario.ppdb_funcionario
+        DataPipeline = ppdb_recebimento
         DisplayFormat = '$#,0.00;-$#,0.00'
         Font.Charset = DEFAULT_CHARSET
         Font.Color = clBlack
@@ -8991,11 +9052,11 @@ object menu_funcionarios: Tmenu_funcionarios
         Font.Style = [fsBold]
         ParentDataPipeline = False
         Transparent = True
-        DataPipelineName = 'ppdb_funcionario'
+        DataPipelineName = 'ppdb_recebimento'
         mmHeight = 4498
-        mmLeft = 115094
+        mmLeft = 107950
         mmTop = 794
-        mmWidth = 25135
+        mmWidth = 31485
         BandType = 4
         LayerName = Foreground
       end
@@ -9004,7 +9065,7 @@ object menu_funcionarios: Tmenu_funcionarios
         UserName = 'dbtxt_Rtipo'
         Border.mmPadding = 0
         DataField = 'REC_TIPO'
-        DataPipeline = cadastro_funcionario.ppdb_recebimento
+        DataPipeline = ppdb_recebimento
         Font.Charset = DEFAULT_CHARSET
         Font.Color = clBlack
         Font.Name = 'Arial'
@@ -9015,9 +9076,9 @@ object menu_funcionarios: Tmenu_funcionarios
         Transparent = True
         DataPipelineName = 'ppdb_recebimento'
         mmHeight = 4498
-        mmLeft = 142346
+        mmLeft = 139965
         mmTop = 794
-        mmWidth = 24077
+        mmWidth = 28840
         BandType = 4
         LayerName = Foreground
       end
@@ -9026,7 +9087,7 @@ object menu_funcionarios: Tmenu_funcionarios
         UserName = 'dbtxt_Rvalor'
         Border.mmPadding = 0
         DataField = 'REC_VALOR'
-        DataPipeline = cadastro_funcionario.ppdb_recebimento
+        DataPipeline = ppdb_recebimento
         DisplayFormat = '$#,0.00;($#,0.00)'
         Font.Charset = DEFAULT_CHARSET
         Font.Color = clBlack
@@ -9039,7 +9100,7 @@ object menu_funcionarios: Tmenu_funcionarios
         mmHeight = 4498
         mmLeft = 173038
         mmTop = 794
-        mmWidth = 25135
+        mmWidth = 34925
         BandType = 4
         LayerName = Foreground
       end
@@ -9048,7 +9109,7 @@ object menu_funcionarios: Tmenu_funcionarios
       Background.Brush.Style = bsClear
       Border.mmPadding = 0
       mmBottomOffset = 0
-      mmHeight = 59796
+      mmHeight = 66411
       mmPrintPosition = 0
       object ppLabel2: TppLabel
         DesignLayer = ppDesignLayer1
@@ -9064,9 +9125,9 @@ object menu_funcionarios: Tmenu_funcionarios
         FormFieldSettings.FormFieldType = fftNone
         Transparent = True
         mmHeight = 4763
-        mmLeft = 72231
+        mmLeft = 74613
         mmTop = 25135
-        mmWidth = 49742
+        mmWidth = 49741
         BandType = 8
         LayerName = Foreground
       end
@@ -9084,7 +9145,7 @@ object menu_funcionarios: Tmenu_funcionarios
         FormFieldSettings.FormFieldType = fftNone
         Transparent = True
         mmHeight = 4763
-        mmLeft = 61383
+        mmLeft = 63765
         mmTop = 34660
         mmWidth = 76729
         BandType = 8
@@ -9103,7 +9164,7 @@ object menu_funcionarios: Tmenu_funcionarios
         TextAlignment = taRightJustified
         Transparent = True
         mmHeight = 4763
-        mmLeft = 86519
+        mmLeft = 88900
         mmTop = 44450
         mmWidth = 21431
         BandType = 8
@@ -9114,10 +9175,10 @@ object menu_funcionarios: Tmenu_funcionarios
         UserName = 'Line3'
         Border.mmPadding = 0
         Weight = 0.750000000000000000
-        mmHeight = 794
-        mmLeft = -6350
+        mmHeight = 265
+        mmLeft = -8202
         mmTop = 1058
-        mmWidth = 214842
+        mmWidth = 226219
         BandType = 8
         LayerName = Foreground
       end
@@ -17102,7 +17163,7 @@ object menu_funcionarios: Tmenu_funcionarios
           0000000000000000000000000000000000000000000000000000000000000000
           00000000}
         mmHeight = 16140
-        mmLeft = 134144
+        mmLeft = 136525
         mmTop = 17198
         mmWidth = 23283
         BandType = 8
@@ -17122,9 +17183,9 @@ object menu_funcionarios: Tmenu_funcionarios
         FormFieldSettings.FormFieldType = fftNone
         TextAlignment = taCentered
         Transparent = True
-        mmHeight = 4233
-        mmLeft = 84402
-        mmTop = 2646
+        mmHeight = 4234
+        mmLeft = 67733
+        mmTop = 2910
         mmWidth = 26194
         BandType = 8
         LayerName = Foreground
@@ -17134,30 +17195,7 @@ object menu_funcionarios: Tmenu_funcionarios
         UserName = 'DBCalc1'
         Border.mmPadding = 0
         DataField = 'FUN_SALARIO'
-        DataPipeline = cadastro_funcionario.ppdb_funcionario
-        DisplayFormat = '$#,0.00;($#,0.00)'
-        Font.Charset = DEFAULT_CHARSET
-        Font.Color = clBlack
-        Font.Name = 'Arial'
-        Font.Size = 10
-        Font.Style = [fsBold]
-        ParentDataPipeline = False
-        TextAlignment = taCentered
-        Transparent = True
-        DataPipelineName = 'ppdb_funcionario'
-        mmHeight = 4498
-        mmLeft = 117475
-        mmTop = 2646
-        mmWidth = 17198
-        BandType = 8
-        LayerName = Foreground
-      end
-      object ppDBCalc2: TppDBCalc
-        DesignLayer = ppDesignLayer1
-        UserName = 'DBCalc2'
-        Border.mmPadding = 0
-        DataField = 'REC_VALOR'
-        DataPipeline = cadastro_funcionario.ppdb_recebimento
+        DataPipeline = ppdb_recebimento
         DisplayFormat = '$#,0.00;($#,0.00)'
         Font.Charset = DEFAULT_CHARSET
         Font.Color = clBlack
@@ -17169,9 +17207,9 @@ object menu_funcionarios: Tmenu_funcionarios
         Transparent = True
         DataPipelineName = 'ppdb_recebimento'
         mmHeight = 4498
-        mmLeft = 173038
-        mmTop = 2646
-        mmWidth = 17198
+        mmLeft = 101600
+        mmTop = 2910
+        mmWidth = 31485
         BandType = 8
         LayerName = Foreground
       end
@@ -17180,10 +17218,33 @@ object menu_funcionarios: Tmenu_funcionarios
         UserName = 'Line4'
         Border.mmPadding = 0
         Weight = 0.750000000000000000
-        mmHeight = 7938
-        mmLeft = -6350
-        mmTop = 9260
-        mmWidth = 214313
+        mmHeight = 529
+        mmLeft = -18256
+        mmTop = 7938
+        mmWidth = 236273
+        BandType = 8
+        LayerName = Foreground
+      end
+      object ppDBCalc2: TppDBCalc
+        DesignLayer = ppDesignLayer1
+        UserName = 'DBCalc2'
+        Border.mmPadding = 0
+        DataField = 'REC_VALOR'
+        DataPipeline = ppdb_recebimento
+        DisplayFormat = '$#,0.00;($#,0.00)'
+        Font.Charset = DEFAULT_CHARSET
+        Font.Color = clBlack
+        Font.Name = 'Arial'
+        Font.Size = 10
+        Font.Style = [fsBold]
+        ParentDataPipeline = False
+        TextAlignment = taCentered
+        Transparent = True
+        DataPipelineName = 'ppdb_recebimento'
+        mmHeight = 4498
+        mmLeft = 164836
+        mmTop = 2910
+        mmWidth = 34925
         BandType = 8
         LayerName = Foreground
       end
@@ -17198,6 +17259,114 @@ object menu_funcionarios: Tmenu_funcionarios
       end
     end
     object ppParameterList1: TppParameterList
+    end
+  end
+  object ppdb_recebimento: TppDBPipeline
+    DataSource = dts_recebimento_imp
+    UserName = 'db_recebimento'
+    Left = 256
+    Top = 65534
+    object ppdb_recebimentoppField1: TppField
+      Alignment = taRightJustify
+      FieldAlias = 'FUN_ID'
+      FieldName = 'FUN_ID'
+      FieldLength = 0
+      DataType = dtLongint
+      DisplayWidth = 0
+      Position = 0
+    end
+    object ppdb_recebimentoppField2: TppField
+      FieldAlias = 'FUN_NOME'
+      FieldName = 'FUN_NOME'
+      FieldLength = 50
+      DisplayWidth = 50
+      Position = 1
+    end
+    object ppdb_recebimentoppField3: TppField
+      FieldAlias = 'FUN_CARGO'
+      FieldName = 'FUN_CARGO'
+      FieldLength = 50
+      DisplayWidth = 50
+      Position = 2
+    end
+    object ppdb_recebimentoppField4: TppField
+      Alignment = taRightJustify
+      FieldAlias = 'FUN_SALARIO'
+      FieldName = 'FUN_SALARIO'
+      FieldLength = 2
+      DataType = dtDouble
+      DisplayWidth = 11
+      Position = 3
+    end
+    object ppdb_recebimentoppField5: TppField
+      FieldAlias = 'REC_TIPO'
+      FieldName = 'REC_TIPO'
+      FieldLength = 25
+      DisplayWidth = 25
+      Position = 4
+    end
+    object ppdb_recebimentoppField6: TppField
+      Alignment = taRightJustify
+      FieldAlias = 'REC_VALOR'
+      FieldName = 'REC_VALOR'
+      FieldLength = 2
+      DataType = dtDouble
+      DisplayWidth = 11
+      Position = 5
+    end
+  end
+  object dts_recebimento_imp: TDataSource
+    DataSet = fdq_recebimento_imp
+    Left = 128
+    Top = 65534
+  end
+  object fdq_recebimento_imp: TFDQuery
+    Active = True
+    Connection = ctn_conexao
+    SQL.Strings = (
+      'SELECT'
+      
+        #9'F.FUN_ID, F.FUN_NOME, F.FUN_CARGO, F.FUN_SALARIO, R.REC_TIPO, R' +
+        '.REC_VALOR'
+      ''
+      'FROM RECEBIMENTO R'
+      ' '
+      'INNER JOIN FUNCIONARIOS F ON  R.FUN_ID = F.FUN_ID')
+    Left = 216
+    object fdq_recebimento_impFUN_ID: TFDAutoIncField
+      FieldName = 'FUN_ID'
+      Origin = 'REC_VALOR'
+      ProviderFlags = [pfInUpdate, pfInWhere]
+      IdentityInsert = True
+    end
+    object fdq_recebimento_impFUN_NOME: TWideStringField
+      FieldName = 'FUN_NOME'
+      Origin = 'FUN_NOME'
+      Size = 50
+    end
+    object fdq_recebimento_impFUN_CARGO: TWideStringField
+      FieldName = 'FUN_CARGO'
+      Origin = 'FUN_CARGO'
+      Size = 50
+    end
+    object fdq_recebimento_impFUN_SALARIO: TBCDField
+      FieldName = 'FUN_SALARIO'
+      Origin = 'FUN_SALARIO'
+      Precision = 10
+      Size = 2
+    end
+    object fdq_recebimento_impREC_TIPO: TWideStringField
+      FieldName = 'REC_TIPO'
+      Origin = 'REC_TIPO'
+      Required = True
+      Size = 25
+    end
+    object fdq_recebimento_impREC_VALOR: TBCDField
+      FieldName = 'REC_VALOR'
+      Origin = 'REC_VALOR'
+      Required = True
+      Precision = 10
+      Size = 2
     end
   end
 end
