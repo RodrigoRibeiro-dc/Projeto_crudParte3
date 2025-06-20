@@ -219,6 +219,7 @@ begin
     edt_descricao.Clear;
     nbx_valor.Clear;
     dtp_data.Date := Date;
+    cbx_tipo.Clear;
   finally
     Recebimento.Free;
   end;
@@ -233,8 +234,6 @@ begin
     if MessageDlg('DESEJA INCLUIR O FUNCIONÁRIO?', mtConfirmation,
       [mbYes, MbNo], 0) = mrYes then
     begin
-      menu_funcionarios.fdq_funcionarios.Post;
-
       MessageDlg('FUNCIONÁRIO INCLUÍDO COM SUCESSO.', mtConfirmation,
         [mbOk], 0);
       cadastro_funcionario.Close;
@@ -306,18 +305,18 @@ end;
 
 procedure Tcadastro_funcionario.Totais_recebimentos;
 begin
-  lbl_totalregistro.Caption := 'TOTAL : ' +
+  lbl_totalregistro.Caption := 'TOTAL: ' +
     IntToStr(menu_funcionarios.fdq_recebimentoQTDE.AsInteger);
 
-  lbl_somaVale.Caption := 'TOTAL VALE R$ : ' +
+  lbl_somaVale.Caption := 'TOTAL VALE: R$ ' +
     FormatFloat('#,0.00',
     StrToFloatDef(menu_funcionarios.fdq_recebimentoSomaVale.AsString, 0));
 
-  lbl_somaSalario.Caption := 'TOTAL SALÁRIO R$ : ' +
+  lbl_somaSalario.Caption := 'TOTAL SALÁRIO: R$ ' +
     FormatFloat('#,0.00',
     StrToFloatDef(menu_funcionarios.fdq_recebimentoSomaSalario.AsString, 0));
 
-  lbl_somaAcerto.Caption := 'TOTAL ACERTO R$ : ' +
+  lbl_somaAcerto.Caption := 'TOTAL ACERTO: R$ ' +
     FormatFloat('#,0.00',
     StrToFloatDef(menu_funcionarios.fdq_recebimentoSomaAcerto.AsString, 0));
 end;

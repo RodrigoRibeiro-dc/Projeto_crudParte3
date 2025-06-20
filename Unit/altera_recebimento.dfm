@@ -1,7 +1,6 @@
 object Altera_rec: TAltera_rec
   Left = 0
   Top = 0
-  BiDiMode = bdRightToLeftNoAlign
   BorderIcons = [biSystemMenu]
   BorderStyle = bsSingle
   Caption = 'ALTERAR RECEBIMENTO'
@@ -7985,7 +7984,6 @@ object Altera_rec: TAltera_rec
     0000000000000000000000000000000000000000000000000000000000000000
     000000000000000000000000000000000000000000000000000000000000}
   KeyPreview = True
-  ParentBiDiMode = False
   Position = poMainFormCenter
   OnKeyPress = FormKeyPress
   OnShow = FormShow
@@ -8073,6 +8071,7 @@ object Altera_rec: TAltera_rec
     Width = 131
     Height = 23
     Cursor = crHandPoint
+    Style = csDropDownList
     CharCase = ecUpperCase
     MaxLength = 25
     TabOrder = 2

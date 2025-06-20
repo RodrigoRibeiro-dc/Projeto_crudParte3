@@ -7993,7 +7993,7 @@ object menu_funcionarios: Tmenu_funcionarios
   TextHeight = 15
   object pnl_crud: TPanel
     Left = 0
-    Top = 0
+    Top = -2
     Width = 713
     Height = 113
     TabOrder = 0
@@ -8317,7 +8317,7 @@ object menu_funcionarios: Tmenu_funcionarios
     TabOrder = 1
     object dbg_funcionarios: TDBGrid
       Left = 0
-      Top = 7
+      Top = 0
       Width = 713
       Height = 336
       Cursor = crHandPoint
@@ -8547,21 +8547,21 @@ object menu_funcionarios: Tmenu_funcionarios
     Connected = True
     LoginPrompt = False
     Transaction = tsc_funcionarios
-    Left = 128
-    Top = 280
+    Left = 16
+    Top = 288
   end
   object tsc_funcionarios: TFDTransaction
     Connection = ctn_conexao
-    Left = 128
-    Top = 368
+    Left = 16
+    Top = 352
   end
   object fdq_funcionarios: TFDQuery
     Active = True
     Connection = ctn_conexao
     SQL.Strings = (
       'SELECT *FROM FUNCIONARIOS')
-    Left = 288
-    Top = 280
+    Left = 80
+    Top = 288
     object fdq_funcionariosFUN_ID: TFDAutoIncField
       FieldName = 'FUN_ID'
       Origin = 'FUN_ID'
@@ -8626,8 +8626,8 @@ object menu_funcionarios: Tmenu_funcionarios
   end
   object dts_grid: TDataSource
     DataSet = fdq_funcionarios
-    Left = 352
-    Top = 382
+    Left = 80
+    Top = 358
   end
   object fdq_recebimento: TFDQuery
     Active = True
@@ -8636,7 +8636,7 @@ object menu_funcionarios: Tmenu_funcionarios
     Connection = ctn_conexao
     SQL.Strings = (
       'SELECT *FROM RECEBIMENTO')
-    Left = 456
+    Left = 136
     Top = 286
     object fdq_recebimentoREC_ID: TFDAutoIncField
       FieldName = 'REC_ID'
@@ -8768,8 +8768,8 @@ object menu_funcionarios: Tmenu_funcionarios
     CloudDriveSettings.GoogleDriveSettings.DirectorySupport = False
     CloudDriveSettings.OneDriveSettings.OAuth2.RedirectPort = 0
     CloudDriveSettings.OneDriveSettings.DirectorySupport = True
-    Left = 64
-    Top = 96
+    Left = 360
+    Top = 8
     Version = '21.02'
     mmColumnWidth = 0
     DataPipelineName = 'ppdb_recebimento'
@@ -17266,8 +17266,8 @@ object menu_funcionarios: Tmenu_funcionarios
   object ppdb_recebimento: TppDBPipeline
     DataSource = dts_recebimento_imp
     UserName = 'db_recebimento'
-    Left = 144
-    Top = 94
+    Left = 440
+    Top = 6
     object ppdb_recebimentoppField1: TppField
       Alignment = taRightJustify
       FieldAlias = 'FUN_ID'
@@ -17319,8 +17319,8 @@ object menu_funcionarios: Tmenu_funcionarios
   end
   object dts_recebimento_imp: TDataSource
     DataSet = fdq_recebimento_imp
-    Left = 16
-    Top = 94
+    Left = 312
+    Top = 6
   end
   object fdq_recebimento_imp: TFDQuery
     Active = True
@@ -17334,8 +17334,8 @@ object menu_funcionarios: Tmenu_funcionarios
       'FROM RECEBIMENTO R'
       ' '
       'INNER JOIN FUNCIONARIOS F ON  R.FUN_ID = F.FUN_ID')
-    Left = 104
-    Top = 96
+    Left = 400
+    Top = 8
     object fdq_recebimento_impFUN_ID: TFDAutoIncField
       FieldName = 'FUN_ID'
       Origin = 'REC_VALOR'
@@ -17374,13 +17374,13 @@ object menu_funcionarios: Tmenu_funcionarios
   end
   object dts_recebimentoConsolidado: TDataSource
     DataSet = fdq_recebimentoConsolidado
-    Left = 448
+    Left = 552
     Top = 8
   end
   object ppDB_recebimentoConsolidado: TppDBPipeline
     DataSource = dts_recebimentoConsolidado
     UserName = 'DB_recebimentoConsolidado'
-    Left = 568
+    Left = 672
     Top = 8
     object ppDB_recebimentoConsolidadoppField1: TppField
       FieldAlias = 'REC_TIPO'
@@ -17444,7 +17444,7 @@ object menu_funcionarios: Tmenu_funcionarios
       'INNER JOIN FUNCIONARIOS F ON R.FUN_ID = F.FUN_ID'
       'ORDER BY REC_TIPO'
       '')
-    Left = 528
+    Left = 632
     Top = 8
     object fdq_recebimentoConsolidadoREC_TIPO: TWideStringField
       FieldName = 'REC_TIPO'
@@ -17553,7 +17553,7 @@ object menu_funcionarios: Tmenu_funcionarios
     CloudDriveSettings.GoogleDriveSettings.DirectorySupport = False
     CloudDriveSettings.OneDriveSettings.OAuth2.RedirectPort = 0
     CloudDriveSettings.OneDriveSettings.DirectorySupport = True
-    Left = 488
+    Left = 592
     Top = 8
     Version = '21.02'
     mmColumnWidth = 0
@@ -17562,7 +17562,7 @@ object menu_funcionarios: Tmenu_funcionarios
       Background.Brush.Style = bsClear
       Border.mmPadding = 0
       mmBottomOffset = 0
-      mmHeight = 32015
+      mmHeight = 15610
       mmPrintPosition = 0
       object ppLabel11: TppLabel
         DesignLayer = ppDesignLayer2
@@ -17603,183 +17603,13 @@ object menu_funcionarios: Tmenu_funcionarios
         BandType = 0
         LayerName = Foreground1
       end
-      object ppLabel12: TppLabel
-        DesignLayer = ppDesignLayer2
-        UserName = 'lbl_tipo'
-        Border.mmPadding = 0
-        Caption = 'Tipo: '
-        Font.Charset = DEFAULT_CHARSET
-        Font.Color = clBlack
-        Font.Name = 'Arial'
-        Font.Size = 12
-        Font.Style = [fsBold]
-        FormFieldSettings.FormSubmitInfo.SubmitMethod = fstPost
-        FormFieldSettings.FormFieldType = fftNone
-        TextAlignment = taRightJustified
-        Transparent = True
-        mmHeight = 5027
-        mmLeft = 3704
-        mmTop = 15875
-        mmWidth = 11642
-        BandType = 0
-        LayerName = Foreground1
-      end
-      object ppLine5: TppLine
-        DesignLayer = ppDesignLayer2
-        UserName = 'Line5'
-        Border.mmPadding = 0
-        Weight = 0.750000000000000000
-        mmHeight = 265
-        mmLeft = -13229
-        mmTop = 14288
-        mmWidth = 234421
-        BandType = 0
-        LayerName = Foreground1
-      end
-      object ppDBText7: TppDBText
-        DesignLayer = ppDesignLayer2
-        UserName = 'dbtxt_tipo'
-        Border.mmPadding = 0
-        DataField = 'REC_TIPO'
-        DataPipeline = ppDB_recebimentoConsolidado
-        Font.Charset = DEFAULT_CHARSET
-        Font.Color = clBlack
-        Font.Name = 'Arial'
-        Font.Size = 12
-        Font.Style = [fsBold]
-        Transparent = True
-        DataPipelineName = 'ppDB_recebimentoConsolidado'
-        mmHeight = 4498
-        mmLeft = 17463
-        mmTop = 15875
-        mmWidth = 38894
-        BandType = 0
-        LayerName = Foreground1
-      end
-      object ppLine6: TppLine
-        DesignLayer = ppDesignLayer2
-        UserName = 'Line6'
-        Border.mmPadding = 0
-        Weight = 0.750000000000000000
-        mmHeight = 265
-        mmLeft = -24077
-        mmTop = 20638
-        mmWidth = 234421
-        BandType = 0
-        LayerName = Foreground1
-      end
-      object ppLabel13: TppLabel
-        DesignLayer = ppDesignLayer2
-        UserName = 'lbl_codigo'
-        Border.mmPadding = 0
-        Caption = 'C'#243'digo'
-        Font.Charset = DEFAULT_CHARSET
-        Font.Color = clBlack
-        Font.Name = 'Arial'
-        Font.Size = 12
-        Font.Style = [fsBold]
-        FormFieldSettings.FormSubmitInfo.SubmitMethod = fstPost
-        FormFieldSettings.FormFieldType = fftNone
-        TextAlignment = taRightJustified
-        Transparent = True
-        mmHeight = 5027
-        mmLeft = 1852
-        mmTop = 26194
-        mmWidth = 14817
-        BandType = 0
-        LayerName = Foreground1
-      end
-      object ppLabel14: TppLabel
-        DesignLayer = ppDesignLayer2
-        UserName = 'lbl_nome'
-        Border.mmPadding = 0
-        Caption = 'Nome'
-        Font.Charset = DEFAULT_CHARSET
-        Font.Color = clBlack
-        Font.Name = 'Arial'
-        Font.Size = 12
-        Font.Style = [fsBold]
-        FormFieldSettings.FormSubmitInfo.SubmitMethod = fstPost
-        FormFieldSettings.FormFieldType = fftNone
-        TextAlignment = taRightJustified
-        Transparent = True
-        mmHeight = 5027
-        mmLeft = 23019
-        mmTop = 26194
-        mmWidth = 11906
-        BandType = 0
-        LayerName = Foreground1
-      end
-      object ppLabel15: TppLabel
-        DesignLayer = ppDesignLayer2
-        UserName = 'lbl_cargo'
-        Border.mmPadding = 0
-        Caption = 'Cargo'
-        Font.Charset = DEFAULT_CHARSET
-        Font.Color = clBlack
-        Font.Name = 'Arial'
-        Font.Size = 12
-        Font.Style = [fsBold]
-        FormFieldSettings.FormSubmitInfo.SubmitMethod = fstPost
-        FormFieldSettings.FormFieldType = fftNone
-        TextAlignment = taRightJustified
-        Transparent = True
-        mmHeight = 5027
-        mmLeft = 90752
-        mmTop = 26194
-        mmWidth = 12435
-        BandType = 0
-        LayerName = Foreground1
-      end
-      object ppLabel16: TppLabel
-        DesignLayer = ppDesignLayer2
-        UserName = 'lbl_salario'
-        Border.mmPadding = 0
-        Caption = 'Sal'#225'rio'
-        Font.Charset = DEFAULT_CHARSET
-        Font.Color = clBlack
-        Font.Name = 'Arial'
-        Font.Size = 12
-        Font.Style = [fsBold]
-        FormFieldSettings.FormSubmitInfo.SubmitMethod = fstPost
-        FormFieldSettings.FormFieldType = fftNone
-        TextAlignment = taRightJustified
-        Transparent = True
-        mmHeight = 5027
-        mmLeft = 132292
-        mmTop = 26194
-        mmWidth = 14023
-        BandType = 0
-        LayerName = Foreground1
-      end
-      object ppLabel17: TppLabel
-        DesignLayer = ppDesignLayer2
-        UserName = 'lbl_valor'
-        Border.mmPadding = 0
-        Caption = 'Valor Recebido'
-        Font.Charset = DEFAULT_CHARSET
-        Font.Color = clBlack
-        Font.Name = 'Arial'
-        Font.Size = 12
-        Font.Style = [fsBold]
-        FormFieldSettings.FormSubmitInfo.SubmitMethod = fstPost
-        FormFieldSettings.FormFieldType = fftNone
-        TextAlignment = taRightJustified
-        Transparent = True
-        mmHeight = 5027
-        mmLeft = 161925
-        mmTop = 26194
-        mmWidth = 30956
-        BandType = 0
-        LayerName = Foreground1
-      end
     end
     object ppDetailBand2: TppDetailBand
       Background1.Brush.Style = bsClear
       Background2.Brush.Style = bsClear
       Border.mmPadding = 0
       mmBottomOffset = 0
-      mmHeight = 10054
+      mmHeight = 9525
       mmPrintPosition = 0
       object ppDBText8: TppDBText
         DesignLayer = ppDesignLayer2
@@ -17889,97 +17719,8 @@ object menu_funcionarios: Tmenu_funcionarios
       Background.Brush.Style = bsClear
       Border.mmPadding = 0
       mmBottomOffset = 0
-      mmHeight = 25665
+      mmHeight = 16404
       mmPrintPosition = 0
-      object ppLine7: TppLine
-        DesignLayer = ppDesignLayer2
-        UserName = 'Line7'
-        Border.mmPadding = 0
-        Weight = 0.750000000000000000
-        mmHeight = 265
-        mmLeft = -10054
-        mmTop = 0
-        mmWidth = 215371
-        BandType = 8
-        LayerName = Foreground1
-      end
-      object ppLine8: TppLine
-        DesignLayer = ppDesignLayer2
-        UserName = 'Line8'
-        Border.mmPadding = 0
-        Weight = 0.750000000000000000
-        mmHeight = 265
-        mmLeft = -7938
-        mmTop = 8202
-        mmWidth = 215371
-        BandType = 8
-        LayerName = Foreground1
-      end
-      object ppLabel18: TppLabel
-        DesignLayer = ppDesignLayer2
-        UserName = 'lbl_totalGeral'
-        Border.mmPadding = 0
-        Caption = 'Total Geral :'
-        Font.Charset = DEFAULT_CHARSET
-        Font.Color = clBlack
-        Font.Name = 'Arial'
-        Font.Size = 12
-        Font.Style = [fsBold]
-        FormFieldSettings.FormSubmitInfo.SubmitMethod = fstPost
-        FormFieldSettings.FormFieldType = fftNone
-        TextAlignment = taCentered
-        Transparent = True
-        mmHeight = 5027
-        mmLeft = 90752
-        mmTop = 1852
-        mmWidth = 24342
-        BandType = 8
-        LayerName = Foreground1
-      end
-      object ppDBCalc3: TppDBCalc
-        DesignLayer = ppDesignLayer2
-        UserName = 'DBCalc_salario'
-        Border.mmPadding = 0
-        DataField = 'FUN_SALARIO'
-        DataPipeline = ppDB_recebimentoConsolidado
-        DisplayFormat = '$#,0.00;($#,0.00)'
-        Font.Charset = DEFAULT_CHARSET
-        Font.Color = clBlack
-        Font.Name = 'Arial'
-        Font.Size = 12
-        Font.Style = [fsBold]
-        TextAlignment = taCentered
-        Transparent = True
-        DataPipelineName = 'ppDB_recebimentoConsolidado'
-        mmHeight = 4498
-        mmLeft = 132292
-        mmTop = 1852
-        mmWidth = 27252
-        BandType = 8
-        LayerName = Foreground1
-      end
-      object ppDBCalc4: TppDBCalc
-        DesignLayer = ppDesignLayer2
-        UserName = 'DBCalc_valor'
-        Border.mmPadding = 0
-        DataField = 'REC_VALOR'
-        DataPipeline = ppDB_recebimentoConsolidado
-        DisplayFormat = '$#,0.00;($#,0.00)'
-        Font.Charset = DEFAULT_CHARSET
-        Font.Color = clBlack
-        Font.Name = 'Arial'
-        Font.Size = 12
-        Font.Style = [fsBold]
-        TextAlignment = taCentered
-        Transparent = True
-        DataPipelineName = 'ppDB_recebimentoConsolidado'
-        mmHeight = 4498
-        mmLeft = 160602
-        mmTop = 1852
-        mmWidth = 30956
-        BandType = 8
-        LayerName = Foreground1
-      end
       object ppSystemVariable4: TppSystemVariable
         DesignLayer = ppDesignLayer2
         UserName = 'sysVariablePage'
@@ -17992,8 +17733,8 @@ object menu_funcionarios: Tmenu_funcionarios
         Font.Style = []
         Transparent = True
         mmHeight = 4763
-        mmLeft = 87313
-        mmTop = 18785
+        mmLeft = 85196
+        mmTop = 9525
         mmWidth = 21431
         BandType = 8
         LayerName = Foreground1
@@ -18012,9 +17753,9 @@ object menu_funcionarios: Tmenu_funcionarios
         FormFieldSettings.FormFieldType = fftNone
         TextAlignment = taCentered
         Transparent = True
-        mmHeight = 4762
-        mmLeft = 70115
-        mmTop = 12171
+        mmHeight = 4763
+        mmLeft = 67998
+        mmTop = 2910
         mmWidth = 54504
         BandType = 8
         LayerName = Foreground1
@@ -18026,7 +17767,6 @@ object menu_funcionarios: Tmenu_funcionarios
       GroupFileSettings.NewFile = False
       GroupFileSettings.EmailFile = False
       OutlineSettings.CreateNode = True
-      NewPage = True
       ReprintOnSubsequentPage = False
       StartOnOddPage = False
       UserName = 'Group1'
@@ -18038,16 +17778,263 @@ object menu_funcionarios: Tmenu_funcionarios
         Background.Brush.Style = bsClear
         Border.mmPadding = 0
         mmBottomOffset = 0
-        mmHeight = 0
+        mmHeight = 18785
         mmPrintPosition = 0
+        object ppLabel12: TppLabel
+          DesignLayer = ppDesignLayer2
+          UserName = 'lbl_tipo1'
+          Border.mmPadding = 0
+          Caption = 'Tipo: '
+          Font.Charset = DEFAULT_CHARSET
+          Font.Color = clBlack
+          Font.Name = 'Arial'
+          Font.Size = 12
+          Font.Style = [fsBold]
+          FormFieldSettings.FormSubmitInfo.SubmitMethod = fstPost
+          FormFieldSettings.FormFieldType = fftNone
+          TextAlignment = taRightJustified
+          Transparent = True
+          mmHeight = 5027
+          mmLeft = 3704
+          mmTop = 1588
+          mmWidth = 11642
+          BandType = 3
+          GroupNo = 0
+          LayerName = Foreground1
+        end
+        object ppDBText7: TppDBText
+          DesignLayer = ppDesignLayer2
+          UserName = 'dbtxt_tipo'
+          Border.mmPadding = 0
+          DataField = 'REC_TIPO'
+          DataPipeline = ppDB_recebimentoConsolidado
+          Font.Charset = DEFAULT_CHARSET
+          Font.Color = clBlack
+          Font.Name = 'Arial'
+          Font.Size = 12
+          Font.Style = [fsBold]
+          Transparent = True
+          DataPipelineName = 'ppDB_recebimentoConsolidado'
+          mmHeight = 4498
+          mmLeft = 17463
+          mmTop = 1588
+          mmWidth = 38894
+          BandType = 3
+          GroupNo = 0
+          LayerName = Foreground1
+        end
+        object ppLine6: TppLine
+          DesignLayer = ppDesignLayer2
+          UserName = 'Line6'
+          Border.mmPadding = 0
+          Weight = 0.750000000000000000
+          mmHeight = 265
+          mmLeft = -24077
+          mmTop = 6350
+          mmWidth = 234421
+          BandType = 3
+          GroupNo = 0
+          LayerName = Foreground1
+        end
+        object ppLabel13: TppLabel
+          DesignLayer = ppDesignLayer2
+          UserName = 'lbl_codigo1'
+          Border.mmPadding = 0
+          Caption = 'C'#243'digo'
+          Font.Charset = DEFAULT_CHARSET
+          Font.Color = clBlack
+          Font.Name = 'Arial'
+          Font.Size = 12
+          Font.Style = [fsBold]
+          FormFieldSettings.FormSubmitInfo.SubmitMethod = fstPost
+          FormFieldSettings.FormFieldType = fftNone
+          TextAlignment = taRightJustified
+          Transparent = True
+          mmHeight = 5027
+          mmLeft = 1852
+          mmTop = 11906
+          mmWidth = 14817
+          BandType = 3
+          GroupNo = 0
+          LayerName = Foreground1
+        end
+        object ppLabel14: TppLabel
+          DesignLayer = ppDesignLayer2
+          UserName = 'lbl_nome1'
+          Border.mmPadding = 0
+          Caption = 'Nome'
+          Font.Charset = DEFAULT_CHARSET
+          Font.Color = clBlack
+          Font.Name = 'Arial'
+          Font.Size = 12
+          Font.Style = [fsBold]
+          FormFieldSettings.FormSubmitInfo.SubmitMethod = fstPost
+          FormFieldSettings.FormFieldType = fftNone
+          TextAlignment = taRightJustified
+          Transparent = True
+          mmHeight = 5027
+          mmLeft = 23019
+          mmTop = 11906
+          mmWidth = 11906
+          BandType = 3
+          GroupNo = 0
+          LayerName = Foreground1
+        end
+        object ppLabel15: TppLabel
+          DesignLayer = ppDesignLayer2
+          UserName = 'lbl_cargo1'
+          Border.mmPadding = 0
+          Caption = 'Cargo'
+          Font.Charset = DEFAULT_CHARSET
+          Font.Color = clBlack
+          Font.Name = 'Arial'
+          Font.Size = 12
+          Font.Style = [fsBold]
+          FormFieldSettings.FormSubmitInfo.SubmitMethod = fstPost
+          FormFieldSettings.FormFieldType = fftNone
+          TextAlignment = taRightJustified
+          Transparent = True
+          mmHeight = 5027
+          mmLeft = 90752
+          mmTop = 11906
+          mmWidth = 12435
+          BandType = 3
+          GroupNo = 0
+          LayerName = Foreground1
+        end
+        object ppLabel16: TppLabel
+          DesignLayer = ppDesignLayer2
+          UserName = 'lbl_salario1'
+          Border.mmPadding = 0
+          Caption = 'Sal'#225'rio'
+          Font.Charset = DEFAULT_CHARSET
+          Font.Color = clBlack
+          Font.Name = 'Arial'
+          Font.Size = 12
+          Font.Style = [fsBold]
+          FormFieldSettings.FormSubmitInfo.SubmitMethod = fstPost
+          FormFieldSettings.FormFieldType = fftNone
+          TextAlignment = taRightJustified
+          Transparent = True
+          mmHeight = 5027
+          mmLeft = 132292
+          mmTop = 11906
+          mmWidth = 14023
+          BandType = 3
+          GroupNo = 0
+          LayerName = Foreground1
+        end
+        object ppLabel17: TppLabel
+          DesignLayer = ppDesignLayer2
+          UserName = 'lbl_valor'
+          Border.mmPadding = 0
+          Caption = 'Valor Pago'
+          Font.Charset = DEFAULT_CHARSET
+          Font.Color = clBlack
+          Font.Name = 'Arial'
+          Font.Size = 12
+          Font.Style = [fsBold]
+          FormFieldSettings.FormSubmitInfo.SubmitMethod = fstPost
+          FormFieldSettings.FormFieldType = fftNone
+          TextAlignment = taRightJustified
+          Transparent = True
+          mmHeight = 5027
+          mmLeft = 162719
+          mmTop = 11906
+          mmWidth = 22225
+          BandType = 3
+          GroupNo = 0
+          LayerName = Foreground1
+        end
       end
       object ppGroupFooterBand1: TppGroupFooterBand
         Background.Brush.Style = bsClear
         Border.mmPadding = 0
         HideWhenOneDetail = False
         mmBottomOffset = 0
-        mmHeight = 0
+        mmHeight = 9790
         mmPrintPosition = 0
+        object ppLine8: TppLine
+          DesignLayer = ppDesignLayer2
+          UserName = 'Line8'
+          Border.mmPadding = 0
+          Weight = 0.750000000000000000
+          mmHeight = 265
+          mmLeft = -7938
+          mmTop = 8202
+          mmWidth = 215371
+          BandType = 5
+          GroupNo = 0
+          LayerName = Foreground1
+        end
+        object ppLabel18: TppLabel
+          DesignLayer = ppDesignLayer2
+          UserName = 'lbl_totalGeral'
+          Border.mmPadding = 0
+          Caption = 'Total Geral :'
+          Font.Charset = DEFAULT_CHARSET
+          Font.Color = clBlack
+          Font.Name = 'Arial'
+          Font.Size = 12
+          Font.Style = [fsBold]
+          FormFieldSettings.FormSubmitInfo.SubmitMethod = fstPost
+          FormFieldSettings.FormFieldType = fftNone
+          TextAlignment = taCentered
+          Transparent = True
+          mmHeight = 5027
+          mmLeft = 90752
+          mmTop = 1852
+          mmWidth = 24342
+          BandType = 5
+          GroupNo = 0
+          LayerName = Foreground1
+        end
+        object ppDBCalc3: TppDBCalc
+          DesignLayer = ppDesignLayer2
+          UserName = 'DBCalc_salario'
+          Border.mmPadding = 0
+          DataField = 'FUN_SALARIO'
+          DataPipeline = ppDB_recebimentoConsolidado
+          DisplayFormat = '$#,0.00;($#,0.00)'
+          Font.Charset = DEFAULT_CHARSET
+          Font.Color = clBlack
+          Font.Name = 'Arial'
+          Font.Size = 12
+          Font.Style = [fsBold]
+          TextAlignment = taCentered
+          Transparent = True
+          DataPipelineName = 'ppDB_recebimentoConsolidado'
+          mmHeight = 4498
+          mmLeft = 132292
+          mmTop = 1852
+          mmWidth = 27252
+          BandType = 5
+          GroupNo = 0
+          LayerName = Foreground1
+        end
+        object ppDBCalc4: TppDBCalc
+          DesignLayer = ppDesignLayer2
+          UserName = 'DBCalc_valor'
+          Border.mmPadding = 0
+          DataField = 'REC_VALOR'
+          DataPipeline = ppDB_recebimentoConsolidado
+          DisplayFormat = '$#,0.00;($#,0.00)'
+          Font.Charset = DEFAULT_CHARSET
+          Font.Color = clBlack
+          Font.Name = 'Arial'
+          Font.Size = 12
+          Font.Style = [fsBold]
+          TextAlignment = taCentered
+          Transparent = True
+          DataPipelineName = 'ppDB_recebimentoConsolidado'
+          mmHeight = 4498
+          mmLeft = 160602
+          mmTop = 1852
+          mmWidth = 30956
+          BandType = 5
+          GroupNo = 0
+          LayerName = Foreground1
+        end
       end
     end
     object raCodeModule2: TraCodeModule

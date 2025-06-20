@@ -7996,7 +7996,7 @@ object cadastro_funcionario: Tcadastro_funcionario
     Top = 0
     Width = 559
     Height = 555
-    ActivePage = tab_dadospessoais
+    ActivePage = tab_financeiro
     TabOrder = 0
     object tab_dadospessoais: TTabSheet
       Cursor = crArrow
@@ -8285,14 +8285,16 @@ object cadastro_funcionario: Tcadastro_funcionario
           end
           item
             Expanded = False
-            FieldName = 'REC_DATA'
-            Title.Caption = 'DATA'
+            FieldName = 'REC_TIPO'
+            Title.Caption = 'TIPO'
+            Width = 121
             Visible = True
           end
           item
             Expanded = False
-            FieldName = 'REC_TIPO'
-            Title.Caption = 'TIPO'
+            FieldName = 'REC_DATA'
+            Title.Caption = 'DATA'
+            Width = 98
             Visible = True
           end>
       end
