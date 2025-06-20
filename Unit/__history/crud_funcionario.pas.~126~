@@ -14,7 +14,7 @@ uses
   FireDAC.Stan.Param, FireDAC.DatS, FireDAC.DApt.Intf, FireDAC.DApt,
   FireDAC.Comp.DataSet, FireDAC.Comp.Client, ppDB, ppDBPipe, ppBands, ppCache,
   ppClass, ppDesignLayer, ppParameter, ppComm, ppRelatv, ppProd, ppReport,
-  ppCtrls, ppVar, ppPrnabl, ppModule, raCodMod;
+  ppCtrls, ppVar, ppPrnabl, ppModule, raCodMod, ppFormWrapper, ppRptExp;
 
 type
   Tmenu_funcionarios = class(TForm)
@@ -65,11 +65,63 @@ type
     fdq_recebimentoSomaSalario: TAggregateField;
     fdq_recebimentoSomaAcerto: TAggregateField;
     fdq_recebimentoSomaVale: TAggregateField;
-    Image1: TImage;
+    img_relatorioGeral: TImage;
     lbl_imprimir: TLabel;
     ppRpt_funcionarioReceb: TppReport;
     ppParameterList1: TppParameterList;
-    ppdb_funcionarios: TppDBPipeline;
+    ppdb_recebimento: TppDBPipeline;
+    dts_recebimento_imp: TDataSource;
+    fdq_recebimento_imp: TFDQuery;
+    fdq_recebimento_impFUN_ID: TFDAutoIncField;
+    fdq_recebimento_impFUN_NOME: TWideStringField;
+    fdq_recebimento_impFUN_CARGO: TWideStringField;
+    fdq_recebimento_impFUN_SALARIO: TBCDField;
+    fdq_recebimento_impREC_TIPO: TWideStringField;
+    fdq_recebimento_impREC_VALOR: TBCDField;
+    img_relatorioConsolidado: TImage;
+    lbl_imprimeConsolidado: TLabel;
+    dts_recebimentoConsolidado: TDataSource;
+    ppDB_recebimentoConsolidado: TppDBPipeline;
+    fdq_recebimentoConsolidado: TFDQuery;
+    ppRpt_recebimentoConsolidado: TppReport;
+    ppParameterList2: TppParameterList;
+    ppDesignLayers2: TppDesignLayers;
+    ppDesignLayer2: TppDesignLayer;
+    ppHeaderBand2: TppHeaderBand;
+    ppDetailBand2: TppDetailBand;
+    ppFooterBand2: TppFooterBand;
+    ppLabel11: TppLabel;
+    sysVariableData: TppSystemVariable;
+    fdq_recebimentoConsolidadoREC_TIPO: TWideStringField;
+    fdq_recebimentoConsolidadoFUN_NOME: TWideStringField;
+    fdq_recebimentoConsolidadoFUN_CARGO: TWideStringField;
+    fdq_recebimentoConsolidadoFUN_SALARIO: TBCDField;
+    fdq_recebimentoConsolidadoREC_VALOR: TBCDField;
+    ppLabel12: TppLabel;
+    ppLabel13: TppLabel;
+    ppLabel14: TppLabel;
+    ppLabel15: TppLabel;
+    ppLine5: TppLine;
+    ppDBText7: TppDBText;
+    ppLabel16: TppLabel;
+    ppLabel17: TppLabel;
+    fdq_recebimentoConsolidadoFUN_ID: TFDAutoIncField;
+    ppDBText8: TppDBText;
+    ppDBText9: TppDBText;
+    ppDBText10: TppDBText;
+    ppDBText11: TppDBText;
+    ppDBText12: TppDBText;
+    ppLine6: TppLine;
+    ppLine7: TppLine;
+    ppLine8: TppLine;
+    ppLabel18: TppLabel;
+    ppDBCalc3: TppDBCalc;
+    ppDBCalc4: TppDBCalc;
+    ppGroup1: TppGroup;
+    ppGroupHeaderBand1: TppGroupHeaderBand;
+    ppGroupFooterBand1: TppGroupFooterBand;
+    ppSystemVariable4: TppSystemVariable;
+    ppLabel19: TppLabel;
     ppHeaderBand1: TppHeaderBand;
     ppLabel1: TppLabel;
     ppSystemVariable2: TppSystemVariable;
@@ -96,8 +148,8 @@ type
     ppImage1: TppImage;
     ppLabel10: TppLabel;
     ppDBCalc1: TppDBCalc;
-    ppDBCalc2: TppDBCalc;
     ppLine4: TppLine;
+    ppDBCalc2: TppDBCalc;
     raCodeModule1: TraCodeModule;
     ppDesignLayers1: TppDesignLayers;
     ppDesignLayer1: TppDesignLayer;
@@ -111,7 +163,8 @@ type
     procedure FormCreate(Sender: TObject);
     procedure fdq_recebimentoCalcFields(DataSet: TDataSet);
     procedure FormActivate(Sender: TObject);
-    procedure Image1Click(Sender: TObject);
+    procedure img_relatorioGeralClick(Sender: TObject);
+    procedure img_relatorioConsolidadoClick(Sender: TObject);
   private
 
   public
@@ -188,9 +241,68 @@ begin
   end;
 end;
 
-procedure Tmenu_funcionarios.Image1Click(Sender: TObject);
+procedure Tmenu_funcionarios.img_relatorioGeralClick(Sender: TObject);
+var
+idFuncionario: Integer;
+const
+  SQL = 'SELECT '                                             +
+          'F.FUN_ID, F.FUN_NOME, F.FUN_CARGO, F.FUN_SALARIO,' +
+          'R.REC_TIPO, R.REC_VALOR '                          +
+        'FROM '                                               +
+          'RECEBIMENTO R '                                    +
+          'INNER JOIN '                                       +
+          'FUNCIONARIOS F ON  R.FUN_ID = F.FUN_ID '           +
+        'WHERE '                                              +
+          'F.FUN_ID = :ID';
 begin
-ppRpt_funcionarioReceb.Print;
+  if not fdq_funcionarios.IsEmpty then
+  begin
+    idFuncionario := fdq_funcionariosFUN_ID.Value;
+
+    fdq_recebimento_imp.SQL.Clear;
+    fdq_recebimento_imp.SQL.Add(SQL);
+    fdq_recebimento_imp.ParamByName('ID').AsInteger := idFuncionario;
+    fdq_recebimento_imp.Open;
+    if fdq_recebimento_imp.IsEmpty then
+    begin
+      MessageDlg('ESSE FUNCIONÁRIO NÃO POSSUI RECEBIMENTOS.'
+        , mtWarning, [mbOk], 0);
+    end
+    else
+      ppRpt_funcionarioReceb.Print;
+  end;
+end;
+
+procedure Tmenu_funcionarios.img_relatorioConsolidadoClick(Sender: TObject);
+var
+  idFuncionario: Integer;
+const
+  SQL = 'SELECT '                                             +
+          'R.REC_TIPO, F.FUN_ID, F.FUN_NOME, F.FUN_CARGO,   ' +
+          'F.FUN_SALARIO, R.REC_VALOR '                          +
+        'FROM '                                               +
+          'RECEBIMENTO R '                                    +
+          'INNER JOIN '                                       +
+          'FUNCIONARIOS F ON  R.FUN_ID = F.FUN_ID '           +
+        'WHERE '                                              +
+          'F.FUN_ID = :ID';
+begin
+  if not fdq_funcionarios.IsEmpty then
+  begin
+    idFuncionario := fdq_funcionariosFUN_ID.Value;
+
+    fdq_recebimentoConsolidado.SQL.Clear;
+    fdq_recebimentoConsolidado.SQL.Add(SQL);
+    fdq_recebimentoConsolidado.ParamByName('ID').AsInteger := idFuncionario;
+    fdq_recebimentoConsolidado.Open;
+    if fdq_recebimentoConsolidado.IsEmpty then
+    begin
+      MessageDlg('ESSE FUNCIONÁRIO NÃO POSSUI RECEBIMENTOS.'
+        , mtWarning, [mbOk], 0);
+    end
+    else
+      ppRpt_recebimentoConsolidado.Print;
+  end;
 end;
 
 procedure Tmenu_funcionarios.img_alterarClick(Sender: TObject);
@@ -269,13 +381,18 @@ begin
 end;
 
 procedure Tmenu_funcionarios.sbtn_consultarClick(Sender: TObject);
+Const
+  SQLSELECT = 'SELECT * FROM FUNCIONARIOS WHERE';
+  SQLNOME   = 'FUN_NOME LIKE :NOME';
+  SQLDATA   = 'FUN_DATANASCIMENTO BETWEEN :DATA_INICIAL AND :DATA_FINAL';
+  SQLCARGO  = 'FUN_CARGO = :CARGO';
 begin
   case rdg_tipoconsulta.ItemIndex of
     0:
       begin
         fdq_funcionarios.Close;
-        fdq_funcionarios.SQL.Text :=
-          'SELECT * FROM FUNCIONARIOS WHERE FUN_NOME LIKE :NOME';
+        fdq_funcionarios.SQL.Clear;
+        fdq_funcionarios.SQL.Add(SQLSELECT + SQLNOME);
         fdq_funcionarios.ParamByName('NOME').AsString :=
           '%' + edt_consulta.Text + '%';
         fdq_funcionarios.Open;
@@ -294,9 +411,8 @@ begin
         else
         begin
           fdq_funcionarios.Close;
-          fdq_funcionarios.SQL.Text :=
-            'SELECT *FROM FUNCIONARIOS WHERE FUN_DATANASCIMENTO BETWEEN ' +
-            ':DATA_INICIAL AND :DATA_FINAL';
+          fdq_funcionarios.SQL.Clear;
+          fdq_funcionarios.SQL.Add(SQLSELECT + SQLDATA);
           fdq_funcionarios.ParamByName('DATA_INICIAL').AsDate :=
             dtp_inicial.Date;
           fdq_funcionarios.ParamByName('DATA_FINAL').AsDate := dtp_final.Date;
@@ -318,15 +434,16 @@ begin
         if Trim(cbx_consulta.Text) = 'TODOS' then
         begin
           fdq_funcionarios.Close;
-          fdq_funcionarios.SQL.Text := 'SELECT *FROM FUNCIONARIOS';
+          fdq_funcionarios.SQL.Clear;
+          fdq_funcionarios.SQL.Add(SQLSELECT);
           fdq_funcionarios.Open;
           calcula_total_grid();
         end
         else
         begin
           fdq_funcionarios.Close;
-          fdq_funcionarios.SQL.Text :=
-            'SELECT *FROM FUNCIONARIOS WHERE FUN_CARGO = :CARGO';
+          fdq_funcionarios.SQL.Clear;
+          fdq_funcionarios.SQL.Add(SQLSELECT + SQLCARGO);
           fdq_funcionarios.ParamByName('CARGO').AsString := cbx_consulta.Text;
           fdq_funcionarios.Open;
           calcula_total_grid();

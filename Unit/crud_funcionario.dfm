@@ -17385,8 +17385,8 @@ object menu_funcionarios: Tmenu_funcionarios
     object ppDB_recebimentoConsolidadoppField1: TppField
       FieldAlias = 'REC_TIPO'
       FieldName = 'REC_TIPO'
-      FieldLength = 0
-      DisplayWidth = 0
+      FieldLength = 25
+      DisplayWidth = 25
       Position = 0
     end
     object ppDB_recebimentoConsolidadoppField2: TppField
@@ -17439,10 +17439,10 @@ object menu_funcionarios: Tmenu_funcionarios
       
         #9'R.REC_TIPO, F.FUN_ID, F.FUN_NOME, F.FUN_CARGO, F.FUN_SALARIO, R' +
         '.REC_VALOR'
-      #9
       'FROM'
       #9'RECEBIMENTO R'
       'INNER JOIN FUNCIONARIOS F ON R.FUN_ID = F.FUN_ID'
+      'ORDER BY REC_TIPO'
       '')
     Left = 528
     Top = 8
@@ -18023,16 +18023,17 @@ object menu_funcionarios: Tmenu_funcionarios
     object ppGroup1: TppGroup
       BreakName = 'REC_TIPO'
       DataPipeline = ppDB_recebimentoConsolidado
-      GroupFileSettings.NewFile = True
+      GroupFileSettings.NewFile = False
       GroupFileSettings.EmailFile = False
       OutlineSettings.CreateNode = True
       NewPage = True
+      ReprintOnSubsequentPage = False
       StartOnOddPage = False
       UserName = 'Group1'
       mmNewColumnThreshold = 0
       mmNewPageThreshold = 0
       DataPipelineName = 'ppDB_recebimentoConsolidado'
-      NewFile = True
+      NewFile = False
       object ppGroupHeaderBand1: TppGroupHeaderBand
         Background.Brush.Style = bsClear
         Border.mmPadding = 0
@@ -18048,6 +18049,8 @@ object menu_funcionarios: Tmenu_funcionarios
         mmHeight = 0
         mmPrintPosition = 0
       end
+    end
+    object raCodeModule2: TraCodeModule
     end
     object ppDesignLayers2: TppDesignLayers
       object ppDesignLayer2: TppDesignLayer
