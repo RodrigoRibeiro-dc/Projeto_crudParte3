@@ -8039,14 +8039,14 @@ object cadastro_funcionario: Tcadastro_funcionario
       object lbl_complemento: TLabel
         Left = 2
         Top = 296
-        Width = 88
+        Width = 87
         Height = 15
         Caption = 'COMPLEMENTO'
       end
       object lbl_datanascimento: TLabel
         Left = 294
         Top = 41
-        Width = 124
+        Width = 122
         Height = 15
         Caption = 'DATA DE NASCIMENTO'
       end
@@ -8134,7 +8134,6 @@ object cadastro_funcionario: Tcadastro_funcionario
         CharCase = ecUpperCase
         DataField = 'FUN_CEP'
         DataSource = dts_funcionario
-        MaxLength = 9
         TabOrder = 10
       end
       object dbedt_cidade: TDBEdit
@@ -8245,14 +8244,14 @@ object cadastro_funcionario: Tcadastro_funcionario
       object lbl_datalanc_pagamento: TLabel
         Left = 77
         Top = 135
-        Width = 29
+        Width = 28
         Height = 15
         Caption = 'DATA'
       end
       object lbl_tipo: TLabel
         Left = 264
         Top = 83
-        Width = 26
+        Width = 25
         Height = 15
         Caption = 'TIPO'
       end

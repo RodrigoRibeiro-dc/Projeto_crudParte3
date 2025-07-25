@@ -216,10 +216,15 @@ end;
 
 procedure Tmenu_funcionarios.FormCreate(Sender: TObject);
 begin
+
   ctn_conexao.Params.UserName := 'sa';
   ctn_conexao.Params.Password := 'aram98';
   ctn_conexao.Params.Database := 'PROJETO_CRUD';
+  ctn_conexao.Connected := True;
+  fdq_funcionarios.Active := True;
+  dts_grid.DataSet.Active := True;
   fdq_funcionarios.Open;
+
 end;
 
 procedure Tmenu_funcionarios.FormKeyDown(Sender: TObject; var Key: Word;
@@ -244,14 +249,14 @@ procedure Tmenu_funcionarios.img_relatorioGeralClick(Sender: TObject);
 var
 idFuncionario: Integer;
 const
-  SQL = 'SELECT '                                             +
-          'F.FUN_ID, F.FUN_NOME, F.FUN_CARGO, F.FUN_SALARIO,' +
-          'R.REC_TIPO, R.REC_VALOR '                          +
-        'FROM '                                               +
-          'RECEBIMENTO R '                                    +
-          'INNER JOIN '                                       +
-          'FUNCIONARIOS F ON  R.FUN_ID = F.FUN_ID '           +
-        'WHERE '                                              +
+  SQL = 'SELECT '                                              +
+          'F.FUN_ID, F.FUN_NOME, F.FUN_CARGO, F.FUN_SALARIO, ' +
+          'R.REC_TIPO, R.REC_VALOR '                           +
+        'FROM '                                                +
+          'RECEBIMENTO R '                                     +
+        'INNER JOIN '                                          +
+          'FUNCIONARIOS F ON  R.FUN_ID = F.FUN_ID '            +
+        'WHERE '                                               +
           'F.FUN_ID = :ID';
 begin
   if not fdq_funcionarios.IsEmpty then
@@ -277,15 +282,16 @@ var
   idFuncionario: Integer;
 const
   SQL = 'SELECT '                                             +
-          'R.REC_TIPO, F.FUN_ID, F.FUN_NOME, F.FUN_CARGO,   ' +
+          'R.REC_TIPO, F.FUN_ID, F.FUN_NOME, F.FUN_CARGO, '   +
           'F.FUN_SALARIO, R.REC_VALOR '                       +
         'FROM '                                               +
           'RECEBIMENTO R '                                    +
-          'INNER JOIN '                                       +
+        'INNER JOIN '                                         +
           'FUNCIONARIOS F ON  R.FUN_ID = F.FUN_ID '           +
         'WHERE '                                              +
           'F.FUN_ID = :ID '                                   +
-        'ORDER BY R.REC_TIPO';
+        'ORDER BY '                                           +
+          'R.REC_TIPO';
 begin
   if not fdq_funcionarios.IsEmpty then
   begin
@@ -331,7 +337,7 @@ begin
     end;
   except
     MessageDlg('EXISTE VÍNCULO DE RECEBIMENTO NO FUNCIONÁRIO, FAÇA A EXCLUSÃO' +
-      'DO REGISTRO PARA CONTINUAR.', mtWarning, [mbOK], 0);
+      ' DO REGISTRO PARA CONTINUAR.', mtWarning, [mbOK], 0);
   end;
 end;
 
@@ -383,20 +389,18 @@ end;
 procedure Tmenu_funcionarios.sbtn_consultarClick(Sender: TObject);
 Const
   SQLSELECT = 'SELECT * FROM FUNCIONARIOS WHERE ';
-  SQLNOME   = 'FUN_NOME LIKE :NOME';
-  SQLDATA   = 'FUN_DATANASCIMENTO BETWEEN :DATA_INICIAL AND :DATA_FINAL';
-  SQLCARGO  = 'FUN_CARGO = :CARGO';
+  SQLNOME = 'FUN_NOME LIKE :NOME';
+  SQLDATA = 'FUN_DATANASCIMENTO BETWEEN :DATA_INICIAL AND :DATA_FINAL';
+  SQLCARGO = 'FUN_CARGO = :CARGO';
 begin
+  fdq_funcionarios.Close;
+  fdq_funcionarios.SQL.Clear;
   case rdg_tipoconsulta.ItemIndex of
     0:
       begin
-        fdq_funcionarios.Close;
-        fdq_funcionarios.SQL.Clear;
         fdq_funcionarios.SQL.Add(SQLSELECT + SQLNOME);
         fdq_funcionarios.ParamByName('NOME').AsString :=
           '%' + edt_consulta.Text + '%';
-        fdq_funcionarios.Open;
-        calcula_total_grid();
       end;
 
     1:
@@ -404,20 +408,15 @@ begin
         if dtp_inicial.DateTime > dtp_final.DateTime then
         begin
           MessageDlg('A DATA FINAL DEVE SER MAIOR QUE A INICIAL.',
-            TMsgDlgType.mtWarning, [TMsgDlgBtn.mbOK], 0);
-
+            TMsgDlgType.mtWarning, [TMsgDlgBtn.mbOk], 0);
           dtp_final.SetFocus;
         end
         else
         begin
-          fdq_funcionarios.Close;
-          fdq_funcionarios.SQL.Clear;
           fdq_funcionarios.SQL.Add(SQLSELECT + SQLDATA);
           fdq_funcionarios.ParamByName('DATA_INICIAL').AsDate :=
             dtp_inicial.Date;
           fdq_funcionarios.ParamByName('DATA_FINAL').AsDate := dtp_final.Date;
-          fdq_funcionarios.Open;
-          calcula_total_grid();
         end;
       end;
 
@@ -426,30 +425,23 @@ begin
         if cbx_consulta.Text = '' then
         begin
           MessageDlg('SELECIONE UM CARGO PARA CONSULTAR.',
-            TMsgDlgType.mtInformation, [TMsgDlgBtn.mbOK], 0);
-
+            TMsgDlgType.mtInformation, [TMsgDlgBtn.mbOk], 0);
           cbx_consulta.SetFocus;
         end;
 
         if Trim(cbx_consulta.Text) = 'TODOS' then
         begin
-          fdq_funcionarios.Close;
-          fdq_funcionarios.SQL.Clear;
           fdq_funcionarios.SQL.Add(SQLSELECT);
-          fdq_funcionarios.Open;
-          calcula_total_grid();
         end
         else
         begin
-          fdq_funcionarios.Close;
-          fdq_funcionarios.SQL.Clear;
           fdq_funcionarios.SQL.Add(SQLSELECT + SQLCARGO);
           fdq_funcionarios.ParamByName('CARGO').AsString := cbx_consulta.Text;
-          fdq_funcionarios.Open;
-          calcula_total_grid();
         end;
       end
   end;
+  fdq_funcionarios.Open;
+  calcula_total_grid();
 end;
 
 procedure Tmenu_funcionarios.SQL(Value: String);

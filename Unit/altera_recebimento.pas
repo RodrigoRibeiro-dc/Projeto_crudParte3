@@ -67,31 +67,17 @@ begin
         MessageDlg('INFORME UM VALOR MAIOR QUE 0,00.', mtWarning, [mbOk], 0);
         nbx_valor.SetFocus;
         abort;
-      end
-      else
-        Recebimento.valor := nbx_valor.Value;
-
-      if (cbx_tipo.text = 'VALE') or (cbx_tipo.text = 'SALÁRIO') or
-        (cbx_tipo.text = 'ACERTO') then
-      begin
-        Recebimento.tipo := cbx_tipo.text;
-      end
-      else
-      begin
-        MessageDlg('ESCOLHA UM ITEM QUE ESTEJA NA LISTA.', mtWarning,
-          [mbOk], 0);
-        cbx_tipo.SetFocus;
-        abort;
       end;
 
-      Recebimento.data := Altera_rec.dtp_data.Date;
+      Recebimento.valor := nbx_valor.Value;
+      Recebimento.tipo := cbx_tipo.text;
+      Recebimento.data := dtp_data.Date;
 
       Recebimento.Alterar(Recebimento);
       Recebimento.ConsultaGrid(Recebimento);
       Close;
       cadastro_funcionario.Totais_recebimentos();
     end;
-
   finally
     Recebimento.Free;
   end;
@@ -118,8 +104,8 @@ begin
         ('REC_DESCRICAO').AsString;
       nbx_valor.text := menu_funcionarios.fdq_recebimento.FieldByName
         ('REC_VALOR').AsString;
-      cbx_tipo.text := menu_funcionarios.fdq_recebimento.FieldByName
-        ('REC_TIPO').AsString;
+      cbx_tipo.ItemIndex := cbx_tipo.Items.IndexOf
+        (menu_funcionarios.fdq_recebimento.FieldByName('REC_TIPO').AsString);
       dtp_data.Date := menu_funcionarios.fdq_recebimento.FieldByName('REC_DATA')
         .AsDateTime;
     end;

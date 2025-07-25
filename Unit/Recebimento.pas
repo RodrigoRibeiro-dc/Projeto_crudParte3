@@ -32,9 +32,6 @@ type
 
 implementation
 
-uses
-  campo_funcionario;
-
 procedure TRecebimentos.Alterar(Value: TRecebimentos);
 begin
   Value.id_recebimento := menu_funcionarios.fdq_recebimentoREC_ID.Value;

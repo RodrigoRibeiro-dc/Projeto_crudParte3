@@ -219,7 +219,7 @@ begin
     edt_descricao.Clear;
     nbx_valor.Clear;
     dtp_data.Date := Date;
-    cbx_tipo.Clear;
+    cbx_tipo.ClearSelection;
   finally
     Recebimento.Free;
   end;

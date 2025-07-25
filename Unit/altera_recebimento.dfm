@@ -8006,14 +8006,14 @@ object Altera_rec: TAltera_rec
   object lbl_datalanc_pagamento: TLabel
     Left = 37
     Top = 171
-    Width = 29
+    Width = 28
     Height = 15
     Caption = 'DATA'
   end
   object lbl_tipo: TLabel
     Left = 224
     Top = 123
-    Width = 26
+    Width = 25
     Height = 15
     Caption = 'TIPO'
   end

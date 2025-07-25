@@ -8410,7 +8410,7 @@ object menu_funcionarios: Tmenu_funcionarios
     object lbl_dtinicial: TLabel
       Left = 211
       Top = 66
-      Width = 72
+      Width = 71
       Height = 15
       Caption = 'DATA INICIAL'
       Visible = False
@@ -8418,7 +8418,7 @@ object menu_funcionarios: Tmenu_funcionarios
     object lbl_dtfinal: TLabel
       Left = 391
       Top = 66
-      Width = 64
+      Width = 63
       Height = 15
       Caption = 'DATA FINAL'
       Visible = False
@@ -8544,7 +8544,6 @@ object menu_funcionarios: Tmenu_funcionarios
       'Database=PROJETO_CRUD'
       'Password=aram98'
       'DriverID=MSSQL')
-    Connected = True
     LoginPrompt = False
     Transaction = tsc_funcionarios
     Left = 16
@@ -8556,7 +8555,6 @@ object menu_funcionarios: Tmenu_funcionarios
     Top = 352
   end
   object fdq_funcionarios: TFDQuery
-    Active = True
     Connection = ctn_conexao
     SQL.Strings = (
       'SELECT *FROM FUNCIONARIOS')
@@ -8630,7 +8628,6 @@ object menu_funcionarios: Tmenu_funcionarios
     Top = 358
   end
   object fdq_recebimento: TFDQuery
-    Active = True
     OnCalcFields = fdq_recebimentoCalcFields
     AggregatesActive = True
     Connection = ctn_conexao
@@ -17268,54 +17265,6 @@ object menu_funcionarios: Tmenu_funcionarios
     UserName = 'db_recebimento'
     Left = 440
     Top = 6
-    object ppdb_recebimentoppField1: TppField
-      Alignment = taRightJustify
-      FieldAlias = 'FUN_ID'
-      FieldName = 'FUN_ID'
-      FieldLength = 0
-      DataType = dtLongint
-      DisplayWidth = 10
-      Position = 0
-    end
-    object ppdb_recebimentoppField2: TppField
-      FieldAlias = 'FUN_NOME'
-      FieldName = 'FUN_NOME'
-      FieldLength = 50
-      DisplayWidth = 50
-      Position = 1
-    end
-    object ppdb_recebimentoppField3: TppField
-      FieldAlias = 'FUN_CARGO'
-      FieldName = 'FUN_CARGO'
-      FieldLength = 50
-      DisplayWidth = 50
-      Position = 2
-    end
-    object ppdb_recebimentoppField4: TppField
-      Alignment = taRightJustify
-      FieldAlias = 'FUN_SALARIO'
-      FieldName = 'FUN_SALARIO'
-      FieldLength = 2
-      DataType = dtDouble
-      DisplayWidth = 11
-      Position = 3
-    end
-    object ppdb_recebimentoppField5: TppField
-      FieldAlias = 'REC_TIPO'
-      FieldName = 'REC_TIPO'
-      FieldLength = 25
-      DisplayWidth = 25
-      Position = 4
-    end
-    object ppdb_recebimentoppField6: TppField
-      Alignment = taRightJustify
-      FieldAlias = 'REC_VALOR'
-      FieldName = 'REC_VALOR'
-      FieldLength = 2
-      DataType = dtDouble
-      DisplayWidth = 11
-      Position = 5
-    end
   end
   object dts_recebimento_imp: TDataSource
     DataSet = fdq_recebimento_imp
@@ -17323,7 +17272,6 @@ object menu_funcionarios: Tmenu_funcionarios
     Top = 6
   end
   object fdq_recebimento_imp: TFDQuery
-    Active = True
     Connection = ctn_conexao
     SQL.Strings = (
       'SELECT'
@@ -17345,12 +17293,12 @@ object menu_funcionarios: Tmenu_funcionarios
     object fdq_recebimento_impFUN_NOME: TWideStringField
       FieldName = 'FUN_NOME'
       Origin = 'FUN_NOME'
-      Size = 50
+      Size = 45
     end
     object fdq_recebimento_impFUN_CARGO: TWideStringField
       FieldName = 'FUN_CARGO'
       Origin = 'FUN_CARGO'
-      Size = 50
+      Size = 25
     end
     object fdq_recebimento_impFUN_SALARIO: TBCDField
       FieldName = 'FUN_SALARIO'
@@ -17382,57 +17330,8 @@ object menu_funcionarios: Tmenu_funcionarios
     UserName = 'DB_recebimentoConsolidado'
     Left = 672
     Top = 8
-    object ppDB_recebimentoConsolidadoppField1: TppField
-      FieldAlias = 'REC_TIPO'
-      FieldName = 'REC_TIPO'
-      FieldLength = 25
-      DisplayWidth = 25
-      Position = 0
-    end
-    object ppDB_recebimentoConsolidadoppField2: TppField
-      FieldAlias = 'FUN_NOME'
-      FieldName = 'FUN_NOME'
-      FieldLength = 50
-      DisplayWidth = 50
-      Position = 1
-    end
-    object ppDB_recebimentoConsolidadoppField3: TppField
-      FieldAlias = 'FUN_CARGO'
-      FieldName = 'FUN_CARGO'
-      FieldLength = 50
-      DisplayWidth = 50
-      Position = 2
-    end
-    object ppDB_recebimentoConsolidadoppField4: TppField
-      Alignment = taRightJustify
-      FieldAlias = 'FUN_SALARIO'
-      FieldName = 'FUN_SALARIO'
-      FieldLength = 2
-      DataType = dtDouble
-      DisplayWidth = 11
-      Position = 3
-    end
-    object ppDB_recebimentoConsolidadoppField5: TppField
-      Alignment = taRightJustify
-      FieldAlias = 'REC_VALOR'
-      FieldName = 'REC_VALOR'
-      FieldLength = 2
-      DataType = dtDouble
-      DisplayWidth = 11
-      Position = 4
-    end
-    object ppDB_recebimentoConsolidadoppField6: TppField
-      Alignment = taRightJustify
-      FieldAlias = 'FUN_ID'
-      FieldName = 'FUN_ID'
-      FieldLength = 0
-      DataType = dtLongint
-      DisplayWidth = 10
-      Position = 5
-    end
   end
   object fdq_recebimentoConsolidado: TFDQuery
-    Active = True
     Connection = ctn_conexao
     SQL.Strings = (
       'SELECT'
@@ -17455,12 +17354,12 @@ object menu_funcionarios: Tmenu_funcionarios
     object fdq_recebimentoConsolidadoFUN_NOME: TWideStringField
       FieldName = 'FUN_NOME'
       Origin = 'FUN_NOME'
-      Size = 50
+      Size = 45
     end
     object fdq_recebimentoConsolidadoFUN_CARGO: TWideStringField
       FieldName = 'FUN_CARGO'
       Origin = 'FUN_CARGO'
-      Size = 50
+      Size = 25
     end
     object fdq_recebimentoConsolidadoFUN_SALARIO: TBCDField
       FieldName = 'FUN_SALARIO'
